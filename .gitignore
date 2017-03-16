@@ -8,6 +8,9 @@ Desktop.ini
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
 
+# Dropbox
+.dropbox
+
 # Windows Installer files
 *.cab
 *.msi
