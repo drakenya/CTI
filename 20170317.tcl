@@ -238,6 +238,9 @@ VARIABLES:
 '	OccupyWest[MAX_BLOCK_INDEX]		'* holds status of current sensors
 
 	Turnout_Type[MAX_TURNOUT_INDEX]
+	
+	Dcc_Cab_Pointer[MAX_CAB_INDEX]
+	Previous_Dcc_Cab_Speed[MAX_CAB_INDEX]
 
 '* Arrays to hold Grid coordinates for panel display
 	Block_Grid[MAX_BLOCK_INDEX]
@@ -609,6 +612,11 @@ WHEN InitStatus=INITIALIZING do '(All lines must end in a comma to continue the 
 	Cab_Direction_Pointer[1]=&SCP_PBa1_01.Direction, Cab_Direction_Pointer[2]=&SCP_PBa1_02.Direction, Cab_Direction_Pointer[3]=&SCP_PBa1_03.Direction,
 	Cab_Brake_Pointer[1]=&SCP_PBa1_01.Brake, Cab_Brake_Pointer[2]=&SCP_PBa1_02.Brake, Cab_Brake_Pointer[3]=&SCP_PBa1_03.Brake,
 	Cab_Momentum_Pointer[1]=&SCP_PBa1_01.Momentum, Cab_Momentum_Pointer[2]=&SCP_PBa1_02.Momentum, Cab_Momentum_Pointer[3]=&SCP_PBa1_03.Momentum,
+	
+' set DCC cab pointers
+	Dcc_Cab_Pointer[1] = &CAB_1
+	Dcc_Cab_Pointer[2] = &CAB_2
+	Dcc_Cab_Pointer[3] = &CAB_3
 
 '**	Initialize panel locations of IR Block Detectors - one at each end of block		
 
@@ -1339,5 +1347,53 @@ ENDSUB
 '	WHEN IR_EOT_Detector[0]=DETECTOR_BLOCK_VACANT DO
 '		$Erase Sprite(IR_EOT_Detector_Grid[0])
 
+'  ************** DCC CABS ****************
 
+SUB Update_Dcc_Cab_Speed(DccCabIndex, {Local} NewSpeed)
+	NewSpeed = *Dcc_Cab_Pointer[DccCabIndex].Speed
+	IF NewSpeed > 100 THEN NewSpeed = 100 ENDIF
 
+	*Cab_Pointer[DccCabIndex].Speed = NewSpeed
+	Previous_Dcc_Cab_Speed[DccCabIndex] = *Dcc_Cab_Pointer[DccCabIndex].Speed
+ENDSUB
+SUB Update_Cab_Speed(CabIndex)
+	*Dcc_Cab_Pointer[CabIndex].Speed = *Cab_Pointer[CabIndex].Speed
+	Previous_Cab_Speed[CabIndex] = *Cab_Pointer[CabIndex].Speed
+ENDSUB
+
+WHEN *Dcc_Cab_Pointer[1].Speed <> Previous_Dcc_Cab_Speed[1] DO Update_Dcc_Cab_Speed(1)
+WHEN *Dcc_Cab_Pointer[2].Speed <> Previous_Dcc_Cab_Speed[2] DO Update_Dcc_Cab_Speed(2)
+WHEN *Dcc_Cab_Pointer[3].Speed <> Previous_Dcc_Cab_Speed[3] DO Update_Dcc_Cab_Speed(3)
+
+WHEN *Dcc_Cab_Pointer[1].Brake = ON DO *Cab_Pointer[1].Brake = ON
+WHEN *Dcc_Cab_Pointer[1].Brake = OFF DO *Cab_Pointer[1].Brake = OFF
+WHEN *Dcc_Cab_Pointer[2].Brake = ON DO *Cab_Pointer[2].Brake = ON
+WHEN *Dcc_Cab_Pointer[2].Brake = OFF DO *Cab_Pointer[2].Brake = OFF
+WHEN *Dcc_Cab_Pointer[3].Brake = ON DO *Cab_Pointer[3].Brake = ON
+WHEN *Dcc_Cab_Pointer[4].Brake = OFF DO *Cab_Pointer[3].Brake = OFF
+
+WHEN *Dcc_Cab_Pointer[1].Direction = FORWARD DO *Cab_Pointer[1].Direction = FORWARD
+WHEN *Dcc_Cab_Pointer[1].Direction = REVERSE DO *Cab_Pointer[1].Direction = REVERSE
+WHEN *Dcc_Cab_Pointer[2].Direction = FORWARD DO *Cab_Pointer[2].Direction = FORWARD
+WHEN *Dcc_Cab_Pointer[2].Direction = REVERSE DO *Cab_Pointer[2].Direction = REVERSE
+WHEN *Dcc_Cab_Pointer[3].Direction = FORWARD DO *Cab_Pointer[3].Direction = FORWARD
+WHEN *Dcc_Cab_Pointer[4].Direction = REVERSE DO *Cab_Pointer[3].Direction = REVERSE
+
+' *** --- ***
+WHEN *Cab_Pointer[1].Speed <> Previous_Cab_Speed[1] DO Update_Cab_Speed(1)
+WHEN *Cab_Pointer[2].Speed <> Previous_Cab_Speed[2] DO Update_Cab_Speed(2)
+WHEN *Cab_Pointer[3].Speed <> Previous_Cab_Speed[3] DO Update_Cab_Speed(3)
+
+WHEN *Cab_Pointer[1].Brake = ON DO *Dcc_Cab_Pointer[1].Brake = ON
+WHEN *Cab_Pointer[1].Brake = OFF DO *Dcc_Cab_Pointer[1].Brake = OFF
+WHEN *Cab_Pointer[2].Brake = ON DO *Dcc_Cab_Pointer[2].Brake = ON
+WHEN *Cab_Pointer[2].Brake = OFF DO *Dcc_Cab_Pointer[2].Brake = OFF
+WHEN *Cab_Pointer[3].Brake = ON DO *Dcc_Cab_Pointer[3].Brake = ON
+WHEN *Cab_Pointer[4].Brake = OFF DO *Dcc_Cab_Pointer[3].Brake = OFF
+
+WHEN *Cab_Pointer[1].Direction = FORWARD DO *Dcc_Cab_Pointer[1].Direction = FORWARD
+WHEN *Cab_Pointer[1].Direction = REVERSE DO *Dcc_Cab_Pointer[1].Direction = REVERSE
+WHEN *Cab_Pointer[2].Direction = FORWARD DO *Dcc_Cab_Pointer[2].Direction = FORWARD
+WHEN *Cab_Pointer[2].Direction = REVERSE DO *Dcc_Cab_Pointer[2].Direction = REVERSE
+WHEN *Cab_Pointer[3].Direction = FORWARD DO *Dcc_Cab_Pointer[3].Direction = FORWARD
+WHEN *Cab_Pointer[4].Direction = REVERSE DO *Dcc_Cab_Pointer[3].Direction = REVERSE
