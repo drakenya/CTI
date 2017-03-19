@@ -45,9 +45,16 @@ CONSTANTS:
 
 	COLOR_UNSELECTED_SPEED=$RGB_DFDFDF	'* Color for unselected speed buttons
 	COLOR_MANUAL_CAB=$RGB_FF0000
-	COLOR_CAB_1=$RGB_2492FF,
-	COLOR_CAB_2=$RGB_008000,
-	COLOR_CAB_3=$RGB_005EBB,
+	COLOR_CAB_1=$RGB_2492FF
+	COLOR_CAB_2=$RGB_008000
+	COLOR_CAB_3=$RGB_005EBB
+	COLOR_BRAKE_ON = Red
+	COLOR_BRAKE_OFF = Black
+	COLOR_DIRECTION_FORWARD = Green
+	COLOR_DIRECTION_REVERSE = Red
+
+	ICON_DIRECTION_FORWARD = Arrow_North
+	ICON_DIRECTION_REVERSE = Arrow_South
 
 '***********************************************************************************
 '					NETWORK MODULE DECLARATIONS
@@ -216,22 +223,9 @@ VARIABLES:
 	NotchIndex
 	index
 
-' Used in subroutines ??
-	blocknum ' BNum
-	cabnum ' CNum
-
-		InitStatus
-		x
-		y
-		Count
-		Block_Color
-		temp
-		traincount
-		tempcabnum
-		blocktemp
+	InitStatus
 ' Status holders
 	Turnout_Status[MAX_TURNOUT_INDEX]	'holds status of each turnout
-	Mouse_Status				' holds mouse status to prevent multiple actions on single click
 	Block_Status[MAX_BLOCK_INDEX] 'BStatus
 	Block_Cab[MAX_BLOCK_INDEX]		'* holds cab assignment for each block
 '	OccupyEast[MAX_BLOCK_INDEX]		'* holds status of current sensors
@@ -310,18 +304,19 @@ ACTIONS:
 '******** 	Indicate Block occupancy change on panel
 
 ' 	Occupied
-
-SUB Block_occupancy_on(block_Grid,block_color,sprite_shape)
-	$Color Block (block_Grid) = block_color
-	$Draw Sprite (block_Grid) = sprite_shape in Block_Color
-ENDSUB
-
-' 	Vacant
-
 SUB Block_occupancy_off(block_Grid,Block_Color)
 	$Color Block (block_Grid) = black
 	$Draw Sprite (block_Grid) = Lock in Block_Color
 ENDSUB
+
+
+SUB Block_occupancy_on(block_Grid,block_color,sprite_shape)
+	$Color Block(block_Grid) = block_color
+	$Draw Sprite(block_Grid) = sprite_shape in Block_Color
+ENDSUB
+
+' 	Vacant
+
 
 		
 '******** 	Configures TrainBrain Controls to assign proper cab to designated block
@@ -397,30 +392,7 @@ ENDSUB
 '******** 	Assign selected speed to cab
 
 SUB Assign_Speed_To_Cab(CIndex,SIndex)
-	*Cab_Speed_Pointer[CIndex]=speed_notch[SIndex], 'Set Actual cab speed
-		NotchIndex=10
-		UNTIL NotchIndex=SIndex QUICKLOOP
-			IF CIndex=1 THEN
-				$color Track(cab1_Speed_Grid[NotchIndex]) = COLOR_UNSELECTED_SPEED
-			ELSEIF CIndex=2 THEN
-				$color Track(cab2_Speed_Grid[NotchIndex]) = COLOR_UNSELECTED_SPEED
-			ELSEIF CIndex=3 THEN
-				$color Track(cab3_Speed_Grid[NotchIndex]) = COLOR_UNSELECTED_SPEED
-			ENDIF
-			NotchIndex=-
-		ENDLOOP
-
-		NotchIndex=SIndex
-		UNTIL NotchIndex=0 QUICKLOOP
-			IF CIndex=1 THEN
-				$color Track(cab1_Speed_Grid[NotchIndex]) = Cab_Color[1]
-			ELSEIF CIndex=2 THEN
-				$color Track(cab2_Speed_Grid[NotchIndex]) = Cab_Color[2]
-			ELSEIF CIndex=3 THEN
-				$color Track(cab3_Speed_Grid[NotchIndex]) = Cab_Color[3]
-			ENDIF
-			NotchIndex=-
-		ENDLOOP
+	*Cab_Speed_Pointer[CIndex] = Speed_Notch[SIndex], 'Set Actual cab speed
 ENDSUB
 
 ' *******Initialization Sub Routines **********************
@@ -915,66 +887,20 @@ When $LeftMouse = cab3_Speed_grid[10] DO Assign_Speed_To_Cab(3, 10)
 '** 	Detect activation of pushbuttons for cab brake		
 '**						
 				
-	WHEN $leftmouse=cab1_Brake_Grid DO			
-		*Cab_Brake_Pointer[1]=	*Cab_Brake_Pointer[1]~,		
-		IF *Cab_Brake_Pointer[1]=on then,		
-			$Color Track(Cab1_Brake_Grid)=red,	
-		ELSE,		
-			$Color Track(Cab1_Brake_Grid)=Black,	
-				
-		ENDIF		
-				
-	WHEN $leftmouse=cab2_Brake_Grid DO			
-		*Cab_Brake_Pointer[2]=	*Cab_Brake_Pointer[2]~,		
-		IF *Cab_Brake_Pointer[2]=on then,		
-			$Color Track(Cab2_Brake_Grid)=red,	
-		ELSE,		
-			$Color Track(Cab2_Brake_Grid)=Black,	
-				
-		ENDIF		
-				
-	WHEN $leftmouse=cab3_Brake_Grid DO			
-		*Cab_Brake_Pointer[3]=	*Cab_Brake_Pointer[3]~,		
-		IF *Cab_Brake_Pointer[3]=on then,			
-			$Color Track(Cab3_Brake_Grid)=red,	
-		ELSE,		
-			$Color Track(Cab3_Brake_Grid)=Black,	
-				
-		ENDIF		
-				
+WHEN $leftmouse = cab1_Brake_Grid DO *Cab_Brake_Pointer[1] = *Cab_Brake_Pointer[1]~
+WHEN $leftmouse = cab2_Brake_Grid DO *Cab_Brake_Pointer[2] = *Cab_Brake_Pointer[2]~
+WHEN $leftmouse = cab3_Brake_Grid DO *Cab_Brake_Pointer[3] = *Cab_Brake_Pointer[3]~
 	
 '********************************************************************			
 '** 	Detect activation of pushbuttons for cab direction		
 '**					
 				
-	WHEN $leftmouse=cab1_Direction_Grid DO			
-		*Cab_Direction_Pointer[1]=*Cab_Direction_Pointer[1]~,		
-		IF *Cab_Direction_Pointer[1]=Reverse then,		
-			$Draw Sprite(Cab1_F_R_Indication_Grid)=Arrow_South in Red,	
-		ELSE,		
-			$Draw Sprite(Cab1_F_R_Indication_Grid)=Arrow_North in Green,	
-				
-		ENDIF		
-				
-	WHEN $leftmouse=cab2_Direction_Grid DO			
-		*Cab_Direction_Pointer[2]=*Cab_Direction_Pointer[2]~,		
-		IF *Cab_Direction_Pointer[2]=Reverse then,	
-			$Draw Sprite(Cab2_F_R_Indication_Grid)=Arrow_South in Red,	
-		ELSE,		
-			$Draw Sprite(Cab2_F_R_Indication_Grid)=Arrow_North in Green,	
-				
-		ENDIF		
-				
-	WHEN $leftmouse=cab3_Direction_Grid DO			
-		*Cab_Direction_Pointer[3]=*Cab_Direction_Pointer[3]~,		
-		IF *Cab_Direction_Pointer[3]=Reverse then,	
-			$Draw Sprite(Cab3_F_R_Indication_Grid)=Arrow_South in Red,	
-		ELSE,		
-			$Draw Sprite(Cab3_F_R_Indication_Grid)=Arrow_North in Green,	
-				
-		ENDIF		
-				
-				
+WHEN $leftmouse = cab1_Direction_Grid DO
+	*Cab_Direction_Pointer[1] = *Cab_Direction_Pointer[1] ~
+WHEN $leftmouse = cab2_Direction_Grid DO
+	*Cab_Direction_Pointer[2] = *Cab_Direction_Pointer[2] ~
+WHEN $leftmouse = cab3_Direction_Grid DO			
+	*Cab_Direction_Pointer[3] = *Cab_Direction_Pointer[3] ~
 
 '********************  TURNOUTS  ********************			
 '******** 	Throw Tortoise Switch and corresponding display on panel
@@ -1396,4 +1322,78 @@ WHEN *Cab_Pointer[1].Direction = REVERSE DO *Dcc_Cab_Pointer[1].Direction = REVE
 WHEN *Cab_Pointer[2].Direction = FORWARD DO *Dcc_Cab_Pointer[2].Direction = FORWARD
 WHEN *Cab_Pointer[2].Direction = REVERSE DO *Dcc_Cab_Pointer[2].Direction = REVERSE
 WHEN *Cab_Pointer[3].Direction = FORWARD DO *Dcc_Cab_Pointer[3].Direction = FORWARD
-WHEN *Cab_Pointer[4].Direction = REVERSE DO *Dcc_Cab_Pointer[3].Direction = REVERSE
+WHEN *Cab_Pointer[3].Direction = REVERSE DO *Dcc_Cab_Pointer[3].Direction = REVERSE
+
+'
+'
+SUB Redraw_Cab_Speed(CabIndex, {Local} Index, DrawColor)
+	Index = 0
+	UNTIL Index >= MAX_SPEED_NOTCH_INDEX LOOP
+		IF *Cab_Pointer[CabIndex].Speed >= Speed_Notch[Index] THEN
+			DrawColor = Cab_Color[CabIndex]
+		ELSE
+			DrawColor = COLOR_UNSELECTED_SPEED
+		ENDIF
+		
+		IF CabIndex = 1 THEN
+			$Color Track(cab1_Speed_Grid[Index]) = DrawColor
+		ELSEIF CabIndex = 2 THEN
+			$Color Track(cab2_Speed_Grid[Index]) = DrawColor
+		ELSEIF CabIndex = 3 THEN
+			$Color Track(cab3_Speed_Grid[Index]) = DrawColor
+		ENDIF
+		
+		Index = 1 +
+	ENDLOOP
+ENDSUB
+SUB Redraw_Cab_Brake(CabIndex, {Local} DrawColor)
+	IF *Cab_Pointer[CabIndex].Brake = ON THEN
+		DrawColor = COLOR_BRAKE_ON
+	ELSE
+		DrawColor = COLOR_BRAKE_OFF
+	ENDIF
+	
+	IF CabIndex = 1 THEN
+		$Color Track(cab1_Brake_Grid) = DrawColor
+	ELSEIF CabIndex = 2 THEN
+		$Color Track(cab2_Brake_Grid) = DrawColor
+	ELSEIF CabIndex = 3 THEN
+		$Color Track(cab3_Brake_Grid) = DrawColor
+	ENDIF
+ENDSUB
+SUB Redraw_Cab_Direction(CabIndex, {Local} DrawColor, DrawIcon)
+	IF *Cab_Pointer[CabIndex].Direction = FORWARD THEN
+		DrawColor = COLOR_DIRECTION_FORWARD
+		DrawIcon = ICON_DIRECTION_FORWARD
+	ELSE
+		DrawColor = COLOR_DIRECTION_REVERSE
+		DrawIcon = ICON_DIRECTION_REVERSE
+	ENDIF
+	
+	IF CabIndex = 1 THEN
+		$Draw Sprite(Cab1_F_R_Indication_Grid) = DrawIcon in DrawColor
+	ELSEIF CabIndex = 2 THEN
+		$Draw Sprite(Cab2_F_R_Indication_Grid) = DrawIcon in DrawColor
+	ELSEIF CabIndex = 3 THEN
+		$Draw Sprite(Cab3_F_R_Indication_Grid) = DrawIcon in DrawColor
+	ENDIF
+ENDSUB
+
+WHEN *Cab_Pointer[1].Speed <> Previous_Cab_Speed[1] DO Redraw_Cab_Speed(1)
+WHEN *Cab_Pointer[2].Speed <> Previous_Cab_Speed[2] DO Redraw_Cab_Speed(2)
+WHEN *Cab_Pointer[3].Speed <> Previous_Cab_Speed[3] DO Redraw_Cab_Speed(3)
+
+
+WHEN *Cab_Pointer[1].Brake = ON DO Redraw_Cab_Brake(1)
+WHEN *Cab_Pointer[1].Brake = OFF DO Redraw_Cab_Brake(1)
+WHEN *Cab_Pointer[2].Brake = ON DO Redraw_Cab_Brake(2)
+WHEN *Cab_Pointer[2].Brake = OFF DO Redraw_Cab_Brake(2)
+WHEN *Cab_Pointer[3].Brake = ON DO Redraw_Cab_Brake(3)
+WHEN *Cab_Pointer[3].Brake = OFF DO Redraw_Cab_Brake(3)
+
+WHEN *Cab_Pointer[1].Direction = FORWARD DO Redraw_Cab_Direction(1)
+WHEN *Cab_Pointer[1].Direction = REVERSE DO Redraw_Cab_Direction(1)
+WHEN *Cab_Pointer[2].Direction = FORWARD DO Redraw_Cab_Direction(2)
+WHEN *Cab_Pointer[2].Direction = REVERSE DO Redraw_Cab_Direction(2)
+WHEN *Cab_Pointer[3].Direction = FORWARD DO Redraw_Cab_Direction(3)
+WHEN *Cab_Pointer[3].Direction = REVERSE DO Redraw_Cab_Direction(3)
