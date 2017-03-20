@@ -284,7 +284,7 @@ VARIABLES:
 
 
 '* Speed Control
-	Previous_Cab_Speed[MAX_CAB]
+	Previous_Cab_Speed[MAX_CAB_INDEX]
 	Speed_Notch[MAX_SPEED_NOTCH_INDEX]		'* holds throttle speeds for each step		
 
 
@@ -392,7 +392,7 @@ ENDSUB
 '******** 	Assign selected speed to cab
 
 SUB Assign_Speed_To_Cab(CIndex,SIndex)
-	*Cab_Speed_Pointer[CIndex] = Speed_Notch[SIndex], 'Set Actual cab speed
+	*Cab_Pointer[CIndex].Speed = Speed_Notch[SIndex], 'Set Actual cab speed
 ENDSUB
 
 ' *******Initialization Sub Routines **********************
@@ -412,7 +412,7 @@ ENDSUB
 
 SUB Initialize_Cab_Status()
 	*Cab_Brake_Pointer[1]=on
-	Assign_Speed_To_Cab(1)
+	Assign_Speed_To_Cab(1,1)
 	*Cab_Direction_Pointer[1]=forward
 
 	*Cab_Brake_Pointer[2]=on
