@@ -725,159 +725,104 @@ InitStatus=Operating
 
 '*	All Block assignments
 
-	WHEN $leftmouse=cab0_All_Blocks_Grid DO
-		Assign_Cab_To_All_Blocks(0)
-
-	WHEN $leftmouse=cab1_All_Blocks_Grid DO
-		Assign_Cab_To_All_Blocks(1)
-
-	WHEN $leftmouse=cab2_All_Blocks_Grid DO
-		Assign_Cab_To_All_Blocks(2)
-
-	WHEN $leftmouse=cab3_All_Blocks_Grid DO 
-		Assign_Cab_To_All_Blocks(3)
+WHEN $leftmouse=cab0_All_Blocks_Grid DO Assign_Cab_To_All_Blocks(0)
+WHEN $leftmouse=cab1_All_Blocks_Grid DO Assign_Cab_To_All_Blocks(1)
+WHEN $leftmouse=cab2_All_Blocks_Grid DO Assign_Cab_To_All_Blocks(2)
+WHEN $leftmouse=cab3_All_Blocks_Grid DO Assign_Cab_To_All_Blocks(3)
 
 '*	Individual Block assignments
 
-	WHEN $leftmouse=cab0_block_grid[1] DO
-		Assign_Cab_To_Block(0,1)
-	WHEN $leftmouse=cab0_block_grid[2] DO
-		Assign_Cab_To_Block(0,2)
-	WHEN $leftmouse=cab0_block_grid[3] DO
-		Assign_Cab_To_Block(0,3)
-	WHEN $leftmouse=cab0_block_grid[4] DO
-		Assign_Cab_To_Block(0,4)
-	WHEN $leftmouse=cab0_block_grid[5] DO
-		Assign_Cab_To_Block(0,5)
-	WHEN $leftmouse=cab0_block_grid[6] DO
-		Assign_Cab_To_Block(0,6)
-	WHEN $leftmouse=cab0_block_grid[7] DO
-		Assign_Cab_To_Block(0,7)
-	WHEN $leftmouse=cab0_block_grid[8] DO
-		Assign_Cab_To_Block(0,8)
-	WHEN $leftmouse=cab0_block_grid[9] DO
-		Assign_Cab_To_Block(0,9)
-	WHEN $leftmouse=cab0_block_grid[10] DO
-		Assign_Cab_To_Block(0,10)
-	WHEN $leftmouse=cab0_block_grid[11] DO
-		Assign_Cab_To_Block(0,11)
-	WHEN $leftmouse=cab0_block_grid[12] DO
-		Assign_Cab_To_Block(0,12)
+WHEN $leftmouse=cab0_block_grid[1] DO Assign_Cab_To_Block(0,1)
+WHEN $leftmouse=cab0_block_grid[2] DO Assign_Cab_To_Block(0,2)
+WHEN $leftmouse=cab0_block_grid[3] DO Assign_Cab_To_Block(0,3)
+WHEN $leftmouse=cab0_block_grid[4] DO Assign_Cab_To_Block(0,4)
+WHEN $leftmouse=cab0_block_grid[5] DO Assign_Cab_To_Block(0,5)
+WHEN $leftmouse=cab0_block_grid[6] DO Assign_Cab_To_Block(0,6)
+WHEN $leftmouse=cab0_block_grid[7] DO Assign_Cab_To_Block(0,7)
+WHEN $leftmouse=cab0_block_grid[8] DO Assign_Cab_To_Block(0,8)
+WHEN $leftmouse=cab0_block_grid[9] DO Assign_Cab_To_Block(0,9)
+WHEN $leftmouse=cab0_block_grid[10] DO Assign_Cab_To_Block(0,10)
+WHEN $leftmouse=cab0_block_grid[11] DO Assign_Cab_To_Block(0,11)
+WHEN $leftmouse=cab0_block_grid[12] DO Assign_Cab_To_Block(0,12)
 
-	WHEN $leftmouse=cab1_block_grid[1] DO
-		Assign_Cab_To_Block(1,1)
-	WHEN $leftmouse=cab1_block_grid[2] DO
-		Assign_Cab_To_Block(1,2)
-	WHEN $leftmouse=cab1_block_grid[3] DO
-		Assign_Cab_To_Block(1,3)
-	WHEN $leftmouse=cab1_block_grid[4] DO
-		Assign_Cab_To_Block(1,4)
-	WHEN $leftmouse=cab1_block_grid[5] DO
-		Assign_Cab_To_Block(1,5)
-	WHEN $leftmouse=cab1_block_grid[6] DO
-		Assign_Cab_To_Block(1,6)
-	WHEN $leftmouse=cab1_block_grid[7] DO
-		Assign_Cab_To_Block(1,7)
-	WHEN $leftmouse=cab1_block_grid[8] DO
-		Assign_Cab_To_Block(1,8)
-	WHEN $leftmouse=cab1_block_grid[9] DO
-		Assign_Cab_To_Block(1,9)
-	WHEN $leftmouse=cab1_block_grid[10] DO
-		Assign_Cab_To_Block(1,10)
-	WHEN $leftmouse=cab1_block_grid[11] DO
-		Assign_Cab_To_Block(1,11)
-	WHEN $leftmouse=cab1_block_grid[12] DO
-		Assign_Cab_To_Block(1,12)
+WHEN $leftmouse=cab1_block_grid[1] DO Assign_Cab_To_Block(1,1)
+WHEN $leftmouse=cab1_block_grid[2] DO Assign_Cab_To_Block(1,2)
+WHEN $leftmouse=cab1_block_grid[3] DO Assign_Cab_To_Block(1,3)
+WHEN $leftmouse=cab1_block_grid[4] DO Assign_Cab_To_Block(1,4)
+WHEN $leftmouse=cab1_block_grid[5] DO Assign_Cab_To_Block(1,5)
+WHEN $leftmouse=cab1_block_grid[6] DO Assign_Cab_To_Block(1,6)
+WHEN $leftmouse=cab1_block_grid[7] DO Assign_Cab_To_Block(1,7)
+WHEN $leftmouse=cab1_block_grid[8] DO Assign_Cab_To_Block(1,8)
+WHEN $leftmouse=cab1_block_grid[9] DO Assign_Cab_To_Block(1,9)
+WHEN $leftmouse=cab1_block_grid[10] DO Assign_Cab_To_Block(1,10)
+WHEN $leftmouse=cab1_block_grid[11] DO Assign_Cab_To_Block(1,11)
+WHEN $leftmouse=cab1_block_grid[12] DO Assign_Cab_To_Block(1,12)
 
-	WHEN $leftmouse=cab2_block_grid[1] DO
-		Assign_Cab_To_Block(2,1)
-	WHEN $leftmouse=cab2_block_grid[2] DO
-		Assign_Cab_To_Block(2,2)
-	WHEN $leftmouse=cab2_block_grid[3] DO
-		Assign_Cab_To_Block(2,3)
-	WHEN $leftmouse=cab2_block_grid[4] DO
-		Assign_Cab_To_Block(2,4)
-	WHEN $leftmouse=cab2_block_grid[5] DO
-		Assign_Cab_To_Block(2,5)
-	WHEN $leftmouse=cab2_block_grid[6] DO
-		Assign_Cab_To_Block(2,6)
-	WHEN $leftmouse=cab2_block_grid[7] DO
-		Assign_Cab_To_Block(2,7)
-	WHEN $leftmouse=cab2_block_grid[8] DO
-		Assign_Cab_To_Block(2,8)
-	WHEN $leftmouse=cab2_block_grid[9] DO
-		Assign_Cab_To_Block(2,9)
-	WHEN $leftmouse=cab2_block_grid[10] DO
-		Assign_Cab_To_Block(2,10)
-	WHEN $leftmouse=cab2_block_grid[11] DO
-		Assign_Cab_To_Block(2,11)
-	WHEN $leftmouse=cab2_block_grid[12] DO
-		Assign_Cab_To_Block(2,12)
+WHEN $leftmouse=cab2_block_grid[1] DO Assign_Cab_To_Block(2,1)
+WHEN $leftmouse=cab2_block_grid[2] DO Assign_Cab_To_Block(2,2)
+WHEN $leftmouse=cab2_block_grid[3] DO Assign_Cab_To_Block(2,3)
+WHEN $leftmouse=cab2_block_grid[4] DO Assign_Cab_To_Block(2,4)
+WHEN $leftmouse=cab2_block_grid[5] DO Assign_Cab_To_Block(2,5)
+WHEN $leftmouse=cab2_block_grid[6] DO Assign_Cab_To_Block(2,6)
+WHEN $leftmouse=cab2_block_grid[7] DO Assign_Cab_To_Block(2,7)
+WHEN $leftmouse=cab2_block_grid[8] DO Assign_Cab_To_Block(2,8)
+WHEN $leftmouse=cab2_block_grid[9] DO Assign_Cab_To_Block(2,9)
+WHEN $leftmouse=cab2_block_grid[10] DO Assign_Cab_To_Block(2,10)
+WHEN $leftmouse=cab2_block_grid[11] DO Assign_Cab_To_Block(2,11)
+WHEN $leftmouse=cab2_block_grid[12] DO Assign_Cab_To_Block(2,12)
 
-	WHEN $leftmouse=cab3_block_grid[1] DO
-		Assign_Cab_To_Block(3,1)
-	WHEN $leftmouse=cab3_block_grid[2] DO
-		Assign_Cab_To_Block(3,2)
-	WHEN $leftmouse=cab3_block_grid[3] DO
-		Assign_Cab_To_Block(3,3)
-	WHEN $leftmouse=cab3_block_grid[4] DO
-		Assign_Cab_To_Block(3,4)
-	WHEN $leftmouse=cab3_block_grid[5] DO
-		Assign_Cab_To_Block(3,5)
-	WHEN $leftmouse=cab3_block_grid[6] DO
-		Assign_Cab_To_Block(3,6)
-	WHEN $leftmouse=cab3_block_grid[7] DO
-		Assign_Cab_To_Block(3,7)
-	WHEN $leftmouse=cab3_block_grid[8] DO
-		Assign_Cab_To_Block(3,8)
-	WHEN $leftmouse=cab3_block_grid[9] DO
-		Assign_Cab_To_Block(3,9)
-	WHEN $leftmouse=cab3_block_grid[10] DO
-		Assign_Cab_To_Block(3,10)
-	WHEN $leftmouse=cab3_block_grid[11] DO
-		Assign_Cab_To_Block(3,11)
-	WHEN $leftmouse=cab3_block_grid[12] DO
-		Assign_Cab_To_Block(3,12)
+WHEN $leftmouse=cab3_block_grid[1] DO Assign_Cab_To_Block(3,1)
+WHEN $leftmouse=cab3_block_grid[2] DO Assign_Cab_To_Block(3,2)
+WHEN $leftmouse=cab3_block_grid[3] DO Assign_Cab_To_Block(3,3)
+WHEN $leftmouse=cab3_block_grid[4] DO Assign_Cab_To_Block(3,4)
+WHEN $leftmouse=cab3_block_grid[5] DO Assign_Cab_To_Block(3,5)
+WHEN $leftmouse=cab3_block_grid[6] DO Assign_Cab_To_Block(3,6)
+WHEN $leftmouse=cab3_block_grid[7] DO Assign_Cab_To_Block(3,7)
+WHEN $leftmouse=cab3_block_grid[8] DO Assign_Cab_To_Block(3,8)
+WHEN $leftmouse=cab3_block_grid[9] DO Assign_Cab_To_Block(3,9)
+WHEN $leftmouse=cab3_block_grid[10] DO Assign_Cab_To_Block(3,10)
+WHEN $leftmouse=cab3_block_grid[11] DO Assign_Cab_To_Block(3,11)
+WHEN $leftmouse=cab3_block_grid[12] DO Assign_Cab_To_Block(3,12)
 		
 '********************************************************************
 '*** 	Detect activation of Cab Speed Buttons
 
 
-When $LeftMouse = cab1_Speed_grid[0] DO Assign_Speed_To_Cab(1, 0)
-When $LeftMouse = cab1_Speed_grid[1] DO Assign_Speed_To_Cab(1, 1)
-When $LeftMouse = cab1_Speed_grid[2] DO Assign_Speed_To_Cab(1, 2)
-When $LeftMouse = cab1_Speed_grid[3] DO Assign_Speed_To_Cab(1, 3)
-When $LeftMouse = cab1_Speed_grid[4] DO Assign_Speed_To_Cab(1, 4)
-When $LeftMouse = cab1_Speed_grid[5] DO Assign_Speed_To_Cab(1, 5)
-When $LeftMouse = cab1_Speed_grid[6] DO Assign_Speed_To_Cab(1, 6)
-When $LeftMouse = cab1_Speed_grid[7] DO Assign_Speed_To_Cab(1, 7)
-When $LeftMouse = cab1_Speed_grid[8] DO Assign_Speed_To_Cab(1, 8)
-When $LeftMouse = cab1_Speed_grid[9] DO Assign_Speed_To_Cab(1, 9)
-When $LeftMouse = cab1_Speed_grid[10] DO Assign_Speed_To_Cab(1, 10)
+WHEN $LeftMouse = cab1_Speed_grid[0] DO Assign_Speed_To_Cab(1, 0)
+WHEN $LeftMouse = cab1_Speed_grid[1] DO Assign_Speed_To_Cab(1, 1)
+WHEN $LeftMouse = cab1_Speed_grid[2] DO Assign_Speed_To_Cab(1, 2)
+WHEN $LeftMouse = cab1_Speed_grid[3] DO Assign_Speed_To_Cab(1, 3)
+WHEN $LeftMouse = cab1_Speed_grid[4] DO Assign_Speed_To_Cab(1, 4)
+WHEN $LeftMouse = cab1_Speed_grid[5] DO Assign_Speed_To_Cab(1, 5)
+WHEN $LeftMouse = cab1_Speed_grid[6] DO Assign_Speed_To_Cab(1, 6)
+WHEN $LeftMouse = cab1_Speed_grid[7] DO Assign_Speed_To_Cab(1, 7)
+WHEN $LeftMouse = cab1_Speed_grid[8] DO Assign_Speed_To_Cab(1, 8)
+WHEN $LeftMouse = cab1_Speed_grid[9] DO Assign_Speed_To_Cab(1, 9)
+WHEN $LeftMouse = cab1_Speed_grid[10] DO Assign_Speed_To_Cab(1, 10)
 
-When $LeftMouse = cab2_Speed_grid[0] DO Assign_Speed_To_Cab(2, 0)
-When $LeftMouse = cab2_Speed_grid[1] DO Assign_Speed_To_Cab(2, 1)
-When $LeftMouse = cab2_Speed_grid[2] DO Assign_Speed_To_Cab(2, 2)
-When $LeftMouse = cab2_Speed_grid[3] DO Assign_Speed_To_Cab(2, 3)
-When $LeftMouse = cab2_Speed_grid[4] DO Assign_Speed_To_Cab(2, 4)
-When $LeftMouse = cab2_Speed_grid[5] DO Assign_Speed_To_Cab(2, 5)
-When $LeftMouse = cab2_Speed_grid[6] DO Assign_Speed_To_Cab(2, 6)
-When $LeftMouse = cab2_Speed_grid[7] DO Assign_Speed_To_Cab(2, 7)
-When $LeftMouse = cab2_Speed_grid[8] DO Assign_Speed_To_Cab(2, 8)
-When $LeftMouse = cab2_Speed_grid[9] DO Assign_Speed_To_Cab(2, 9)
-When $LeftMouse = cab2_Speed_grid[10] DO Assign_Speed_To_Cab(2, 10)
+WHEN $LeftMouse = cab2_Speed_grid[0] DO Assign_Speed_To_Cab(2, 0)
+WHEN $LeftMouse = cab2_Speed_grid[1] DO Assign_Speed_To_Cab(2, 1)
+WHEN $LeftMouse = cab2_Speed_grid[2] DO Assign_Speed_To_Cab(2, 2)
+WHEN $LeftMouse = cab2_Speed_grid[3] DO Assign_Speed_To_Cab(2, 3)
+WHEN $LeftMouse = cab2_Speed_grid[4] DO Assign_Speed_To_Cab(2, 4)
+WHEN $LeftMouse = cab2_Speed_grid[5] DO Assign_Speed_To_Cab(2, 5)
+WHEN $LeftMouse = cab2_Speed_grid[6] DO Assign_Speed_To_Cab(2, 6)
+WHEN $LeftMouse = cab2_Speed_grid[7] DO Assign_Speed_To_Cab(2, 7)
+WHEN $LeftMouse = cab2_Speed_grid[8] DO Assign_Speed_To_Cab(2, 8)
+WHEN $LeftMouse = cab2_Speed_grid[9] DO Assign_Speed_To_Cab(2, 9)
+WHEN $LeftMouse = cab2_Speed_grid[10] DO Assign_Speed_To_Cab(2, 10)
 
-When $LeftMouse = cab3_Speed_grid[0] DO Assign_Speed_To_Cab(3, 0)
-When $LeftMouse = cab3_Speed_grid[1] DO Assign_Speed_To_Cab(3, 1)
-When $LeftMouse = cab3_Speed_grid[2] DO Assign_Speed_To_Cab(3, 2)
-When $LeftMouse = cab3_Speed_grid[3] DO Assign_Speed_To_Cab(3, 3)
-When $LeftMouse = cab3_Speed_grid[4] DO Assign_Speed_To_Cab(3, 4)
-When $LeftMouse = cab3_Speed_grid[5] DO Assign_Speed_To_Cab(3, 5)
-When $LeftMouse = cab3_Speed_grid[6] DO Assign_Speed_To_Cab(3, 6)
-When $LeftMouse = cab3_Speed_grid[7] DO Assign_Speed_To_Cab(3, 7)
-When $LeftMouse = cab3_Speed_grid[8] DO Assign_Speed_To_Cab(3, 8)
-When $LeftMouse = cab3_Speed_grid[9] DO Assign_Speed_To_Cab(3, 9)
-When $LeftMouse = cab3_Speed_grid[10] DO Assign_Speed_To_Cab(3, 10)
+WHEN $LeftMouse = cab3_Speed_grid[0] DO Assign_Speed_To_Cab(3, 0)
+WHEN $LeftMouse = cab3_Speed_grid[1] DO Assign_Speed_To_Cab(3, 1)
+WHEN $LeftMouse = cab3_Speed_grid[2] DO Assign_Speed_To_Cab(3, 2)
+WHEN $LeftMouse = cab3_Speed_grid[3] DO Assign_Speed_To_Cab(3, 3)
+WHEN $LeftMouse = cab3_Speed_grid[4] DO Assign_Speed_To_Cab(3, 4)
+WHEN $LeftMouse = cab3_Speed_grid[5] DO Assign_Speed_To_Cab(3, 5)
+WHEN $LeftMouse = cab3_Speed_grid[6] DO Assign_Speed_To_Cab(3, 6)
+WHEN $LeftMouse = cab3_Speed_grid[7] DO Assign_Speed_To_Cab(3, 7)
+WHEN $LeftMouse = cab3_Speed_grid[8] DO Assign_Speed_To_Cab(3, 8)
+WHEN $LeftMouse = cab3_Speed_grid[9] DO Assign_Speed_To_Cab(3, 9)
+WHEN $LeftMouse = cab3_Speed_grid[10] DO Assign_Speed_To_Cab(3, 10)
 
 
 
@@ -895,12 +840,9 @@ WHEN $leftmouse = cab3_Brake_Grid DO *Cab_Brake_Pointer[3] = *Cab_Brake_Pointer[
 '** 	Detect activation of pushbuttons for cab direction		
 '**					
 				
-WHEN $leftmouse = cab1_Direction_Grid DO
-	*Cab_Direction_Pointer[1] = *Cab_Direction_Pointer[1] ~
-WHEN $leftmouse = cab2_Direction_Grid DO
-	*Cab_Direction_Pointer[2] = *Cab_Direction_Pointer[2] ~
-WHEN $leftmouse = cab3_Direction_Grid DO			
-	*Cab_Direction_Pointer[3] = *Cab_Direction_Pointer[3] ~
+WHEN $leftmouse = cab1_Direction_Grid DO *Cab_Direction_Pointer[1] = *Cab_Direction_Pointer[1] ~
+WHEN $leftmouse = cab2_Direction_Grid DO *Cab_Direction_Pointer[2] = *Cab_Direction_Pointer[2] ~
+WHEN $leftmouse = cab3_Direction_Grid DO *Cab_Direction_Pointer[3] = *Cab_Direction_Pointer[3] ~
 
 '********************  TURNOUTS  ********************			
 '******** 	Throw Tortoise Switch and corresponding display on panel
@@ -928,59 +870,24 @@ ENDSUB
 '		Call subroutine	
 '			Left click changes tortoise direction, indicating diverging route with red on panel, main route with green		
 		
-	WHEN $Leftmouse=Turnout_Grid[1] or *Turnout_Button_Pointer[1]=on DO
-		Throw_Turnout(1,Turnout_Grid[1])
-						
-	WHEN $Leftmouse=Turnout_Grid[2] or *Turnout_Button_Pointer[2]=on DO
-		Throw_Turnout(2,Turnout_Grid[2])
-		
-	WHEN $Leftmouse=Turnout_Grid[3] or *Turnout_Button_Pointer[3]=on DO
-		Throw_Turnout(3,Turnout_Grid[3])
-						
-	WHEN $Leftmouse=Turnout_Grid[4] or *Turnout_Button_Pointer[4]=on DO
-		Throw_Turnout(4,Turnout_Grid[4])
-		
-	WHEN $Leftmouse=Turnout_Grid[5] or *Turnout_Button_Pointer[5]=on DO
-		Throw_Turnout(5,Turnout_Grid[5])
-						
-	WHEN $Leftmouse=Turnout_Grid[6] or *Turnout_Button_Pointer[6]=on DO
-		Throw_Turnout(6,Turnout_Grid[6])
-		
-	WHEN $Leftmouse=Turnout_Grid[7] or *Turnout_Button_Pointer[7]=on DO
-		Throw_Turnout(7,Turnout_Grid[7])
-							
-	WHEN $Leftmouse=Turnout_Grid[8] or *Turnout_Button_Pointer[8]=on DO
-		Throw_Turnout(8,Turnout_Grid[8])
-		
-	WHEN $Leftmouse=Turnout_Grid[9] or *Turnout_Button_Pointer[9]=on DO
-		Throw_Turnout(9,Turnout_Grid[9])
-		
-	WHEN $Leftmouse=Turnout_Grid[10] or *Turnout_Button_Pointer[10]=on DO
-		Throw_Turnout(10,Turnout_Grid[10])
-		
-	WHEN $Leftmouse=Turnout_Grid[11] or *Turnout_Button_Pointer[11]=on DO
-		Throw_Turnout(11,Turnout_Grid[11])
-		
-	WHEN $Leftmouse=Turnout_Grid[12] or *Turnout_Button_Pointer[12]=on DO
-		Throw_Turnout(12,Turnout_Grid[12])
-		
-	WHEN $Leftmouse=Turnout_Grid[13] or *Turnout_Button_Pointer[13]=on DO
-		Throw_Turnout(13,Turnout_Grid[13])
-		
-	WHEN $Leftmouse=Turnout_Grid[14] or *Turnout_Button_Pointer[14]=on DO
-		Throw_Turnout(14,Turnout_Grid[14])
-		
-	WHEN $Leftmouse=Turnout_Grid[15] or *Turnout_Button_Pointer[15]=on DO
-		Throw_Turnout(15,Turnout_Grid[15])
-		
-	WHEN $Leftmouse=Turnout_Grid[16] or *Turnout_Button_Pointer[16]=on DO
-		Throw_Turnout(16,Turnout_Grid[16])
-		
-	WHEN $Leftmouse=Turnout_Grid[17] or *Turnout_Button_Pointer[17]=on DO
-		Throw_Turnout(17,Turnout_Grid[17])
-		
-	WHEN $Leftmouse=Turnout_Grid[18] or *Turnout_Button_Pointer[18]=on DO
-		Throw_Turnout(18,Turnout_Grid[18])
+WHEN $Leftmouse=Turnout_Grid[1] or *Turnout_Button_Pointer[1]=on DO Throw_Turnout(1,Turnout_Grid[1])
+WHEN $Leftmouse=Turnout_Grid[2] or *Turnout_Button_Pointer[2]=on DO Throw_Turnout(2,Turnout_Grid[2])
+WHEN $Leftmouse=Turnout_Grid[3] or *Turnout_Button_Pointer[3]=on DO Throw_Turnout(3,Turnout_Grid[3])
+WHEN $Leftmouse=Turnout_Grid[4] or *Turnout_Button_Pointer[4]=on DO Throw_Turnout(4,Turnout_Grid[4])
+WHEN $Leftmouse=Turnout_Grid[5] or *Turnout_Button_Pointer[5]=on DO Throw_Turnout(5,Turnout_Grid[5])
+WHEN $Leftmouse=Turnout_Grid[6] or *Turnout_Button_Pointer[6]=on DO Throw_Turnout(6,Turnout_Grid[6])
+WHEN $Leftmouse=Turnout_Grid[7] or *Turnout_Button_Pointer[7]=on DO Throw_Turnout(7,Turnout_Grid[7])
+WHEN $Leftmouse=Turnout_Grid[8] or *Turnout_Button_Pointer[8]=on DO Throw_Turnout(8,Turnout_Grid[8])
+WHEN $Leftmouse=Turnout_Grid[9] or *Turnout_Button_Pointer[9]=on DO Throw_Turnout(9,Turnout_Grid[9])
+WHEN $Leftmouse=Turnout_Grid[10] or *Turnout_Button_Pointer[10]=on DO Throw_Turnout(10,Turnout_Grid[10])
+WHEN $Leftmouse=Turnout_Grid[11] or *Turnout_Button_Pointer[11]=on DO Throw_Turnout(11,Turnout_Grid[11])
+WHEN $Leftmouse=Turnout_Grid[12] or *Turnout_Button_Pointer[12]=on DO Throw_Turnout(12,Turnout_Grid[12])
+WHEN $Leftmouse=Turnout_Grid[13] or *Turnout_Button_Pointer[13]=on DO Throw_Turnout(13,Turnout_Grid[13])
+WHEN $Leftmouse=Turnout_Grid[14] or *Turnout_Button_Pointer[14]=on DO Throw_Turnout(14,Turnout_Grid[14])
+WHEN $Leftmouse=Turnout_Grid[15] or *Turnout_Button_Pointer[15]=on DO Throw_Turnout(15,Turnout_Grid[15])
+WHEN $Leftmouse=Turnout_Grid[16] or *Turnout_Button_Pointer[16]=on DO Throw_Turnout(16,Turnout_Grid[16])
+WHEN $Leftmouse=Turnout_Grid[17] or *Turnout_Button_Pointer[17]=on DO Throw_Turnout(17,Turnout_Grid[17])
+WHEN $Leftmouse=Turnout_Grid[18] or *Turnout_Button_Pointer[18]=on DO Throw_Turnout(18,Turnout_Grid[18])
 
 '********************************************************************
 '**	LOOP through East and West current detectors to determine block occupancy
