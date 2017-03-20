@@ -725,17 +725,10 @@ InitStatus=Operating
 
 '*	All Block assignments
 
-	WHEN $leftmouse=cab0_All_Blocks_Grid DO
-		Assign_Cab_To_All_Blocks(0)
-
-	WHEN $leftmouse=cab1_All_Blocks_Grid DO
-		Assign_Cab_To_All_Blocks(1)
-
-	WHEN $leftmouse=cab2_All_Blocks_Grid DO
-		Assign_Cab_To_All_Blocks(2)
-
-	WHEN $leftmouse=cab3_All_Blocks_Grid DO 
-		Assign_Cab_To_All_Blocks(3)
+WHEN $leftmouse=cab0_All_Blocks_Grid DO Assign_Cab_To_All_Blocks(0)
+WHEN $leftmouse=cab1_All_Blocks_Grid DO Assign_Cab_To_All_Blocks(1)
+WHEN $leftmouse=cab2_All_Blocks_Grid DO Assign_Cab_To_All_Blocks(2)
+WHEN $leftmouse=cab3_All_Blocks_Grid DO Assign_Cab_To_All_Blocks(3)
 
 '*	Individual Block assignments
 
