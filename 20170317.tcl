@@ -730,105 +730,57 @@ WHEN $leftmouse=cab3_All_Blocks_Grid DO Assign_Cab_To_All_Blocks(3)
 
 '*	Individual Block assignments
 
-	WHEN $leftmouse=cab0_block_grid[1] DO
-		Assign_Cab_To_Block(0,1)
-	WHEN $leftmouse=cab0_block_grid[2] DO
-		Assign_Cab_To_Block(0,2)
-	WHEN $leftmouse=cab0_block_grid[3] DO
-		Assign_Cab_To_Block(0,3)
-	WHEN $leftmouse=cab0_block_grid[4] DO
-		Assign_Cab_To_Block(0,4)
-	WHEN $leftmouse=cab0_block_grid[5] DO
-		Assign_Cab_To_Block(0,5)
-	WHEN $leftmouse=cab0_block_grid[6] DO
-		Assign_Cab_To_Block(0,6)
-	WHEN $leftmouse=cab0_block_grid[7] DO
-		Assign_Cab_To_Block(0,7)
-	WHEN $leftmouse=cab0_block_grid[8] DO
-		Assign_Cab_To_Block(0,8)
-	WHEN $leftmouse=cab0_block_grid[9] DO
-		Assign_Cab_To_Block(0,9)
-	WHEN $leftmouse=cab0_block_grid[10] DO
-		Assign_Cab_To_Block(0,10)
-	WHEN $leftmouse=cab0_block_grid[11] DO
-		Assign_Cab_To_Block(0,11)
-	WHEN $leftmouse=cab0_block_grid[12] DO
-		Assign_Cab_To_Block(0,12)
+WHEN $leftmouse=cab0_block_grid[1] DO Assign_Cab_To_Block(0,1)
+WHEN $leftmouse=cab0_block_grid[2] DO Assign_Cab_To_Block(0,2)
+WHEN $leftmouse=cab0_block_grid[3] DO Assign_Cab_To_Block(0,3)
+WHEN $leftmouse=cab0_block_grid[4] DO Assign_Cab_To_Block(0,4)
+WHEN $leftmouse=cab0_block_grid[5] DO Assign_Cab_To_Block(0,5)
+WHEN $leftmouse=cab0_block_grid[6] DO Assign_Cab_To_Block(0,6)
+WHEN $leftmouse=cab0_block_grid[7] DO Assign_Cab_To_Block(0,7)
+WHEN $leftmouse=cab0_block_grid[8] DO Assign_Cab_To_Block(0,8)
+WHEN $leftmouse=cab0_block_grid[9] DO Assign_Cab_To_Block(0,9)
+WHEN $leftmouse=cab0_block_grid[10] DO Assign_Cab_To_Block(0,10)
+WHEN $leftmouse=cab0_block_grid[11] DO Assign_Cab_To_Block(0,11)
+WHEN $leftmouse=cab0_block_grid[12] DO Assign_Cab_To_Block(0,12)
 
-	WHEN $leftmouse=cab1_block_grid[1] DO
-		Assign_Cab_To_Block(1,1)
-	WHEN $leftmouse=cab1_block_grid[2] DO
-		Assign_Cab_To_Block(1,2)
-	WHEN $leftmouse=cab1_block_grid[3] DO
-		Assign_Cab_To_Block(1,3)
-	WHEN $leftmouse=cab1_block_grid[4] DO
-		Assign_Cab_To_Block(1,4)
-	WHEN $leftmouse=cab1_block_grid[5] DO
-		Assign_Cab_To_Block(1,5)
-	WHEN $leftmouse=cab1_block_grid[6] DO
-		Assign_Cab_To_Block(1,6)
-	WHEN $leftmouse=cab1_block_grid[7] DO
-		Assign_Cab_To_Block(1,7)
-	WHEN $leftmouse=cab1_block_grid[8] DO
-		Assign_Cab_To_Block(1,8)
-	WHEN $leftmouse=cab1_block_grid[9] DO
-		Assign_Cab_To_Block(1,9)
-	WHEN $leftmouse=cab1_block_grid[10] DO
-		Assign_Cab_To_Block(1,10)
-	WHEN $leftmouse=cab1_block_grid[11] DO
-		Assign_Cab_To_Block(1,11)
-	WHEN $leftmouse=cab1_block_grid[12] DO
-		Assign_Cab_To_Block(1,12)
-
-	WHEN $leftmouse=cab2_block_grid[1] DO
-		Assign_Cab_To_Block(2,1)
-	WHEN $leftmouse=cab2_block_grid[2] DO
-		Assign_Cab_To_Block(2,2)
-	WHEN $leftmouse=cab2_block_grid[3] DO
-		Assign_Cab_To_Block(2,3)
-	WHEN $leftmouse=cab2_block_grid[4] DO
-		Assign_Cab_To_Block(2,4)
-	WHEN $leftmouse=cab2_block_grid[5] DO
-		Assign_Cab_To_Block(2,5)
-	WHEN $leftmouse=cab2_block_grid[6] DO
-		Assign_Cab_To_Block(2,6)
-	WHEN $leftmouse=cab2_block_grid[7] DO
-		Assign_Cab_To_Block(2,7)
-	WHEN $leftmouse=cab2_block_grid[8] DO
-		Assign_Cab_To_Block(2,8)
-	WHEN $leftmouse=cab2_block_grid[9] DO
-		Assign_Cab_To_Block(2,9)
-	WHEN $leftmouse=cab2_block_grid[10] DO
-		Assign_Cab_To_Block(2,10)
-	WHEN $leftmouse=cab2_block_grid[11] DO
-		Assign_Cab_To_Block(2,11)
-	WHEN $leftmouse=cab2_block_grid[12] DO
-		Assign_Cab_To_Block(2,12)
-
-	WHEN $leftmouse=cab3_block_grid[1] DO
-		Assign_Cab_To_Block(3,1)
-	WHEN $leftmouse=cab3_block_grid[2] DO
-		Assign_Cab_To_Block(3,2)
-	WHEN $leftmouse=cab3_block_grid[3] DO
-		Assign_Cab_To_Block(3,3)
-	WHEN $leftmouse=cab3_block_grid[4] DO
-		Assign_Cab_To_Block(3,4)
-	WHEN $leftmouse=cab3_block_grid[5] DO
-		Assign_Cab_To_Block(3,5)
-	WHEN $leftmouse=cab3_block_grid[6] DO
-		Assign_Cab_To_Block(3,6)
-	WHEN $leftmouse=cab3_block_grid[7] DO
-		Assign_Cab_To_Block(3,7)
-	WHEN $leftmouse=cab3_block_grid[8] DO
-		Assign_Cab_To_Block(3,8)
-	WHEN $leftmouse=cab3_block_grid[9] DO
-		Assign_Cab_To_Block(3,9)
-	WHEN $leftmouse=cab3_block_grid[10] DO
-		Assign_Cab_To_Block(3,10)
-	WHEN $leftmouse=cab3_block_grid[11] DO
-		Assign_Cab_To_Block(3,11)
-	WHEN $leftmouse=cab3_block_grid[12] DO
-		Assign_Cab_To_Block(3,12)
+WHEN $leftmouse=cab1_block_grid[1] DO Assign_Cab_To_Block(1,1)
+WHEN $leftmouse=cab1_block_grid[2] DO Assign_Cab_To_Block(1,2)
+WHEN $leftmouse=cab1_block_grid[3] DO Assign_Cab_To_Block(1,3)
+WHEN $leftmouse=cab1_block_grid[4] DO Assign_Cab_To_Block(1,4)
+WHEN $leftmouse=cab1_block_grid[5] DO Assign_Cab_To_Block(1,5)
+WHEN $leftmouse=cab1_block_grid[6] DO Assign_Cab_To_Block(1,6)
+WHEN $leftmouse=cab1_block_grid[7] DO Assign_Cab_To_Block(1,7)
+WHEN $leftmouse=cab1_block_grid[8] DO Assign_Cab_To_Block(1,8)
+WHEN $leftmouse=cab1_block_grid[9] DO Assign_Cab_To_Block(1,9)
+WHEN $leftmouse=cab1_block_grid[10] DO Assign_Cab_To_Block(1,10)
+WHEN $leftmouse=cab1_block_grid[11] DO Assign_Cab_To_Block(1,11)
+WHEN $leftmouse=cab1_block_grid[12] DO Assign_Cab_To_Block(1,12)
+ 
+WHEN $leftmouse=cab2_block_grid[1] DO Assign_Cab_To_Block(2,1)
+WHEN $leftmouse=cab2_block_grid[2] DO Assign_Cab_To_Block(2,2)
+WHEN $leftmouse=cab2_block_grid[3] DO Assign_Cab_To_Block(2,3)
+WHEN $leftmouse=cab2_block_grid[4] DO Assign_Cab_To_Block(2,4)
+WHEN $leftmouse=cab2_block_grid[5] DO Assign_Cab_To_Block(2,5)
+WHEN $leftmouse=cab2_block_grid[6] DO Assign_Cab_To_Block(2,6)
+WHEN $leftmouse=cab2_block_grid[7] DO Assign_Cab_To_Block(2,7)
+WHEN $leftmouse=cab2_block_grid[8] DO Assign_Cab_To_Block(2,8)
+WHEN $leftmouse=cab2_block_grid[9] DO Assign_Cab_To_Block(2,9)
+WHEN $leftmouse=cab2_block_grid[10] DO Assign_Cab_To_Block(2,10)
+WHEN $leftmouse=cab2_block_grid[11] DO Assign_Cab_To_Block(2,11)
+WHEN $leftmouse=cab2_block_grid[12] DO Assign_Cab_To_Block(2,12)
+ 
+WHEN $leftmouse=cab3_block_grid[1] DO Assign_Cab_To_Block(3,1)
+WHEN $leftmouse=cab3_block_grid[2] DO Assign_Cab_To_Block(3,2)
+WHEN $leftmouse=cab3_block_grid[3] DO Assign_Cab_To_Block(3,3)
+WHEN $leftmouse=cab3_block_grid[4] DO Assign_Cab_To_Block(3,4)
+WHEN $leftmouse=cab3_block_grid[5] DO Assign_Cab_To_Block(3,5)
+WHEN $leftmouse=cab3_block_grid[6] DO Assign_Cab_To_Block(3,6)
+WHEN $leftmouse=cab3_block_grid[7] DO Assign_Cab_To_Block(3,7)
+WHEN $leftmouse=cab3_block_grid[8] DO Assign_Cab_To_Block(3,8)
+WHEN $leftmouse=cab3_block_grid[9] DO Assign_Cab_To_Block(3,9)
+WHEN $leftmouse=cab3_block_grid[10] DO Assign_Cab_To_Block(3,10)
+WHEN $leftmouse=cab3_block_grid[11] DO Assign_Cab_To_Block(3,11)
+WHEN $leftmouse=cab3_block_grid[12] DO Assign_Cab_To_Block(3,12)
 		
 '********************************************************************
 '*** 	Detect activation of Cab Speed Buttons
