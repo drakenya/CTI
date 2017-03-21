@@ -30,8 +30,8 @@ CONSTANTS:
 	MAX_SPEED_NOTCH_INDEX=11	
 	SPEED_NOTCH_INCREMENT=6
 
-	TURNOUT_NORMAL=off			'* Turnout Normal (green)  position of turnout
-	TURNOUT_DIVERGING=on			'* Turnout DIVERGing(red) position of turnout
+	TURNOUT_DIRECTION_PRIMARY=off			'* Turnout Primary (green)  position of turnout
+	TURNOUT_DIRECTION_SECONDARY=on			'* Turnout Secondary(red) position of turnout
 
 	TORTOISE=1					'* Turnout Types
 	ATLAS=2
@@ -86,6 +86,9 @@ SMARTCABS: 	SCP_PBa1_01, SCP_PBa1_02, SCP_PBa1_03 	'Network Modules 1-3
 'SENSORS:	SES_TCa2_01, SES_TCa2_02, SES_TCa2_03, SES_TCa2_04, SES_TCa2_05, SES_TCa2_06, SES_TCa2_07,SES_TCa2_08, 
 '		SES_TCa2_09, SES_TCa2_10, SES_TCa2_11, SES_TCa2_12, SES_TCa2_13, SES_TCa2_14, SES_TCa2_15, SES_TCa2_16
 
+' Switchman "a3"
+'CONTROLS:	SMC_TCa3_01, SMC_TCa3_02, SMC_TCa3_03, SMC_TCa3_04, SMC_TCa3_05, SMC_TCa3_06, SMC_TCa3_07,SMC_TCa3_08, 
+'		SMC_TCa3_09, SMC_TCa3_10, SMC_TCa3_11, SMC_TCa3_12, SMC_TCa3_13, SMC_TCa3_14, SMC_TCa3_15, SMC_TCa3_16
 
 
 '''''''''''
@@ -102,16 +105,6 @@ SENSORS:	TBS_BCa2_01_5E#, TBS_BCa2_02#, TBS_BCa2_03_9E#, TBS_BCa2_04#
 
 'Dash-8 "a3"
 CONTROLS:	D8C_BCa3_01, D8C_BCa3_02, D8C_BCa3_03, D8C_BCa3_04, D8C_BCa3_05, D8C_BCa3_06, D8C_BCa3_07, D8C_BCa3_08
-
-
-
-'''''''''''
-''''''''''' Atlas Turnout Control Board "a"
-'''''''''''
-
-' Switchman "a1"
-'CONTROLS:	SMC_TCa1_01, SMC_TCa1_02, SMC_TCa1_03, SMC_TCa1_04, SMC_TCa1_05, SMC_TCa1_06, SMC_TCa1_07,SMC_TCa1_08, 
-'		SMC_TCa1_09, SMC_TCa1_10, SMC_TCa1_11, SMC_TCa1_12, SMC_TCa1_13, SMC_TCa1_14, SMC_TCa1_15, SMC_TCa1_16
 
 
 
@@ -158,6 +151,11 @@ CONTROLS:	D8C_BCc3_01, D8C_BCc3_02, D8C_BCc3_03, D8C_BCc3_04, D8C_BCc3_05, D8C_B
 'SENSORS:	SES_TCb2_01, SES_TCb2_02, SES_TCb2_03, SES_TCb2_04, SES_TCb2_05, SES_TCb2_06, SES_TCb2_07,SES_TCb2_08, 
 '		SES_TCb2_09, SES_TCb2_10, SES_TCb2_11, SES_TCb2_12, SES_TCb2_13, SES_TCb2_14, SES_TCb2_15, SES_TCb2_16
 
+' Switchman "b3"
+'CONTROLS:	SMC_TCb3_01, SMC_TCb3_02, SMC_TCb3_03, SMC_TCb3_04, SMC_TCb3_05, SMC_TCb3_06, SMC_TCb3_07,SMC_TCb3_08, 
+'		SMC_TCb3_09, SMC_TCb3_10, SMC_TCb3_11, SMC_TCb3_12, SMC_TCb3_13, SMC_TCb3_14, SMC_TCb3_15, SMC_TCb3_16
+
+
 
 '''''''''''
 ''''''''''' Detection Board "a"
@@ -198,10 +196,10 @@ VARIABLES:
 	Turnout_Button_Pointer[MAX_TURNOUT_INDEX]
 
 ' Holds address of Controls for Atlas turnouts
-	Atlas_Turnout_Pointer_Normal[MAX_TURNOUT_INDEX]
-	Atlas_Turnout_Pointer_DIVERGING[MAX_TURNOUT_INDEX]
-	Atlas_Turnout_LED_Pointer_Normal[MAX_TURNOUT_INDEX]
-	Atlas_Turnout_LED_Pointer_DIVERGING[MAX_TURNOUT_INDEX]	
+	Atlas_Turnout_Pointer_Primary[MAX_TURNOUT_INDEX]
+	Atlas_Turnout_Pointer_Secondary[MAX_TURNOUT_INDEX]
+	Atlas_Turnout_LED_Pointer_Primary[MAX_TURNOUT_INDEX]
+	Atlas_Turnout_LED_Pointer_Secondary[MAX_TURNOUT_INDEX]	
 
 ' Holds address of 3 smart cabs and their functions (cab[0] is placeholder for manual cab and functions)
 	Cab_Pointer[MAX_CAB_INDEX]
@@ -472,16 +470,16 @@ SUB Initialize_Detect_Initial_Blocks({Local} CIndex, BIndex)
 	ENDLOOP
 ENDSUB
 
-SUB Initialize_Set_All_Turnouts_To_Normal({Local} TIndex)
+SUB Initialize_Set_All_Turnouts_To_Primary_Direction({Local} TIndex)
 	TIndex = INITIAL_TURNOUT_INDEX
 	UNTIL TIndex >= MAX_TURNOUT_INDEX LOOP
-		$Switch(TurnOut_Grid[TIndex])=TURNOUT_NORMAL
+		$Switch(TurnOut_Grid[TIndex])=TURNOUT_DIRECTION_PRIMARY
 		IF Turnout_Type[TIndex]=TORTOISE THEN
-			*Turnout_Pointer[TIndex]=TURNOUT_NORMAL
+			*Turnout_Pointer[TIndex]=TURNOUT_DIRECTION_PRIMARY
 		ELSEIF Turnout_Type[TIndex]=ATLAS THEN
-			*Atlas_Turnout_Pointer_Normal[TIndex]=PULSE 0.1
+			*Atlas_Turnout_Pointer_Primary[TIndex]=PULSE 0.1
 		ENDIF
-		Turnout_Status[TIndex]=TURNOUT_NORMAL
+		Turnout_Status[TIndex]=TURNOUT_DIRECTION_PRIMARY
 
 		TIndex = 1+
 	ENDLOOP
@@ -704,7 +702,7 @@ WHEN InitStatus=INITIALIZING do '(All lines must end in a comma to continue the 
 	Assign_Cab_To_All_Blocks(1)
 	Initialize_Detect_Initial_Blocks()
 
-	Initialize_Set_All_Turnouts_To_Normal()
+	Initialize_Set_All_Turnouts_To_Primary_Direction()
 
 
 
@@ -904,13 +902,13 @@ SUB Throw_Turnout(TIndex,ctc_Grid)
 		*Turnout_Pointer[TIndex]=*Turnout_Pointer[TIndex]~,
 		Turnout_Status[TIndex]=Turnout_Status[TIndex]~,
 	ELSEIF Turnout_Type[TIndex]=ATLAS THEN
-		IF Turnout_Status[TIndex]=TURNOUT_NORMAL THEN
-			*Atlas_Turnout_Pointer_Diverging[TIndex]=PULSE 0.1,
-			*Atlas_Turnout_LED_Pointer_Diverging[TIndex]=TURNOUT_DIVERGING
-			Turnout_Status[TIndex]=TURNOUT_DIVERGING,
-		ELSE 	*Atlas_Turnout_Pointer_Normal[TIndex]=PULSE 0.1,
-		 	*Atlas_Turnout_led_Pointer_Normal[TIndex]=TURNOUT_NORMAL,
-			Turnout_Status[TIndex]=TURNOUT_NORMAL
+		IF Turnout_Status[TIndex]=TURNOUT_DIRECTION_PRIMARY THEN
+			*Atlas_Turnout_Pointer_Secondary[TIndex]=PULSE 0.1,
+			*Atlas_Turnout_LED_Pointer_Secondary[TIndex]=TURNOUT_DIRECTION_SECONDARY
+			Turnout_Status[TIndex]=TURNOUT_DIRECTION_SECONDARY,
+		ELSE 	*Atlas_Turnout_Pointer_Primary[TIndex]=PULSE 0.1,
+		 	*Atlas_Turnout_led_Pointer_Primary[TIndex]=TURNOUT_DIRECTION_PRIMARY,
+			Turnout_Status[TIndex]=TURNOUT_DIRECTION_PRIMARY
 		ENDIF		
 	ENDIF
 ENDSUB
