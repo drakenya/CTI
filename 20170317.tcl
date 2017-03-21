@@ -838,12 +838,9 @@ WHEN $leftmouse = cab3_Brake_Grid DO *Cab_Brake_Pointer[3] = *Cab_Brake_Pointer[
 '** 	Detect activation of pushbuttons for cab direction		
 '**					
 				
-WHEN $leftmouse = cab1_Direction_Grid DO
-	*Cab_Direction_Pointer[1] = *Cab_Direction_Pointer[1] ~
-WHEN $leftmouse = cab2_Direction_Grid DO
-	*Cab_Direction_Pointer[2] = *Cab_Direction_Pointer[2] ~
-WHEN $leftmouse = cab3_Direction_Grid DO			
-	*Cab_Direction_Pointer[3] = *Cab_Direction_Pointer[3] ~
+WHEN $leftmouse = cab1_Direction_Grid DO *Cab_Direction_Pointer[1] = *Cab_Direction_Pointer[1] ~
+WHEN $leftmouse = cab2_Direction_Grid DO *Cab_Direction_Pointer[2] = *Cab_Direction_Pointer[2] ~
+WHEN $leftmouse = cab3_Direction_Grid DO *Cab_Direction_Pointer[3] = *Cab_Direction_Pointer[3] ~
 
 '********************  TURNOUTS  ********************			
 '******** 	Throw Tortoise Switch and corresponding display on panel
@@ -871,59 +868,24 @@ ENDSUB
 '		Call subroutine	
 '			Left click changes tortoise direction, indicating diverging route with red on panel, main route with green		
 		
-	WHEN $Leftmouse=Turnout_Grid[1] or *Turnout_Button_Pointer[1]=on DO
-		Throw_Turnout(1,Turnout_Grid[1])
-						
-	WHEN $Leftmouse=Turnout_Grid[2] or *Turnout_Button_Pointer[2]=on DO
-		Throw_Turnout(2,Turnout_Grid[2])
-		
-	WHEN $Leftmouse=Turnout_Grid[3] or *Turnout_Button_Pointer[3]=on DO
-		Throw_Turnout(3,Turnout_Grid[3])
-						
-	WHEN $Leftmouse=Turnout_Grid[4] or *Turnout_Button_Pointer[4]=on DO
-		Throw_Turnout(4,Turnout_Grid[4])
-		
-	WHEN $Leftmouse=Turnout_Grid[5] or *Turnout_Button_Pointer[5]=on DO
-		Throw_Turnout(5,Turnout_Grid[5])
-						
-	WHEN $Leftmouse=Turnout_Grid[6] or *Turnout_Button_Pointer[6]=on DO
-		Throw_Turnout(6,Turnout_Grid[6])
-		
-	WHEN $Leftmouse=Turnout_Grid[7] or *Turnout_Button_Pointer[7]=on DO
-		Throw_Turnout(7,Turnout_Grid[7])
-							
-	WHEN $Leftmouse=Turnout_Grid[8] or *Turnout_Button_Pointer[8]=on DO
-		Throw_Turnout(8,Turnout_Grid[8])
-		
-	WHEN $Leftmouse=Turnout_Grid[9] or *Turnout_Button_Pointer[9]=on DO
-		Throw_Turnout(9,Turnout_Grid[9])
-		
-	WHEN $Leftmouse=Turnout_Grid[10] or *Turnout_Button_Pointer[10]=on DO
-		Throw_Turnout(10,Turnout_Grid[10])
-		
-	WHEN $Leftmouse=Turnout_Grid[11] or *Turnout_Button_Pointer[11]=on DO
-		Throw_Turnout(11,Turnout_Grid[11])
-		
-	WHEN $Leftmouse=Turnout_Grid[12] or *Turnout_Button_Pointer[12]=on DO
-		Throw_Turnout(12,Turnout_Grid[12])
-		
-	WHEN $Leftmouse=Turnout_Grid[13] or *Turnout_Button_Pointer[13]=on DO
-		Throw_Turnout(13,Turnout_Grid[13])
-		
-	WHEN $Leftmouse=Turnout_Grid[14] or *Turnout_Button_Pointer[14]=on DO
-		Throw_Turnout(14,Turnout_Grid[14])
-		
-	WHEN $Leftmouse=Turnout_Grid[15] or *Turnout_Button_Pointer[15]=on DO
-		Throw_Turnout(15,Turnout_Grid[15])
-		
-	WHEN $Leftmouse=Turnout_Grid[16] or *Turnout_Button_Pointer[16]=on DO
-		Throw_Turnout(16,Turnout_Grid[16])
-		
-	WHEN $Leftmouse=Turnout_Grid[17] or *Turnout_Button_Pointer[17]=on DO
-		Throw_Turnout(17,Turnout_Grid[17])
-		
-	WHEN $Leftmouse=Turnout_Grid[18] or *Turnout_Button_Pointer[18]=on DO
-		Throw_Turnout(18,Turnout_Grid[18])
+WHEN $Leftmouse=Turnout_Grid[1] or *Turnout_Button_Pointer[1]=on DO Throw_Turnout(1,Turnout_Grid[1])
+WHEN $Leftmouse=Turnout_Grid[2] or *Turnout_Button_Pointer[2]=on DO Throw_Turnout(2,Turnout_Grid[2])
+WHEN $Leftmouse=Turnout_Grid[3] or *Turnout_Button_Pointer[3]=on DO Throw_Turnout(3,Turnout_Grid[3])
+WHEN $Leftmouse=Turnout_Grid[4] or *Turnout_Button_Pointer[4]=on DO Throw_Turnout(4,Turnout_Grid[4])
+WHEN $Leftmouse=Turnout_Grid[5] or *Turnout_Button_Pointer[5]=on DO Throw_Turnout(5,Turnout_Grid[5])
+WHEN $Leftmouse=Turnout_Grid[6] or *Turnout_Button_Pointer[6]=on DO Throw_Turnout(6,Turnout_Grid[6])
+WHEN $Leftmouse=Turnout_Grid[7] or *Turnout_Button_Pointer[7]=on DO Throw_Turnout(7,Turnout_Grid[7])
+WHEN $Leftmouse=Turnout_Grid[8] or *Turnout_Button_Pointer[8]=on DO Throw_Turnout(8,Turnout_Grid[8])
+WHEN $Leftmouse=Turnout_Grid[9] or *Turnout_Button_Pointer[9]=on DO Throw_Turnout(9,Turnout_Grid[9])
+WHEN $Leftmouse=Turnout_Grid[10] or *Turnout_Button_Pointer[10]=on DO Throw_Turnout(10,Turnout_Grid[10])
+WHEN $Leftmouse=Turnout_Grid[11] or *Turnout_Button_Pointer[11]=on DO Throw_Turnout(11,Turnout_Grid[11])
+WHEN $Leftmouse=Turnout_Grid[12] or *Turnout_Button_Pointer[12]=on DO Throw_Turnout(12,Turnout_Grid[12])
+WHEN $Leftmouse=Turnout_Grid[13] or *Turnout_Button_Pointer[13]=on DO Throw_Turnout(13,Turnout_Grid[13])
+WHEN $Leftmouse=Turnout_Grid[14] or *Turnout_Button_Pointer[14]=on DO Throw_Turnout(14,Turnout_Grid[14])
+WHEN $Leftmouse=Turnout_Grid[15] or *Turnout_Button_Pointer[15]=on DO Throw_Turnout(15,Turnout_Grid[15])
+WHEN $Leftmouse=Turnout_Grid[16] or *Turnout_Button_Pointer[16]=on DO Throw_Turnout(16,Turnout_Grid[16])
+WHEN $Leftmouse=Turnout_Grid[17] or *Turnout_Button_Pointer[17]=on DO Throw_Turnout(17,Turnout_Grid[17])
+WHEN $Leftmouse=Turnout_Grid[18] or *Turnout_Button_Pointer[18]=on DO Throw_Turnout(18,Turnout_Grid[18])
 
 '********************************************************************
 '**	LOOP through East and West current detectors to determine block occupancy
