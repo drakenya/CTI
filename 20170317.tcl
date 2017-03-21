@@ -890,257 +890,72 @@ WHEN $Leftmouse=Turnout_Grid[18] or *Turnout_Button_Pointer[18]=on DO Throw_Turn
 '********************************************************************
 '**	LOOP through East and West current detectors to determine block occupancy
 
-	WHEN *CD_East_Pointer[1]=DETECTOR_BLOCK_OCCUPIED DO
-		block_occupancy_on (block_Grid[1], 
-			Block_Color[1], 
-			Train_E_Sprite[1]),
-		Block_Sprite[1]=Arrow_East,
-		Block_Status[1]=BLOCK_STATUS_OCCUPIED_EAST,
-		Assign_Cab_To_Block(Block_Cab[1],1,BLOCK_STATUS_OCCUPIED_EAST),
-	WHEN *CD_West_Pointer[1]=DETECTOR_BLOCK_OCCUPIED DO
-		block_occupancy_on (block_Grid[1], 
-			Block_Color[1], 
-			Train_W_Sprite[1]),
-		Block_Sprite[1]=Arrow_West,
-		Block_Status[1]=BLOCK_STATUS_OCCUPIED_WEST,
-		Assign_Cab_To_Block(Block_Cab[1],1,BLOCK_STATUS_OCCUPIED_WEST),
-	WHEN  *CD_East_Pointer[1]=DETECTOR_BLOCK_VACANT and *CD_West_Pointer[1]=DETECTOR_BLOCK_VACANT DO
-		block_occupancy_off(block_Grid[1],
-			Block_Color[1]),
-			Block_Sprite[1]=Square,
-		Block_Status[1]=BLOCK_STATUS_VACANT,
-		Assign_Cab_To_Block(Block_Cab[1],1,BLOCK_STATUS_VACANT),
+SUB Current_Detector_Triggered_East(BlockIndex)
+	Block_Occupancy_On(Block_Grid[BlockIndex], Block_Color[BlockIndex], Train_E_Sprite[BlockIndex])
+	Block_Sprite[1] = Arrow_East
+	Block_Status[1] = BLOCK_STATUS_OCCUPIED_EAST
+	Assign_Cab_To_Block(Block_Cab[BlockIndex], BlockIndex, BLOCK_STATUS_OCCUPIED_EAST)
+ENDSUB
+SUB Current_Detector_Triggered_West(BlockIndex)
+	Block_Occupancy_On(Block_Grid[BlockIndex], Block_Color[BlockIndex], Train_W_Sprite[BlockIndex])
+	Block_Sprite[1] = Arrow_West
+	Block_Status[1] = BLOCK_STATUS_OCCUPIED_WEST
+	Assign_Cab_To_Block(Block_Cab[BlockIndex], BlockIndex, BLOCK_STATUS_OCCUPIED_WEST)
+ENDSUB
+SUB Current_Detector_Stopped_Triggering(BlockIndex)
+	Block_Occupancy_Off(block_Grid[BlockIndex], Block_Color[BlockIndex])
+	Block_Sprite[BlockIndex] = Square
+	Block_Status[BlockIndex] = BLOCK_STATUS_VACANT
+	Assign_Cab_To_Block(Block_Cab[BlockIndex], BlockIndex, BLOCK_STATUS_VACANT)
+ENDSUB
 
-	WHEN *CD_East_Pointer[2]=DETECTOR_BLOCK_OCCUPIED  do
-		block_occupancy_on (block_Grid[2], 
-			Block_Color[2], 
-			Train_E_Sprite[2]),
-		Block_Sprite[2]=Arrow_East,
-		Assign_Cab_To_Block(Block_Cab[2],2,BLOCK_STATUS_OCCUPIED_EAST),
-		Block_Status[2]=BLOCK_STATUS_OCCUPIED_EAST,
-	WHEN *CD_West_Pointer[2]=DETECTOR_BLOCK_OCCUPIED DO
-		block_occupancy_on (block_Grid[2], 
-			Block_Color[2], 
-			Train_W_Sprite[2]),
-		Block_Sprite[2]=Arrow_West,
-		Assign_Cab_To_Block(Block_Cab[2],2,BLOCK_STATUS_OCCUPIED_WEST),
-		Block_Status[2]=BLOCK_STATUS_OCCUPIED_WEST,
-	WHEN  *CD_East_Pointer[2]=DETECTOR_BLOCK_VACANT and *CD_West_Pointer[2]=DETECTOR_BLOCK_VACANT DO
-		block_occupancy_off(block_Grid[2],
-			Block_Color[2]),
-			Block_Sprite[2]=Square,
-		Block_Status[2]=BLOCK_STATUS_VACANT,
-		Assign_Cab_To_Block(Block_Cab[2],2,BLOCK_STATUS_VACANT),
+WHEN *CD_East_Pointer[1] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_East(1)
+WHEN *CD_West_Pointer[1] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_West(1)
+WHEN *CD_East_Pointer[1] = DETECTOR_BLOCK_VACANT, *CD_West_Pointer[1] = DETECTOR_BLOCK_VACANT DO Current_Detector_Stopped_Triggering(1)
 
-	WHEN *CD_East_Pointer[3]=DETECTOR_BLOCK_OCCUPIED  do
-		block_occupancy_on (block_Grid[3], 
-			Block_Color[3], 
-			Train_E_Sprite[3]),
-		Block_Sprite[3]=Arrow_East,
-		Assign_Cab_To_Block(Block_Cab[3],3,BLOCK_STATUS_OCCUPIED_EAST),
-		Block_Status[3]=BLOCK_STATUS_OCCUPIED_EAST,
-	WHEN *CD_West_Pointer[3]=DETECTOR_BLOCK_OCCUPIED DO
-		block_occupancy_on (block_Grid[3], 
-			Block_Color[3], 
-			Train_W_Sprite[3]),
-		Block_Sprite[3]=Arrow_West,
-		Assign_Cab_To_Block(Block_Cab[3],3,BLOCK_STATUS_OCCUPIED_WEST),
-		Block_Status[3]=BLOCK_STATUS_OCCUPIED_WEST,
-	WHEN  *CD_East_Pointer[3]=DETECTOR_BLOCK_VACANT and *CD_West_Pointer[3]=DETECTOR_BLOCK_VACANT DO
-		block_occupancy_off(block_Grid[3],
-			Block_Color[3]),
-			Block_Sprite[3]=Square,
-		Block_Status[3]=BLOCK_STATUS_VACANT,
-		Assign_Cab_To_Block(Block_Cab[3],3,BLOCK_STATUS_VACANT),
+WHEN *CD_East_Pointer[2] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_East(2)
+WHEN *CD_West_Pointer[2] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_West(2)
+WHEN *CD_East_Pointer[2] = DETECTOR_BLOCK_VACANT, *CD_West_Pointer[2] = DETECTOR_BLOCK_VACANT DO Current_Detector_Stopped_Triggering(2)
 
-	WHEN *CD_East_Pointer[4]=DETECTOR_BLOCK_OCCUPIED  do
-		block_occupancy_on (block_Grid[4], 
-			Block_Color[4], 
-			Train_E_Sprite[4]),
-		Block_Sprite[4]=Arrow_East,
-		Assign_Cab_To_Block(Block_Cab[4],4,BLOCK_STATUS_OCCUPIED_EAST),
-		Block_Status[4]=BLOCK_STATUS_OCCUPIED_EAST,
-	WHEN *CD_West_Pointer[4]=DETECTOR_BLOCK_OCCUPIED DO
-		block_occupancy_on (block_Grid[4], 
-			Block_Color[4], 
-			Train_W_Sprite[4]),
-		Block_Sprite[4]=Arrow_West,
-		Assign_Cab_To_Block(Block_Cab[4],4,BLOCK_STATUS_OCCUPIED_WEST),
-		Block_Status[4]=BLOCK_STATUS_OCCUPIED_WEST,
-	WHEN  *CD_East_Pointer[4]=DETECTOR_BLOCK_VACANT and *CD_West_Pointer[4]=DETECTOR_BLOCK_VACANT DO
-		block_occupancy_off(block_Grid[4],
-			Block_Color[4]),
-			Block_Sprite[4]=Square,
-		Block_Status[4]=BLOCK_STATUS_VACANT,
-		Assign_Cab_To_Block(Block_Cab[4],4,BLOCK_STATUS_VACANT),
+WHEN *CD_East_Pointer[3] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_East(3)
+WHEN *CD_West_Pointer[3] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_West(3)
+WHEN *CD_East_Pointer[3] = DETECTOR_BLOCK_VACANT, *CD_West_Pointer[3] = DETECTOR_BLOCK_VACANT DO Current_Detector_Stopped_Triggering(3)
 
-	WHEN *CD_East_Pointer[5]=DETECTOR_BLOCK_OCCUPIED  do
-		block_occupancy_on (block_Grid[5], 
-			Block_Color[5], 
-			Train_E_Sprite[5]),
-		Block_Sprite[5]=Arrow_East,
-		Assign_Cab_To_Block(Block_Cab[5],5,BLOCK_STATUS_OCCUPIED_EAST),
-		Block_Status[5]=BLOCK_STATUS_OCCUPIED_EAST,
-	WHEN *CD_West_Pointer[5]=DETECTOR_BLOCK_OCCUPIED DO
-		block_occupancy_on (block_Grid[5], 
-			Block_Color[5], 
-			Train_W_Sprite[5]),
-		Block_Sprite[5]=Arrow_West,
-		Assign_Cab_To_Block(Block_Cab[5],5,BLOCK_STATUS_OCCUPIED_WEST),
-		Block_Status[5]=BLOCK_STATUS_OCCUPIED_WEST,
-	WHEN  *CD_East_Pointer[5]=DETECTOR_BLOCK_VACANT and *CD_West_Pointer[5]=DETECTOR_BLOCK_VACANT DO
-		block_occupancy_off(block_Grid[5],
-			Block_Color[5]),
-			Block_Sprite[5]=Square,
-		Block_Status[5]=BLOCK_STATUS_VACANT,
-		Assign_Cab_To_Block(Block_Cab[5],5,BLOCK_STATUS_VACANT),
+WHEN *CD_East_Pointer[4] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_East(4)
+WHEN *CD_West_Pointer[4] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_West(4)
+WHEN *CD_East_Pointer[4] = DETECTOR_BLOCK_VACANT, *CD_West_Pointer[4] = DETECTOR_BLOCK_VACANT DO Current_Detector_Stopped_Triggering(4)
 
-	WHEN *CD_East_Pointer[6]=DETECTOR_BLOCK_OCCUPIED  do
-		block_occupancy_on (block_Grid[6], 
-			Block_Color[6], 
-			Train_E_Sprite[6]),
-		Block_Sprite[6]=Arrow_East,
-		Assign_Cab_To_Block(Block_Cab[6],6,BLOCK_STATUS_OCCUPIED_EAST),
-		Block_Status[6]=BLOCK_STATUS_OCCUPIED_EAST,
-	WHEN *CD_West_Pointer[6]=DETECTOR_BLOCK_OCCUPIED DO
-		block_occupancy_on (block_Grid[6], 
-			Block_Color[6], 
-			Train_W_Sprite[6]),
-		Block_Sprite[6]=Arrow_West,
-		Assign_Cab_To_Block(Block_Cab[6],6,BLOCK_STATUS_OCCUPIED_WEST),
-		Block_Status[6]=BLOCK_STATUS_OCCUPIED_WEST,
-	WHEN  *CD_East_Pointer[6]=DETECTOR_BLOCK_VACANT and *CD_West_Pointer[6]=DETECTOR_BLOCK_VACANT DO
-		block_occupancy_off(block_Grid[6],
-			Block_Color[6]),
-			Block_Sprite[6]=Square,
-		Block_Status[6]=BLOCK_STATUS_VACANT,
-		Assign_Cab_To_Block(Block_Cab[6],6,BLOCK_STATUS_VACANT),
+WHEN *CD_East_Pointer[5] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_East(5)
+WHEN *CD_West_Pointer[5] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_West(5)
+WHEN *CD_East_Pointer[5] = DETECTOR_BLOCK_VACANT, *CD_West_Pointer[5] = DETECTOR_BLOCK_VACANT DO Current_Detector_Stopped_Triggering(5)
 
-	WHEN *CD_East_Pointer[7]=DETECTOR_BLOCK_OCCUPIED  do
-		block_occupancy_on (block_Grid[7], 
-			Block_Color[7], 
-			Train_E_Sprite[7]),
-		Block_Sprite[7]=Arrow_East,
-		Assign_Cab_To_Block(Block_Cab[7],7,BLOCK_STATUS_OCCUPIED_EAST),
-		Block_Status[7]=BLOCK_STATUS_OCCUPIED_EAST,
-	WHEN *CD_West_Pointer[7]=DETECTOR_BLOCK_OCCUPIED DO
-		block_occupancy_on (block_Grid[7], 
-			Block_Color[7], 
-			Train_W_Sprite[7]),
-		Block_Sprite[7]=Arrow_West,
-		Assign_Cab_To_Block(Block_Cab[7],7,BLOCK_STATUS_OCCUPIED_WEST),
-		Block_Status[7]=BLOCK_STATUS_OCCUPIED_WEST,
-	WHEN  *CD_East_Pointer[7]=DETECTOR_BLOCK_VACANT and *CD_West_Pointer[7]=DETECTOR_BLOCK_VACANT DO
-		block_occupancy_off(block_Grid[7],
-			Block_Color[7]),
-			Block_Sprite[7]=Square,
-		Block_Status[7]=BLOCK_STATUS_VACANT,
-		Assign_Cab_To_Block(Block_Cab[7],7,BLOCK_STATUS_VACANT),
+WHEN *CD_East_Pointer[6] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_East(6)
+WHEN *CD_West_Pointer[6] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_West(6)
+WHEN *CD_East_Pointer[6] = DETECTOR_BLOCK_VACANT, *CD_West_Pointer[6] = DETECTOR_BLOCK_VACANT DO Current_Detector_Stopped_Triggering(6)
 
-	WHEN *CD_East_Pointer[8]=DETECTOR_BLOCK_OCCUPIED  do
-		block_occupancy_on (block_Grid[8], 
-			Block_Color[8], 
-			Train_E_Sprite[8]),
-		Block_Sprite[8]=Arrow_East,
-		Assign_Cab_To_Block(Block_Cab[8],8,BLOCK_STATUS_OCCUPIED_EAST),
-		Block_Status[8]=BLOCK_STATUS_OCCUPIED_EAST,
-	WHEN *CD_West_Pointer[8]=DETECTOR_BLOCK_OCCUPIED DO
-		block_occupancy_on (block_Grid[8], 
-			Block_Color[8], 
-			Train_W_Sprite[8]),
-		Block_Sprite[8]=Arrow_West,
-		Assign_Cab_To_Block(Block_Cab[8],8,BLOCK_STATUS_OCCUPIED_WEST),
-		Block_Status[8]=BLOCK_STATUS_OCCUPIED_WEST,
-	WHEN  *CD_East_Pointer[8]=DETECTOR_BLOCK_VACANT and *CD_West_Pointer[8]=DETECTOR_BLOCK_VACANT DO
-		block_occupancy_off(block_Grid[8],
-			Block_Color[8]),
-			Block_Sprite[8]=Square,
-		Block_Status[8]=BLOCK_STATUS_VACANT,
-		Assign_Cab_To_Block(Block_Cab[8],8,BLOCK_STATUS_VACANT),
+WHEN *CD_East_Pointer[7] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_East(7)
+WHEN *CD_West_Pointer[7] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_West(7)
+WHEN *CD_East_Pointer[7] = DETECTOR_BLOCK_VACANT, *CD_West_Pointer[7] = DETECTOR_BLOCK_VACANT DO Current_Detector_Stopped_Triggering(7)
 
-	WHEN *CD_East_Pointer[9]=DETECTOR_BLOCK_OCCUPIED  do
-		block_occupancy_on (block_Grid[9], 
-			Block_Color[9], 
-			Train_E_Sprite[9]),
-		Block_Sprite[9]=Arrow_East,
-		Assign_Cab_To_Block(Block_Cab[9],9,BLOCK_STATUS_OCCUPIED_EAST),
-		Block_Status[9]=BLOCK_STATUS_OCCUPIED_EAST,
-	WHEN *CD_West_Pointer[9]=DETECTOR_BLOCK_OCCUPIED DO
-		block_occupancy_on (block_Grid[9], 
-			Block_Color[9], 
-			Train_W_Sprite[9]),
-		Block_Sprite[9]=Arrow_West,
-		Assign_Cab_To_Block(Block_Cab[9],9,BLOCK_STATUS_OCCUPIED_WEST),
-		Block_Status[9]=BLOCK_STATUS_OCCUPIED_WEST,
-	WHEN  *CD_East_Pointer[9]=DETECTOR_BLOCK_VACANT and *CD_West_Pointer[9]=DETECTOR_BLOCK_VACANT DO
-		block_occupancy_off(block_Grid[9],
-			Block_Color[9]),
-			Block_Sprite[9]=Square,
-		Block_Status[9]=BLOCK_STATUS_VACANT,
-		Assign_Cab_To_Block(Block_Cab[9],9,BLOCK_STATUS_VACANT),
+WHEN *CD_East_Pointer[8] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_East(8)
+WHEN *CD_West_Pointer[8] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_West(8)
+WHEN *CD_East_Pointer[8] = DETECTOR_BLOCK_VACANT, *CD_West_Pointer[8] = DETECTOR_BLOCK_VACANT DO Current_Detector_Stopped_Triggering(8)
 
-	WHEN *CD_East_Pointer[10]=DETECTOR_BLOCK_OCCUPIED  do
-		block_occupancy_on (block_Grid[10], 
-			Block_Color[10], 
-			Train_E_Sprite[10]),
-		Block_Sprite[10]=Arrow_East,
-		Assign_Cab_To_Block(Block_Cab[10],10,BLOCK_STATUS_OCCUPIED_EAST),
-		Block_Status[10]=BLOCK_STATUS_OCCUPIED_EAST,
-	WHEN *CD_West_Pointer[10]=DETECTOR_BLOCK_OCCUPIED DO
-		block_occupancy_on (block_Grid[10], 
-			Block_Color[10], 
-			Train_W_Sprite[10]),
-		Block_Sprite[10]=Arrow_West,
-		Assign_Cab_To_Block(Block_Cab[10],10,BLOCK_STATUS_OCCUPIED_WEST),
-		Block_Status[10]=BLOCK_STATUS_OCCUPIED_WEST,
-	WHEN  *CD_East_Pointer[10]=DETECTOR_BLOCK_VACANT and *CD_West_Pointer[10]=DETECTOR_BLOCK_VACANT DO
-		block_occupancy_off(block_Grid[10],
-			Block_Color[10]),
-			Block_Sprite[10]=Square,
-		Block_Status[10]=BLOCK_STATUS_VACANT,
-		Assign_Cab_To_Block(Block_Cab[10],10,BLOCK_STATUS_VACANT),
+WHEN *CD_East_Pointer[9] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_East(9)
+WHEN *CD_West_Pointer[9] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_West(9)
+WHEN *CD_East_Pointer[9] = DETECTOR_BLOCK_VACANT, *CD_West_Pointer[9] = DETECTOR_BLOCK_VACANT DO Current_Detector_Stopped_Triggering(9)
 
-	WHEN *CD_East_Pointer[11]=DETECTOR_BLOCK_OCCUPIED  do
-		block_occupancy_on (block_Grid[11], 
-			Block_Color[11], 
-			Train_E_Sprite[11]),
-		Block_Sprite[11]=Arrow_East,
-		Assign_Cab_To_Block(Block_Cab[11],11,BLOCK_STATUS_OCCUPIED_EAST),
-		Block_Status[11]=BLOCK_STATUS_OCCUPIED_EAST,
-	WHEN *CD_West_Pointer[11]=DETECTOR_BLOCK_OCCUPIED DO
-		block_occupancy_on (block_Grid[11], 
-			Block_Color[11], 
-			Train_W_Sprite[11]),
-		Block_Sprite[11]=Arrow_West,
-		Assign_Cab_To_Block(Block_Cab[11],11,BLOCK_STATUS_OCCUPIED_WEST),
-		Block_Status[11]=BLOCK_STATUS_OCCUPIED_WEST,
-	WHEN  *CD_East_Pointer[11]=DETECTOR_BLOCK_VACANT and *CD_West_Pointer[11]=DETECTOR_BLOCK_VACANT DO
-		block_occupancy_off(block_Grid[11],
-			Block_Color[11]),
-			Block_Sprite[11]=Square,
-		Block_Status[11]=BLOCK_STATUS_VACANT,
-		Assign_Cab_To_Block(Block_Cab[11],11,BLOCK_STATUS_VACANT),
+WHEN *CD_East_Pointer[10] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_East(10)
+WHEN *CD_West_Pointer[10] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_West(10)
+WHEN *CD_East_Pointer[10] = DETECTOR_BLOCK_VACANT, *CD_West_Pointer[10] = DETECTOR_BLOCK_VACANT DO Current_Detector_Stopped_Triggering(10)
 
-	WHEN *CD_East_Pointer[12]=DETECTOR_BLOCK_OCCUPIED  do
-		block_occupancy_on (block_Grid[12], 
-			Block_Color[12], 
-			Train_E_Sprite[12]),
-		Block_Sprite[12]=Arrow_East,
-		Assign_Cab_To_Block(Block_Cab[12],12,BLOCK_STATUS_OCCUPIED_EAST),
-		Block_Status[12]=BLOCK_STATUS_OCCUPIED_EAST,
-	WHEN *CD_West_Pointer[12]=DETECTOR_BLOCK_OCCUPIED DO
-		block_occupancy_on (block_Grid[12], 
-			Block_Color[12], 
-			Train_W_Sprite[12]),
-		Block_Sprite[12]=Arrow_West,
-		Assign_Cab_To_Block(Block_Cab[12],12,BLOCK_STATUS_OCCUPIED_WEST),
-		Block_Status[12]=BLOCK_STATUS_OCCUPIED_WEST,
-	WHEN  *CD_East_Pointer[12]=DETECTOR_BLOCK_VACANT and *CD_West_Pointer[12]=DETECTOR_BLOCK_VACANT DO
-		block_occupancy_off(block_Grid[12],
-			Block_Color[12]),
-			Block_Sprite[12]=Square,
-		Block_Status[12]=BLOCK_STATUS_VACANT,
-		Assign_Cab_To_Block(Block_Cab[12],12,BLOCK_STATUS_VACANT),
+WHEN *CD_East_Pointer[11] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_East(11)
+WHEN *CD_West_Pointer[11] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_West(11)
+WHEN *CD_East_Pointer[11] = DETECTOR_BLOCK_VACANT, *CD_West_Pointer[11] = DETECTOR_BLOCK_VACANT DO Current_Detector_Stopped_Triggering(11)
+
+WHEN *CD_East_Pointer[12] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_East(12)
+WHEN *CD_West_Pointer[12] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_West(12)
+WHEN *CD_East_Pointer[12] = DETECTOR_BLOCK_VACANT, *CD_West_Pointer[12] = DETECTOR_BLOCK_VACANT DO Current_Detector_Stopped_Triggering(12)
 
 '********************************************************************
 '	LOOP through East and West InfraRed detectors to determine block occupancy
