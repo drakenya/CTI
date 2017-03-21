@@ -1294,7 +1294,7 @@ WHEN *Dcc_Cab_Pointer[1].Direction = REVERSE DO *Cab_Pointer[1].Direction = REVE
 WHEN *Dcc_Cab_Pointer[2].Direction = FORWARD DO *Cab_Pointer[2].Direction = FORWARD
 WHEN *Dcc_Cab_Pointer[2].Direction = REVERSE DO *Cab_Pointer[2].Direction = REVERSE
 WHEN *Dcc_Cab_Pointer[3].Direction = FORWARD DO *Cab_Pointer[3].Direction = FORWARD
-WHEN *Dcc_Cab_Pointer[4].Direction = REVERSE DO *Cab_Pointer[3].Direction = REVERSE
+WHEN *Dcc_Cab_Pointer[3].Direction = REVERSE DO *Cab_Pointer[3].Direction = REVERSE
 
 ' *** --- ***
 WHEN *Cab_Pointer[1].Speed <> Previous_Cab_Speed[1] DO Update_Cab_Speed(1)
