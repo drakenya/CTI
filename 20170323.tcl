@@ -892,14 +892,14 @@ WHEN $Leftmouse=Turnout_Grid[18] or *Turnout_Button_Pointer[18]=on DO Throw_Turn
 
 SUB Current_Detector_Triggered_East(BlockIndex)
 	Block_Occupancy_On(Block_Grid[BlockIndex], Block_Color[BlockIndex], Train_E_Sprite[BlockIndex])
-	Block_Sprite[1] = Arrow_East
-	Block_Status[1] = BLOCK_STATUS_OCCUPIED_EAST
+	Block_Sprite[BlockIndex] = Arrow_East
+	Block_Status[BlockIndex] = BLOCK_STATUS_OCCUPIED_EAST
 	Assign_Cab_To_Block(Block_Cab[BlockIndex], BlockIndex, BLOCK_STATUS_OCCUPIED_EAST)
 ENDSUB
 SUB Current_Detector_Triggered_West(BlockIndex)
 	Block_Occupancy_On(Block_Grid[BlockIndex], Block_Color[BlockIndex], Train_W_Sprite[BlockIndex])
-	Block_Sprite[1] = Arrow_West
-	Block_Status[1] = BLOCK_STATUS_OCCUPIED_WEST
+	Block_Sprite[BlockIndex] = Arrow_West
+	Block_Status[BlockIndex] = BLOCK_STATUS_OCCUPIED_WEST
 	Assign_Cab_To_Block(Block_Cab[BlockIndex], BlockIndex, BLOCK_STATUS_OCCUPIED_WEST)
 ENDSUB
 SUB Current_Detector_Stopped_Triggering(BlockIndex)
