@@ -1,4 +1,3 @@
-
 '***********************************************************************************
 '														*
 '						DECLARATIONS						*
@@ -462,13 +461,13 @@ SUB Initialize_Detect_Initial_Blocks({Local} CIndex, BIndex)
 			Configure_Cab_To_Block(BIndex,CIndex)
 			Block_occupancy_on (block_Grid[BIndex], Block_Color[BIndex], Train_E_Sprite[BIndex])
 			Block_Status[BIndex]=BLOCK_STATUS_OCCUPIED_EAST
-			Assign_Cab_To_Block(CIndex ,BIndex,BLOCK_STATUS_OCCUPIED_EAST)
+			Assign_Cab_To_Block(CIndex, BIndex)
 
 			CIndex = 1+
 		ELSE
 			Block_Sprite[BIndex]=square
 			Block_occupancy_off(block_Grid[BIndex], Block_Color[BIndex], lock)
-			Assign_Cab_To_Block(CIndex ,BLOCK_STATUS_VACANT)
+			Assign_Cab_To_Block(CIndex, BIndex)
 			Block_Status[BIndex]=BLOCK_STATUS_VACANT
 		ENDIF
 
@@ -896,12 +895,12 @@ WHEN $Leftmouse=Turnout_Grid[18] or *Turnout_Button_Pointer[18]=on DO Throw_Turn
 '********************************************************************
 '**	LOOP through East and West current detectors to determine block occupancy
 
-SUB Calculate_East_Block_From(BlockIndex, BlockFromIndex)
+SUB Calculate_Next_Eastward_Block(BlockIndex, BlockFromIndex)
 	*BlockFromIndex = BlockIndex
 	*BlockFromIndex = 1 -
 	IF *BlockFromIndex < LOWEST_LOOP_BLOCK THEN *BlockFromIndex = HIGHEST_LOOP_BLOCK + ENDIF	
 ENDSUB
-SUB Calculate_East_Block_To(BlockIndex, BlockToIndex)
+SUB Calculate_Next_Westward_Block(BlockIndex, BlockToIndex)
 	*BlockToIndex = BlockIndex
 	*BlockToIndex = 1 +
 	IF *BlockToIndex > HIGHEST_LOOP_BLOCK THEN *BlockToIndex = HIGHEST_LOOP_BLOCK - ENDIF
@@ -913,15 +912,23 @@ SUB Current_Detector_Triggered_East(BlockIndex, {Local} BlockFromIndex, BlockToI
 	Block_Occupancy_On(Block_Grid[BlockIndex], Block_Color[BlockIndex], Train_E_Sprite[BlockIndex])
 	Block_Sprite[BlockIndex] = Arrow_East
 	
+	' Exit if we aren't in the main loops
+	' This will need changed if/when passing sidings are added in
 	IF BlockIndex > HIGHEST_LOOP_BLOCK THEN RETURN ENDIF
 	
-	BlockFromIndex = -1, Calculate_East_Block_From(BlockIndex, &BlockFromIndex)
+	' Determine where we are coming from
+	' Not used now, but previously pulled the cab forward (not needed with set-ahead cab)
+	BlockFromIndex = -1, Calculate_Next_Eastward_Block(BlockIndex, &BlockFromIndex)
 	
-	BlockToIndex = -1, Calculate_East_Block_To(BlockIndex, &BlockToIndex)
+	' Determine where we are going to
+	' In future, base this on turnouts controlled and turnout setting
+	BlockToIndex = -1, Calculate_Next_Westward_Block(BlockIndex, &BlockToIndex)
 	IF Block_Status[BlockToIndex] = BLOCK_STATUS_VACANT THEN
+		' If way ahead is not blocked, move forward and grab control of next block
 		CurrentCab = Block_Cab[BlockIndex]
 		Assign_Cab_To_Block(CurrentCab, BlockToIndex)
 	ELSE
+		' Halt train, put a hold on the next block so we get it when it's released
 		CurrentCab = Block_Cab[BlockIndex]
 		*Cab_Pointer[CurrentCab].Brake = ON
 		Held_Block_Grid[BlockToIndex] = CurrentCab
@@ -932,82 +939,92 @@ SUB Current_Detector_Triggered_West(BlockIndex)
 	
 	Block_Occupancy_On(Block_Grid[BlockIndex], Block_Color[BlockIndex], Train_W_Sprite[BlockIndex])
 	Block_Sprite[BlockIndex] = Arrow_West
-	
-	Assign_Cab_To_Block(Block_Cab[BlockIndex], BlockIndex, BLOCK_STATUS_OCCUPIED_WEST)
 ENDSUB
-SUB Current_Detector_Stopped_Triggering(BlockIndex)
+SUB Current_Detector_Stopped_Triggering(BlockIndex, {Local} PreviousBlockIndex)
 	Block_Occupancy_Off(block_Grid[BlockIndex], Block_Color[BlockIndex])
 	Block_Sprite[BlockIndex] = Square
 	Block_Status[BlockIndex] = BLOCK_STATUS_VACANT
-	Assign_Cab_To_Block(Block_Cab[BlockIndex], BlockIndex, BLOCK_STATUS_VACANT)
+
+	IF BlockIndex > 8 THEN RETURN ENDIF
+
+	IF Block_Status[BlockIndex] = BLOCK_STATUS_OCCUPIED_EAST THEN
+		Block_Status[BlockIndex] = BLOCK_STATUS_VACATED_EAST
+
+		PreviousBlockIndex = -1, Calculate_Next_Westward_Block(BlockIndex, &PreviousBlockIndex)
+		If Block_Status[PreviousBlockIndex] = BLOCK_STATUS_VACATED_EAST or Block_Status[PreviousBlockIndex] = BLOCK_STATUS_VACATED_WEST THEN
+			Block_Status[PreviousBlockIndex] = BLOCK_STATUS_VACANT
+		ENDIF
+	ENDIF
 ENDSUB
 
 SUB Release_Hold_On_Block(BlockIndex, {Local} CurrentCab)
+	IF Held_Block_Grid[BlockIndex] = HOLDS_NO_HOLD_DECLARED THEN RETURN ENDIF
+
+	CurrentCab = Held_Block_Grid[BlockIndex]
+	*Cab_Pointer[CurrentCab].Brake = Off
+	Held_Block_Grid[BlockIndex] = HOLDS_NO_HOLD_DECLARED
+	Assign_Cab_To_Block(CurrentCab, BlockIndex)
 ENDSUB
 
 WHEN *CD_East_Pointer[1] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_East(1)
 WHEN *CD_West_Pointer[1] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_West(1)
 WHEN *CD_East_Pointer[1] = DETECTOR_BLOCK_VACANT, *CD_West_Pointer[1] = DETECTOR_BLOCK_VACANT DO Current_Detector_Stopped_Triggering(1)
-WHEN Block_Status[1] = BLOCK_STATUS_VACANT DO
-	IF Held_Block_Grid[1] <> HOLDS_NO_HOLD_DECLARED THEN Release_Hold_On_Block(1) ENDIF
+WHEN Block_Status[1] = BLOCK_STATUS_VACANT DO Release_Hold_On_Block(1)
 
 WHEN *CD_East_Pointer[2] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_East(2)
 WHEN *CD_West_Pointer[2] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_West(2)
 WHEN *CD_East_Pointer[2] = DETECTOR_BLOCK_VACANT, *CD_West_Pointer[2] = DETECTOR_BLOCK_VACANT DO Current_Detector_Stopped_Triggering(2)
-WHEN Block_Status[2] = BLOCK_STATUS_VACANT DO
-	IF Held_Block_Grid[2] <> HOLDS_NO_HOLD_DECLARED THEN Release_Hold_On_Block(2) ENDIF
+WHEN Block_Status[2] = BLOCK_STATUS_VACANT DO Release_Hold_On_Block(2)
 
 WHEN *CD_East_Pointer[3] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_East(3)
 WHEN *CD_West_Pointer[3] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_West(3)
 WHEN *CD_East_Pointer[3] = DETECTOR_BLOCK_VACANT, *CD_West_Pointer[3] = DETECTOR_BLOCK_VACANT DO Current_Detector_Stopped_Triggering(3)
-WHEN Block_Status[3] = BLOCK_STATUS_VACANT DO
-	IF Held_Block_Grid[3] <> HOLDS_NO_HOLD_DECLARED THEN Release_Hold_On_Block(3) ENDIF
+WHEN Block_Status[3] = BLOCK_STATUS_VACANT DO Release_Hold_On_Block(3)
 
 WHEN *CD_East_Pointer[4] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_East(4)
 WHEN *CD_West_Pointer[4] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_West(4)
 WHEN *CD_East_Pointer[4] = DETECTOR_BLOCK_VACANT, *CD_West_Pointer[4] = DETECTOR_BLOCK_VACANT DO Current_Detector_Stopped_Triggering(4)
-WHEN Block_Status[4] = BLOCK_STATUS_VACANT DO
-	IF Held_Block_Grid[4] <> HOLDS_NO_HOLD_DECLARED THEN Release_Hold_On_Block(4) ENDIF
+WHEN Block_Status[4] = BLOCK_STATUS_VACANT DO Release_Hold_On_Block(4)
 
 WHEN *CD_East_Pointer[5] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_East(5)
 WHEN *CD_West_Pointer[5] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_West(5)
 WHEN *CD_East_Pointer[5] = DETECTOR_BLOCK_VACANT, *CD_West_Pointer[5] = DETECTOR_BLOCK_VACANT DO Current_Detector_Stopped_Triggering(5)
-WHEN Block_Status[5] = BLOCK_STATUS_VACANT DO
-	IF Held_Block_Grid[5] <> HOLDS_NO_HOLD_DECLARED THEN Release_Hold_On_Block(5) ENDIF
+WHEN Block_Status[5] = BLOCK_STATUS_VACANT DO Release_Hold_On_Block(5)
 
 WHEN *CD_East_Pointer[6] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_East(6)
 WHEN *CD_West_Pointer[6] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_West(6)
 WHEN *CD_East_Pointer[6] = DETECTOR_BLOCK_VACANT, *CD_West_Pointer[6] = DETECTOR_BLOCK_VACANT DO Current_Detector_Stopped_Triggering(6)
-WHEN Block_Status[6] = BLOCK_STATUS_VACANT DO
-	IF Held_Block_Grid[6] <> HOLDS_NO_HOLD_DECLARED THEN Release_Hold_On_Block(6) ENDIF
+WHEN Block_Status[6] = BLOCK_STATUS_VACANT DO Release_Hold_On_Block(6)
 
 WHEN *CD_East_Pointer[7] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_East(7)
 WHEN *CD_West_Pointer[7] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_West(7)
 WHEN *CD_East_Pointer[7] = DETECTOR_BLOCK_VACANT, *CD_West_Pointer[7] = DETECTOR_BLOCK_VACANT DO Current_Detector_Stopped_Triggering(7)
-WHEN Block_Status[7] = BLOCK_STATUS_VACANT DO
-	IF Held_Block_Grid[7] <> HOLDS_NO_HOLD_DECLARED THEN Release_Hold_On_Block(7) ENDIF
+WHEN Block_Status[7] = BLOCK_STATUS_VACANT DO Release_Hold_On_Block(7)
 
 WHEN *CD_East_Pointer[8] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_East(8)
 WHEN *CD_West_Pointer[8] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_West(8)
 WHEN *CD_East_Pointer[8] = DETECTOR_BLOCK_VACANT, *CD_West_Pointer[8] = DETECTOR_BLOCK_VACANT DO Current_Detector_Stopped_Triggering(8)
-WHEN Block_Status[8] = BLOCK_STATUS_VACANT DO
-	IF Held_Block_Grid[8] <> HOLDS_NO_HOLD_DECLARED THEN Release_Hold_On_Block(8) ENDIF
+WHEN Block_Status[8] = BLOCK_STATUS_VACANT DO Release_Hold_On_Block(8)
 
 WHEN *CD_East_Pointer[9] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_East(9)
 WHEN *CD_West_Pointer[9] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_West(9)
 WHEN *CD_East_Pointer[9] = DETECTOR_BLOCK_VACANT, *CD_West_Pointer[9] = DETECTOR_BLOCK_VACANT DO Current_Detector_Stopped_Triggering(9)
+WHEN Block_Status[9] = BLOCK_STATUS_VACANT DO Release_Hold_On_Block(9)
 
 WHEN *CD_East_Pointer[10] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_East(10)
 WHEN *CD_West_Pointer[10] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_West(10)
 WHEN *CD_East_Pointer[10] = DETECTOR_BLOCK_VACANT, *CD_West_Pointer[10] = DETECTOR_BLOCK_VACANT DO Current_Detector_Stopped_Triggering(10)
+WHEN Block_Status[10] = BLOCK_STATUS_VACANT DO  Release_Hold_On_Block(10)
 
 WHEN *CD_East_Pointer[11] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_East(11)
 WHEN *CD_West_Pointer[11] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_West(11)
 WHEN *CD_East_Pointer[11] = DETECTOR_BLOCK_VACANT, *CD_West_Pointer[11] = DETECTOR_BLOCK_VACANT DO Current_Detector_Stopped_Triggering(11)
+WHEN Block_Status[11] = BLOCK_STATUS_VACANT DO  Release_Hold_On_Block(11)
 
 WHEN *CD_East_Pointer[12] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_East(12)
 WHEN *CD_West_Pointer[12] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_West(12)
 WHEN *CD_East_Pointer[12] = DETECTOR_BLOCK_VACANT, *CD_West_Pointer[12] = DETECTOR_BLOCK_VACANT DO Current_Detector_Stopped_Triggering(12)
+WHEN Block_Status[12] = BLOCK_STATUS_VACANT DO  Release_Hold_On_Block(12)
 
 '********************************************************************
 '	LOOP through East and West InfraRed detectors to determine block occupancy
@@ -1036,7 +1053,7 @@ WHEN *CD_East_Pointer[12] = DETECTOR_BLOCK_VACANT, *CD_West_Pointer[12] = DETECT
 '
 '		ENDIF
 
-
+ 
 '********************************************************************
 '	LOOP through EOT InfraRed detectors to determine block occupancy
 
