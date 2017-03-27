@@ -52,9 +52,14 @@ CONSTANTS:
 	COLOR_BRAKE_OFF = Black
 	COLOR_DIRECTION_FORWARD = Green
 	COLOR_DIRECTION_REVERSE = Red
+	COLOR_BLOCK_VACANT = Black
 
 	ICON_DIRECTION_FORWARD = Arrow_North
 	ICON_DIRECTION_REVERSE = Arrow_South
+	ICON_CAB_DOES_NOT_HAVE_BLOCK = Square
+	ICON_CAB_HAS_BLOCK_EASTBOUND = Arrow_East
+	ICON_CAB_HAS_BLOCK_WESTBOUND = Arrow_West
+	ICON_CAB_HAS_BLOCK_WITHOUT_OCCUPANCY = Lock
 
 '***********************************************************************************
 '					NETWORK MODULE DECLARATIONS
@@ -124,6 +129,22 @@ SENSORS:	TBS_BCb2_01_4E#, TBS_BCb2_02#, TBS_BCb2_03_12E#, TBS_BCb2_04#
 CONTROLS:	D8C_BCb3_01, D8C_BCb3_02, D8C_BCb3_03, D8C_BCb3_04, D8C_BCb3_05, D8C_BCb3_06, D8C_BCb3_07, D8C_BCb3_08
 
 '''''''''''
+''''''''''' Turnout Control Board "b"
+'''''''''''
+
+' YardMaster "b1"
+CONTROLS:	YMC_TCb1_01, YMC_TCb1_02, YMC_TCb1_03, YMC_TCb1_04, YMC_TCb1_05, YMC_TCb1_06, YMC_TCb1_07,YMC_TCb1_08, 
+		YMC_TCb1_09, YMC_TCb1_10, YMC_TCb1_11, YMC_TCb1_12, YMC_TCb1_13, YMC_TCb1_14, YMC_TCb1_15, YMC_TCb1_16
+
+' Sentry "b2"
+SENSORS:	SES_TCb2_01, SES_TCb2_02, SES_TCb2_03, SES_TCb2_04, SES_TCb2_05, SES_TCb2_06, SES_TCb2_07,SES_TCb2_08, 
+		SES_TCb2_09, SES_TCb2_10, SES_TCb2_11, SES_TCb2_12, SES_TCb2_13, SES_TCb2_14, SES_TCb2_15, SES_TCb2_16
+
+' Switchman "b3"
+'CONTROLS:	SMC_TCb3_01, SMC_TCb3_02, SMC_TCb3_03, SMC_TCb3_04, SMC_TCb3_05, SMC_TCb3_06, SMC_TCb3_07,SMC_TCb3_08, 
+'		SMC_TCb3_09, SMC_TCb3_10, SMC_TCb3_11, SMC_TCb3_12, SMC_TCb3_13, SMC_TCb3_14, SMC_TCb3_15, SMC_TCb3_16
+
+'''''''''''
 ''''''''''' Block Control board "c"
 '''''''''''
 
@@ -137,23 +158,6 @@ SENSORS:	TBS_BCc2_01_10E#, TBS_BCc2_02#, TBS_BCc2_03_3E#, TBS_BCc2_04#
 
 'Dash-8 "c3"
 CONTROLS:	D8C_BCc3_01, D8C_BCc3_02, D8C_BCc3_03, D8C_BCc3_04, D8C_BCc3_05, D8C_BCc3_06, D8C_BCc3_07, D8C_BCc3_08
-
-
-'''''''''''
-''''''''''' Turnout Control Board "b"
-'''''''''''
-
-' YardMaster "b1"
-'CONTROLS:	YMC_TCb1_01, YMC_TCb1_02, YMC_TCb1_03, YMC_TCb1_04, YMC_TCb1_05, YMC_TCb1_06, YMC_TCb1_07,YMC_TCb1_08, 
-'		YMC_TCb1_09, YMC_TCb1_10, YMC_TCb1_11, YMC_TCb1_12, YMC_TCb1_13, YMC_TCb1_14, YMC_TCb1_15, YMC_TCb1_16
-
-' Sentry "b2"
-'SENSORS:	SES_TCb2_01, SES_TCb2_02, SES_TCb2_03, SES_TCb2_04, SES_TCb2_05, SES_TCb2_06, SES_TCb2_07,SES_TCb2_08, 
-'		SES_TCb2_09, SES_TCb2_10, SES_TCb2_11, SES_TCb2_12, SES_TCb2_13, SES_TCb2_14, SES_TCb2_15, SES_TCb2_16
-
-' Switchman "b3"
-'CONTROLS:	SMC_TCb3_01, SMC_TCb3_02, SMC_TCb3_03, SMC_TCb3_04, SMC_TCb3_05, SMC_TCb3_06, SMC_TCb3_07,SMC_TCb3_08, 
-'		SMC_TCb3_09, SMC_TCb3_10, SMC_TCb3_11, SMC_TCb3_12, SMC_TCb3_13, SMC_TCb3_14, SMC_TCb3_15, SMC_TCb3_16
 
 
 
@@ -298,24 +302,6 @@ ACTIONS:
 '************************************************************************************
 '					   SUB ROUTINES 							
 '************************************************************************************
-
-'******** 	Indicate Block occupancy change on panel
-
-' 	Occupied
-SUB Block_occupancy_off(block_Grid,Block_Color)
-	$Color Block (block_Grid) = black
-	$Draw Sprite (block_Grid) = Lock in Block_Color
-ENDSUB
-
-
-SUB Block_occupancy_on(block_Grid,block_color,sprite_shape)
-	$Color Block(block_Grid) = block_color
-	$Draw Sprite(block_Grid) = sprite_shape in Block_Color
-ENDSUB
-
-' 	Vacant
-
-
 		
 '******** 	Configures TrainBrain Controls to assign proper cab to designated block
 '			Also assigns Cab color to designated block for panel displays
@@ -350,31 +336,64 @@ ENDSUB
 '			Colors block sprite with selected cab color
 '			Colors selected block buttons with selected cab color and shape on panel
 
+SUB Redraw_Cab_Block_On_Plan({Local} BlockIndex, CabIndex)
+	BlockIndex = 0
+
+	UNTIL BlockIndex >= MAX_BLOCK_INDEX QUICKLOOP
+		CabIndex = Block_Cab[BlockIndex]
+
+		' Show the block color
+		IF Block_Status[BlockIndex] = BLOCK_STATUS_OCCUPIED_EAST OR Block_Status[BlockIndex] = BLOCK_STATUS_OCCUPIED_WEST THEN
+			$Color Block(Block_Grid[BlockIndex]) = Cab_Color[CabIndex]
+		ELSE
+			$Color Block(Block_Grid[BlockIndex]) = COLOR_BLOCK_VACANT
+		ENDIF
+
+		' Show the icon
+		IF Block_Status[BlockIndex] = BLOCK_STATUS_OCCUPIED_EAST THEN
+			$Draw Sprite(Block_Grid[BlockIndex]) = Train_E_Sprite[BlockIndex] IN Cab_Color[CabIndex]
+		ELSEIF Block_Status[BlockIndex] = BLOCK_STATUS_OCCUPIED_WEST THEN
+			$Draw Sprite(Block_Grid[BlockIndex]) = Train_W_Sprite[BlockIndex] IN Cab_Color[CabIndex]
+		ELSE
+			$Draw Sprite(Block_Grid[BlockIndex]) = ICON_CAB_HAS_BLOCK_WITHOUT_OCCUPANCY IN Cab_Color[CabIndex]
+		ENDIF
+
+		BlockIndex = 1 +
+	ENDLOOP
+ENDSUB
+SUB Redraw_Cab_Block_On_Grid({Local} BlockIndex)
+	BlockIndex = 0
+	
+	UNTIL BlockIndex >= MAX_BLOCK_INDEX QUICKLOOP
+		' Reset to gray
+		$Draw Sprite(Cab0_Block_Grid[BlockIndex]) = ICON_CAB_DOES_NOT_HAVE_BLOCK IN COLOR_UNSELECTED_SPEED
+		$Draw Sprite(Cab1_Block_Grid[BlockIndex]) = ICON_CAB_DOES_NOT_HAVE_BLOCK IN COLOR_UNSELECTED_SPEED
+		$Draw Sprite(Cab2_Block_Grid[BlockIndex]) = ICON_CAB_DOES_NOT_HAVE_BLOCK IN COLOR_UNSELECTED_SPEED
+		$Draw Sprite(Cab3_Block_Grid[BlockIndex]) = ICON_CAB_DOES_NOT_HAVE_BLOCK IN COLOR_UNSELECTED_SPEED
+
+		' Then find correct color and mark it
+		IF Block_Cab[BlockIndex] = 0 THEN
+			$Draw Sprite(Cab0_Block_Grid[BlockIndex]) = Block_Sprite[BlockIndex] IN Cab_Color[0]
+		ELSEIF Block_Cab[BlockIndex] = 1 THEN
+			$Draw Sprite(Cab1_Block_Grid[BlockIndex]) = Block_Sprite[BlockIndex] IN Cab_Color[1]
+		ELSEIF Block_Cab[BlockIndex] = 2 THEN
+			$Draw Sprite(Cab2_Block_Grid[BlockIndex]) = Block_Sprite[BlockIndex] IN Cab_Color[2]
+		ELSEIF BLock_Cab[BlockIndex] = 3 THEN
+			$Draw Sprite(Cab3_Block_Grid[BlockIndex]) = Block_Sprite[BlockIndex] IN Cab_Color[3]
+		ENDIF
+		BlockIndex = 1 +
+	ENDLOOP
+ENDSUB
+SUB Redraw_Cab_Block_All(BlockIndex)
+	Redraw_Cab_Block_On_Grid()
+	Redraw_Cab_Block_On_Plan()
+ENDSUB
+
 SUB Assign_Cab_To_Block(CIndex,BIndex,BStatus)
 	Block_Cab[BIndex]=CIndex
 	Configure_Cab_To_Block(BIndex,CIndex)
-	$Color Sprite(Block_Grid[BIndex])=Cab_Color[CIndex]
-	Block_Color[BIndex]=Cab_Color[CIndex]
 
-	IF BStatus=BLOCK_STATUS_OCCUPIED_EAST OR BStatus=BLOCK_STATUS_OCCUPIED_WEST THEN $color Block(Block_Grid[BIndex]) = Block_Color[BIndex],
-	ELSEIF BStatus=BLOCK_STATUS_VACANT THEN $color Block(Block_Grid[BIndex]) = BLACK,
-	ENDIF,
-
-	IF CIndex=0 THEN $Draw Sprite(cab0_Block_Grid[BIndex])=Block_Sprite[BIndex] in Cab_Color[0]
-	ELSE $DRAW SPRITE(cab0_Block_Grid[BIndex])=SQUARE in COLOR_UNSELECTED_SPEED
-	ENDIF
-
-	IF CIndex=1 THEN $Draw Sprite(cab1_Block_Grid[BIndex])=Block_Sprite[BIndex] in Cab_Color[1]
-	ELSE $DRAW SPRITE(cab1_Block_Grid[BIndex])=SQUARE in COLOR_UNSELECTED_SPEED
-	ENDIF
-
-	IF CIndex=2 THEN $Draw Sprite(cab2_Block_Grid[BIndex])=Block_Sprite[BIndex] in Cab_Color[2]
-	ELSE $DRAW SPRITE(cab2_Block_Grid[BIndex])=SQUARE in COLOR_UNSELECTED_SPEED
-	ENDIF
-
-	IF CIndex=3 THEN $Draw Sprite(cab3_Block_Grid[BIndex])=Block_Sprite[BIndex] in Cab_Color[3]
-	ELSE $DRAW SPRITE(cab3_Block_Grid[BIndex])=SQUARE in COLOR_UNSELECTED_SPEED
-	ENDIF
+	Redraw_Cab_Block_All(BIndex)
 ENDSUB
 
 SUB Assign_Cab_To_All_Blocks(CIndex, {Local} I)
@@ -409,17 +428,22 @@ SUB Initialize_Speed_Index({Local} SIndex, CurrentSpeed)
 ENDSUB
 
 SUB Initialize_Cab_Status()
+	wait 1
+
 	*Cab_Brake_Pointer[1]=on
-	Assign_Speed_To_Cab(1,1)
+	Assign_Speed_To_Cab(1,7)
 	*Cab_Direction_Pointer[1]=forward
+	*Cab_Pointer[1].Momentum = 3
 
 	*Cab_Brake_Pointer[2]=on
-	Assign_Speed_To_Cab(2,1)
+	Assign_Speed_To_Cab(2,7)
 	*Cab_Direction_Pointer[2]=forward
+	*Cab_Pointer[2].Momentum = 3
 	
 	*Cab_Brake_Pointer[3]=on
-	Assign_Speed_To_Cab(3,1)
+	Assign_Speed_To_Cab(3,7)
 	*Cab_Direction_Pointer[3]=forward
+	*Cab_Pointer[3].Momentum = 3
 ENDSUB
 
 SUB Initialize_Cab_Speed_And_Direction_On_Display({Local} I)
@@ -454,15 +478,13 @@ SUB Initialize_Detect_Initial_Blocks({Local} CIndex, BIndex)
 			Block_Cab[BIndex]=CIndex
 			Block_Color[BIndex]=cab_color[CIndex]
 			Configure_Cab_To_Block(BIndex,CIndex)
-			Block_occupancy_on (block_Grid[BIndex], Block_Color[BIndex], Train_E_Sprite[BIndex])
 			Block_Status[BIndex]=BLOCK_STATUS_OCCUPIED_EAST
-			Assign_Cab_To_Block(CIndex ,BIndex,BLOCK_STATUS_OCCUPIED_EAST)
+			Assign_Cab_To_Block(CIndex ,BIndex)
 
 			CIndex = 1+
 		ELSE
 			Block_Sprite[BIndex]=square
-			Block_occupancy_off(block_Grid[BIndex], Block_Color[BIndex], lock)
-			Assign_Cab_To_Block(CIndex ,BLOCK_STATUS_VACANT)
+			Assign_Cab_To_Block(CIndex, BIndex)
 			Block_Status[BIndex]=BLOCK_STATUS_VACANT
 		ENDIF
 
@@ -540,9 +562,9 @@ WHEN InitStatus=INITIALIZING do '(All lines must end in a comma to continue the 
 	' SPARES YMC_TCa1_09,YMC_TCa1_10,YMC_TCa1_11,YMC_TCa1_12,YMC_TCa1_13,YMC_TCa1_14,YMC_TCa1_15,YMC_TCa1_16,
 
 	'Turnout_Pointer[4]=&YMC_TCb1_01,
-	'Turnout_Pointer[5]=&YMC_TCb1_02,
-	'Turnout_Pointer[6]=&YMC_TCb1_03,
-	'Turnout_Pointer[7]=&YMC_TCb1_04,
+	Turnout_Pointer[1]=&YMC_TCb1_02,
+	Turnout_Pointer[4]=&YMC_TCb1_03,
+	Turnout_Pointer[2]=&YMC_TCb1_04,
 	'Turnout_Pointer[8]=&YMC_TCb1_05,
 	'Turnout_Pointer[9]=&YMC_TCb1_06,
 	'Turnout_Pointer[10]=&YMC_TCb1_07,
@@ -564,9 +586,9 @@ WHEN InitStatus=INITIALIZING do '(All lines must end in a comma to continue the 
 	' SPARES SES_TCa2_09,SES_TCa2_10,SES_TCa2_11,SES_TCa2_12,SES_TCa2_13,SES_TCa2_14,SES_TCa2_15,SES_TCa2_16,
 
 	'Turnout_Button_Pointer[4]=&SES_TCb2_01,
-	'Turnout_Button_Pointer[5]=&SES_TCb2_02,
-	'Turnout_Button_Pointer[6]=&SES_TCb2_03,
-	'Turnout_Button_Pointer[7]=&SES_TCb2_04,
+	Turnout_Button_Pointer[1]=&SES_TCb2_02,
+	Turnout_Button_Pointer[4]=&SES_TCb2_03,
+	Turnout_Button_Pointer[2]=&SES_TCb2_04,
 	'Turnout_Button_Pointer[8]=&SES_TCb2_05,
 	'Turnout_Button_Pointer[9]=&SES_TCb2_06,
 	'Turnout_Button_Pointer[10]=&SES_TCb2_07,
@@ -891,19 +913,16 @@ WHEN $Leftmouse=Turnout_Grid[18] or *Turnout_Button_Pointer[18]=on DO Throw_Turn
 '**	LOOP through East and West current detectors to determine block occupancy
 
 SUB Current_Detector_Triggered_East(BlockIndex)
-	Block_Occupancy_On(Block_Grid[BlockIndex], Block_Color[BlockIndex], Train_E_Sprite[BlockIndex])
-	Block_Sprite[BlockIndex] = Arrow_East
+	Block_Sprite[BlockIndex] = ICON_CAB_HAS_BLOCK_EASTBOUND
 	Block_Status[BlockIndex] = BLOCK_STATUS_OCCUPIED_EAST
 	Assign_Cab_To_Block(Block_Cab[BlockIndex], BlockIndex, BLOCK_STATUS_OCCUPIED_EAST)
 ENDSUB
 SUB Current_Detector_Triggered_West(BlockIndex)
-	Block_Occupancy_On(Block_Grid[BlockIndex], Block_Color[BlockIndex], Train_W_Sprite[BlockIndex])
-	Block_Sprite[BlockIndex] = Arrow_West
+	Block_Sprite[BlockIndex] = ICON_CAB_HAS_BLOCK_WESTBOUND
 	Block_Status[BlockIndex] = BLOCK_STATUS_OCCUPIED_WEST
 	Assign_Cab_To_Block(Block_Cab[BlockIndex], BlockIndex, BLOCK_STATUS_OCCUPIED_WEST)
 ENDSUB
 SUB Current_Detector_Stopped_Triggering(BlockIndex)
-	Block_Occupancy_Off(block_Grid[BlockIndex], Block_Color[BlockIndex])
 	Block_Sprite[BlockIndex] = Square
 	Block_Status[BlockIndex] = BLOCK_STATUS_VACANT
 	Assign_Cab_To_Block(Block_Cab[BlockIndex], BlockIndex, BLOCK_STATUS_VACANT)
@@ -1011,12 +1030,19 @@ WHEN *Dcc_Cab_Pointer[1].Speed <> Previous_Dcc_Cab_Speed[1] DO Update_Dcc_Cab_Sp
 WHEN *Dcc_Cab_Pointer[2].Speed <> Previous_Dcc_Cab_Speed[2] DO Update_Dcc_Cab_Speed(2)
 WHEN *Dcc_Cab_Pointer[3].Speed <> Previous_Dcc_Cab_Speed[3] DO Update_Dcc_Cab_Speed(3)
 
-WHEN *Dcc_Cab_Pointer[1].Brake = ON DO *Cab_Pointer[1].Brake = ON
-WHEN *Dcc_Cab_Pointer[1].Brake = OFF DO *Cab_Pointer[1].Brake = OFF
-WHEN *Dcc_Cab_Pointer[2].Brake = ON DO *Cab_Pointer[2].Brake = ON
-WHEN *Dcc_Cab_Pointer[2].Brake = OFF DO *Cab_Pointer[2].Brake = OFF
-WHEN *Dcc_Cab_Pointer[3].Brake = ON DO *Cab_Pointer[3].Brake = ON
-WHEN *Dcc_Cab_Pointer[4].Brake = OFF DO *Cab_Pointer[3].Brake = OFF
+WHEN *Dcc_Cab_Pointer[1].Brake = ON DO *Cab_Pointer[1].Brake = ON, *Dcc_Cab_Pointer[1].F1 = ON
+WHEN *Dcc_Cab_Pointer[1].Brake = OFF DO *Cab_Pointer[1].Brake = OFF, *Dcc_Cab_Pointer[1].F1 = OFF
+WHEN *Dcc_Cab_Pointer[2].Brake = ON DO *Cab_Pointer[2].Brake = ON, *Dcc_Cab_Pointer[2].F1 = ON
+WHEN *Dcc_Cab_Pointer[2].Brake = OFF DO *Cab_Pointer[2].Brake = OFF, *Dcc_Cab_Pointer[2].F1 = OFF
+WHEN *Dcc_Cab_Pointer[3].Brake = ON DO *Cab_Pointer[3].Brake = ON, *Dcc_Cab_Pointer[3].F1 = ON
+WHEN *Dcc_Cab_Pointer[4].Brake = OFF DO *Cab_Pointer[3].Brake = OFF, *Dcc_Cab_Pointer[3].F1 = OFF
+
+WHEN *Dcc_Cab_Pointer[1].F1 = ON DO *Dcc_Cab_Pointer[1].Brake = ON
+WHEN *Dcc_Cab_Pointer[1].F1 = OFF DO *Dcc_Cab_Pointer[1].Brake = OFF
+WHEN *Dcc_Cab_Pointer[2].F1 = ON DO *Dcc_Cab_Pointer[2].Brake = ON
+WHEN *Dcc_Cab_Pointer[2].F1 = OFF DO *Dcc_Cab_Pointer[2].Brake = OFF
+WHEN *Dcc_Cab_Pointer[3].F1 = ON DO *Dcc_Cab_Pointer[3].Brake = ON
+WHEN *Dcc_Cab_Pointer[3].F1 = OFF DO *Dcc_Cab_Pointer[4].Brake = OFF
 
 WHEN *Dcc_Cab_Pointer[1].Direction = FORWARD DO *Cab_Pointer[1].Direction = FORWARD
 WHEN *Dcc_Cab_Pointer[1].Direction = REVERSE DO *Cab_Pointer[1].Direction = REVERSE
@@ -1117,3 +1143,4 @@ WHEN *Cab_Pointer[2].Direction = FORWARD DO Redraw_Cab_Direction(2)
 WHEN *Cab_Pointer[2].Direction = REVERSE DO Redraw_Cab_Direction(2)
 WHEN *Cab_Pointer[3].Direction = FORWARD DO Redraw_Cab_Direction(3)
 WHEN *Cab_Pointer[3].Direction = REVERSE DO Redraw_Cab_Direction(3)
+
