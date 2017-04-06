@@ -565,7 +565,7 @@ WHEN InitStatus=INITIALIZING do '(All lines must end in a comma to continue the 
 
 ' set address pointers to Current Detector Sensors
 ''	board "a"
-	CD_East_Pointer[8]=&TBS_BCa1_01_8E, CD_West_Pointer[8]=&TBS_BCa1_02, CD_East_Pointer[1]=&TBS_BCa1_03_1E, CD_West_Pointer[5]=&TBS_BCa1_04,
+	CD_East_Pointer[8]=&TBS_BCa1_01_8E, CD_West_Pointer[8]=&TBS_BCa1_02, CD_East_Pointer[1]=&TBS_BCa1_03_1E, CD_West_Pointer[1]=&TBS_BCa1_04,
 	CD_East_Pointer[5]=&TBS_BCa2_01_5E, CD_West_Pointer[5]=&TBS_BCa2_02, CD_East_Pointer[9]=&TBS_BCa2_03_9E, CD_West_Pointer[9]=&TBS_BCa2_04,
 
 ''	board "b"
@@ -954,7 +954,7 @@ ENDSUB
 SUB Current_Detector_Triggered_East(BlockIndex, {Local} BlockFromIndex, BlockToIndex, CurrentCab)
 	Block_Sprite[BlockIndex] = ICON_CAB_HAS_BLOCK_EASTBOUND
 	Block_Status[BlockIndex] = BLOCK_STATUS_OCCUPIED_EAST
-'	Assign_Cab_To_Block(Block_Cab[BlockIndex], BlockIndex, BLOCK_STATUS_OCCUPIED_EAST)
+	Redraw_Cab_Block_All(BlockIndex)
 
 	IF BlockIndex > HIGHEST_LOOP_BLOCK THEN RETURN ENDIF
 
