@@ -1107,10 +1107,11 @@ WHEN Block_Status[12] = BLOCK_STATUS_VACANT DO  Release_Hold_On_Block(12)
 
 SUB Update_Dcc_Cab_Speed(DccCabIndex, {Local} NewSpeed)
 	NewSpeed = *Dcc_Cab_Pointer[DccCabIndex].Speed
-	IF NewSpeed > 100 THEN NewSpeed = 100 ENDIF
-
-	*Cab_Pointer[DccCabIndex].Speed = NewSpeed
 	Previous_Dcc_Cab_Speed[DccCabIndex] = *Dcc_Cab_Pointer[DccCabIndex].Speed
+
+	IF NewSpeed > 100 THEN NewSpeed = 100 ENDIF
+	*Cab_Pointer[DccCabIndex].Speed = NewSpeed
+	
 ENDSUB
 SUB Update_Cab_Speed(CabIndex)
 	*Dcc_Cab_Pointer[CabIndex].Speed = *Cab_Pointer[CabIndex].Speed
