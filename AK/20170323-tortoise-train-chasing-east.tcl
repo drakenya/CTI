@@ -339,10 +339,6 @@ SUB Block_occupancy_on(block_Grid,block_color,sprite_shape)
 	$Color Block(block_Grid) = block_color
 	$Draw Sprite(block_Grid) = sprite_shape in Block_Color
 ENDSUB
-
-' 	Vacant
-
-
 		
 '******** 	Configures TrainBrain Controls to assign proper cab to designated block
 '			Also assigns Cab color to designated block for panel displays
@@ -466,7 +462,6 @@ SUB Assign_Cab_To_Block(CIndex,BIndex)
 
 	Redraw_Cab_Block_All(BIndex)
 ENDSUB
-
 SUB Assign_Cab_To_All_Blocks(CIndex, {Local} I)
 	I = INITIAL_BLOCK_INDEX
 
@@ -474,6 +469,96 @@ SUB Assign_Cab_To_All_Blocks(CIndex, {Local} I)
 		Assign_Cab_To_Block(CIndex, I)
 		I = 1 +
 	ENDLOOP
+ENDSUB
+
+SUB Calculate_Next_Westward_Block(BlockIndex, BlockFromIndex)
+	*BlockFromIndex = BlockIndex
+	*BlockFromIndex = 1 -
+	IF *BlockFromIndex < LOWEST_LOOP_BLOCK THEN *BlockFromIndex = HIGHEST_LOOP_BLOCK + ENDIF	
+ENDSUB
+SUB Calculate_Next_Eastward_Block(BlockIndex, BlockToIndex)
+	*BlockToIndex = BlockIndex
+	*BlockToIndex = 1 +
+	IF *BlockToIndex > HIGHEST_LOOP_BLOCK THEN *BlockToIndex = HIGHEST_LOOP_BLOCK - ENDIF
+ENDSUB
+
+'********************************************************************
+'**	LOOP through East and West current detectors to determine block occupancy
+
+SUB Current_Detector_Triggered_East(BlockIndex, {Local} BlockFromIndex, BlockToIndex, CurrentCab)
+	Block_Sprite[BlockIndex] = ICON_CAB_HAS_BLOCK_EASTBOUND
+	IF Block_Status[BlockIndex] >= BLOCK_STATUS_MANUAL_HOLD_DELTA THEN
+		Block_Status[BlockIndex] = BLOCK_STATUS_MANUAL_HOLD_DELTA
+	ELSE
+		Block_Status[BlockIndex] = BLOCK_STATUS_VACANT
+	ENDIF
+	Block_Status[BlockIndex] = BLOCK_STATUS_OCCUPIED_EAST +
+	Redraw_Cab_Block_All(BlockIndex)
+
+	IF BlockIndex > HIGHEST_LOOP_BLOCK THEN RETURN ENDIF
+
+	' Determine where we are coming from
+	' Not used now, but previously pulled the cab forward (not needed with set-ahead cab)
+	BlockFromIndex = -1, Calculate_Next_Westward_Block(BlockIndex, &BlockFromIndex)
+
+	' Determine where we are going to
+	' In future, base this on turnouts controlled and turnout setting
+	BlockToIndex = -1, Calculate_Next_Eastward_Block(BlockIndex, &BlockToIndex)
+	IF Block_Status[BlockToIndex] = BLOCK_STATUS_VACANT THEN
+		' If way ahead is not blocked, move forward and grab control of next block
+		CurrentCab = Block_Cab[BlockIndex]
+		Assign_Cab_To_Block(CurrentCab, BlockToIndex)
+	ELSE
+		' Halt train, put a hold on the next block so we get it when it's released
+		CurrentCab = Block_Cab[BlockIndex]
+		*Cab_Pointer[CurrentCab].Brake = ON
+		Held_Block_Grid[BlockToIndex] = CurrentCab
+	ENDIF
+ENDSUB
+SUB Current_Detector_Triggered_West(BlockIndex)
+	Block_Sprite[BlockIndex] = ICON_CAB_HAS_BLOCK_WESTBOUND
+	Block_Status[BlockIndex] = BLOCK_STATUS_OCCUPIED_WEST
+	Assign_Cab_To_Block(Block_Cab[BlockIndex], BlockIndex, BLOCK_STATUS_OCCUPIED_WEST)
+ENDSUB
+SUB Current_Detector_Stopped_Triggering(BlockIndex, {Local} PreviousBlockIndex, NewBlockStatus, PreviousBlockStatus)
+	Block_Sprite[BlockIndex] = Square
+
+	NewBlockStatus = Block_Status[BlockIndex]
+	IF LAYOUT_CONTROL_INCLUDE_VACATED_BLOCK THEN
+		NewBlockStatus = BLOCK_STATUS_VACATED_DELTA +
+	ELSE
+		NewBlockStatus = BLOCK_STATUS_VACANT
+	ENDIF
+	IF Block_Status[BlockIndex] >= BLOCK_STATUS_MANUAL_HOLD_DELTA THEN
+		NewBlockStatus = BLOCK_STATUS_MANUAL_HOLD_DELTA +
+	ENDIF
+
+	Block_Status[BlockIndex] = NewBlockStatus
+	Assign_Cab_To_Block(Block_Cab[BlockIndex], BlockIndex)
+
+	IF BlockIndex > HIGHEST_LOOP_BLOCK THEN RETURN ENDIF
+
+	PreviousBlockIndex = -1, Calculate_Next_Westward_Block(BlockIndex, &PreviousBlockIndex)
+	PreviousBlockStatus = Block_Status[PreviousBlockIndex]
+	IF Block_Status[PreviousBlockIndex] >= BLOCK_STATUS_MANUAL_HOLD_DELTA THEN
+		PreviousBlockStatus = BLOCK_STATUS_MANUAL_HOLD_DELTA -
+	ENDIF
+	If PreviousBlockStatus = BLOCK_STATUS_VACATED_EAST or PreviousBlockStatus = BLOCK_STATUS_VACATED_WEST THEN
+		PreviousBlockStatus = BLOCK_STATUS_VACANT
+	ENDIF
+	IF Block_Status[PreviousBlockIndex] >= BLOCK_STATUS_MANUAL_HOLD_DELTA THEN
+		PreviousBlockStatus = BLOCK_STATUS_MANUAL_HOLD_DELTA +
+	ENDIF
+	Block_Status[PreviousBlockIndex] = PreviousBlockStatus
+ENDSUB
+
+SUB Release_Hold_On_Block(BlockIndex, {Local} CurrentCab)
+	IF Held_Block_Grid[BlockIndex] = HOLDS_NO_HOLD_DECLARED THEN RETURN ENDIF
+
+	CurrentCab = Held_Block_Grid[BlockIndex]
+	*Cab_Pointer[CurrentCab].Brake = Off
+	Held_Block_Grid[BlockIndex] = HOLDS_NO_HOLD_DECLARED
+	Assign_Cab_To_Block(CurrentCab, BlockIndex)
 ENDSUB
 
 
@@ -558,6 +643,17 @@ SUB Initialize_Detect_Initial_Blocks({Local} CIndex, BIndex)
 
 		BIndex=+
 	ENDLOOP
+
+	' Reloop, to throw actual logic triggering a block
+	BIndex = INITIAL_BLOCK_INDEX
+
+	UNTIL BIndex >= MAX_BLOCK_INDEX QUICKLOOP
+		IF *CD_East_Pointer[BIndex] = On THEN Current_Detector_Triggered_East(BIndex) ENDIF
+		IF *CD_West_Pointer[BIndex] = On THEN Current_Detector_Triggered_West(BIndex) ENDIF
+
+		BIndex=+
+	ENDLOOP
+
 ENDSUB
 
 SUB Initialize_Set_All_Turnouts_To_Primary_Direction({Local} TIndex)
@@ -995,92 +1091,6 @@ WHEN $Leftmouse=Turnout_Grid[18] or *Turnout_Button_Pointer[18]=on DO Throw_Turn
 '********************************************************************
 '**	LOOP through East and West current detectors to determine block occupancy
 
-SUB Calculate_Next_Westward_Block(BlockIndex, BlockFromIndex)
-	*BlockFromIndex = BlockIndex
-	*BlockFromIndex = 1 -
-	IF *BlockFromIndex < LOWEST_LOOP_BLOCK THEN *BlockFromIndex = HIGHEST_LOOP_BLOCK + ENDIF	
-ENDSUB
-SUB Calculate_Next_Eastward_Block(BlockIndex, BlockToIndex)
-	*BlockToIndex = BlockIndex
-	*BlockToIndex = 1 +
-	IF *BlockToIndex > HIGHEST_LOOP_BLOCK THEN *BlockToIndex = HIGHEST_LOOP_BLOCK - ENDIF
-ENDSUB
-
-SUB Current_Detector_Triggered_East(BlockIndex, {Local} BlockFromIndex, BlockToIndex, CurrentCab)
-	Block_Sprite[BlockIndex] = ICON_CAB_HAS_BLOCK_EASTBOUND
-	IF Block_Status[BlockIndex] >= BLOCK_STATUS_MANUAL_HOLD_DELTA THEN
-		Block_Status[BlockIndex] = BLOCK_STATUS_MANUAL_HOLD_DELTA
-	ELSE
-		Block_Status[BlockIndex] = BLOCK_STATUS_VACANT
-	ENDIF
-	Block_Status[BlockIndex] = BLOCK_STATUS_OCCUPIED_EAST +
-	Redraw_Cab_Block_All(BlockIndex)
-
-	IF BlockIndex > HIGHEST_LOOP_BLOCK THEN RETURN ENDIF
-
-	' Determine where we are coming from
-	' Not used now, but previously pulled the cab forward (not needed with set-ahead cab)
-	BlockFromIndex = -1, Calculate_Next_Eastward_Block(BlockIndex, &BlockFromIndex)
-
-	' Determine where we are going to
-	' In future, base this on turnouts controlled and turnout setting
-	BlockToIndex = -1, Calculate_Next_Westward_Block(BlockIndex, &BlockToIndex)
-	IF Block_Status[BlockToIndex] = BLOCK_STATUS_VACANT THEN
-		' If way ahead is not blocked, move forward and grab control of next block
-		CurrentCab = Block_Cab[BlockIndex]
-		Assign_Cab_To_Block(CurrentCab, BlockToIndex)
-	ELSE
-		' Halt train, put a hold on the next block so we get it when it's released
-		CurrentCab = Block_Cab[BlockIndex]
-		*Cab_Pointer[CurrentCab].Brake = ON
-		Held_Block_Grid[BlockToIndex] = CurrentCab
-	ENDIF
-ENDSUB
-SUB Current_Detector_Triggered_West(BlockIndex)
-	Block_Sprite[BlockIndex] = ICON_CAB_HAS_BLOCK_WESTBOUND
-	Block_Status[BlockIndex] = BLOCK_STATUS_OCCUPIED_WEST
-	Assign_Cab_To_Block(Block_Cab[BlockIndex], BlockIndex, BLOCK_STATUS_OCCUPIED_WEST)
-ENDSUB
-SUB Current_Detector_Stopped_Triggering(BlockIndex, {Local} PreviousBlockIndex, NewBlockStatus, PreviousBlockStatus)
-	Block_Sprite[BlockIndex] = Square
-
-	NewBlockStatus = Block_Status[BlockIndex]
-	IF LAYOUT_CONTROL_INCLUDE_VACATED_BLOCK THEN
-		NewBlockStatus = BLOCK_STATUS_VACATED_DELTA +
-	ELSE
-		NewBlockStatus = BLOCK_STATUS_VACANT
-	ENDIF
-	IF Block_Status[BlockIndex] >= BLOCK_STATUS_MANUAL_HOLD_DELTA THEN
-		NewBlockStatus = BLOCK_STATUS_MANUAL_HOLD_DELTA +
-	ENDIF
-
-	Block_Status[BlockIndex] = NewBlockStatus
-	Assign_Cab_To_Block(Block_Cab[BlockIndex], BlockIndex)
-
-	IF BlockIndex > HIGHEST_LOOP_BLOCK THEN RETURN ENDIF
-
-	PreviousBlockIndex = -1, Calculate_Next_Westward_Block(BlockIndex, &PreviousBlockIndex)
-	PreviousBlockStatus = Block_Status[PreviousBlockIndex]
-	IF Block_Status[PreviousBlockIndex] >= BLOCK_STATUS_MANUAL_HOLD_DELTA THEN
-		PreviousBlockStatus = BLOCK_STATUS_MANUAL_HOLD_DELTA -
-	ENDIF
-	If PreviousBlockStatus = BLOCK_STATUS_VACATED_EAST or PreviousBlockStatus = BLOCK_STATUS_VACATED_WEST THEN
-		PreviousBlockStatus = BLOCK_STATUS_VACANT
-	ENDIF
-	IF Block_Status[PreviousBlockIndex] >= BLOCK_STATUS_MANUAL_HOLD_DELTA THEN
-		PreviousBlockStatus = BLOCK_STATUS_MANUAL_HOLD_DELTA +
-	ENDIF
-	Block_Status[PreviousBlockIndex] = PreviousBlockStatus
-ENDSUB
-
-SUB Release_Hold_On_Block(BlockIndex, {Local} CurrentCab)
-	IF Held_Block_Grid[BlockIndex] = HOLDS_NO_HOLD_DECLARED THEN RETURN ENDIF
-
-	CurrentCab = Held_Block_Grid[BlockIndex]
-	*Cab_Pointer[CurrentCab].Brake = Off
-	Held_Block_Grid[BlockIndex] = HOLDS_NO_HOLD_DECLARED
-	Assign_Cab_To_Block(CurrentCab, BlockIndex)
-ENDSUB
 
 WHEN *CD_East_Pointer[1] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_East(1)
 WHEN *CD_West_Pointer[1] = DETECTOR_BLOCK_OCCUPIED DO Current_Detector_Triggered_West(1)
