@@ -837,7 +837,7 @@ WHEN InitStatus=INITIALIZING do '(All lines must end in a comma to continue the 
 
 '**	Initialize colors to indicate cab assignments on blocks and sprites
 
-	Cab_Color[0]=$RGB_FF0000, Cab_Color[1]=$RGB_2492FF, Cab_Color[2]=$RGB_008000, Cab_Color[3]=$RGB_005EBB,
+	Cab_Color[0]=COLOR_MANUAL_CAB, Cab_Color[1]=COLOR_CAB_1, Cab_Color[2]=COLOR_CAB_2, Cab_Color[3]=COLOR_CAB_3,
 
 '**	Initialize Cab Speed Pushbutton locations
 
