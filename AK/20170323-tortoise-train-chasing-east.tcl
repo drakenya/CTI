@@ -11,6 +11,7 @@ CONSTANTS:
 
 	INITIAL_BLOCK_INDEX=1
 	MAX_BLOCK=12		'* Max number of blocks for LOOPs, etc
+	MIN_BLOCK_INDEX=1
 	MAX_BLOCK_INDEX=13
 	LOWEST_LOOP_BLOCK=1
 	HIGHEST_LOOP_BLOCK=8
@@ -46,6 +47,9 @@ CONSTANTS:
 	BLOCK_STATUS_OCCUPIED_WEST = 2
 	BLOCK_STATUS_VACATED_EAST = 3
 	BLOCK_STATUS_VACATED_WEST = 4
+
+	BLOCK_STATUS_VACATED_DELTA = 2
+	BLOCK_STATUS_MANUAL_HOLD_DELTA = 10
 	
 	HOLDS_NO_HOLD_DECLARED = -1
 
@@ -66,6 +70,11 @@ CONSTANTS:
 	ICON_CAB_HAS_BLOCK_EASTBOUND = Arrow_East
 	ICON_CAB_HAS_BLOCK_WESTBOUND = Arrow_West
 	ICON_CAB_HAS_BLOCK_WITHOUT_OCCUPANCY = Lock
+
+	SIGNAL_BLOCK_INDICATOR_NOT_OCCUPIED = "***"
+	SIGNAL_BLOCK_INDICATOR_OCCUPIED = "GGG"
+	SIGNAL_BLOCK_INDICATOR_VACATED = "YYY"
+	SIGNAL_BLOCK_INDICATOR_MANUAL_HOLD = "xRR"
 
 '***********************************************************************************
 '					NETWORK MODULE DECLARATIONS
@@ -299,6 +308,10 @@ VARIABLES:
 	Block_Status_Grid[MAX_BLOCK_INDEX]
 	Held_Block_Grid[MAX_BLOCK_INDEX]
 
+	Block_Signal_Indicator[MAX_BLOCK_INDEX]
+
+	LAYOUT_CONTROL_INCLUDE_VACATED_BLOCK
+
 
 
 '************************************************************************************
@@ -364,23 +377,28 @@ ENDSUB
 '			Colors block sprite with selected cab color
 '			Colors selected block buttons with selected cab color and shape on panel
 
-SUB Redraw_Cab_Block_On_Plan({Local} BlockIndex, CabIndex)
+SUB Redraw_Cab_Block_On_Plan({Local} BlockIndex, CabIndex, BlockStatus)
 	BlockIndex = 0
 
 	UNTIL BlockIndex >= MAX_BLOCK_INDEX QUICKLOOP
 		CabIndex = Block_Cab[BlockIndex]
 
+		BlockStatus = Block_Status[BlockIndex]
+		IF BlockStatus >= BLOCK_STATUS_MANUAL_HOLD_DELTA THEN
+			BlockStatus = BLOCK_STATUS_MANUAL_HOLD_DELTA -
+		ENDIF
+
 		' Show the block color
-		IF Block_Status[BlockIndex] = BLOCK_STATUS_OCCUPIED_EAST OR Block_Status[BlockIndex] = BLOCK_STATUS_OCCUPIED_WEST THEN
+		IF BlockStatus = BLOCK_STATUS_OCCUPIED_EAST OR BlockStatus = BLOCK_STATUS_OCCUPIED_WEST THEN
 			$Color Block(Block_Grid[BlockIndex]) = Cab_Color[CabIndex]
 		ELSE
 			$Color Block(Block_Grid[BlockIndex]) = COLOR_BLOCK_VACANT
 		ENDIF
 
 		' Show the icon
-		IF Block_Status[BlockIndex] = BLOCK_STATUS_OCCUPIED_EAST THEN
+		IF BlockStatus = BLOCK_STATUS_OCCUPIED_EAST THEN
 			$Draw Sprite(Block_Grid[BlockIndex]) = Train_E_Sprite[BlockIndex] IN Cab_Color[CabIndex]
-		ELSEIF Block_Status[BlockIndex] = BLOCK_STATUS_OCCUPIED_WEST THEN
+		ELSEIF BlockStatus = BLOCK_STATUS_OCCUPIED_WEST THEN
 			$Draw Sprite(Block_Grid[BlockIndex]) = Train_W_Sprite[BlockIndex] IN Cab_Color[CabIndex]
 		ELSE
 			$Draw Sprite(Block_Grid[BlockIndex]) = ICON_CAB_HAS_BLOCK_WITHOUT_OCCUPANCY IN Cab_Color[CabIndex]
@@ -412,9 +430,34 @@ SUB Redraw_Cab_Block_On_Grid({Local} BlockIndex)
 		BlockIndex = 1 +
 	ENDLOOP
 ENDSUB
+SUB Redraw_Block_Signal_Indicator({Local} BlockIndex, BlockStatus)
+	BlockIndex = MIN_BLOCK_INDEX
+
+	UNTIL BlockIndex >= MAX_BLOCK_INDEX QUICKLOOP
+		BlockStatus = Block_Status[BlockIndex]
+		IF BlockStatus >= BLOCK_STATUS_MANUAL_HOLD_DELTA THEN
+			BlockStatus = BLOCK_STATUS_MANUAL_HOLD_DELTA  -
+		ENDIF
+
+		IF BlockStatus = BLOCK_STATUS_VACANT THEN
+			$Signal(Block_Signal_Indicator[BlockIndex]) = SIGNAL_BLOCK_INDICATOR_NOT_OCCUPIED
+		ELSEIF BlockStatus = BLOCK_STATUS_OCCUPIED_EAST OR BlockStatus = BLOCK_STATUS_OCCUPIED_WEST THEN
+			$Signal(Block_Signal_Indicator[BlockIndex]) = SIGNAL_BLOCK_INDICATOR_OCCUPIED
+		ELSEIF BlockStatus = BLOCK_STATUS_VACATED_EAST OR BlockStatus = BLOCK_STATUS_VACATED_WEST THEN
+			$Signal(Block_Signal_Indicator[BlockIndex]) = SIGNAL_BLOCK_INDICATOR_VACATED
+		ENDIF
+
+		IF Block_Status[BlockIndex] >= BLOCK_STATUS_MANUAL_HOLD_DELTA THEN
+			$Signal(Block_Signal_Indicator[BlockIndex]) = SIGNAL_BLOCK_INDICATOR_MANUAL_HOLD
+		ENDIF
+
+		BlockIndex = 1 +
+	ENDLOOP
+ENDSUB
 SUB Redraw_Cab_Block_All(BlockIndex)
 	Redraw_Cab_Block_On_Grid()
 	Redraw_Cab_Block_On_Plan()
+	Redraw_Block_Signal_Indicator()
 ENDSUB
 
 SUB Assign_Cab_To_Block(CIndex,BIndex)
@@ -500,20 +543,17 @@ SUB Initialize_Detect_Initial_Blocks({Local} CIndex, BIndex)
 	CIndex = INITIAL_CAB_INDEX
 	BIndex = INITIAL_BLOCK_INDEX
 
-	UNTIL BIndex = MAX_BLOCK_INDEX QUICKLOOP
+	UNTIL BIndex >= MAX_BLOCK_INDEX QUICKLOOP
 		IF *CD_East_Pointer[BIndex]=on then
-			Block_Sprite[BIndex]=Arrow_East
 			Block_Cab[BIndex]=CIndex
-			Block_Color[BIndex]=cab_color[CIndex]
 			Configure_Cab_To_Block(BIndex,CIndex)
-			Block_Status[BIndex]=BLOCK_STATUS_OCCUPIED_EAST
 			Assign_Cab_To_Block(CIndex, BIndex)
 
 			CIndex = 1+
 		ELSE
-			Block_Sprite[BIndex]=square
+			'Block_Sprite[BIndex]=square
 			Assign_Cab_To_Block(CIndex, BIndex)
-			Block_Status[BIndex]=BLOCK_STATUS_VACANT
+			'Block_Status[BIndex]=BLOCK_STATUS_VACANT
 		ENDIF
 
 		BIndex=+
@@ -542,6 +582,8 @@ ENDSUB
 '************************************************************************************
 
 WHEN InitStatus=INITIALIZING do '(All lines must end in a comma to continue the initialization chain)
+	wait 2
+	LAYOUT_CONTROL_INCLUDE_VACATED_BLOCK = True
 
 ' set address pointers to cab selection controllers
 ''	board "a",
@@ -744,6 +786,19 @@ WHEN InitStatus=INITIALIZING do '(All lines must end in a comma to continue the 
 
 	cab0_All_Blocks_Grid=(57,20,4), cab1_All_Blocks_Grid=(59,20,4), cab2_All_Blocks_Grid=(61,20,4), cab3_All_Blocks_Grid=(63,20,4),
 
+	Block_Signal_Indicator[1]=(55,21,4)
+	Block_Signal_Indicator[2]=(55,22,4)
+	Block_Signal_Indicator[3]=(55,23,4)
+	Block_Signal_Indicator[4]=(55,24,4)
+	Block_Signal_Indicator[5]=(55,25,4)
+	Block_Signal_Indicator[6]=(55,26,4)
+	Block_Signal_Indicator[7]=(55,27,4)
+	Block_Signal_Indicator[8]=(55,28,4)
+	Block_Signal_Indicator[9]=(55,29,4)
+	Block_Signal_Indicator[10]=(55,30,4)
+	Block_Signal_Indicator[11]=(55,31,4)
+	Block_Signal_Indicator[12]=(55,32,4)
+
 	Initialize_Speed_Index()
 	Initialize_Cab_Speed_And_Direction_On_Display()
 	Initialize_Cab_Status()
@@ -940,12 +995,12 @@ WHEN $Leftmouse=Turnout_Grid[18] or *Turnout_Button_Pointer[18]=on DO Throw_Turn
 '********************************************************************
 '**	LOOP through East and West current detectors to determine block occupancy
 
-SUB Calculate_Next_Eastward_Block(BlockIndex, BlockFromIndex)
+SUB Calculate_Next_Westward_Block(BlockIndex, BlockFromIndex)
 	*BlockFromIndex = BlockIndex
 	*BlockFromIndex = 1 -
 	IF *BlockFromIndex < LOWEST_LOOP_BLOCK THEN *BlockFromIndex = HIGHEST_LOOP_BLOCK + ENDIF	
 ENDSUB
-SUB Calculate_Next_Westward_Block(BlockIndex, BlockToIndex)
+SUB Calculate_Next_Eastward_Block(BlockIndex, BlockToIndex)
 	*BlockToIndex = BlockIndex
 	*BlockToIndex = 1 +
 	IF *BlockToIndex > HIGHEST_LOOP_BLOCK THEN *BlockToIndex = HIGHEST_LOOP_BLOCK - ENDIF
@@ -953,7 +1008,12 @@ ENDSUB
 
 SUB Current_Detector_Triggered_East(BlockIndex, {Local} BlockFromIndex, BlockToIndex, CurrentCab)
 	Block_Sprite[BlockIndex] = ICON_CAB_HAS_BLOCK_EASTBOUND
-	Block_Status[BlockIndex] = BLOCK_STATUS_OCCUPIED_EAST
+	IF Block_Status[BlockIndex] >= BLOCK_STATUS_MANUAL_HOLD_DELTA THEN
+		Block_Status[BlockIndex] = BLOCK_STATUS_MANUAL_HOLD_DELTA
+	ELSE
+		Block_Status[BlockIndex] = BLOCK_STATUS_VACANT
+	ENDIF
+	Block_Status[BlockIndex] = BLOCK_STATUS_OCCUPIED_EAST +
 	Redraw_Cab_Block_All(BlockIndex)
 
 	IF BlockIndex > HIGHEST_LOOP_BLOCK THEN RETURN ENDIF
@@ -981,21 +1041,36 @@ SUB Current_Detector_Triggered_West(BlockIndex)
 	Block_Status[BlockIndex] = BLOCK_STATUS_OCCUPIED_WEST
 	Assign_Cab_To_Block(Block_Cab[BlockIndex], BlockIndex, BLOCK_STATUS_OCCUPIED_WEST)
 ENDSUB
-SUB Current_Detector_Stopped_Triggering(BlockIndex, {Local} PreviousBlockIndex)
+SUB Current_Detector_Stopped_Triggering(BlockIndex, {Local} PreviousBlockIndex, NewBlockStatus, PreviousBlockStatus)
 	Block_Sprite[BlockIndex] = Square
-	Block_Status[BlockIndex] = BLOCK_STATUS_VACANT
-	Assign_Cab_To_Block(Block_Cab[BlockIndex], BlockIndex, BLOCK_STATUS_VACANT)
 
-	IF BlockIndex > 8 THEN RETURN ENDIF
-
-	IF Block_Status[BlockIndex] = BLOCK_STATUS_OCCUPIED_EAST THEN
-		Block_Status[BlockIndex] = BLOCK_STATUS_VACATED_EAST
-
-		PreviousBlockIndex = -1, Calculate_Next_Westward_Block(BlockIndex, &PreviousBlockIndex)
-		If Block_Status[PreviousBlockIndex] = BLOCK_STATUS_VACATED_EAST or Block_Status[PreviousBlockIndex] = BLOCK_STATUS_VACATED_WEST THEN
-			Block_Status[PreviousBlockIndex] = BLOCK_STATUS_VACANT
-		ENDIF
+	NewBlockStatus = Block_Status[BlockIndex]
+	IF LAYOUT_CONTROL_INCLUDE_VACATED_BLOCK THEN
+		NewBlockStatus = BLOCK_STATUS_VACATED_DELTA +
+	ELSE
+		NewBlockStatus = BLOCK_STATUS_VACANT
 	ENDIF
+	IF Block_Status[BlockIndex] >= BLOCK_STATUS_MANUAL_HOLD_DELTA THEN
+		NewBlockStatus = BLOCK_STATUS_MANUAL_HOLD_DELTA +
+	ENDIF
+
+	Block_Status[BlockIndex] = NewBlockStatus
+	Assign_Cab_To_Block(Block_Cab[BlockIndex], BlockIndex)
+
+	IF BlockIndex > HIGHEST_LOOP_BLOCK THEN RETURN ENDIF
+
+	PreviousBlockIndex = -1, Calculate_Next_Westward_Block(BlockIndex, &PreviousBlockIndex)
+	PreviousBlockStatus = Block_Status[PreviousBlockIndex]
+	IF Block_Status[PreviousBlockIndex] >= BLOCK_STATUS_MANUAL_HOLD_DELTA THEN
+		PreviousBlockStatus = BLOCK_STATUS_MANUAL_HOLD_DELTA -
+	ENDIF
+	If PreviousBlockStatus = BLOCK_STATUS_VACATED_EAST or PreviousBlockStatus = BLOCK_STATUS_VACATED_WEST THEN
+		PreviousBlockStatus = BLOCK_STATUS_VACANT
+	ENDIF
+	IF Block_Status[PreviousBlockIndex] >= BLOCK_STATUS_MANUAL_HOLD_DELTA THEN
+		PreviousBlockStatus = BLOCK_STATUS_MANUAL_HOLD_DELTA +
+	ENDIF
+	Block_Status[PreviousBlockIndex] = PreviousBlockStatus
 ENDSUB
 
 SUB Release_Hold_On_Block(BlockIndex, {Local} CurrentCab)
@@ -1235,4 +1310,31 @@ WHEN *Cab_Pointer[2].Direction = FORWARD DO Redraw_Cab_Direction(2)
 WHEN *Cab_Pointer[2].Direction = REVERSE DO Redraw_Cab_Direction(2)
 WHEN *Cab_Pointer[3].Direction = FORWARD DO Redraw_Cab_Direction(3)
 WHEN *Cab_Pointer[3].Direction = REVERSE DO Redraw_Cab_Direction(3)
+
+''''''''''''''''''''''''
+'' Manually Calls on Blocks
+''''''''''''''''''''''''
+SUB Call_For_Manual_Block(BlockIndex)
+	IF Block_Status[BlockIndex] >= BLOCK_STATUS_MANUAL_HOLD_DELTA THEN
+		Block_Status[BlockIndex] = BLOCK_STATUS_MANUAL_HOLD_DELTA -
+	ELSE
+		Block_Status[BlockIndex] = BLOCK_STATUS_MANUAL_HOLD_DELTA +
+	ENDIF
+
+	Redraw_Cab_Block_All(BlockIndex)
+ENDSUB
+
+WHEN $LeftMouse = Block_Signal_Indicator[1] DO Call_For_Manual_Block(1)
+WHEN $LeftMouse = Block_Signal_Indicator[2] DO Call_For_Manual_Block(2)
+WHEN $LeftMouse = Block_Signal_Indicator[3] DO Call_For_Manual_Block(3)
+WHEN $LeftMouse = Block_Signal_Indicator[4] DO Call_For_Manual_Block(4)
+WHEN $LeftMouse = Block_Signal_Indicator[5] DO Call_For_Manual_Block(5)
+WHEN $LeftMouse = Block_Signal_Indicator[6] DO Call_For_Manual_Block(6)
+WHEN $LeftMouse = Block_Signal_Indicator[7] DO Call_For_Manual_Block(7)
+WHEN $LeftMouse = Block_Signal_Indicator[8] DO Call_For_Manual_Block(8)
+WHEN $LeftMouse = Block_Signal_Indicator[9] DO Call_For_Manual_Block(9)
+WHEN $LeftMouse = Block_Signal_Indicator[10] DO Call_For_Manual_Block(10)
+WHEN $LeftMouse = Block_Signal_Indicator[11] DO Call_For_Manual_Block(11)
+WHEN $LeftMouse = Block_Signal_Indicator[12] DO Call_For_Manual_Block(12)
+
 
