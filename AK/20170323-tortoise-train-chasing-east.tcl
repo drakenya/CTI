@@ -15,6 +15,7 @@ CONSTANTS:
 	MAX_BLOCK_INDEX=13
 	LOWEST_LOOP_BLOCK=1
 	HIGHEST_LOOP_BLOCK=8
+	HIGHEST_LOOP_PASSING_BLOCK=11
 
 	INITIAL_IR_EOT_DETECTOR=1
 	MAX_IR_EOT_DETECTOR=2
@@ -63,6 +64,8 @@ CONSTANTS:
 	COLOR_DIRECTION_FORWARD = Green
 	COLOR_DIRECTION_REVERSE = Red
 	COLOR_BLOCK_VACANT = Black
+	COLOR_INCLUDE_VACATED_BLOCK = Yellow
+	COLOR_DONT_INCLUDE_VACATED_BLOCK = Green
 
 	ICON_DIRECTION_FORWARD = Arrow_North
 	ICON_DIRECTION_REVERSE = Arrow_South
@@ -311,7 +314,7 @@ VARIABLES:
 	Block_Signal_Indicator[MAX_BLOCK_INDEX]
 
 	LAYOUT_CONTROL_INCLUDE_VACATED_BLOCK
-
+	Vacated_Block_Button
 
 
 '************************************************************************************
@@ -476,10 +479,45 @@ SUB Calculate_Next_Westward_Block(BlockIndex, BlockFromIndex)
 	*BlockFromIndex = 1 -
 	IF *BlockFromIndex < LOWEST_LOOP_BLOCK THEN *BlockFromIndex = HIGHEST_LOOP_BLOCK + ENDIF	
 ENDSUB
-SUB Calculate_Next_Eastward_Block(BlockIndex, BlockToIndex)
-	*BlockToIndex = BlockIndex
-	*BlockToIndex = 1 +
-	IF *BlockToIndex > HIGHEST_LOOP_BLOCK THEN *BlockToIndex = HIGHEST_LOOP_BLOCK - ENDIF
+SUB Calculate_Next_Eastward_Block(BlockIndex, EastwardBlock, {Local} CalculatedBlock)
+	CalculatedBlock = BlockIndex
+	{{
+		if block = 12, return -1  (and set other places to handle -1 return
+
+		if block = 9, block = 1
+		if block = 10, block = 3
+		if block = 11, block = 7
+		
+		block++
+		if block > 8, block -= 8
+
+		if block = 1 & turnout 5 = thrown, block = 9
+		if block = 3 & turnout 9 = thrown, block = 10
+		if block = 7 & turnout 1 = thrown, block = 11
+
+		return block
+	}}
+
+	IF CalculatedBlock = 12 THEN Return ENDIF
+
+	
+	IF CalculatedBlock = 9 THEN CalculatedBlock = 1 ENDIF
+	IF CalculatedBlock = 10 THEN CalculatedBlock = 3 ENDIF
+	IF CalculatedBlock = 11 THEN CalculatedBlock = 7 ENDIF
+
+	CalculatedBlock = 1 +
+	IF CalculatedBlock> HIGHEST_LOOP_BLOCK THEN CalculatedBlock = HIGHEST_LOOP_BLOCK - ENDIF
+
+	IF CalculatedBlock = 1, *Turnout_Pointer[5] = TURNOUT_DIRECTION_SECONDARY THEN CalculatedBlock = 9 ENDIF
+	IF CalculatedBlock = 3, *Turnout_Pointer[9] = TURNOUT_DIRECTION_SECONDARY THEN CalculatedBlock = 10 ENDIF
+	IF CalculatedBlock = 7, *Turnout_Pointer[1] = TURNOUT_DIRECTION_SECONDARY THEN CalculatedBlock = 11 ENDIF
+
+	*EastwardBlock = CalculatedBlock
+
+
+'	*EastwardBlock= BlockIndex
+'	*EastwardBlock= 1 +
+'	IF *EastwardBlock > HIGHEST_LOOP_BLOCK THEN *EastwardBlock = HIGHEST_LOOP_BLOCK - ENDIF
 ENDSUB
 
 '********************************************************************
@@ -495,7 +533,7 @@ SUB Current_Detector_Triggered_East(BlockIndex, {Local} BlockFromIndex, BlockToI
 	Block_Status[BlockIndex] = BLOCK_STATUS_OCCUPIED_EAST +
 	Redraw_Cab_Block_All(BlockIndex)
 
-	IF BlockIndex > HIGHEST_LOOP_BLOCK THEN RETURN ENDIF
+	IF BlockIndex > HIGHEST_LOOP_PASSING_BLOCK THEN RETURN ENDIF
 
 	' Determine where we are coming from
 	' Not used now, but previously pulled the cab forward (not needed with set-ahead cab)
@@ -536,7 +574,7 @@ SUB Current_Detector_Stopped_Triggering(BlockIndex, {Local} PreviousBlockIndex, 
 	Block_Status[BlockIndex] = NewBlockStatus
 	Assign_Cab_To_Block(Block_Cab[BlockIndex], BlockIndex)
 
-	IF BlockIndex > HIGHEST_LOOP_BLOCK THEN RETURN ENDIF
+	IF BlockIndex > HIGHEST_LOOP_PASSING_BLOCK THEN RETURN ENDIF
 
 	PreviousBlockIndex = -1, Calculate_Next_Westward_Block(BlockIndex, &PreviousBlockIndex)
 	PreviousBlockStatus = Block_Status[PreviousBlockIndex]
@@ -679,7 +717,7 @@ ENDSUB
 
 WHEN InitStatus=INITIALIZING do '(All lines must end in a comma to continue the initialization chain)
 	wait 2
-	LAYOUT_CONTROL_INCLUDE_VACATED_BLOCK = True
+	LAYOUT_CONTROL_INCLUDE_VACATED_BLOCK = False
 
 ' set address pointers to cab selection controllers
 ''	board "a",
@@ -904,6 +942,8 @@ WHEN InitStatus=INITIALIZING do '(All lines must end in a comma to continue the 
 	Initialize_Detect_Initial_Blocks()
 
 	Initialize_Set_All_Turnouts_To_Primary_Direction()
+
+	Vacated_Block_Button = (55, 20, 4)
 
 
 
@@ -1347,4 +1387,9 @@ WHEN $LeftMouse = Block_Signal_Indicator[10] DO Call_For_Manual_Block(10)
 WHEN $LeftMouse = Block_Signal_Indicator[11] DO Call_For_Manual_Block(11)
 WHEN $LeftMouse = Block_Signal_Indicator[12] DO Call_For_Manual_Block(12)
 
-
+''
+'' VACATED BLOCK
+''
+WHEN $Leftmouse = Vacated_Block_Button DO LAYOUT_CONTROL_INCLUDE_VACATED_BLOCK = LAYOUT_CONTROL_INCLUDE_VACATED_BLOCK ~
+WHEN LAYOUT_CONTROL_INCLUDE_VACATED_BLOCK = True DO  $Color Track(Vacated_Block_Button) = COLOR_INCLUDE_VACATED_BLOCK
+WHEN LAYOUT_CONTROL_INCLUDE_VACATED_BLOCK = False DO $Color Track(Vacated_Block_Button) = COLOR_DONT_INCLUDE_VACATED_BLOCK
