@@ -21,8 +21,8 @@ CONSTANTS:
 	MAX_IR_EOT_DETECTOR_INDEX=3
 
 	INITIAL_TURNOUT_INDEX=1
-	MAX_TURNOUT=18
-	MAX_TURNOUT_INDEX=19
+	MAX_TURNOUT=20
+	MAX_TURNOUT_INDEX=21
 
 	MANUAL_CAB_INDEX = 0
 	INITIAL_CAB_INDEX = 1
@@ -731,11 +731,11 @@ WHEN InitStatus=INITIALIZING do '(All lines must end in a comma to continue the 
 	Turnout_Pointer[2]=&YMC_TCb1_02,
 	Turnout_Pointer[1]=&YMC_TCb1_03,
 	Turnout_Pointer[4]=&YMC_TCb1_04,
-	'Turnout_Pointer[8]=&YMC_TCb1_05,
-	'Turnout_Pointer[9]=&YMC_TCb1_06,
-	'Turnout_Pointer[10]=&YMC_TCb1_07,
-	'Turnout_Pointer[11]=&YMC_TCb1_08,
-	'Turnout_Pointer[17]=&YMC_TCb1_09,
+	Turnout_Pointer[9]=&YMC_TCb1_05,
+	Turnout_Pointer[10]=&YMC_TCb1_06,
+	'Turnout_Pointer[16]=&YMC_TCb1_07,
+	'Turnout_Pointer[17]=&YMC_TCb1_08,
+	'Turnout_Pointer[3]=&YMC_TCb1_09,
 	'Turnout_Pointer[18]=&YMC_TCb1_10,
 	' SPARES YMC_TCb1_11,YMC_TCb1_12,,YMC_TCb1_13,YMC_TCb1_14,YMC_TCb1_15,YMC_TCb1_16,
 
@@ -755,10 +755,10 @@ WHEN InitStatus=INITIALIZING do '(All lines must end in a comma to continue the 
 	Turnout_Button_Pointer[2]=&SES_TCb2_02,
 	Turnout_Button_Pointer[1]=&SES_TCb2_03,
 	Turnout_Button_Pointer[4]=&SES_TCb2_04,
-	'Turnout_Button_Pointer[8]=&SES_TCb2_05,
-	'Turnout_Button_Pointer[9]=&SES_TCb2_06,
-	'Turnout_Button_Pointer[10]=&SES_TCb2_07,
-	'Turnout_Button_Pointer[11]=&SES_TCb2_08,
+	Turnout_Button_Pointer[9]=&SES_TCb2_05,
+	Turnout_Button_Pointer[10]=&SES_TCb2_06,
+	'Turnout_Button_Pointer[16]=&SES_TCb2_07,
+	'Turnout_Button_Pointer[17]=&SES_TCb2_08,
 	'Turnout_Button_Pointer[17]=&SES_TCb2_09,
 	'Turnout_Button_Pointer[18]=&SES_TCb2_10,
 	' SPARES SES_TCb2_11,SES_TCb2_12,,SES_TCb2_13,SES_TCb2_14,SES_TCb2_15,SES_TCb2_16,
@@ -833,7 +833,7 @@ WHEN InitStatus=INITIALIZING do '(All lines must end in a comma to continue the 
 	Turnout_Type[5]=TORTOISE, Turnout_Type[6]=TORTOISE, Turnout_Type[7]=TORTOISE, Turnout_Type[8]=TORTOISE,
 	Turnout_Type[9]=TORTOISE, Turnout_Type[10]=TORTOISE, Turnout_Type[11]=TORTOISE, Turnout_Type[12]=TORTOISE,
 	Turnout_Type[13]=TORTOISE, Turnout_Type[14]=TORTOISE, Turnout_Type[15]=TORTOISE, Turnout_Type[16]=TORTOISE,
-	Turnout_Type[17]=TORTOISE, Turnout_Type[18]=TORTOISE, 
+	Turnout_Type[17]=TORTOISE, Turnout_Type[18]=TORTOISE,Turnout_Type[19]=ATLAS, Turnout_Type[20]=ATLAS,  
 
 '**	Initialize colors to indicate cab assignments on blocks and sprites
 
