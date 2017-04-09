@@ -202,7 +202,7 @@ Green Button = Remote Tortoise</y:NodeLabel>
     <node id="n10">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="172.0" width="140.0" x="-261.9465421381626" y="-935.5373427987265"/>
+          <y:Geometry height="172.0" width="140.0" x="-122.53656767007755" y="-927.0882534370245"/>
           <y:Fill color="#000000" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="16" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="23.6015625" modelName="eight_pos" modelPosition="s" textColor="#000000" visible="true" width="124.0390625" x="7.98046875" y="176.0">Tortoise #5 (A-1)</y:NodeLabel>
@@ -222,7 +222,7 @@ Green Button=Remote Tortoise</y:NodeLabel>
     <node id="n11">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="-233.66527252915034" y="-924.215636865204"/>
+          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="-94.25529806106528" y="-915.766547503502"/>
           <y:Fill color="#FF0000" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="8.46873039098773" y="8.434666666666658">
@@ -240,7 +240,7 @@ Green Button=Remote Tortoise</y:NodeLabel>
     <node id="n12">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="-238.2632725291504" y="-885.4405036497126"/>
+          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="-98.85329806106535" y="-876.9914142880106"/>
           <y:Fill color="#FF0000" color2="#00FF00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="13.066730390987743" y="12.467333333333386">
@@ -258,7 +258,7 @@ Green Button=Remote Tortoise</y:NodeLabel>
     <node id="n13">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="-165.7061605123332" y="-924.215636865204"/>
+          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="-26.296186044248145" y="-915.766547503502"/>
           <y:Fill color="#00FF00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="8.46873039098773" y="8.434666666666658">
@@ -276,7 +276,7 @@ Green Button=Remote Tortoise</y:NodeLabel>
     <node id="n14">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="-170.30416051233317" y="-885.4405036497126"/>
+          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="-30.8941860442481" y="-876.9914142880106"/>
           <y:Fill color="#FF0000" color2="#00FF00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="13.066730390987743" y="12.467333333333386">
@@ -294,7 +294,7 @@ Green Button=Remote Tortoise</y:NodeLabel>
     <node id="n15">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="172.0" width="140.0" x="-75.90654213816276" y="-931.5373427987265"/>
+          <y:Geometry height="172.0" width="140.0" x="63.503432329922305" y="-923.0882534370245"/>
           <y:Fill color="#000000" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="16" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="23.6015625" modelName="eight_pos" modelPosition="s" textColor="#000000" visible="true" width="124.0390625" x="7.98046875" y="176.0">Tortoise #8 (A-2)</y:NodeLabel>
@@ -314,7 +314,7 @@ Green Button = Remote Tortoise</y:NodeLabel>
     <node id="n16">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="-49.08527252915053" y="-920.215636865204"/>
+          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="90.32470193893454" y="-911.766547503502"/>
           <y:Fill color="#00FF00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="8.46873039098773" y="8.434666666666658">
@@ -332,7 +332,7 @@ Green Button = Remote Tortoise</y:NodeLabel>
     <node id="n17">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="-53.683272529150486" y="-881.4405036497125"/>
+          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="85.72670193893458" y="-872.9914142880103"/>
           <y:Fill color="#FF0000" color2="#00FF00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="13.066730390987729" y="12.467333333333386">
@@ -350,7 +350,7 @@ Green Button = Remote Tortoise</y:NodeLabel>
     <node id="n18">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="18.873839487666714" y="-920.215636865204"/>
+          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="158.28381395575178" y="-911.766547503502"/>
           <y:Fill color="#FF0000" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="8.46873039098773" y="8.434666666666658">
@@ -368,7 +368,7 @@ Green Button = Remote Tortoise</y:NodeLabel>
     <node id="n19">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="14.275839487666758" y="-881.4405036497125"/>
+          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="153.68581395575183" y="-872.9914142880103"/>
           <y:Fill color="#FF0000" color2="#00FF00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="13.066730390987729" y="12.467333333333386">
@@ -624,12 +624,12 @@ Green Button = Remote Tortoise</y:NodeLabel>
     <node id="n33">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="172.0" width="140.0" x="-261.9465421381626" y="-401.5468600579363"/>
+          <y:Geometry height="172.0" width="140.0" x="-122.53656767007755" y="-393.09777069623425"/>
           <y:Fill color="#000000" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="16" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="62.8046875" modelName="eight_pos" modelPosition="s" textColor="#000000" visible="true" width="180.078125" x="-20.0390625" y="176.0">Tortoise #12 (A-9)
-Atlas # ? (A-10, AT 7,8)
-Atlas # ? (A-11, AT 9,10)</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="16" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="62.8046875" modelName="eight_pos" modelPosition="s" textColor="#000000" visible="true" width="188.9765625" x="-24.48828125" y="176.0">Atlas # 21 (A-11, AT 7,8)
+Atlas # 20 (A-12, AT 9,10)
+Tortoise #12 (A-9)</y:NodeLabel>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="custom" textColor="#000000" visible="true" width="64.029296875" x="37.9853515625" y="76.6494140625">Tortoise #2<y:LabelModel>
               <y:SmartNodeLabelModel distance="4.0"/>
             </y:LabelModel>
@@ -644,7 +644,7 @@ Atlas # ? (A-11, AT 9,10)</y:NodeLabel>
     <node id="n34">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="-202.41527252915034" y="-388.61103926685564"/>
+          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="-63.005298061065275" y="-380.16194990515356"/>
           <y:Fill color="#000000" transparent="false"/>
           <y:BorderStyle color="#FFFFFF" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="8.46873039098773" y="8.434666666666658">
@@ -662,7 +662,7 @@ Atlas # ? (A-11, AT 9,10)</y:NodeLabel>
     <node id="n35">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="-207.0132725291503" y="-349.83590605136396"/>
+          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="-67.60329806106523" y="-341.3868166896619"/>
           <y:Fill color="#FF0000" color2="#00FF00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="13.066730390987743" y="12.467333333333329">
@@ -680,7 +680,7 @@ Atlas # ? (A-11, AT 9,10)</y:NodeLabel>
     <node id="n36">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="-159.53037839163403" y="-388.61103926685564"/>
+          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="-20.120403923548963" y="-380.16194990515356"/>
           <y:Fill color="#FF0000" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="8.46873039098773" y="8.434666666666658">
@@ -698,7 +698,7 @@ Atlas # ? (A-11, AT 9,10)</y:NodeLabel>
     <node id="n37">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="-164.128378391634" y="-349.83590605136396"/>
+          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="-24.71840392354892" y="-341.3868166896619"/>
           <y:Fill color="#FF0000" color2="#00FF00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="13.066730390987743" y="12.467333333333329">
@@ -716,7 +716,7 @@ Atlas # ? (A-11, AT 9,10)</y:NodeLabel>
     <node id="n38">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="-240.70216666666659" y="-388.61103926685564"/>
+          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="-101.29219219858152" y="-380.16194990515356"/>
           <y:Fill color="#000000" transparent="false"/>
           <y:BorderStyle color="#FFFFFF" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="8.46873039098773" y="8.434666666666658">
@@ -734,7 +734,7 @@ Atlas # ? (A-11, AT 9,10)</y:NodeLabel>
     <node id="n39">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="-245.30016666666654" y="-349.83590605136396"/>
+          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="-105.89019219858147" y="-341.3868166896619"/>
           <y:Fill color="#FF0000" color2="#00FF00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="13.066730390987743" y="12.467333333333329">
@@ -752,7 +752,7 @@ Atlas # ? (A-11, AT 9,10)</y:NodeLabel>
     <node id="n40">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="172.0" width="140.0" x="-257.34854213816254" y="-123.98589932479211"/>
+          <y:Geometry height="172.0" width="140.0" x="-117.93856767007748" y="-115.53680996309004"/>
           <y:Fill color="#000000" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="16" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="62.8046875" modelName="eight_pos" modelPosition="s" textColor="#000000" visible="true" width="188.9765625" x="-24.48828125" y="176.0">Tortoise #13 (A-13)
@@ -772,7 +772,7 @@ Atlas # ? (A-14, AT 11,12)
     <node id="n41">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="-197.8172725291503" y="-111.05007853371131"/>
+          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="-58.407298061065234" y="-102.60098917200924"/>
           <y:Fill color="#000000" transparent="false"/>
           <y:BorderStyle color="#FFFFFF" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="8.46873039098773" y="8.434666666666686">
@@ -790,7 +790,7 @@ Atlas # ? (A-14, AT 11,12)
     <node id="n42">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="-202.41527252915026" y="-72.27494531821975"/>
+          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="-63.00529806106519" y="-63.82585595651767"/>
           <y:Fill color="#FF0000" color2="#00FF00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="13.066730390987715" y="12.467333333333343">
@@ -808,7 +808,7 @@ Atlas # ? (A-14, AT 11,12)
     <node id="n43">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="-154.932378391634" y="-111.05007853371131"/>
+          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="-15.522403923548922" y="-102.60098917200924"/>
           <y:Fill color="#000000" transparent="false"/>
           <y:BorderStyle color="#FFFFFF" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="8.46873039098773" y="8.434666666666686">
@@ -826,7 +826,7 @@ Atlas # ? (A-14, AT 11,12)
     <node id="n44">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="-159.53037839163395" y="-72.27494531821975"/>
+          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="-20.120403923548878" y="-63.82585595651767"/>
           <y:Fill color="#FF0000" color2="#00FF00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="13.066730390987715" y="12.467333333333343">
@@ -844,7 +844,7 @@ Atlas # ? (A-14, AT 11,12)
     <node id="n45">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="-236.10416666666654" y="-111.05007853371131"/>
+          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="-96.69419219858148" y="-102.60098917200924"/>
           <y:Fill color="#FF0000" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="8.46873039098773" y="8.434666666666686">
@@ -862,7 +862,7 @@ Atlas # ? (A-14, AT 11,12)
     <node id="n46">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="-240.70216666666647" y="-72.27494531821975"/>
+          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="-101.2921921985814" y="-63.82585595651767"/>
           <y:Fill color="#FF0000" color2="#00FF00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="13.066730390987743" y="12.467333333333343">
@@ -880,11 +880,11 @@ Atlas # ? (A-14, AT 11,12)
     <node id="n47">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="172.0" width="140.0" x="-585.2907983940058" y="-675.4684701985375"/>
+          <y:Geometry height="172.0" width="140.0" x="-993.8646196706011" y="-398.6602092056303"/>
           <y:Fill color="#000000" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="16" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="43.203125" modelName="eight_pos" modelPosition="s" textColor="#000000" visible="true" width="132.9375" x="3.53125" y="176.0">Tortoise #3 (B-7)
-Tortoise #18 (B-8)</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="16" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="43.203125" modelName="eight_pos" modelPosition="s" textColor="#000000" visible="true" width="141.8359375" x="-0.91796875" y="176.0">Tortoise #3 (B-9)
+Tortoise #18 (B-10)</y:NodeLabel>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="custom" textColor="#000000" visible="true" width="57.35546875" x="41.322265625" y="76.6494140625">Tortoise 1<y:LabelModel>
               <y:SmartNodeLabelModel distance="4.0"/>
             </y:LabelModel>
@@ -899,7 +899,7 @@ Tortoise #18 (B-8)</y:NodeLabel>
     <node id="n48">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="-561.6075287849936" y="-625.3716310495234"/>
+          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="-970.1813500615889" y="-348.56337005661624"/>
           <y:Fill color="#FF0000" color2="#00FF00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="13.066730390987686" y="12.467333333333386">
@@ -917,7 +917,7 @@ Tortoise #18 (B-8)</y:NodeLabel>
     <node id="n49">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="-493.6484167681764" y="-625.3716310495234"/>
+          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="-902.2222380447716" y="-348.56337005661624"/>
           <y:Fill color="#FF0000" color2="#00FF00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="13.066730390987743" y="12.467333333333386">
@@ -935,7 +935,7 @@ Tortoise #18 (B-8)</y:NodeLabel>
     <node id="n50">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="-557.0095287849937" y="-662.1215285300301"/>
+          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="-965.5833500615889" y="-385.3132675371229"/>
           <y:Fill color="#000000" transparent="false"/>
           <y:BorderStyle color="#FFFFFF" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="8.46873039098773" y="8.434666666666658">
@@ -953,7 +953,7 @@ Tortoise #18 (B-8)</y:NodeLabel>
     <node id="n51">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="-489.0504167681764" y="-662.1215285300301"/>
+          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="-897.6242380447716" y="-385.3132675371229"/>
           <y:Fill color="#3366FF" transparent="false"/>
           <y:BorderStyle color="#FFFFFF" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="8.46873039098773" y="8.434666666666658">
@@ -971,10 +971,10 @@ Tortoise #18 (B-8)</y:NodeLabel>
     <node id="n52">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="172.0" width="140.0" x="-999.0874650606722" y="-401.90750946539316"/>
+          <y:Geometry height="172.0" width="140.0" x="-588.7031246351406" y="-673.686550600145"/>
           <y:Fill color="#000000" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="16" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="23.6015625" modelName="eight_pos" modelPosition="s" textColor="#000000" visible="true" width="132.9375" x="3.53125" y="176.0">Tortoise #16 (B-9)</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="16" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="23.6015625" modelName="eight_pos" modelPosition="s" textColor="#000000" visible="true" width="132.9375" x="3.53125" y="176.0">Tortoise #16 (B-7)</y:NodeLabel>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" modelName="eight_pos" modelPosition="n" textColor="#000000" visible="true" width="171.0859375" x="-15.54296875" y="-37.40234375">PRIMARY BOX
 Green Button=Remote Tortoise</y:NodeLabel>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="custom" textColor="#000000" visible="true" width="57.35546875" x="41.322265625" y="76.6494140625">Tortoise 1<y:LabelModel>
@@ -991,7 +991,7 @@ Green Button=Remote Tortoise</y:NodeLabel>
     <node id="n53">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="-970.80619545166" y="-390.5858035318707"/>
+          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="-560.4218550261284" y="-662.3648446666225"/>
           <y:Fill color="#FF0000" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="8.46873039098773" y="8.434666666666715">
@@ -1009,7 +1009,7 @@ Green Button=Remote Tortoise</y:NodeLabel>
     <node id="n54">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="-975.40419545166" y="-351.8106703163791"/>
+          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="-565.0198550261284" y="-623.5897114511308"/>
           <y:Fill color="#FF0000" color2="#00FF00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="13.066730390987686" y="12.467333333333329">
@@ -1027,7 +1027,7 @@ Green Button=Remote Tortoise</y:NodeLabel>
     <node id="n55">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="-902.8470834348428" y="-390.5858035318707"/>
+          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="-492.4627430093112" y="-662.3648446666225"/>
           <y:Fill color="#00FF00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="8.46873039098773" y="8.434666666666715">
@@ -1045,7 +1045,7 @@ Green Button=Remote Tortoise</y:NodeLabel>
     <node id="n56">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="-907.4450834348428" y="-351.8106703163791"/>
+          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="-497.0607430093112" y="-623.5897114511308"/>
           <y:Fill color="#FF0000" color2="#00FF00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="13.066730390987686" y="12.467333333333329">
@@ -1063,10 +1063,10 @@ Green Button=Remote Tortoise</y:NodeLabel>
     <node id="n57">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="172.0" width="140.0" x="-793.7581317273391" y="-397.90750946539305"/>
+          <y:Geometry height="172.0" width="140.0" x="-383.3737913018075" y="-669.6865506001448"/>
           <y:Fill color="#000000" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="16" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="23.6015625" modelName="eight_pos" modelPosition="s" textColor="#000000" visible="true" width="141.8359375" x="-0.91796875" y="176.0">Tortoise #17 (B-10)</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="16" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="23.6015625" modelName="eight_pos" modelPosition="s" textColor="#000000" visible="true" width="132.9375" x="3.53125" y="176.0">Tortoise #17 (B-8)</y:NodeLabel>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" modelName="eight_pos" modelPosition="n" textColor="#000000" visible="true" width="177.75390625" x="-18.876953125" y="-37.40234375">SECONDARY BOX
 Green Button = Remote Tortoise</y:NodeLabel>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="custom" textColor="#000000" visible="true" width="64.029296875" x="37.9853515625" y="76.6494140625">Tortoise #4<y:LabelModel>
@@ -1083,7 +1083,7 @@ Green Button = Remote Tortoise</y:NodeLabel>
     <node id="n58">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="-766.9368621183269" y="-386.5858035318707"/>
+          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="-356.55252169279527" y="-658.3648446666225"/>
           <y:Fill color="#00FF00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="8.46873039098773" y="8.434666666666715">
@@ -1101,7 +1101,7 @@ Green Button = Remote Tortoise</y:NodeLabel>
     <node id="n59">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="-771.5348621183268" y="-347.8106703163791"/>
+          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="-361.1505216927952" y="-619.5897114511308"/>
           <y:Fill color="#FF0000" color2="#00FF00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="13.066730390987686" y="12.467333333333329">
@@ -1119,7 +1119,7 @@ Green Button = Remote Tortoise</y:NodeLabel>
     <node id="n60">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="-698.9777501015096" y="-386.5858035318707"/>
+          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="-288.593409675978" y="-658.3648446666225"/>
           <y:Fill color="#3366FF" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="8.46873039098773" y="8.434666666666715">
@@ -1137,7 +1137,7 @@ Green Button = Remote Tortoise</y:NodeLabel>
     <node id="n61">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="-703.5757501015096" y="-347.8106703163791"/>
+          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="-293.191409675978" y="-619.5897114511308"/>
           <y:Fill color="#FF0000" color2="#00FF00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="13.066730390987686" y="12.467333333333329">
@@ -1155,7 +1155,7 @@ Green Button = Remote Tortoise</y:NodeLabel>
     <node id="n62">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="172.0" width="140.0" x="-588.428798394006" y="-399.932745200378"/>
+          <y:Geometry height="172.0" width="140.0" x="-795.4314877557081" y="-398.7257324344206"/>
           <y:Fill color="#000000" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="16" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="43.203125" modelName="eight_pos" modelPosition="s" textColor="#000000" visible="true" width="171.1796875" x="-15.58984375" y="176.0">Tortoise #15 (B-11)
@@ -1174,7 +1174,7 @@ Atlas # ? (B-12, AT 1,2)</y:NodeLabel>
     <node id="n63">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="-564.7455287849938" y="-349.83590605136396"/>
+          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="-771.7482181466959" y="-348.62889328540655"/>
           <y:Fill color="#FF0000" color2="#00FF00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="13.066730390987686" y="12.467333333333329">
@@ -1192,7 +1192,7 @@ Atlas # ? (B-12, AT 1,2)</y:NodeLabel>
     <node id="n64">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="-496.78641676817654" y="-349.83590605136396"/>
+          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="-703.7891061298786" y="-348.62889328540655"/>
           <y:Fill color="#FF0000" color2="#00FF00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="13.066730390987743" y="12.467333333333329">
@@ -1210,7 +1210,7 @@ Atlas # ? (B-12, AT 1,2)</y:NodeLabel>
     <node id="n65">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="-560.1475287849938" y="-386.5858035318706"/>
+          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="-767.1502181466959" y="-385.3787907659132"/>
           <y:Fill color="#FF0000" transparent="false"/>
           <y:BorderStyle color="#FFFFFF" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="8.46873039098773" y="8.434666666666658">
@@ -1228,7 +1228,7 @@ Atlas # ? (B-12, AT 1,2)</y:NodeLabel>
     <node id="n66">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="-492.1884167681765" y="-386.5858035318706"/>
+          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="-699.1911061298786" y="-385.3787907659132"/>
           <y:Fill color="#000000" transparent="false"/>
           <y:BorderStyle color="#FFFFFF" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="8.46873039098773" y="8.434666666666658">
@@ -1374,7 +1374,7 @@ Atlas # ? (B-15, AT 5,6)</y:NodeLabel>
     <node id="n74">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="172.0" width="140.0" x="110.13345786183709" y="-933.5625785337114"/>
+          <y:Geometry height="172.0" width="140.0" x="249.54343232992215" y="-925.1134891720093"/>
           <y:Fill color="#000000" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="16" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="43.203125" modelName="eight_pos" modelPosition="s" textColor="#000000" visible="true" width="153.390625" x="-6.6953125" y="176.0">Tortoise #14 (A-3)
@@ -1393,7 +1393,7 @@ Atlas # ? (A-4/AT1,2)</y:NodeLabel>
     <node id="n75">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="133.8167274708493" y="-883.4657393846974"/>
+          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="273.22670193893435" y="-875.0166500229953"/>
           <y:Fill color="#FF0000" color2="#00FF00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="13.066730390987743" y="12.467333333333386">
@@ -1411,7 +1411,7 @@ Atlas # ? (A-4/AT1,2)</y:NodeLabel>
     <node id="n76">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="201.77583948766653" y="-883.4657393846974"/>
+          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="341.1858139557516" y="-875.0166500229953"/>
           <y:Fill color="#FF0000" color2="#00FF00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="13.066730390987743" y="12.467333333333386">
@@ -1429,7 +1429,7 @@ Atlas # ? (A-4/AT1,2)</y:NodeLabel>
     <node id="n77">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="138.41472747084924" y="-920.215636865204"/>
+          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="277.8247019389343" y="-911.766547503502"/>
           <y:Fill color="#3366FF" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="8.46873039098773" y="8.434666666666658">
@@ -1447,7 +1447,7 @@ Atlas # ? (A-4/AT1,2)</y:NodeLabel>
     <node id="n78">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="206.37383948766654" y="-920.215636865204"/>
+          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="345.7838139557516" y="-911.766547503502"/>
           <y:Fill color="#000000" transparent="false"/>
           <y:BorderStyle color="#FFFFFF" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="8.46873039098773" y="8.434666666666658">
@@ -1465,7 +1465,7 @@ Atlas # ? (A-4/AT1,2)</y:NodeLabel>
     <node id="n79">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="172.0" width="140.0" x="-261.9465421381626" y="-675.4684701985375"/>
+          <y:Geometry height="172.0" width="140.0" x="-122.53656767007755" y="-667.0193808368355"/>
           <y:Fill color="#000000" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="16" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="23.6015625" modelName="eight_pos" modelPosition="s" textColor="#000000" visible="true" width="124.0390625" x="7.98046875" y="176.0">Tortoise #6 (A-5)</y:NodeLabel>
@@ -1483,7 +1483,7 @@ Atlas # ? (A-4/AT1,2)</y:NodeLabel>
     <node id="n80">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="-204.46691508234187" y="-623.5611119005872"/>
+          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="-65.0569406142568" y="-615.1120225388851"/>
           <y:Fill color="#FF0000" color2="#00FF00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="13.066730390987743" y="12.467333333333386">
@@ -1501,7 +1501,7 @@ Atlas # ? (A-4/AT1,2)</y:NodeLabel>
     <node id="n81">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="-199.8689150823419" y="-660.3110093810939"/>
+          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="-60.458940614256846" y="-651.8619200193917"/>
           <y:Fill color="#3366FF" transparent="false"/>
           <y:BorderStyle color="#FFFFFF" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="8.46873039098773" y="8.434666666666658">
@@ -1519,7 +1519,7 @@ Atlas # ? (A-4/AT1,2)</y:NodeLabel>
     <node id="n82">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="-10.68393072509923" y="-660.7965242747109"/>
+          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="128.72604374298584" y="-652.3474349130089"/>
           <y:Fill color="#000000" transparent="false"/>
           <y:BorderStyle color="#FFFFFF" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="8.46873039098773" y="8.434666666666658">
@@ -1537,7 +1537,7 @@ Atlas # ? (A-4/AT1,2)</y:NodeLabel>
     <node id="n83">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="-15.281930725099187" y="-624.0466267942043"/>
+          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="124.12804374298588" y="-615.5975374325022"/>
           <y:Fill color="#FF0000" color2="#00FF00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="13.066730390987729" y="12.467333333333386">
@@ -1555,7 +1555,7 @@ Atlas # ? (A-4/AT1,2)</y:NodeLabel>
     <node id="n84">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="23.471839487666813" y="-662.1215285300301"/>
+          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="162.88181395575188" y="-653.672439168328"/>
           <y:Fill color="#000000" transparent="false"/>
           <y:BorderStyle color="#FFFFFF" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="8.46873039098773" y="8.434666666666658">
@@ -1573,7 +1573,7 @@ Atlas # ? (A-4/AT1,2)</y:NodeLabel>
     <node id="n85">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="-44.48727252915049" y="-662.1215285300301"/>
+          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="94.92270193893458" y="-653.672439168328"/>
           <y:Fill color="#000000" transparent="false"/>
           <y:BorderStyle color="#FFFFFF" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="8.46873039098773" y="8.434666666666658">
@@ -1591,7 +1591,7 @@ Atlas # ? (A-4/AT1,2)</y:NodeLabel>
     <node id="n86">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="18.8738394876668" y="-625.3716310495234"/>
+          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="158.28381395575187" y="-616.9225416878213"/>
           <y:Fill color="#FF0000" color2="#00FF00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="13.066730390987729" y="12.467333333333386">
@@ -1609,7 +1609,7 @@ Atlas # ? (A-4/AT1,2)</y:NodeLabel>
     <node id="n87">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="-49.085272529150444" y="-625.3716310495234"/>
+          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="90.32470193893462" y="-616.9225416878213"/>
           <y:Fill color="#FF0000" color2="#00FF00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="13.066730390987729" y="12.467333333333386">
@@ -1627,7 +1627,7 @@ Atlas # ? (A-4/AT1,2)</y:NodeLabel>
     <node id="n88">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="172.0" width="140.0" x="-72.76854213816264" y="-675.4684701985375"/>
+          <y:Geometry height="172.0" width="140.0" x="66.64143232992242" y="-667.0193808368355"/>
           <y:Fill color="#000000" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="16" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="62.8046875" modelName="eight_pos" modelPosition="s" textColor="#000000" visible="true" width="157.8359375" x="-8.91796875" y="176.0">Tortoise #7 (A-6)
@@ -1647,7 +1647,7 @@ Atlas #? (A-8, AT 5,6)</y:NodeLabel>
     <node id="n89">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="-13.209137777377066" y="-663.1230582260987"/>
+          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="126.200836690708" y="-654.6739688643967"/>
           <y:Fill color="#000000" transparent="false"/>
           <y:BorderStyle color="#FFFFFF" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="8.46873039098773" y="8.434666666666658">
@@ -1665,7 +1665,7 @@ Atlas #? (A-8, AT 5,6)</y:NodeLabel>
     <node id="n90">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="-17.807137777377022" y="-624.347925010607"/>
+          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="121.60283669070805" y="-615.898835648905"/>
           <y:Fill color="#FF0000" color2="#00FF00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="13.066730390987729" y="12.467333333333386">
@@ -1683,7 +1683,7 @@ Atlas #? (A-8, AT 5,6)</y:NodeLabel>
     <node id="n91">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="29.675756360139246" y="-663.1230582260987"/>
+          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="169.0857308282243" y="-654.6739688643967"/>
           <y:Fill color="#3366FF" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="8.46873039098773" y="8.434666666666658">
@@ -1701,7 +1701,7 @@ Atlas #? (A-8, AT 5,6)</y:NodeLabel>
     <node id="n92">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="25.07775636013929" y="-624.347925010607"/>
+          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="164.48773082822436" y="-615.898835648905"/>
           <y:Fill color="#FF0000" color2="#00FF00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="13.066730390987729" y="12.467333333333386">
@@ -1719,7 +1719,7 @@ Atlas #? (A-8, AT 5,6)</y:NodeLabel>
     <node id="n93">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="-51.49603191489331" y="-663.1230582260987"/>
+          <y:Geometry height="20.869333333333373" width="20.93746078197546" x="87.91394255319176" y="-654.6739688643967"/>
           <y:Fill color="#000000" transparent="false"/>
           <y:BorderStyle color="#FFFFFF" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="8.46873039098773" y="8.434666666666658">
@@ -1737,7 +1737,7 @@ Atlas #? (A-8, AT 5,6)</y:NodeLabel>
     <node id="n94">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="-56.094031914893264" y="-624.347925010607"/>
+          <y:Geometry height="28.934666666666686" width="30.133460781975458" x="83.3159425531918" y="-615.898835648905"/>
           <y:Fill color="#FF0000" color2="#00FF00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="13.066730390987729" y="12.467333333333386">
