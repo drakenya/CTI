@@ -698,10 +698,9 @@ SUB Initialize_Set_All_Turnouts_To_Primary_Direction({Local} TIndex)
 	TIndex = INITIAL_TURNOUT_INDEX
 	UNTIL TIndex >= MAX_TURNOUT_INDEX LOOP
 		$Switch(TurnOut_Grid[TIndex])=TURNOUT_DIRECTION_PRIMARY
-		IF Turnout_Type[TIndex]=TORTOISE THEN
-			*Turnout_Pointer[TIndex]=TURNOUT_DIRECTION_PRIMARY
-		ELSEIF Turnout_Type[TIndex]=ATLAS THEN
-			*Atlas_Turnout_Pointer_Primary[TIndex]=PULSE 0.1
+		*Turnout_Pointer[TIndex]=TURNOUT_DIRECTION_PRIMARY
+		IF Turnout_Type[TIndex]=ATLAS THEN
+			*Atlas_Turnout_Pointer_Primary[TIndex]=PULSE 0.25
 		ENDIF
 		Turnout_Status[TIndex]=TURNOUT_DIRECTION_PRIMARY
 
@@ -756,14 +755,20 @@ WHEN InitStatus=INITIALIZING do '(All lines must end in a comma to continue the 
 ' set address pointers to Turnout_Controls
 
 	'Turnout_Pointer[5]=&YMC_TCa1_01,
-	'Turnout_Pointer[6]=&YMC_TCa1_02,
-	'Turnout_Pointer[3]=&YMC_TCa1_03,
-	'Turnout_Pointer[12]=&YMC_TCa1_04,
-	'Turnout_Pointer[1]=&YMC_TCa1_05,
-	'Turnout_Pointer[14]=&YMC_TCa1_06,
-	'Turnout_Pointer[15]=&YMC_TCa1_07,
-	'Turnout_Pointer[2]=&YMC_TCa1_08,
-	' SPARES YMC_TCa1_09,YMC_TCa1_10,YMC_TCa1_11,YMC_TCa1_12,YMC_TCa1_13,YMC_TCa1_14,YMC_TCa1_15,YMC_TCa1_16,
+	'Turnout_Pointer[8]=&YMC_TCa1_02,
+	'Turnout_Pointer[14]=&YMC_TCa1_03,
+	'Turnout_Pointer[a]=&YMC_TCa1_04,
+	'Turnout_Pointer[6]=&YMC_TCa1_05,
+	'Turnout_Pointer[19]=&YMC_TCa1_06,
+	'Turnout_Pointer[20]=&YMC_TCa1_07,
+	'Turnout_Pointer[12]=&YMC_TCa1_08,
+	'Turnout_Pointer[7]=&YMC_TCa1_09,
+	'Turnout_Pointer[a]=&YMC_TCa1_10,
+	'Turnout_Pointer[a]=&YMC_TCa1_11,
+	'Turnout_Pointer[13]=&YMC_TCa1_12,
+	'Turnout_Pointer[a]=&YMC_TCa1_13,
+	'Turnout_Pointer[a]=&YMC_TCa1_14,
+	' SPARE YMC_TCa1_15,YMC_TCa1_16,
 
 	'Turnout_Pointer[4]=&YMC_TCb1_01,
 	Turnout_Pointer[2]=&YMC_TCb1_02,
@@ -773,23 +778,29 @@ WHEN InitStatus=INITIALIZING do '(All lines must end in a comma to continue the 
 	Turnout_Pointer[10]=&YMC_TCb1_06,
 	'Turnout_Pointer[16]=&YMC_TCb1_07,
 	'Turnout_Pointer[17]=&YMC_TCb1_08,
-	'Turnout_Pointer[3]=&YMC_TCb1_09,
-	'Turnout_Pointer[18]=&YMC_TCb1_10,
+	Turnout_Pointer[3]=&YMC_TCb1_09,
+	Turnout_Pointer[18]=&YMC_TCb1_10,
 	' SPARES YMC_TCb1_11,YMC_TCb1_12,,YMC_TCb1_13,YMC_TCb1_14,YMC_TCb1_15,YMC_TCb1_16,
 
 ' set address pointers to Turnout Push Button Sensors
 
 	'Turnout_Button_Pointer[5]=&SES_TCa2_01,
-	'Turnout_Button_Pointer[6]=&SES_TCa2_02,
-	'Turnout_Button_Pointer[3]=&SES_TCa2_03,
-	'Turnout_Button_Pointer[12]=&SES_TCa2_04,
-	'Turnout_Button_Pointer[1]=&SES_TCa2_05,
-	'Turnout_Button_Pointer[14]=&SES_TCa2_06,
-	'Turnout_Button_Pointer[15]=&SES_TCa2_07,
-	'Turnout_Button_Pointer[2]=&SES_TCa2_08,
-	' SPARES SES_TCa2_09,SES_TCa2_10,SES_TCa2_11,SES_TCa2_12,SES_TCa2_13,SES_TCa2_14,SES_TCa2_15,SES_TCa2_16,
+	'Turnout_Button_Pointer[8]=&SES_TCa2_02,
+	'Turnout_Button_Pointer[14]=&SES_TCa2_03,
+	'Turnout_Button_Pointer[a]=&SES_TCa2_04,
+	'Turnout_Button_Pointer[6]=&SES_TCa2_05,
+	'Turnout_Button_Pointer[19]=&SES_TCa2_06,
+	'Turnout_Button_Pointer[20]=&SES_TCa2_07,
+	'Turnout_Button_Pointer[12]=&SES_TCa2_08,
+	'Turnout_Button_Pointer[7]=&SES_TCa2_09,
+	'Turnout_Button_Pointer[a]=&SES_TCa2_10,
+	'Turnout_Button_Pointer[3]=&SES_TCa2_11,
+	'Turnout_Button_Pointer[18]=&SES_TCa2_12,
+	'Turnout_Button_Pointer[a]=&SES_TCa2_13,SES_TCa2_14,
+	'Turnout_Button_Pointer[a]=&SES_TCa2_15,
+	' SPARE SES_TCa2_16,
 
-	'Turnout_Button_Pointer[4]=&SES_TCb2_01,
+	'Turnout_Button_Pointer[4]=&SESTCb2_01,
 	Turnout_Button_Pointer[2]=&SES_TCb2_02,
 	Turnout_Button_Pointer[1]=&SES_TCb2_03,
 	Turnout_Button_Pointer[4]=&SES_TCb2_04,
@@ -797,9 +808,13 @@ WHEN InitStatus=INITIALIZING do '(All lines must end in a comma to continue the 
 	Turnout_Button_Pointer[10]=&SES_TCb2_06,
 	'Turnout_Button_Pointer[16]=&SES_TCb2_07,
 	'Turnout_Button_Pointer[17]=&SES_TCb2_08,
-	'Turnout_Button_Pointer[17]=&SES_TCb2_09,
+	'Turnout_Button_Pointer[3]=&SES_TCb2_09,
 	'Turnout_Button_Pointer[18]=&SES_TCb2_10,
-	' SPARES SES_TCb2_11,SES_TCb2_12,,SES_TCb2_13,SES_TCb2_14,SES_TCb2_15,SES_TCb2_16,
+	Turnout_Button_Pointer[18]=&SES_TCb2_11,
+	Turnout_Button_Pointer[3]=&SES_TCb2_12,
+	'Turnout_Button_Pointer[15]=&SES_TCb2_11,
+	'Turnout_Button_Pointer[a]=&SES_TCb2_12,
+	',SES_TCb2_13,SES_TCb2_14,SES_TCb2_15,SES_TCb2_16,
 
 ' set address pointers to Cab Controls and Functions
 
@@ -833,7 +848,7 @@ WHEN InitStatus=INITIALIZING do '(All lines must end in a comma to continue the 
 	Turnout_Grid[5]=(46,11,4), Turnout_Grid[6]=(46,16,4), Turnout_Grid[7]=(45,20,4), Turnout_Grid[8]=(29,26,4),
 	Turnout_Grid[9]=(7,21,4), Turnout_Grid[10]=(20,2,4), Turnout_Grid[11]=(23,2,4), Turnout_Grid[12]=(50,16,4),
 	Turnout_Grid[13]=(50,20,4), Turnout_Grid[14]=(33,24,4), Turnout_Grid[15]=(7,11,4), Turnout_Grid[16]=(8,18,4),
-	Turnout_Grid[17]=(4,20,4), Turnout_Grid[18]=(30,5,4),
+	Turnout_Grid[17]=(4,20,4), Turnout_Grid[18]=(30,5,4),Turnout_Grid[19]=(51,15,4),Turnout_Grid[20]=(52,14,4),
 
 '**	Initialize panel location of track blocks and sprite locations of corresponding sprites
 
@@ -1088,17 +1103,14 @@ WHEN $leftmouse = cab3_Direction_Grid DO *Cab_Direction_Pointer[3] = *Cab_Direct
 
 SUB Throw_Turnout(TIndex,ctc_Grid)
 	$Switch(ctc_Grid)=$Switch(ctc_Grid)~
-	IF Turnout_Type[TIndex]=TORTOISE THEN
-		*Turnout_Pointer[TIndex]=*Turnout_Pointer[TIndex]~,
-		Turnout_Status[TIndex]=Turnout_Status[TIndex]~,
-	ELSEIF Turnout_Type[TIndex]=ATLAS THEN
+	*Turnout_Pointer[TIndex]=*Turnout_Pointer[TIndex]~,
+	Turnout_Status[TIndex]=Turnout_Status[TIndex]~,
+	IF Turnout_Type[TIndex]=ATLAS THEN
 		IF Turnout_Status[TIndex]=TURNOUT_DIRECTION_PRIMARY THEN
-			*Atlas_Turnout_Pointer_Secondary[TIndex]=PULSE 0.1,
+			*Atlas_Turnout_Pointer_Secondary[TIndex]=PULSE 0.25,
 			*Atlas_Turnout_LED_Pointer_Secondary[TIndex]=TURNOUT_DIRECTION_SECONDARY
-			Turnout_Status[TIndex]=TURNOUT_DIRECTION_SECONDARY,
-		ELSE 	*Atlas_Turnout_Pointer_Primary[TIndex]=PULSE 0.1,
+		ELSE 	*Atlas_Turnout_Pointer_Primary[TIndex]=PULSE 0.25,
 		 	*Atlas_Turnout_led_Pointer_Primary[TIndex]=TURNOUT_DIRECTION_PRIMARY,
-			Turnout_Status[TIndex]=TURNOUT_DIRECTION_PRIMARY
 		ENDIF		
 	ENDIF
 ENDSUB
@@ -1127,6 +1139,8 @@ WHEN $Leftmouse=Turnout_Grid[15] or *Turnout_Button_Pointer[15]=on DO Throw_Turn
 WHEN $Leftmouse=Turnout_Grid[16] or *Turnout_Button_Pointer[16]=on DO Throw_Turnout(16,Turnout_Grid[16])
 WHEN $Leftmouse=Turnout_Grid[17] or *Turnout_Button_Pointer[17]=on DO Throw_Turnout(17,Turnout_Grid[17])
 WHEN $Leftmouse=Turnout_Grid[18] or *Turnout_Button_Pointer[18]=on DO Throw_Turnout(18,Turnout_Grid[18])
+WHEN $Leftmouse=Turnout_Grid[19] or *Turnout_Button_Pointer[19]=on DO Throw_Turnout(19,Turnout_Grid[19])
+WHEN $Leftmouse=Turnout_Grid[20] or *Turnout_Button_Pointer[20]=on DO Throw_Turnout(20,Turnout_Grid[20])
 
 '********************************************************************
 '**	LOOP through East and West current detectors to determine block occupancy
