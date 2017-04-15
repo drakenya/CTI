@@ -64,6 +64,7 @@ CONSTANTS:
 	COLOR_DIRECTION_FORWARD = Green
 	COLOR_DIRECTION_REVERSE = Red
 	COLOR_BLOCK_VACANT = Black
+	COLOR_BLOCK_IDLE = $RGB_C0C0C0
 	COLOR_INCLUDE_VACATED_BLOCK = Yellow
 	COLOR_DONT_INCLUDE_VACATED_BLOCK = Green
 
@@ -78,6 +79,19 @@ CONSTANTS:
 	SIGNAL_BLOCK_INDICATOR_OCCUPIED = "GGG"
 	SIGNAL_BLOCK_INDICATOR_VACATED = "YYY"
 	SIGNAL_BLOCK_INDICATOR_MANUAL_HOLD = "xRR"
+
+	EXTRA_BLOCK_MAX_INDEX = 4
+	EXTRA_BLOCK_STAGING_LEAD = 1
+	EXTRA_BLOCK_STAGING_STRAIGHT = 2
+	EXTRA_BLOCK_STAGING_DIVERGING = 3
+	EXTRA_BLOCK_MINE = 4
+
+	BLOCK_STAGING = 8
+	BLOCK_MINE = 5
+
+	TURNOUT_STAGING = 3
+	TURNOUT_STAGING_SPLIT = 18
+	TURNOUT_MINE = 12
 
 '***********************************************************************************
 '					NETWORK MODULE DECLARATIONS
@@ -316,6 +330,8 @@ VARIABLES:
 	LAYOUT_CONTROL_INCLUDE_VACATED_BLOCK
 	Vacated_Block_Button
 
+	Extra_Block_Grid_Locations[EXTRA_BLOCK_MAX_INDEX]
+
 
 '************************************************************************************
 '														*
@@ -375,6 +391,39 @@ ENDSUB
 '			Calls subroutine to configure corresponding trainbrain controls
 '			Colors block sprite with selected cab color
 '			Colors selected block buttons with selected cab color and shape on panel
+
+SUB Redraw_Extra_Blocks_On_Grid({Local} CabIndex)
+	' Staging
+	IF Block_Status[BLOCK_STAGING] = BLOCK_STATUS_OCCUPIED_EAST AND Turnout_Status[TURNOUT_STAGING] = TURNOUT_DIRECTION_SECONDARY
+	OR Block_Status[BLOCK_STAGING] = BLOCK_STATUS_OCCUPIED_WEST AND Turnout_Status[TURNOUT_STAGING] = TURNOUT_DIRECTION_SECONDARY
+	THEN
+		CabIndex = Block_Cab[BLOCK_STAGING]
+		$Color Block(Extra_Block_Grid_Locations[EXTRA_BLOCK_STAGING_LEAD]) = Cab_Color[CabIndex]
+
+		IF Turnout_Status[TURNOUT_STAGING_SPLIT] = TURNOUT_DIRECTION_PRIMARY THEN
+			$Color Block(Extra_Block_Grid_Locations[EXTRA_BLOCK_STAGING_STRAIGHT]) = Cab_Color[CabIndex]
+			$Color Block(Extra_Block_Grid_Locations[EXTRA_BLOCK_STAGING_DIVERGING]) = COLOR_BLOCK_IDLE
+		ELSE
+			$Color Block(Extra_Block_Grid_Locations[EXTRA_BLOCK_STAGING_STRAIGHT]) = COLOR_BLOCK_IDLE
+			$Color Block(Extra_Block_Grid_Locations[EXTRA_BLOCK_STAGING_DIVERGING]) = Cab_Color[CabIndex]
+		ENDIF
+	ELSE
+		$Color Block(Extra_Block_Grid_Locations[EXTRA_BLOCK_STAGING_LEAD]) = COLOR_BLOCK_IDLE
+		$Color Block(Extra_Block_Grid_Locations[EXTRA_BLOCK_STAGING_STRAIGHT]) = COLOR_BLOCK_IDLE
+		$Color Block(Extra_Block_Grid_Locations[EXTRA_BLOCK_STAGING_DIVERGING]) = COLOR_BLOCK_IDLE
+	ENDIF
+
+	' Mine
+	IF Block_Status[BLOCK_MINE] = BLOCK_STATUS_OCCUPIED_EAST AND Turnout_Status[TURNOUT_MINE] = TURNOUT_DIRECTION_SECONDARY
+	OR Block_Status[BLOCK_MINE] = BLOCK_STATUS_OCCUPIED_WEST AND Turnout_Status[TURNOUT_MINE] = TURNOUT_DIRECTION_SECONDARY
+	THEN
+		CabIndex = Block_Cab[BLOCK_STAGING]
+		$Color Block(Extra_Block_Grid_Locations[EXTRA_BLOCK_MINE]) = Cab_Color[CabIndex]
+	ELSE
+		$Color Block(Extra_Block_Grid_Locations[EXTRA_BLOCK_MINE]) = COLOR_BLOCK_IDLE
+	ENDIF
+	$Color Block(Extra_Block_Grid_Locations[EXTRA_BLOCK_MINE]) = COLOR_BLOCK_IDLE
+ENDSUB
 
 SUB Redraw_Cab_Block_On_Plan({Local} BlockIndex, CabIndex, BlockStatus)
 	BlockIndex = 0
@@ -457,6 +506,8 @@ SUB Redraw_Cab_Block_All(BlockIndex)
 	Redraw_Cab_Block_On_Grid()
 	Redraw_Cab_Block_On_Plan()
 	Redraw_Block_Signal_Indicator()
+
+	Redraw_Extra_Blocks_On_Grid()
 ENDSUB
 
 SUB Assign_Cab_To_Block(CIndex,BIndex)
@@ -844,11 +895,11 @@ WHEN InitStatus=INITIALIZING do '(All lines must end in a comma to continue the 
 
 '**	Initialize panel locations of tortoise controls
 
-	Turnout_Grid[1]=(4,18,4), Turnout_Grid[2]=(9,12,4), Turnout_Grid[3]=(32,6,4), Turnout_Grid[4]=(35,6,4),
+	Turnout_Grid[1]=(4,18,4), Turnout_Grid[2]=(9,12,4), Turnout_Grid[3]=(34,6,4), Turnout_Grid[4]=(35,6,4),
 	Turnout_Grid[5]=(46,11,4), Turnout_Grid[6]=(46,16,4), Turnout_Grid[7]=(45,20,4), Turnout_Grid[8]=(29,26,4),
 	Turnout_Grid[9]=(7,21,4), Turnout_Grid[10]=(20,2,4), Turnout_Grid[11]=(23,2,4), Turnout_Grid[12]=(50,16,4),
 	Turnout_Grid[13]=(50,20,4), Turnout_Grid[14]=(33,24,4), Turnout_Grid[15]=(7,11,4), Turnout_Grid[16]=(8,18,4),
-	Turnout_Grid[17]=(4,20,4), Turnout_Grid[18]=(30,5,4),Turnout_Grid[19]=(51,15,4),Turnout_Grid[20]=(52,14,4),
+	Turnout_Grid[17]=(4,20,4), Turnout_Grid[18]=(31,4,4),Turnout_Grid[19]=(51,15,4),Turnout_Grid[20]=(52,14,4),
 
 '**	Initialize panel location of track blocks and sprite locations of corresponding sprites
 
@@ -959,6 +1010,11 @@ WHEN InitStatus=INITIALIZING do '(All lines must end in a comma to continue the 
 	Initialize_Set_All_Turnouts_To_Primary_Direction()
 
 	Vacated_Block_Button = (55, 20, 4)
+
+	Extra_Block_Grid_Locations[EXTRA_BLOCK_STAGING_LEAD] = (33, 5, 4)
+	Extra_Block_Grid_Locations[EXTRA_BLOCK_STAGING_STRAIGHT] = (25, 4, 4)
+	Extra_Block_Grid_Locations[EXTRA_BLOCK_STAGING_DIVERGING] = (25, 5, 4)
+	Extra_Block_Grid_Locations[EXTRA_BLOCK_MINE] = (52, 11, 4)
 
 
 
@@ -1123,7 +1179,7 @@ ENDSUB
 		
 WHEN $Leftmouse=Turnout_Grid[1] or *Turnout_Button_Pointer[1]=on DO Throw_Turnout(1,Turnout_Grid[1])
 WHEN $Leftmouse=Turnout_Grid[2] or *Turnout_Button_Pointer[2]=on DO Throw_Turnout(2,Turnout_Grid[2])
-WHEN $Leftmouse=Turnout_Grid[3] or *Turnout_Button_Pointer[3]=on DO Throw_Turnout(3,Turnout_Grid[3])
+WHEN $Leftmouse=Turnout_Grid[3] or *Turnout_Button_Pointer[3]=on DO Throw_Turnout(3,Turnout_Grid[3]), Redraw_Extra_Blocks_On_Grid()
 WHEN $Leftmouse=Turnout_Grid[4] or *Turnout_Button_Pointer[4]=on DO Throw_Turnout(4,Turnout_Grid[4])
 WHEN $Leftmouse=Turnout_Grid[5] or *Turnout_Button_Pointer[5]=on DO Throw_Turnout(5,Turnout_Grid[5])
 WHEN $Leftmouse=Turnout_Grid[6] or *Turnout_Button_Pointer[6]=on DO Throw_Turnout(6,Turnout_Grid[6])
@@ -1132,13 +1188,13 @@ WHEN $Leftmouse=Turnout_Grid[8] or *Turnout_Button_Pointer[8]=on DO Throw_Turnou
 WHEN $Leftmouse=Turnout_Grid[9] or *Turnout_Button_Pointer[9]=on DO Throw_Turnout(9,Turnout_Grid[9])
 WHEN $Leftmouse=Turnout_Grid[10] or *Turnout_Button_Pointer[10]=on DO Throw_Turnout(10,Turnout_Grid[10])
 WHEN $Leftmouse=Turnout_Grid[11] or *Turnout_Button_Pointer[11]=on DO Throw_Turnout(11,Turnout_Grid[11])
-WHEN $Leftmouse=Turnout_Grid[12] or *Turnout_Button_Pointer[12]=on DO Throw_Turnout(12,Turnout_Grid[12])
+WHEN $Leftmouse=Turnout_Grid[12] or *Turnout_Button_Pointer[12]=on DO Throw_Turnout(12,Turnout_Grid[12]), Redraw_Extra_Blocks_On_Grid()
 WHEN $Leftmouse=Turnout_Grid[13] or *Turnout_Button_Pointer[13]=on DO Throw_Turnout(13,Turnout_Grid[13])
 WHEN $Leftmouse=Turnout_Grid[14] or *Turnout_Button_Pointer[14]=on DO Throw_Turnout(14,Turnout_Grid[14])
 WHEN $Leftmouse=Turnout_Grid[15] or *Turnout_Button_Pointer[15]=on DO Throw_Turnout(15,Turnout_Grid[15])
 WHEN $Leftmouse=Turnout_Grid[16] or *Turnout_Button_Pointer[16]=on DO Throw_Turnout(16,Turnout_Grid[16])
 WHEN $Leftmouse=Turnout_Grid[17] or *Turnout_Button_Pointer[17]=on DO Throw_Turnout(17,Turnout_Grid[17])
-WHEN $Leftmouse=Turnout_Grid[18] or *Turnout_Button_Pointer[18]=on DO Throw_Turnout(18,Turnout_Grid[18])
+WHEN $Leftmouse=Turnout_Grid[18] or *Turnout_Button_Pointer[18]=on DO Throw_Turnout(18,Turnout_Grid[18]), Redraw_Extra_Blocks_On_Grid()
 WHEN $Leftmouse=Turnout_Grid[19] or *Turnout_Button_Pointer[19]=on DO Throw_Turnout(19,Turnout_Grid[19])
 WHEN $Leftmouse=Turnout_Grid[20] or *Turnout_Button_Pointer[20]=on DO Throw_Turnout(20,Turnout_Grid[20])
 
