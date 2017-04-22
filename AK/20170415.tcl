@@ -895,9 +895,9 @@ WHEN InitStatus=INITIALIZING do '(All lines must end in a comma to continue the 
 
 	Turnout_Grid[1]=(4,18,4), Turnout_Grid[2]=(9,12,4), Turnout_Grid[3]=(34,6,4), Turnout_Grid[4]=(35,6,4),
 	Turnout_Grid[5]=(46,11,4), Turnout_Grid[6]=(46,16,4), Turnout_Grid[7]=(45,20,4), Turnout_Grid[8]=(29,26,4),
-	Turnout_Grid[9]=(7,21,4), Turnout_Grid[10]=(20,2,4), Turnout_Grid[11]=(23,2,4), Turnout_Grid[12]=(50,16,4),
-	Turnout_Grid[13]=(50,20,4), Turnout_Grid[14]=(33,24,4), Turnout_Grid[15]=(7,11,4), Turnout_Grid[16]=(8,18,4),
-	Turnout_Grid[17]=(4,20,4), Turnout_Grid[18]=(31,4,4),Turnout_Grid[19]=(51,15,4),Turnout_Grid[20]=(52,14,4),
+	Turnout_Grid[9]=(7,19,4), Turnout_Grid[10]=(20,2,4), Turnout_Grid[11]=(23,2,4), Turnout_Grid[12]=(50,16,4),
+	Turnout_Grid[13]=(50,20,4), Turnout_Grid[14]=(33,24,4), Turnout_Grid[15]=(7,16,4), Turnout_Grid[16]=(8,15,4),
+	Turnout_Grid[17]=(4,23,4), Turnout_Grid[18]=(31,4,4),Turnout_Grid[19]=(51,15,4),Turnout_Grid[20]=(52,14,4),
 
 '**	Initialize panel location of track blocks and sprite locations of corresponding sprites
 
