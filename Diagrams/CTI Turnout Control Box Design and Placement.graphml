@@ -206,7 +206,7 @@ Green Button = Remote Tortoise</y:NodeLabel>
           <y:Fill color="#000000" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="16" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="23.6015625" modelName="eight_pos" modelPosition="s" textColor="#000000" visible="true" width="124.0390625" x="7.98046875" y="176.0">Tortoise #5 (A-1)</y:NodeLabel>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" modelName="eight_pos" modelPosition="n" textColor="#000000" visible="true" width="171.0859375" x="-15.54296875" y="-37.40234375">PRIMARY BOX
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" modelName="eight_pos" modelPosition="n" textColor="#000000" visible="true" width="171.0859375" x="-15.54296875" y="-37.40234375">SECONDARY BOX
 Green Button=Remote Tortoise</y:NodeLabel>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="custom" textColor="#000000" visible="true" width="57.35546875" x="41.322265625" y="76.6494140625">Tortoise 1<y:LabelModel>
               <y:SmartNodeLabelModel distance="4.0"/>
@@ -298,7 +298,7 @@ Green Button=Remote Tortoise</y:NodeLabel>
           <y:Fill color="#000000" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="16" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="23.6015625" modelName="eight_pos" modelPosition="s" textColor="#000000" visible="true" width="124.0390625" x="7.98046875" y="176.0">Tortoise #8 (A-2)</y:NodeLabel>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" modelName="eight_pos" modelPosition="n" textColor="#000000" visible="true" width="177.75390625" x="-18.876953125" y="-37.40234375">SECONDARY BOX
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" modelName="eight_pos" modelPosition="n" textColor="#000000" visible="true" width="177.75390625" x="-18.876953125" y="-37.40234375">PRIMARY BOX
 Green Button = Remote Tortoise</y:NodeLabel>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="custom" textColor="#000000" visible="true" width="64.029296875" x="37.9853515625" y="76.6494140625">Tortoise #4<y:LabelModel>
               <y:SmartNodeLabelModel distance="4.0"/>
@@ -1797,7 +1797,7 @@ Atlas #? (A-10, ATA7,8)
         <y:PolyLineEdge>
           <y:Path sx="6.734187735748094" sy="-66.61682386794016" tx="8.444854402414819" ty="-70.61682386794021"/>
           <y:LineStyle color="#000000" type="line" width="2.0"/>
-          <y:Arrows source="none" target="delta"/>
+          <y:Arrows source="delta" target="none"/>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
       </data>
@@ -1807,7 +1807,7 @@ Atlas #? (A-10, ATA7,8)
         <y:PolyLineEdge>
           <y:Path sx="2.984187735748094" sy="-55.366823867940155" tx="3.444854402414819" ty="-59.36682386794021"/>
           <y:LineStyle color="#FFCC00" type="line" width="2.0"/>
-          <y:Arrows source="none" target="delta"/>
+          <y:Arrows source="delta" target="none"/>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
       </data>
@@ -1817,7 +1817,7 @@ Atlas #? (A-10, ATA7,8)
         <y:PolyLineEdge>
           <y:Path sx="-2.015812264251906" sy="-10.366823867940155" tx="-2.805145597585181" ty="-14.366823867940212"/>
           <y:LineStyle color="#FF6600" type="line" width="2.0"/>
-          <y:Arrows source="none" target="delta"/>
+          <y:Arrows source="delta" target="none"/>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
       </data>
@@ -1827,7 +1827,7 @@ Atlas #? (A-10, ATA7,8)
         <y:PolyLineEdge>
           <y:Path sx="4.234187735748094" sy="-31.616823867940155" tx="-70.04147372258518" ty="-35.61682386794021"/>
           <y:LineStyle color="#3366FF" type="line" width="2.0"/>
-          <y:Arrows source="none" target="delta"/>
+          <y:Arrows source="delta" target="none"/>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
       </data>
