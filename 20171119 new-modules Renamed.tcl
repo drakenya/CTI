@@ -107,27 +107,24 @@ SMARTCABS:
 	SmartCab_03,	'Brown
 
 
-'''''''''''
-''''''''''' Turnout Control Board "1"
-'''''''''''
+' YardMaster (Module 1)
+CONTROLS:	
+	TurnoutBd1_1YardMstr01_t05, TurnoutBd1_1YardMstr02_t08, TurnoutBd1_1YardMstr03_t14
+	TurnoutBd1_1YardMstr04_tbd, TurnoutBd1_1YardMstr05_t12, TurnoutBd1_1YardMstr06_t19
+	TurnoutBd1_1YardMstr07_t20, TurnoutBd1_1YardMstr08_t06, TurnoutBd1_1YardMstr09_t07
+	TurnoutBd1_1YardMstr10_tbd, TurnoutBd1_1YardMstr11_tbd, TurnoutBd1_1YardMstr12_spare
+	TurnoutBd1_1YardMstr13_t13, TurnoutBd1_1YardMstr14_tbd, TurnoutBd1_1YardMstr15_tbd
+	TurnoutBd1_1YardMstr16_spare
 
-' YardMaster (Module â€œ1â€)
-'  CONTROLS:	
-	'TurnoutBd1_1YardMstr01_t05, TurnoutBd1_1YardMstr02_t08, TurnoutBd1_1YardMstr03_t14
-	'TurnoutBd1_1YardMstr04_tbd, TurnoutBd1_1YardMstr05_t06, TurnoutBd1_1YardMstr06_t19
-	'TurnoutBd1_1YardMstr07_t20, TurnoutBd1_1YardMstr08_t12, TurnoutBd1_1YardMstr09_t07
-	'TurnoutBd1_1YardMstr10_tbd, TurnoutBd1_1YardMstr11_tbd, TurnoutBd1_1YardMstr12_spare
-	'TurnoutBd1_1YardMstr13_t13, TurnoutBd1_1YardMstr14_tbd, TurnoutBd1_1YardMstr15_tbd
-	'TurnoutBd1_1YardMstr16_spare
+' Sentry (Module 2)
+  SENSORS:		'replaced SES_TCa2_ with TurnoutBd1_2Sentry
+	TurnoutBd1_2Sentry01_t05, TurnoutBd1_2Sentry02_t08, TurnoutBd1_2Sentry03_t14
+	TurnoutBd1_2Sentry04_tbd, TurnoutBd1_2Sentry05_t12, TurnoutBd1_2Sentry06_t19
+	TurnoutBd1_2Sentry07_t20, TurnoutBd1_2Sentry08_t06, TurnoutBd1_2Sentry09_t07
+	TurnoutBd1_2Sentry10_tbd, TurnoutBd1_2Sentry11_tbd, TurnoutBd1_2Sentry12_spare
+	TurnoutBd1_2Sentry13_t13, TurnoutBd1_2Sentry14_tbd, TurnoutBd1_2Sentry15_tbd
+	TurnoutBd1_2Sentry16_spare
 
-' Sentry (Module â€œ2â€)
-'  SENSORS:		'replaced SES_TCa2_ with TurnoutBd1_2Sentry
-	'TurnoutBd1_2Sentry01_t05, TurnoutBd1_2Sentry02_t08, TurnoutBd1_2Sentry03_t14
-	'TurnoutBd1_2Sentry04_tbd, TurnoutBd1_2Sentry05_t06, TurnoutBd1_2Sentry06_t19
-	'TurnoutBd1_2Sentry07_t20, TurnoutBd1_2Sentry08_t12, TurnoutBd1_2Sentry09_t07
-	'TurnoutBd1_2Sentry10_tbd, TurnoutBd1_2Sentry11_tbd, TurnoutBd1_2Sentry12_spare
-	'TurnoutBd1_2Sentry13_t13, TurnoutBd1_2Sentry14_tbd, TurnoutBd1_2Sentry15_tbd
-	'TurnoutBd1_2Sentry16_spare
 
 
 '''''''''''
@@ -157,13 +154,13 @@ BlockBrd1_1TBrainSens01_8E#, BlockBrd1_1TBrainSens02_8W#, BlockBrd1_1TBrainSens0
 ''''''''''' Atlas Control Board "1"
 '''''''''''
 
-  'CONTROLS:	
- 	'Atlas1_Switchman01_TBDPrim, Atlas1_Switchman02_TBDSec, Atlas1_Switchman03_t19Prim,
-'Atlas1_Switchman04_t19Sec, Atlas1_Switchman05_t20Prim, Atlas1_Switchman06_t20Sec,
-'Atlas1_Switchman07_TBDPrim, Atlas1_Switchman08_TBDSec, Atlas1_Switchman09_TBDPrim, 
-'Atlas1_Switchman10_TBDSec, Atlas1_Switchman11_TBDPrim, Atlas1_Switchman12_TBDSec,
-'Atlas1_Switchman13_TBDPrim, Atlas1_Switchman14_TBDSec, 
-'Atlas1_Switchman15_Spare, Atlas1_Switchman16_Spare
+  CONTROLS:	
+ 	Atlas1_Switchman01_TBDPrim, Atlas1_Switchman02_TBDSec, Atlas1_Switchman03_t19Prim,
+Atlas1_Switchman04_t19Sec, Atlas1_Switchman05_t20Prim, Atlas1_Switchman06_t20Sec,
+Atlas1_Switchman07_TBDPrim, Atlas1_Switchman08_TBDSec, Atlas1_Switchman09_TBDPrim, 
+Atlas1_Switchman10_TBDSec, Atlas1_Switchman11_TBDPrim, Atlas1_Switchman12_TBDSec,
+Atlas1_Switchman13_TBDPrim, Atlas1_Switchman14_TBDSec, 
+Atlas1_Switchman15_Spare, Atlas1_Switchman16_Spare
 
 
 
@@ -176,12 +173,12 @@ BlockBrd1_1TBrainSens01_8E#, BlockBrd1_1TBrainSens02_8W#, BlockBrd1_1TBrainSens0
    SENSORS:	BlockBrd2_1TBrainSens01_7E#, BlockBrd2_1TBrainSens02_7W#, BlockBrd2_1TBrainSens03_11E#, BlockBrd2_1TBrainSens04_11W# 
 
 ' Train Brain Module "2"
-   CONTROLS: 	BlockBrd2_2TBrainCont01_07, BlockBrd2_2TBrainCont02_11, BlockBrd2_2TBrainCont03_04, BlockBrd2_2TBrainCont04_12
-   SENSORS:	BlockBrd2_2TBrainSens01_4E#, BlockBrd2_2TBrainSens02_4W#, BlockBrd2_2TBrainSens03_12E#, BlockBrd2_2TBrainSens04_12W#
+CONTROLS: 	BlockBrd2_2TBrainCont01_07, BlockBrd2_2TBrainCont02_11, BlockBrd2_2TBrainCont03_04, BlockBrd2_2TBrainCont04_12
+SENSORS:	BlockBrd2_2TBrainSens01_4E#, BlockBrd2_2TBrainSens02_4W#, BlockBrd2_2TBrainSens03_12E#, BlockBrd2_2TBrainSens04_12W#
 
 'Dash-8 Module "3"
 CONTROLS:	BlockBrd2_3Dash01_07, BlockBrd2_3Dash02_11, BlockBrd2_3Dash03_04, BlockBrd2_3Dash04_12,
-BlockBrd2_3Dash05_spare, BlockBrd2_3Dash06_spare, BlockBrd2_3Dash07_spare, BlockBrd2_3Dash08_spare
+       BlockBrd2_3Dash05_spare, BlockBrd2_3Dash06_spare, BlockBrd2_3Dash07_spare, BlockBrd2_3Dash08_spare
 
 
 
@@ -189,12 +186,12 @@ BlockBrd2_3Dash05_spare, BlockBrd2_3Dash06_spare, BlockBrd2_3Dash07_spare, Block
 ''''''''''' Atlas Control Board "2"
 '''''''''''
 
-  'CONTROLS:	
-      'Atlas2_Switchman01_TBDPrim, Atlas2_Switchman02_TBDSec, Atlas2_Switchman03_TBDPrim,
-'Atlas2_Switchman04_TBDSec, Atlas2_Switchman05_TBDPrim, Atlas2_Switchman06_TBDSec, 
-'Atlas2_Switchman07_Spare, Atlas2_Switchman08_Spare, Atlas2_Switchman09_Spare, Atlas2_Switchman10_Spare,
-'Atlas2_Switchman11_Spare, Atlas2_Switchman12_Spare, Atlas2_Switchman13_Spare, Atlas2_Switchman14_Spare,
-'Atlas2_Switchman15_Spare, Atlas2_Switchman16_Spare
+  CONTROLS:	
+      Atlas2_Switchman01_TBDPrim, Atlas2_Switchman02_TBDSec, Atlas2_Switchman03_TBDPrim,
+Atlas2_Switchman04_TBDSec, Atlas2_Switchman05_TBDPrim, Atlas2_Switchman06_TBDSec, 
+Atlas2_Switchman07_Spare, Atlas2_Switchman08_Spare, Atlas2_Switchman09_Spare, Atlas2_Switchman10_Spare,
+Atlas2_Switchman11_Spare, Atlas2_Switchman12_Spare, Atlas2_Switchman13_Spare, Atlas2_Switchman14_Spare,
+Atlas2_Switchman15_Spare, Atlas2_Switchman16_Spare
 
 
 
@@ -204,7 +201,7 @@ BlockBrd2_3Dash05_spare, BlockBrd2_3Dash06_spare, BlockBrd2_3Dash07_spare, Block
 ''''''''''' Turnout Control Board "2"
 '''''''''''
 
-' YardMaster (Module “1”)
+' YardMaster (Module Ã¢â‚¬Å“1Ã¢â‚¬Â)
    CONTROLS:	'replaced YMC_TCb1_ with TurnoutBd2_1YardMaster 
 	TurnoutBd2_1YardMstr01_x, TurnoutBd2_1YardMstr02_t02, TurnoutBd2_1YardMstr03_t01
 	TurnoutBd2_1YardMstr04_t04, TurnoutBd2_1YardMstr05_t09, TurnoutBd2_1YardMstr06_t10
@@ -213,7 +210,7 @@ BlockBrd2_3Dash05_spare, BlockBrd2_3Dash06_spare, BlockBrd2_3Dash07_spare, Block
 	TurnoutBd2_1YardMstr13_t11, TurnoutBd2_1YardMstr14_tbd, TurnoutBd2_1YardMstr15_tbd
 	TurnoutBd2_1YardMstr16_spare
 
-' Sentry (Module “2”)
+' Sentry (Module Ã¢â‚¬Å“2Ã¢â‚¬Â)
    SENSORS:		'replaced SES_TCb2_ with TurnoutBd2_2Sentry
 	TurnoutBd2_2Sentry01_x, TurnoutBd2_2Sentry02_t02, TurnoutBd2_2Sentry03_t01
 	TurnoutBd2_2Sentry04_t04, TurnoutBd2_2Sentry05_t09, TurnoutBd2_2Sentry06_t10
@@ -238,7 +235,7 @@ SENSORS:	BlockBrd3_2TBrainSens01_10E#, BlockBrd3_2TBrainSens02_10W#, BlockBrd3_2
 
 'Dash-8 Module "3"
 CONTROLS:	BlockBrd3_3Dash01_02, BlockBrd3_3Dash02_06, BlockBrd3_3Dash03_10, BlockBrd3_3Dash04_03,
-BlockBrd3_3Dash05_spare, BlockBrd3_3Dash06_spare, BlockBrd3_3Dash07_spare, BlockBrd3_3Dash08_spare
+       BlockBrd3_3Dash05_spare, BlockBrd3_3Dash06_spare, BlockBrd3_3Dash07_spare, BlockBrd3_3Dash08_spare
 
 
 
@@ -248,11 +245,11 @@ BlockBrd3_3Dash05_spare, BlockBrd3_3Dash06_spare, BlockBrd3_3Dash07_spare, Block
 '''''''''''
 
 ' Sentry "1"
-   SENSORS:	
-'IRDDetectBd1_Sentry01_1W, IRDDetectBd1_Sentry02_1E, IRDDetectBd1_Sentry03_2W, IRDDetectBd1_Sentry04_2E,
-'IRDDetectBd1_Sentry05_3W, IRDDetectBd1_Sentry06_3E, IRDDetectBd1_Sentry07_4W, IRDDetectBd1_Sentry08_4E,
-	'IRDDetectBd1_Sentry09_5W, IRDDetectBd1_Sentry10_5E, IRDDetectBd1_Sentry11_6W, IRDDetectBd1_Sentry12_6E,
-	'IRDDetectBd1_Sentry13_7W, IRDDetectBd1_Sentry14_7E, IRDDetectBd1_Sentry15_8W, IRDDetectBd1_Sentry16_8E
+'   SENSORS:	
+'       IRDDetectBd1_Sentry01_1W, IRDDetectBd1_Sentry02_1E, IRDDetectBd1_Sentry03_2W, IRDDetectBd1_Sentry04_2E,
+'       IRDDetectBd1_Sentry05_3W, IRDDetectBd1_Sentry06_3E, IRDDetectBd1_Sentry07_4W, IRDDetectBd1_Sentry08_4E,
+'	IRDDetectBd1_Sentry09_5W, IRDDetectBd1_Sentry10_5E, IRDDetectBd1_Sentry11_6W, IRDDetectBd1_Sentry12_6E,
+'	IRDDetectBd1_Sentry13_7W, IRDDetectBd1_Sentry14_7E, IRDDetectBd1_Sentry15_8W, IRDDetectBd1_Sentry16_8E
 
 '''''''''''
 ''''''''''' IRD Detection Board "2"
@@ -828,78 +825,81 @@ WHEN InitStatus=INITIALIZING do '(All lines must end in a comma to continue the 
 	LAYOUT_CONTROL_INCLUDE_VACATED_BLOCK = False
 
 ' set address pointers to cab selection controllers
-'' board "1",
+''	board "1",
 	CAB_AorB_Pointer[8]=&BlockBrd1_1TBrainCont01_08,CAB_AorB_Pointer[1]=&BlockBrd1_1TBrainCont02_01,
-	CAB_AorB_Pointer[5]=&BlockBrd1_1TBrainCont03_05, CAB_AorB_Pointer[9]=&BlockBrd1_1TBrainCont04_09,
+       CAB_AorB_Pointer[5]=&BlockBrd1_1TBrainCont03_05, CAB_AorB_Pointer[9]=&BlockBrd1_1TBrainCont04_09,
 	CAB_CorD_Pointer[8]=&BlockBrd1_2TBrainCont01_08,CAB_CorD_Pointer[1]=&BlockBrd1_2TBrainCont02_01,
-	CAB_CorD_Pointer[5]=&BlockBrd1_2TBrainCont03_05, CAB_CorD_Pointer[9]=&BlockBrd1_2TBrainCont04_09,
+       CAB_CorD_Pointer[5]=&BlockBrd1_2TBrainCont03_05, CAB_CorD_Pointer[9]=&BlockBrd1_2TBrainCont04_09,
 	CAB_ABorCD_Pointer[8]=&BlockBrd1_3Dash01_08, CAB_ABorCD_Pointer[1]=&BlockBrd1_3Dash02_01,
-CAB_ABorCD_Pointer[5]=&BlockBrd1_3Dash03_05, CAB_ABorCD_Pointer[9]=&BlockBrd1_3Dash04_09,
+       CAB_ABorCD_Pointer[5]=&BlockBrd1_3Dash03_05, CAB_ABorCD_Pointer[9]=&BlockBrd1_3Dash04_09,
 	' SPARE=&BlockBrd1_3Dash05, SPARE=&BlockBrd1_3Dash06, SPARE=&BlockBrd1_3Dash07, SPARE=&BlockBrd1_3Dash08,
 
-'' board "2",
+''	board "2",
 	CAB_AorB_Pointer[7]=&BlockBrd2_1TBrainCont01_07,CAB_AorB_Pointer[11]=&BlockBrd2_1TBrainCont02_11,
-	CAB_AorB_Pointer[4]=&BlockBrd2_1TBrainCont03_04, CAB_AorB_Pointer[12]=&BlockBrd2_1TBrainCont04_12,
+       CAB_AorB_Pointer[4]=&BlockBrd2_1TBrainCont03_04, CAB_AorB_Pointer[12]=&BlockBrd2_1TBrainCont04_12,
 	CAB_CorD_Pointer[7]=&BlockBrd2_2TBrainCont01_07,CAB_CorD_Pointer[11]=&BlockBrd2_2TBrainCont02_11,
-	CAB_CorD_Pointer[4]=&BlockBrd2_2TBrainCont03_04, CAB_CorD_Pointer[12]=&BlockBrd2_2TBrainCont04_12,
+       CAB_CorD_Pointer[4]=&BlockBrd2_2TBrainCont03_04, CAB_CorD_Pointer[12]=&BlockBrd2_2TBrainCont04_12,
 	CAB_ABorCD_Pointer[7]=&BlockBrd2_3Dash01_07, CAB_ABorCD_Pointer[11]=&BlockBrd2_3Dash02_11,
-	CAB_ABorCD_Pointer[4]=&BlockBrd2_3Dash03_04, CAB_ABorCD_Pointer[12]=&BlockBrd2_3Dash04_12,
+       CAB_ABorCD_Pointer[4]=&BlockBrd2_3Dash03_04, CAB_ABorCD_Pointer[12]=&BlockBrd2_3Dash04_12,
 	' SPARE=&BlockBrd2_3Dash05, SPARE=&BlockBrd2_3Dash06, SPARE=&BlockBrd2_3Dash07, SPARE=&BlockBrd2_3Dash08,
 
-'' board "3",
+''	board "3",
 	CAB_AorB_Pointer[2]=&BlockBrd3_1TBrainCont01_02,CAB_AorB_Pointer[6]=&BlockBrd3_1TBrainCont02_06,
-	CAB_AorB_Pointer[10]=&BlockBrd3_1TBrainCont03_10, CAB_AorB_Pointer[3]=&BlockBrd3_1TBrainCont04_03,
+       CAB_AorB_Pointer[10]=&BlockBrd3_1TBrainCont03_10, CAB_AorB_Pointer[3]=&BlockBrd3_1TBrainCont04_03,
 	CAB_CorD_Pointer[2]=&BlockBrd3_2TBrainCont01_02,CAB_CorD_Pointer[6]=&BlockBrd3_2TBrainCont02_06,
-	CAB_CorD_Pointer[10]=&BlockBrd3_2TBrainCont03_10, CAB_CorD_Pointer[3]=&BlockBrd3_2TBrainCont04_03,
+       CAB_CorD_Pointer[10]=&BlockBrd3_2TBrainCont03_10, CAB_CorD_Pointer[3]=&BlockBrd3_2TBrainCont04_03,
 	CAB_ABorCD_Pointer[2]=&BlockBrd3_3Dash01_02, CAB_ABorCD_Pointer[6]=&BlockBrd3_3Dash02_06,
-	CAB_ABorCD_Pointer[10]=&BlockBrd3_3Dash03_10, CAB_ABorCD_Pointer[3]=&BlockBrd3_3Dash04_03,
+       CAB_ABorCD_Pointer[10]=&BlockBrd3_3Dash03_10, CAB_ABorCD_Pointer[3]=&BlockBrd3_3Dash04_03,
 	' SPARE=&BlockBrd3_3Dash05, SPARE=&BlockBrd3_3Dash06, SPARE=&BlockBrd3_3Dash07, SPARE=&BlockBrd3_3Dash08,
 
 
 ' set address pointers to Current Detector Sensors
-'' board "1"
+''	board "1"
 	CD_East_Pointer[8]=&BlockBrd1_1TBrainSens01_8E, CD_West_Pointer[8]=&BlockBrd1_1TBrainSens02_8W,
-	CD_East_Pointer[1]=&BlockBrd1_1TBrainSens03_1E, CD_West_Pointer[1]=&BlockBrd1_1TBrainSens04_1W,
+       CD_East_Pointer[1]=&BlockBrd1_1TBrainSens03_1E, CD_West_Pointer[1]=&BlockBrd1_1TBrainSens04_1W,
 	CD_East_Pointer[5]=&BlockBrd1_2TBrainSens01_5E, CD_West_Pointer[5]=&BlockBrd1_2TBrainSens02_5W,
-	CD_East_Pointer[9]=&BlockBrd1_2TBrainSens03_9E, CD_West_Pointer[9]=&BlockBrd1_2TBrainSens04_9W,
+       CD_East_Pointer[9]=&BlockBrd1_2TBrainSens03_9E, CD_West_Pointer[9]=&BlockBrd1_2TBrainSens04_9W,
 
-'' board "2"
+''	board "2"
 	CD_East_Pointer[7]=&BlockBrd2_1TBrainSens01_7E, CD_West_Pointer[7]=&BlockBrd2_1TBrainSens02_7W,
-	CD_East_Pointer[11]=&BlockBrd2_1TBrainSens03_11E, CD_West_Pointer[11]=&BlockBrd2_1TBrainSens04_11W,
+       CD_East_Pointer[11]=&BlockBrd2_1TBrainSens03_11E, CD_West_Pointer[11]=&BlockBrd2_1TBrainSens04_11W,
 	CD_East_Pointer[4]=&BlockBrd2_2TBrainSens01_4E, CD_West_Pointer[4]=&BlockBrd2_2TBrainSens02_4W,
-	CD_East_Pointer[12]=&BlockBrd2_2TBrainSens03_12E, CD_West_Pointer[12]=&BlockBrd2_2TBrainSens04_12W,
+       CD_East_Pointer[12]=&BlockBrd2_2TBrainSens03_12E, CD_West_Pointer[12]=&BlockBrd2_2TBrainSens04_12W,
 
-'' board "3"
+''	board "3"
 	CD_East_Pointer[2]=&BlockBrd3_1TBrainSens01_2E, CD_West_Pointer[2]=&BlockBrd3_1TBrainSens02_2W,
-	CD_East_Pointer[6]=&BlockBrd3_1TBrainSens03_6E, CD_West_Pointer[6]=&BlockBrd3_1TBrainSens04_6W,
+       CD_East_Pointer[6]=&BlockBrd3_1TBrainSens03_6E, CD_West_Pointer[6]=&BlockBrd3_1TBrainSens04_6W,
 	CD_East_Pointer[10]=&BlockBrd3_2TBrainSens01_10E, CD_West_Pointer[10]=&BlockBrd3_2TBrainSens02_10W,
-	CD_East_Pointer[3]=&BlockBrd3_2TBrainSens03_3E, CD_West_Pointer[3]=&BlockBrd3_2TBrainSens04_3W,
+       CD_East_Pointer[3]=&BlockBrd3_2TBrainSens03_3E, CD_West_Pointer[3]=&BlockBrd3_2TBrainSens04_3W,
 
 
 ' set address pointers to IRD Detector Sensors
-'' board "1"
+''	board "1"
 
-'IRD_East_Pointer[1]=&IRDDetectBd1_Sentry02_1E, IRD_West_Pointer[1]=&IRDDetectBd1_Sentry01_1W,
-'IRD_East_Pointer[2]=&IRDDetectBd1_Sentry04_2E, IRD_West_Pointer[2]=&IRDDetectBd1_Sentry03_2W,
-'IRD_East_Pointer[3]=&IRDDetectBd1_Sentry06_3E, IRD_West_Pointer[3]=&IRDDetectBd1_Sentry05_3W,
-'IRD_East_Pointer[4]=&IRDDetectBd1_Sentry08_4E, IRD_West_Pointer[4]=&IRDDetectBd1_Sentry07_4W,
-'IRD_East_Pointer[5]=&IRDDetectBd1_Sentry10_5E, IRD_West_Pointer[5]=&IRDDetectBd1_Sentry09_5W,
-'IRD_East_Pointer[6]=&IRDDetectBd1_Sentry12_6E, IRD_West_Pointer[6]=&IRDDetectBd1_Sentry11_6W,
-'IRD_East_Pointer[7]=&IRDDetectBd1_Sentry14_7E, IRD_West_Pointer[7]=&IRDDetectBd1_Sentry13_7W,
-'IRD_East_Pointer[8]=&IRDDetectBd1_Sentry16_8E, IRD_West_Pointer[8]=&IRDDetectBd1_Sentry15_8W
-
-
+'       IRD_East_Pointer[1]=&IRDDetectBd1_Sentry02_1E, IRD_West_Pointer[1]=&IRDDetectBd1_Sentry01_1W,
+'       IRD_East_Pointer[2]=&IRDDetectBd1_Sentry04_2E, IRD_West_Pointer[2]=&IRDDetectBd1_Sentry03_2W,
+'       IRD_East_Pointer[3]=&IRDDetectBd1_Sentry06_3E, IRD_West_Pointer[3]=&IRDDetectBd1_Sentry05_3W,
+'       IRD_East_Pointer[4]=&IRDDetectBd1_Sentry08_4E, IRD_West_Pointer[4]=&IRDDetectBd1_Sentry07_4W,
+'       IRD_East_Pointer[5]=&IRDDetectBd1_Sentry10_5E, IRD_West_Pointer[5]=&IRDDetectBd1_Sentry09_5W,
+'       IRD_East_Pointer[6]=&IRDDetectBd1_Sentry12_6E, IRD_West_Pointer[6]=&IRDDetectBd1_Sentry11_6W,
+'       IRD_East_Pointer[7]=&IRDDetectBd1_Sentry14_7E, IRD_West_Pointer[7]=&IRDDetectBd1_Sentry13_7W,
+'       IRD_East_Pointer[8]=&IRDDetectBd1_Sentry16_8E, IRD_West_Pointer[8]=&IRDDetectBd1_Sentry15_8W
+       
+       
+       
+       
+       
 
 ' set address pointers to Turnout_Controls
 
 	'Turnout_Pointer[5]=&TurnoutBd1_1YardMstr01_t05,
-'Turnout_Pointer[8]=&TurnoutBd1_1YardMstr02_t08,
+       'Turnout_Pointer[8]=&TurnoutBd1_1YardMstr02_t08,
 	'Turnout_Pointer[14]=&TurnoutBd1_1YardMstr03_t14,
 	'TBD Turnout_Pointer[atlas_TBD]=&TurnoutBd1_1YardMstr04_TBD,
-	'Turnout_Pointer[6]=&TurnoutBd1_1YardMstr05_t06,
+	'Turnout_Pointer[12]=&TurnoutBd1_1YardMstr05_t12,
 	'Turnout_Pointer[19]=&TurnoutBd1_1YardMstr06_t19,
 	'Turnout_Pointer[20]=&TurnoutBd1_1YardMstr07_t20,
-	'Turnout_Pointer[12]=&TurnoutBd1_1YardMstr08_t12,
+	'Turnout_Pointer[6]=&TurnoutBd1_1YardMstr08_t06,
 	'Turnout_Pointer[7]=&TurnoutBd1_1YardMstr09_t07,
 	'TBD Turnout_Pointer[atlas_TBD]=&TurnoutBd1_1YardMstr10_TBD,
 	'TBD Turnout_Pointer[atlas_TBD]=&TurnoutBd1_1YardMstr11_TBD,
@@ -920,11 +920,11 @@ CAB_ABorCD_Pointer[5]=&BlockBrd1_3Dash03_05, CAB_ABorCD_Pointer[9]=&BlockBrd1_3D
 	Turnout_Pointer[3]=&TurnoutBd2_1YardMstr09_t03,
 	Turnout_Pointer[18]=&TurnoutBd2_1YardMstr10_t18,
 	'NIS Turnout_Pointer[15]=&TurnoutBd2_1YardMstr11_T15,
-'TBD Turnout_Pointer[atlas TBD]=&TurnoutBd2_1YardMstr12_TBD
-'NIS Turnout_Pointer[11]=&TurnoutBd2_1YardMstr13_t11
-'TBD Turnout_Pointer[atlas TBD]=&TurnoutBd2_1YardMstr14_TBD
-'TBD Turnout_Pointer[atlas TBD]=&TurnoutBd2_1YardMstr15_TBD
-'SPARE TurnoutBd2_1YardMstr16,
+       'TBD Turnout_Pointer[atlas TBD]=&TurnoutBd2_1YardMstr12_TBD
+       'NIS Turnout_Pointer[11]=&TurnoutBd2_1YardMstr13_t11
+       'TBD Turnout_Pointer[atlas TBD]=&TurnoutBd2_1YardMstr14_TBD
+       'TBD Turnout_Pointer[atlas TBD]=&TurnoutBd2_1YardMstr15_TBD
+       'SPARE TurnoutBd2_1YardMstr16,
 
 ' set address pointers to Turnout Push Button Sensors
 
@@ -932,10 +932,10 @@ CAB_ABorCD_Pointer[5]=&BlockBrd1_3Dash03_05, CAB_ABorCD_Pointer[9]=&BlockBrd1_3D
 	'Turnout_Button_Pointer[8]=&TurnoutBd1_2Sentry02_t08,
 	'Turnout_Button_Pointer[14]=&TurnoutBd1_2Sentry03_t14,
 	'TBD Turnout_Button_Pointer[atlas_TBD]=&TurnoutBd1_2Sentry04_TBD,
-	'Turnout_Button_Pointer[6]=&TurnoutBd1_2Sentry05_t06,
+	'Turnout_Button_Pointer[12]=&TurnoutBd1_2Sentry05_t12,
 	'Turnout_Button_Pointer[19]=&TurnoutBd1_2Sentry06_t19,
 	'Turnout_Button_Pointer[20]=&TurnoutBd1_2Sentry07_t20,
-	'Turnout_Button_Pointer[12]=&TurnoutBd1_2Sentry08_t12,
+	'Turnout_Button_Pointer[6]=&TurnoutBd1_2Sentry08_t06,
 	'Turnout_Button_Pointer[7]=&TurnoutBd1_2Sentry09_t07,
 	'TBD Turnout_Button_Pointer[atlas_TBD]=&TurnoutBd1_2Sentry10_TBD,
 	'TBD Turnout_Button_Pointer[atlas_TBD]=&TurnoutBd1_2Sentry11_TBD,
@@ -958,14 +958,14 @@ CAB_ABorCD_Pointer[5]=&BlockBrd1_3Dash03_05, CAB_ABorCD_Pointer[9]=&BlockBrd1_3D
 	' NIS Turnout_Button_Pointer[15]=&TurnoutBd2_2Sentry11_t15,
 	'TBD Turnout_Button_Pointer[Atlas TBD]=&TurnoutBd2_2Sentry12_TBD,
 	'NIS Turnout_Button_Pointer[11]=&TurnoutBd2_2Sentry13_t11,
-'TBD Turnout_Button_Pointer[Atlas TBD]=&TurnoutBd2_2Sentry14_TBD,
-'TBD Turnout_Button_Pointer[Atlas TBD]=&TurnoutBd2_2Sentry15_TBD,
-'SPARE Turnout_Button_Pointer[Spare]=&TurnoutBd2_2Sentry16_Spare,
-
-
-'TBD Atlas_Turnout_Pointer_Primary[TBD]=&Atlas1_Switchman01_TBDPrim, 
-'TBD Atlas_Turnout_Pointer_Primary[TBD]=&Atlas1_Switchman02_TBDSec, 
-'Atlas_Turnout_Pointer_Primary[19]=&Atlas1_Switchman03_t19Prim,
+       'TBD Turnout_Button_Pointer[Atlas TBD]=&TurnoutBd2_2Sentry14_TBD,
+       'TBD Turnout_Button_Pointer[Atlas TBD]=&TurnoutBd2_2Sentry15_TBD,
+       'SPARE Turnout_Button_Pointer[Spare]=&TurnoutBd2_2Sentry16_Spare,
+       
+       
+       'TBD Atlas_Turnout_Pointer_Primary[TBD]=&Atlas1_Switchman01_TBDPrim, 
+       'TBD Atlas_Turnout_Pointer_Primary[TBD]=&Atlas1_Switchman02_TBDSec, 
+       'Atlas_Turnout_Pointer_Primary[19]=&Atlas1_Switchman03_t19Prim,
 'Atlas_Turnout_Pointer_Secondary[19]=&Atlas1_Switchman04_t19Sec, 
 'Atlas_Turnout_Pointer_Primary[20]=&Atlas1_Switchman05_t20Prim, 
 'Atlas_Turnout_Pointer_Secondary[20]=&Atlas1_Switchman06_t20Sec,
@@ -978,10 +978,10 @@ CAB_ABorCD_Pointer[5]=&BlockBrd1_3Dash03_05, CAB_ABorCD_Pointer[9]=&BlockBrd1_3D
 'TBD Atlas_Turnout_Pointer_Primary[TBD]=&Atlas1_Switchman13_TBDPrim, 
 'TBD Atlas_Turnout_Pointer_Primary[TBD]=&Atlas1_Switchman14_TBDSec, 
 'SPARES Atlas1_Switchman15_Spare, Atlas1_Switchman16_Spare
-
-'TBD Atlas_Turnout_Pointer_Primary[TBD]=&Atlas2_Switchman01_TBDPrim, 
-'TBD Atlas_Turnout_Pointer_Secondary[TBD]=&Atlas2_Switchman02_TBDSec, 
-'TBD Atlas_Turnout_Pointer_Primary[TBD]=&Atlas_Turnout_Pointer_Primary[TBD]=&Atlas2_Switchman03_TBDPrim,
+       
+       'TBD Atlas_Turnout_Pointer_Primary[TBD]=&Atlas2_Switchman01_TBDPrim, 
+       'TBD Atlas_Turnout_Pointer_Secondary[TBD]=&Atlas2_Switchman02_TBDSec, 
+       'TBD Atlas_Turnout_Pointer_Primary[TBD]=&Atlas_Turnout_Pointer_Primary[TBD]=&Atlas2_Switchman03_TBDPrim,
 'TBD Atlas_Turnout_Pointer_Secondary[TBD]=&Atlas_Turnout_Pointer_Secondary[TBD]=&Atlas2_Switchman04_TBDSec, 
 'TBD Atlas_Turnout_Pointer_Primary[TBD]=&Atlas_Turnout_Pointer_Primary[TBD]=&Atlas2_Switchman05_TBDPrim, 
 'TBD Atlas_Turnout_Pointer_Secondary[TBD]=&Atlas_Turnout_Pointer_Primary[TBD]=&Atlas2_Switchman06_TBDSec,
@@ -990,7 +990,7 @@ CAB_ABorCD_Pointer[5]=&BlockBrd1_3Dash03_05, CAB_ABorCD_Pointer[9]=&BlockBrd1_3D
 'SPARES Atlas2_Switchman11_Spare, Atlas2_Switchman12_Spare,
 'SPARES Atlas2_Switchman13_Spare, Atlas2_Switchman14_Spare, 
 'SPARES Atlas2_Switchman15_Spare, Atlas2_Switchman16_Spare
-
+       
 
 ' set address pointers to Cab Controls and Functions
 
@@ -1604,3 +1604,4 @@ WHEN LAYOUT_CONTROL_INCLUDE_VACATED_BLOCK = True DO  $Color Track(Vacated_Block_
 WHEN LAYOUT_CONTROL_INCLUDE_VACATED_BLOCK = False DO $Color Track(Vacated_Block_Button) = COLOR_DONT_INCLUDE_VACATED_BLOCK
 
 
+' DO NOT REPLACE THIS LINE AT THE END OF THE FILE
