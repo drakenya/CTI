@@ -155,8 +155,9 @@ BlockBrd1_1TBrainSens01_8E#, BlockBrd1_1TBrainSens02_8W#, BlockBrd1_1TBrainSens0
 '''''''''''
 
   CONTROLS:	
- 	Atlas1_Switchman01_TBDPrim, Atlas1_Switchman02_TBDSec, Atlas1_Switchman03_t19Prim,
-Atlas1_Switchman04_t19Sec, Atlas1_Switchman05_t20Prim, Atlas1_Switchman06_t20Sec,
+ 	Atlas1_Switchman01_t19Prim,
+Atlas1_Switchman02_t19Sec, Atlas1_Switchman03_t20Prim, Atlas1_Switchman04_t20Sec,
+Atlas1_Switchman05_TBDPrim, Atlas1_Switchman06_TBDSec, 
 Atlas1_Switchman07_TBDPrim, Atlas1_Switchman08_TBDSec, Atlas1_Switchman09_TBDPrim, 
 Atlas1_Switchman10_TBDSec, Atlas1_Switchman11_TBDPrim, Atlas1_Switchman12_TBDSec,
 Atlas1_Switchman13_TBDPrim, Atlas1_Switchman14_TBDSec, 
@@ -201,20 +202,20 @@ Atlas2_Switchman15_Spare, Atlas2_Switchman16_Spare
 ''''''''''' Turnout Control Board "2"
 '''''''''''
 
-' YardMaster (Module Ã¢â‚¬Å“1Ã¢â‚¬Â)
-   CONTROLS:	'replaced YMC_TCb1_ with TurnoutBd2_1YardMaster 
+' YardMaster (1)
+   CONTROLS:	 
 	TurnoutBd2_1YardMstr01_x, TurnoutBd2_1YardMstr02_t02, TurnoutBd2_1YardMstr03_t01
 	TurnoutBd2_1YardMstr04_t04, TurnoutBd2_1YardMstr05_t09, TurnoutBd2_1YardMstr06_t10
-	TurnoutBd2_1YardMstr07_t16, TurnoutBd2_1YardMstr08_t17, TurnoutBd2_1YardMstr09_t03
+	TurnoutBd2_1YardMstr07_t17, TurnoutBd2_1YardMstr08_t16, TurnoutBd2_1YardMstr09_t03
 	TurnoutBd2_1YardMstr10_t18, TurnoutBd2_1YardMstr11_t15, TurnoutBd2_1YardMstr12_tbd
 	TurnoutBd2_1YardMstr13_t11, TurnoutBd2_1YardMstr14_tbd, TurnoutBd2_1YardMstr15_tbd
 	TurnoutBd2_1YardMstr16_spare
 
-' Sentry (Module Ã¢â‚¬Å“2Ã¢â‚¬Â)
-   SENSORS:		'replaced SES_TCb2_ with TurnoutBd2_2Sentry
+' Sentry (2)
+   SENSORS:		
 	TurnoutBd2_2Sentry01_x, TurnoutBd2_2Sentry02_t02, TurnoutBd2_2Sentry03_t01
 	TurnoutBd2_2Sentry04_t04, TurnoutBd2_2Sentry05_t09, TurnoutBd2_2Sentry06_t10
-	TurnoutBd2_2Sentry07_t16, TurnoutBd2_2Sentry08_t17, TurnoutBd2_2Sentry09_t03
+	TurnoutBd2_2Sentry07_t17, TurnoutBd2_2Sentry08_t16, TurnoutBd2_2Sentry09_t03
 	TurnoutBd2_2Sentry10_t18, TurnoutBd2_2Sentry11_t15, TurnoutBd2_2Sentry12_tbd
 	TurnoutBd2_2Sentry13_t11, TurnoutBd2_2Sentry14_tbd, TurnoutBd2_2Sentry15_tbd
      	TurnoutBd2_2Sentry16_spare
@@ -481,7 +482,7 @@ SUB Redraw_Extra_Blocks_On_Grid({Local} CabIndex)
 ENDSUB
 
 SUB Redraw_Cab_Block_On_Plan({Local} BlockIndex, CabIndex, BlockStatus)
-	BlockIndex = 0
+	BlockIndex = 1
 
 	UNTIL BlockIndex >= MAX_BLOCK_INDEX QUICKLOOP
 		CabIndex = Block_Cab[BlockIndex]
@@ -511,7 +512,7 @@ SUB Redraw_Cab_Block_On_Plan({Local} BlockIndex, CabIndex, BlockStatus)
 	ENDLOOP
 ENDSUB
 SUB Redraw_Cab_Block_On_Grid({Local} BlockIndex)
-	BlockIndex = 0
+	BlockIndex = 1
 	
 	UNTIL BlockIndex >= MAX_BLOCK_INDEX QUICKLOOP
 		' Reset to gray
@@ -892,14 +893,14 @@ WHEN InitStatus=INITIALIZING do '(All lines must end in a comma to continue the 
 
 ' set address pointers to Turnout_Controls
 
-	'Turnout_Pointer[5]=&TurnoutBd1_1YardMstr01_t05,
-       'Turnout_Pointer[8]=&TurnoutBd1_1YardMstr02_t08,
+	Turnout_Pointer[5]=&TurnoutBd1_1YardMstr01_t05,
+       Turnout_Pointer[8]=&TurnoutBd1_1YardMstr02_t08,
 	'Turnout_Pointer[14]=&TurnoutBd1_1YardMstr03_t14,
 	'TBD Turnout_Pointer[atlas_TBD]=&TurnoutBd1_1YardMstr04_TBD,
-	'Turnout_Pointer[12]=&TurnoutBd1_1YardMstr05_t12,
-	'Turnout_Pointer[19]=&TurnoutBd1_1YardMstr06_t19,
-	'Turnout_Pointer[20]=&TurnoutBd1_1YardMstr07_t20,
-	'Turnout_Pointer[6]=&TurnoutBd1_1YardMstr08_t06,
+	Turnout_Pointer[12]=&TurnoutBd1_1YardMstr05_t12,
+	Turnout_Pointer[19]=&TurnoutBd1_1YardMstr06_t19,
+	Turnout_Pointer[20]=&TurnoutBd1_1YardMstr07_t20,
+	Turnout_Pointer[6]=&TurnoutBd1_1YardMstr08_t06,
 	'Turnout_Pointer[7]=&TurnoutBd1_1YardMstr09_t07,
 	'TBD Turnout_Pointer[atlas_TBD]=&TurnoutBd1_1YardMstr10_TBD,
 	'TBD Turnout_Pointer[atlas_TBD]=&TurnoutBd1_1YardMstr11_TBD,
@@ -915,8 +916,8 @@ WHEN InitStatus=INITIALIZING do '(All lines must end in a comma to continue the 
 	Turnout_Pointer[4]=&TurnoutBd2_1YardMstr04_t04,
 	Turnout_Pointer[9]=&TurnoutBd2_1YardMstr05_t09,
 	Turnout_Pointer[10]=&TurnoutBd2_1YardMstr06_t10,
-	'NIS Turnout_Pointer[16]=&TurnoutBd2_1YardMstr07_t16,
-	'NIS Turnout_Pointer[17]=&TurnoutBd2_1YardMstr08_t17,
+	Turnout_Pointer[17]=&TurnoutBd2_1YardMstr07_t17,
+	Turnout_Pointer[16]=&TurnoutBd2_1YardMstr08_t16,
 	Turnout_Pointer[3]=&TurnoutBd2_1YardMstr09_t03,
 	Turnout_Pointer[18]=&TurnoutBd2_1YardMstr10_t18,
 	'NIS Turnout_Pointer[15]=&TurnoutBd2_1YardMstr11_T15,
@@ -928,14 +929,14 @@ WHEN InitStatus=INITIALIZING do '(All lines must end in a comma to continue the 
 
 ' set address pointers to Turnout Push Button Sensors
 
-	'Turnout_Button_Pointer[5]=&TurnoutBd1_2Sentry01_t05,
-	'Turnout_Button_Pointer[8]=&TurnoutBd1_2Sentry02_t08,
+	Turnout_Button_Pointer[5]=&TurnoutBd1_2Sentry01_t05,
+	Turnout_Button_Pointer[8]=&TurnoutBd1_2Sentry02_t08,
 	'Turnout_Button_Pointer[14]=&TurnoutBd1_2Sentry03_t14,
 	'TBD Turnout_Button_Pointer[atlas_TBD]=&TurnoutBd1_2Sentry04_TBD,
-	'Turnout_Button_Pointer[12]=&TurnoutBd1_2Sentry05_t12,
-	'Turnout_Button_Pointer[19]=&TurnoutBd1_2Sentry06_t19,
-	'Turnout_Button_Pointer[20]=&TurnoutBd1_2Sentry07_t20,
-	'Turnout_Button_Pointer[6]=&TurnoutBd1_2Sentry08_t06,
+	Turnout_Button_Pointer[12]=&TurnoutBd1_2Sentry05_t12,
+	Turnout_Button_Pointer[19]=&TurnoutBd1_2Sentry06_t19,
+	Turnout_Button_Pointer[20]=&TurnoutBd1_2Sentry07_t20,
+	Turnout_Button_Pointer[6]=&TurnoutBd1_2Sentry08_t06,
 	'Turnout_Button_Pointer[7]=&TurnoutBd1_2Sentry09_t07,
 	'TBD Turnout_Button_Pointer[atlas_TBD]=&TurnoutBd1_2Sentry10_TBD,
 	'TBD Turnout_Button_Pointer[atlas_TBD]=&TurnoutBd1_2Sentry11_TBD,
@@ -951,8 +952,8 @@ WHEN InitStatus=INITIALIZING do '(All lines must end in a comma to continue the 
 	Turnout_Button_Pointer[4]=&TurnoutBd2_2Sentry04_t04,
 	Turnout_Button_Pointer[9]=&TurnoutBd2_2Sentry05_t09,
 	Turnout_Button_Pointer[10]=&TurnoutBd2_2Sentry06_t10,
-	'NIS Turnout_Button_Pointer[16]=&TurnoutBd2_2Sentry07_t16,
-	'NIS Turnout_Button_Pointer[17]=&TurnoutBd2_2Sentry08_t17,
+	Turnout_Button_Pointer[17]=&TurnoutBd2_2Sentry07_t17,
+	Turnout_Button_Pointer[16]=&TurnoutBd2_2Sentry08_t16,
 	Turnout_Button_Pointer[3]=&TurnoutBd2_2Sentry09_t03,
 	Turnout_Button_Pointer[18]=&TurnoutBd2_2Sentry10_t18,
 	' NIS Turnout_Button_Pointer[15]=&TurnoutBd2_2Sentry11_t15,
@@ -963,12 +964,12 @@ WHEN InitStatus=INITIALIZING do '(All lines must end in a comma to continue the 
        'SPARE Turnout_Button_Pointer[Spare]=&TurnoutBd2_2Sentry16_Spare,
        
        
-       'TBD Atlas_Turnout_Pointer_Primary[TBD]=&Atlas1_Switchman01_TBDPrim, 
-       'TBD Atlas_Turnout_Pointer_Primary[TBD]=&Atlas1_Switchman02_TBDSec, 
-       'Atlas_Turnout_Pointer_Primary[19]=&Atlas1_Switchman03_t19Prim,
-'Atlas_Turnout_Pointer_Secondary[19]=&Atlas1_Switchman04_t19Sec, 
-'Atlas_Turnout_Pointer_Primary[20]=&Atlas1_Switchman05_t20Prim, 
-'Atlas_Turnout_Pointer_Secondary[20]=&Atlas1_Switchman06_t20Sec,
+Atlas_Turnout_Pointer_Primary[19]=&Atlas1_Switchman01_t19Prim,
+Atlas_Turnout_Pointer_Secondary[19]=&Atlas1_Switchman02_t19Sec, 
+Atlas_Turnout_Pointer_Primary[20]=&Atlas1_Switchman03_t20Prim, 
+Atlas_Turnout_Pointer_Secondary[20]=&Atlas1_Switchman04_t20Sec,
+       'TBD Atlas_Turnout_Pointer_Primary[TBD]=&Atlas1_Switchman05_TBDPrim, 
+       'TBD Atlas_Turnout_Pointer_Primary[TBD]=&Atlas1_Switchman06_TBDSec, 
 'TBD Atlas_Turnout_Pointer_Primary[TBD]=&Atlas1_Switchman07_TBDPrim, 
 'TBD Atlas_Turnout_Pointer_Primary[TBD]=&Atlas1_Switchman08_TBDSec, 
 'TBD Atlas_Turnout_Pointer_Primary[TBD]=&Atlas1_Switchman09_TBDPrim, 
@@ -1015,9 +1016,9 @@ WHEN InitStatus=INITIALIZING do '(All lines must end in a comma to continue the 
 	Cab_Momentum_Pointer[3]=&SmartCab_03.Momentum,
 	
 ' set DCC cab pointers
-	Dcc_Cab_Pointer[1] = &CAB_1,
-	Dcc_Cab_Pointer[2] = &CAB_2,
-	Dcc_Cab_Pointer[3] = &CAB_3,
+	Dcc_Cab_Pointer[1] = &SmartCab_1,
+	Dcc_Cab_Pointer[2] = &SmartCab_2,
+	Dcc_Cab_Pointer[3] = &SmartCab_3,
 
 '**	Initialize panel locations of IR Block Detectors - one at each end of block		
 
