@@ -10,9 +10,9 @@ CONSTANTS:
 	OPERATING=1	
 
 	INITIAL_BLOCK_INDEX=1
-	MAX_BLOCK=12		'* Max number of blocks for LOOPs, etc
+	MAX_BLOCK=15		'* Max number of blocks for LOOPs, etc
 	MIN_BLOCK_INDEX=1
-	MAX_BLOCK_INDEX=13
+	MAX_BLOCK_INDEX=16
 	LOWEST_LOOP_BLOCK=1
 	HIGHEST_LOOP_BLOCK=8
 	HIGHEST_LOOP_PASSING_BLOCK=11
@@ -22,8 +22,8 @@ CONSTANTS:
 	MAX_IR_EOT_DETECTOR_INDEX=3
 
 	INITIAL_TURNOUT_INDEX=1
-	MAX_TURNOUT=20
-	MAX_TURNOUT_INDEX=21
+	MAX_TURNOUT=32
+	MAX_TURNOUT_INDEX=33
 
 	MANUAL_CAB_INDEX = 0
 	INITIAL_CAB_INDEX = 1
@@ -1022,30 +1022,33 @@ Atlas_Turnout_Pointer_Secondary[20]=&Atlas1_Switchman04_t20Sec,
 
 '**	Initialize panel locations of IR Block Detectors - one at each end of block		
 
-	IR_Detector_Grid_E[1]=(46,14,4), IR_Detector_Grid_E[2]=(27,26,4), IR_Detector_Grid_E[3]=(7,18,4), IR_Detector_Grid_E[4]=(24,2,4)
-	IR_Detector_Grid_E[5]=(50,17,4), IR_Detector_Grid_E[6]=(24,29,4), IR_Detector_Grid_E[7]=(4,15,4), IR_Detector_Grid_E[8]=(37,6,4)
-	IR_Detector_Grid_E[9]=(45,14,4), IR_Detector_Grid_E[10]=(8,19,4), IR_Detector_Grid_E[11]=(6,15,4), 'IR_Detector_Grid_E[12]=
+	IR_Detector_Grid_E[1]=(46,16,4), IR_Detector_Grid_E[2]=(32,28,4), IR_Detector_Grid_E[3]=(7,20,4), IR_Detector_Grid_E[4]=(24,4,4)
+	IR_Detector_Grid_E[5]=(50,19,4), IR_Detector_Grid_E[6]=(24,31,4), IR_Detector_Grid_E[7]=(4,17,4), IR_Detector_Grid_E[8]=(37,8,4)
+	IR_Detector_Grid_E[9]=(45,16,4), IR_Detector_Grid_E[10]=(8,21,4), IR_Detector_Grid_E[11]=(6,17,4), 'IR_Detector_Grid_E[12]=
 
-	IR_Detector_Grid_W[1]=(33,26,4), IR_Detector_Grid_W[2]=(7,22,4), IR_Detector_Grid_W[3]=(21,2,4), IR_Detector_Grid_W[4]=(50,13,4)
-	IR_Detector_Grid_W[5]=(27,29,4), IR_Detector_Grid_W[6]=(4,21,4), IR_Detector_Grid_W[7]=(30,6,4), IR_Detector_Grid_W[8]=(46,10,4)
-	IR_Detector_Grid_W[9]=(34,24,4), IR_Detector_Grid_W[10]=(21,3,4), IR_Detector_Grid_W[11]=(32,7,4), 'IR_Detector_Grid_W[12]=
+	IR_Detector_Grid_W[1]=(36,28,4), IR_Detector_Grid_W[2]=(7,24,4), IR_Detector_Grid_W[3]=(21,4,4), IR_Detector_Grid_W[4]=(50,15,4)
+	IR_Detector_Grid_W[5]=(27,31,4), IR_Detector_Grid_W[6]=(4,23,4), IR_Detector_Grid_W[7]=(30,8,4), IR_Detector_Grid_W[8]=(46,12,4)
+	IR_Detector_Grid_W[9]=(34,26,4), IR_Detector_Grid_W[10]=(21,5,4), IR_Detector_Grid_W[11]=(32,9,4), 'IR_Detector_Grid_W[12]=
 
-	IR_EOT_Detector_Grid[0]=(16,5,4), IR_EOT_Detector_Grid[1]=(16,4,4)
+	IR_EOT_Detector_Grid[0]=(16,7,4), IR_EOT_Detector_Grid[1]=(16,6,4)
 
 
 '**	Initialize panel locations of tortoise controls
 
-	Turnout_Grid[1]=(4,18,4), Turnout_Grid[2]=(9,12,4), Turnout_Grid[3]=(34,6,4), Turnout_Grid[4]=(35,6,4),
-	Turnout_Grid[5]=(46,11,4), Turnout_Grid[6]=(46,16,4), Turnout_Grid[7]=(45,20,4), Turnout_Grid[8]=(29,26,4),
-	Turnout_Grid[9]=(7,19,4),Turnout_Grid[10]=(20,2,4), Turnout_Grid[11]=(23,2,4), Turnout_Grid[12]=(50,16,4),
-	Turnout_Grid[13]=(50,20,4), Turnout_Grid[14]=(33,24,4), Turnout_Grid[15]=(7,16,4), Turnout_Grid[16]=(8,15,4),
-	Turnout_Grid[17]=(4,23,4),Turnout_Grid[18]=(31,4,4),Turnout_Grid[19]=(51,15,4),Turnout_Grid[20]=(52,14,4),
+	Turnout_Grid[1]=(4,20,4), Turnout_Grid[2]=(9,14,4), Turnout_Grid[3]=(34,8,4), Turnout_Grid[4]=(35,8,4),
+	Turnout_Grid[5]=(46,13,4), Turnout_Grid[6]=(46,18,4), Turnout_Grid[7]=(45,22,4), Turnout_Grid[8]=(34,28,4),
+	Turnout_Grid[9]=(7,21,4),Turnout_Grid[10]=(20,4,4), Turnout_Grid[11]=(23,4,4), Turnout_Grid[12]=(50,18,4),
+	Turnout_Grid[13]=(50,22,4), Turnout_Grid[14]=(35,27,4), Turnout_Grid[15]=(7,18,4), Turnout_Grid[16]=(8,17,4),
+	Turnout_Grid[17]=(4,25,4),Turnout_Grid[18]=(31,6,4),Turnout_Grid[19]=(51,17,4),Turnout_Grid[20]=(52,16,4),
+	
+	Turnout_Grid[25]=(16,17,4),Turnout_Grid[26]=(17,18,4),
 
 '**	Initialize panel location of track blocks and sprite locations of corresponding sprites
 
-	Block_Grid[1]=(42,26,4), Block_Grid[2]=(15,26,4), Block_Grid[3]=(7,4,4), Block_Grid[4]=(38,2,4)
-	Block_Grid[5]=(42,29,4), Block_Grid[6]=(15,29,4), Block_Grid[7]=(13,6,4), Block_Grid[8]=(42,6,4)
-	Block_Grid[9]=(42,24,4), Block_Grid[10]=(8,5,4), Block_Grid[11]=(13,7,4), Block_Grid[12]=(24,12,4),
+	Block_Grid[1]=(42,28,4), Block_Grid[2]=(15,28,4), Block_Grid[3]=(7,6,4), Block_Grid[4]=(38,4,4)
+	Block_Grid[5]=(42,31,4), Block_Grid[6]=(15,31,4), Block_Grid[7]=(13,8,4), Block_Grid[8]=(42,8,4)
+	Block_Grid[9]=(42,26,4), Block_Grid[10]=(8,7,4), Block_Grid[11]=(13,9,4), Block_Grid[12]=(24,14,4),
+	Block_Grid[13]=(13,17,4),Block_Grid[14]=(12,21,4),Block_Grid[15]=(33,27,4),
 
 
 '**	Initialize sprite shapes to overlay on assign cab pushbuttons
@@ -1056,6 +1059,8 @@ Atlas_Turnout_Pointer_Secondary[20]=&Atlas1_Switchman04_t20Sec,
 	Train_E_Sprite[7]=Arrow_East, Train_W_Sprite[7]=Arrow_west, Train_E_Sprite[8]=Arrow_east, Train_W_Sprite[8]=Arrow_west
 	Train_E_Sprite[9]=Arrow_west, Train_W_Sprite[9]=Arrow_east, Train_E_Sprite[10]=Arrow_north, Train_W_Sprite[10]=Arrow_south
 	Train_E_Sprite[11]=Arrow_east, Train_W_Sprite[11]=Arrow_west, Train_E_Sprite[12]=Arrow_east, Train_W_Sprite[12]=Arrow_west
+	Train_E_Sprite[13]=Arrow_east, Train_W_Sprite[13]=Arrow_west, Train_E_Sprite[14]=Arrow_east, Train_W_Sprite[14]=Arrow_west
+	Train_E_Sprite[15]=Arrow_west, Train_W_Sprite[15]=Arrow_east
 
 
 '**	Initialize sprite shapes of IR Block Detectors - one at each end of block		
@@ -1077,7 +1082,10 @@ Atlas_Turnout_Pointer_Secondary[20]=&Atlas1_Switchman04_t20Sec,
 	Turnout_Type[5]=TORTOISE, Turnout_Type[6]=TORTOISE, Turnout_Type[7]=TORTOISE, Turnout_Type[8]=TORTOISE,
 	Turnout_Type[9]=TORTOISE, Turnout_Type[10]=TORTOISE, Turnout_Type[11]=TORTOISE, Turnout_Type[12]=TORTOISE,
 	Turnout_Type[13]=TORTOISE, Turnout_Type[14]=TORTOISE, Turnout_Type[15]=TORTOISE, Turnout_Type[16]=TORTOISE,
-	Turnout_Type[17]=TORTOISE, Turnout_Type[18]=TORTOISE,Turnout_Type[19]=ATLAS, Turnout_Type[20]=ATLAS,  
+	Turnout_Type[17]=TORTOISE, Turnout_Type[18]=TORTOISE,Turnout_Type[19]=ATLAS, Turnout_Type[20]=ATLAS,
+	Turnout_Type[21]=ATLAS, Turnout_Type[22]=ATLAS,Turnout_Type[23]=ATLAS, Turnout_Type[24]=ATLAS,
+	Turnout_Type[25]=TORTOISE, Turnout_Type[26]=TORTOISE, Turnout_Type[27]=TORTOISE, Turnout_Type[28]=TORTOISE, 
+	Turnout_Type[29]=TORTOISE, Turnout_Type[30]=TORTOISE, Turnout_Type[31]=ATLAS, Turnout_Type[32]=ATLAS,
 
 '**	Initialize colors to indicate cab assignments on blocks and sprites
 
@@ -1085,59 +1093,59 @@ Atlas_Turnout_Pointer_Secondary[20]=&Atlas1_Switchman04_t20Sec,
 
 '**	Initialize Cab Speed Pushbutton locations
 
-	Cab1_Speed_Grid[10]=(59,4,4), Cab1_Speed_Grid[9]=(59,5,4), Cab1_Speed_Grid[8]=(59,6,4), Cab1_Speed_Grid[7]=(59,7,4),
-	Cab1_Speed_Grid[6]=(59,8,4), Cab1_Speed_Grid[5]=(59,9,4), Cab1_Speed_Grid[4]=(59,10,4), Cab1_Speed_Grid[3]=(59,11,4),
-	Cab1_Speed_Grid[2]=(59,12,4), Cab1_Speed_Grid[1]=(59,13,4), Cab1_Speed_Grid[0]=(59,14,4),
-	Cab1_Brake_Grid=(59,16,4), 
-	Cab1_F_R_Indication_Grid=(59,18,4), 
-	Cab1_Direction_Grid=(59,18,4),
+	Cab1_Speed_Grid[10]=(59,6,4), Cab1_Speed_Grid[9]=(59,7,4), Cab1_Speed_Grid[8]=(59,8,4), Cab1_Speed_Grid[7]=(59,9,4),
+	Cab1_Speed_Grid[6]=(59,10,4), Cab1_Speed_Grid[5]=(59,11,4), Cab1_Speed_Grid[4]=(59,12,4), Cab1_Speed_Grid[3]=(59,13,4),
+	Cab1_Speed_Grid[2]=(59,14,4), Cab1_Speed_Grid[1]=(59,15,4), Cab1_Speed_Grid[0]=(59,16,4),
+	Cab1_Brake_Grid=(59,18,4), 
+	Cab1_F_R_Indication_Grid=(59,20,4), 
+	Cab1_Direction_Grid=(59,20,4),
 
-	Cab2_Speed_Grid[10]=(61,4,4), Cab2_Speed_Grid[9]=(61,5,4), Cab2_Speed_Grid[8]=(61,6,4), Cab2_Speed_Grid[7]=(61,7,4),
-	Cab2_Speed_Grid[6]=(61,8,4), Cab2_Speed_Grid[5]=(61,9,4), Cab2_Speed_Grid[4]=(61,10,4), Cab2_Speed_Grid[3]=(61,11,4),
-	Cab2_Speed_Grid[2]=(61,12,4), Cab2_Speed_Grid[1]=(61,13,4), Cab2_Speed_Grid[0]=(61,14,4),
-	Cab2_Brake_Grid=(61,16,4),	
-	Cab2_F_R_Indication_Grid=(61,18,4),
-	Cab2_Direction_Grid=(61,18,4),	
+	Cab2_Speed_Grid[10]=(61,6,4), Cab2_Speed_Grid[9]=(61,7,4), Cab2_Speed_Grid[8]=(61,8,4), Cab2_Speed_Grid[7]=(61,9,4),
+	Cab2_Speed_Grid[6]=(61,10,4), Cab2_Speed_Grid[5]=(61,11,4), Cab2_Speed_Grid[4]=(61,12,4), Cab2_Speed_Grid[3]=(61,13,4),
+	Cab2_Speed_Grid[2]=(61,14,4), Cab2_Speed_Grid[1]=(61,15,4), Cab2_Speed_Grid[0]=(61,16,4),
+	Cab2_Brake_Grid=(61,18,4),	
+	Cab2_F_R_Indication_Grid=(61,20,4),
+	Cab2_Direction_Grid=(61,20,4),	
 
-	Cab3_Speed_Grid[10]=(63,4,4), Cab3_Speed_Grid[9]=(63,5,4), Cab3_Speed_Grid[8]=(63,6,4), Cab3_Speed_Grid[7]=(63,7,4),
-	Cab3_Speed_Grid[6]=(63,8,4), Cab3_Speed_Grid[5]=(63,9,4), Cab3_Speed_Grid[4]=(63,10,4), Cab3_Speed_Grid[3]=(63,11,4),
-	Cab3_Speed_Grid[2]=(63,12,4), Cab3_Speed_Grid[1]=(63,13,4), Cab3_Speed_Grid[0]=(63,14,4),
-	Cab3_Brake_Grid=(63,16,4),	
-	Cab3_F_R_Indication_Grid=(63,18,4),
-	Cab3_Direction_Grid=(63,18,4),
+	Cab3_Speed_Grid[10]=(63,6,4), Cab3_Speed_Grid[9]=(63,7,4), Cab3_Speed_Grid[8]=(63,8,4), Cab3_Speed_Grid[7]=(63,9,4),
+	Cab3_Speed_Grid[6]=(63,10,4), Cab3_Speed_Grid[5]=(63,11,4), Cab3_Speed_Grid[4]=(63,12,4), Cab3_Speed_Grid[3]=(63,13,4),
+	Cab3_Speed_Grid[2]=(63,14,4), Cab3_Speed_Grid[1]=(63,15,4), Cab3_Speed_Grid[0]=(63,16,4),
+	Cab3_Brake_Grid=(63,18,4),	
+	Cab3_F_R_Indication_Grid=(63,20,4),
+	Cab3_Direction_Grid=(63,20,4),
 
 '**	Initialize Cab to Block Pushbutton locations
 
-	cab0_Block_Grid[1]=(57,21,4), cab0_Block_Grid[2]=(57,22,4), cab0_Block_Grid[3]=(57,23,4), cab0_Block_Grid[4]=(57,24,4),
-	cab0_Block_Grid[5]=(57,25,4), cab0_Block_Grid[6]=(57,26,4), cab0_Block_Grid[7]=(57,27,4), cab0_Block_Grid[8]=(57,28,4),
-	cab0_Block_Grid[9]=(57,29,4), cab0_Block_Grid[10]=(57,30,4), cab0_Block_Grid[11]=(57,31,4), cab0_Block_Grid[12]=(57,32,4),
+	cab0_Block_Grid[1]=(57,23,4), cab0_Block_Grid[2]=(57,24,4), cab0_Block_Grid[3]=(57,25,4), cab0_Block_Grid[4]=(57,26,4),
+	cab0_Block_Grid[5]=(57,27,4), cab0_Block_Grid[6]=(57,28,4), cab0_Block_Grid[7]=(57,29,4), cab0_Block_Grid[8]=(57,30,4),
+	cab0_Block_Grid[9]=(57,31,4), cab0_Block_Grid[10]=(57,32,4), cab0_Block_Grid[11]=(57,33,4), cab0_Block_Grid[12]=(57,34,4),
 
-	cab1_Block_Grid[1]=(59,21,4), cab1_Block_Grid[2]=(59,22,4), cab1_Block_Grid[3]=(59,23,4), cab1_Block_Grid[4]=(59,24,4),
-	cab1_Block_Grid[5]=(59,25,4), cab1_Block_Grid[6]=(59,26,4), cab1_Block_Grid[7]=(59,27,4), cab1_Block_Grid[8]=(59,28,4),
-	cab1_Block_Grid[9]=(59,29,4), cab1_Block_Grid[10]=(59,30,4), cab1_Block_Grid[11]=(59,31,4), cab1_Block_Grid[12]=(59,32,4),
+	cab1_Block_Grid[1]=(59,23,4), cab1_Block_Grid[2]=(59,24,4), cab1_Block_Grid[3]=(59,25,4), cab1_Block_Grid[4]=(59,26,4),
+	cab1_Block_Grid[5]=(59,27,4), cab1_Block_Grid[6]=(59,28,4), cab1_Block_Grid[7]=(59,29,4), cab1_Block_Grid[8]=(59,30,4),
+	cab1_Block_Grid[9]=(59,31,4), cab1_Block_Grid[10]=(59,32,4), cab1_Block_Grid[11]=(59,33,4), cab1_Block_Grid[12]=(59,34,4),
 
-	cab2_Block_Grid[1]=(61,21,4), cab2_Block_Grid[2]=(61,22,4), cab2_Block_Grid[3]=(61,23,4), cab2_Block_Grid[4]=(61,24,4),
-	cab2_Block_Grid[5]=(61,25,4), cab2_Block_Grid[6]=(61,26,4), cab2_Block_Grid[7]=(61,27,4), cab2_Block_Grid[8]=(61,28,4),
-	cab2_Block_Grid[9]=(61,29,4), cab2_Block_Grid[10]=(61,30,4), cab2_Block_Grid[11]=(61,31,4), cab2_Block_Grid[12]=(61,32,4),
+	cab2_Block_Grid[1]=(61,23,4), cab2_Block_Grid[2]=(61,24,4), cab2_Block_Grid[3]=(61,25,4), cab2_Block_Grid[4]=(61,26,4),
+	cab2_Block_Grid[5]=(61,27,4), cab2_Block_Grid[6]=(61,28,4), cab2_Block_Grid[7]=(61,29,4), cab2_Block_Grid[8]=(61,30,4),
+	cab2_Block_Grid[9]=(61,31,4), cab2_Block_Grid[10]=(61,32,4), cab2_Block_Grid[11]=(61,33,4), cab2_Block_Grid[12]=(61,34,4),
 
-	cab3_Block_Grid[1]=(63,21,4), cab3_Block_Grid[2]=(63,22,4), cab3_Block_Grid[3]=(63,23,4), cab3_Block_Grid[4]=(63,24,4),
-	cab3_Block_Grid[5]=(63,25,4), cab3_Block_Grid[6]=(63,26,4), cab3_Block_Grid[7]=(63,27,4), cab3_Block_Grid[8]=(63,28,4),
-	cab3_Block_Grid[9]=(63,29,4), cab3_Block_Grid[10]=(63,30,4), cab3_Block_Grid[11]=(63,31,4), cab3_Block_Grid[12]=(63,32,4),
+	cab3_Block_Grid[1]=(63,23,4), cab3_Block_Grid[2]=(63,24,4), cab3_Block_Grid[3]=(63,25,4), cab3_Block_Grid[4]=(63,26,4),
+	cab3_Block_Grid[5]=(63,27,4), cab3_Block_Grid[6]=(63,28,4), cab3_Block_Grid[7]=(63,29,4), cab3_Block_Grid[8]=(63,30,4),
+	cab3_Block_Grid[9]=(63,31,4), cab3_Block_Grid[10]=(63,32,4), cab3_Block_Grid[11]=(63,33,4), cab3_Block_Grid[12]=(63,34,4),
 
-	cab0_All_Blocks_Grid=(57,20,4), cab1_All_Blocks_Grid=(59,20,4), cab2_All_Blocks_Grid=(61,20,4), cab3_All_Blocks_Grid=(63,20,4),
+	cab0_All_Blocks_Grid=(57,22,4), cab1_All_Blocks_Grid=(59,22,4), cab2_All_Blocks_Grid=(61,22,4), cab3_All_Blocks_Grid=(63,22,4),
 
-	Block_Signal_Indicator[1]=(55,21,4)
-	Block_Signal_Indicator[2]=(55,22,4)
-	Block_Signal_Indicator[3]=(55,23,4)
-	Block_Signal_Indicator[4]=(55,24,4)
-	Block_Signal_Indicator[5]=(55,25,4)
-	Block_Signal_Indicator[6]=(55,26,4)
-	Block_Signal_Indicator[7]=(55,27,4)
-	Block_Signal_Indicator[8]=(55,28,4)
-	Block_Signal_Indicator[9]=(55,29,4)
-	Block_Signal_Indicator[10]=(55,30,4)
-	Block_Signal_Indicator[11]=(55,31,4)
-	Block_Signal_Indicator[12]=(55,32,4)
+	Block_Signal_Indicator[1]=(55,23,4)
+	Block_Signal_Indicator[2]=(55,24,4)
+	Block_Signal_Indicator[3]=(55,25,4)
+	Block_Signal_Indicator[4]=(55,26,4)
+	Block_Signal_Indicator[5]=(55,27,4)
+	Block_Signal_Indicator[6]=(55,28,4)
+	Block_Signal_Indicator[7]=(55,29,4)
+	Block_Signal_Indicator[8]=(55,30,4)
+	Block_Signal_Indicator[9]=(55,31,4)
+	Block_Signal_Indicator[10]=(55,32,4)
+	Block_Signal_Indicator[11]=(55,33,4)
+	Block_Signal_Indicator[12]=(55,34,4)
 
 	Initialize_Speed_Index()
 	Initialize_Cab_Speed_And_Direction_On_Display()
@@ -1149,12 +1157,12 @@ Atlas_Turnout_Pointer_Secondary[20]=&Atlas1_Switchman04_t20Sec,
 
 	Initialize_Set_All_Turnouts_To_Primary_Direction()
 
-	Vacated_Block_Button = (55, 20, 4)
+	Vacated_Block_Button = (55,22,4)
 
-	Extra_Block_Grid_Locations[EXTRA_BLOCK_STAGING_LEAD] = (33, 5, 4)
-	Extra_Block_Grid_Locations[EXTRA_BLOCK_STAGING_STRAIGHT] = (25, 4, 4)
-	Extra_Block_Grid_Locations[EXTRA_BLOCK_STAGING_DIVERGING] = (25, 5, 4)
-	Extra_Block_Grid_Locations[EXTRA_BLOCK_MINE] = (52, 11, 4)
+	Extra_Block_Grid_Locations[EXTRA_BLOCK_STAGING_LEAD] = (33,7,4)
+	Extra_Block_Grid_Locations[EXTRA_BLOCK_STAGING_STRAIGHT] = (25,6,4)
+	Extra_Block_Grid_Locations[EXTRA_BLOCK_STAGING_DIVERGING] = (25,7,4)
+	Extra_Block_Grid_Locations[EXTRA_BLOCK_MINE] = (52,13,4)
 
 
 
@@ -1337,6 +1345,12 @@ WHEN $Leftmouse=Turnout_Grid[17] or *Turnout_Button_Pointer[17]=on DO Throw_Turn
 WHEN $Leftmouse=Turnout_Grid[18] or *Turnout_Button_Pointer[18]=on DO Throw_Turnout(18,Turnout_Grid[18]), Redraw_Extra_Blocks_On_Grid()
 WHEN $Leftmouse=Turnout_Grid[19] or *Turnout_Button_Pointer[19]=on DO Throw_Turnout(19,Turnout_Grid[19])
 WHEN $Leftmouse=Turnout_Grid[20] or *Turnout_Button_Pointer[20]=on DO Throw_Turnout(20,Turnout_Grid[20])
+
+
+
+
+WHEN $Leftmouse=Turnout_Grid[25] or *Turnout_Button_Pointer[19]=on DO Throw_Turnout(25,Turnout_Grid[25])
+WHEN $Leftmouse=Turnout_Grid[26] or *Turnout_Button_Pointer[20]=on DO Throw_Turnout(26,Turnout_Grid[26])
 
 '********************************************************************
 '**	LOOP through East and West current detectors to determine block occupancy
