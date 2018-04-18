@@ -28,7 +28,13 @@
 "x$Microsoft Sans Serif$8$LC"
 0,2,5,22,0
 0,2,6,0,0
+0,2,8,41,0
+"[Engine Shops]$Microsoft Sans Serif$8$CC"
+0,2,11,41,0
+"Town$Microsoft Sans Serif$8$CC"
 0,2,13,0,0
+0,2,25,41,0
+"Blackwater$Microsoft Sans Serif$8$CC"
 0,2,26,7,0
 0,2,27,0,0
 0,2,28,0,0
@@ -38,8 +44,12 @@
 0,3,6,12,0
 0,3,7,41,0
 "x$Microsoft Sans Serif$8$UC"
+0,3,9,41,0
+"Block 15$Microsoft Sans Serif$8$CC"
 0,3,13,0,0
 0,3,15,28,0
+0,3,20,41,0
+"Block 5$Microsoft Sans Serif$8$CC"
 0,3,26,41,0
 "x$Microsoft Sans Serif$8$LC"
 0,3,27,22,0
@@ -72,6 +82,8 @@
 0,6,13,0,0
 0,6,14,66,0
 0,6,29,0,0
+0,7,1,41,0
+"Gin Gin$Microsoft Sans Serif$8$CC"
 0,7,2,6,0
 0,7,3,0,0
 0,7,4,0,0
@@ -99,7 +111,7 @@
 0,9,4,0,0
 0,9,5,4,0
 0,9,7,41,0
-"Town$Microsoft Sans Serif$8$CC"
+"$Microsoft Sans Serif$8$CC"
 0,9,13,0,0
 0,9,14,0,0
 0,9,15,0,0
@@ -108,9 +120,13 @@
 0,10,3,0,0
 0,10,4,5,0
 0,10,5,0,0
+0,10,6,41,0
+"[Door Town]$Microsoft Sans Serif$8$CC"
 0,10,13,0,0
 0,10,14,29,0
 0,10,15,29,0
+0,10,26,41,0
+"Gin Gin$Microsoft Sans Serif$8$CC"
 0,10,27,6,0
 0,10,28,0,0
 0,10,29,0,0
@@ -127,10 +143,16 @@
 0,13,4,4,0
 0,13,28,8198,0
 0,14,4,0,0
+0,14,9,41,0
+"Block 14$Microsoft Sans Serif$8$CC"
 0,14,14,28,0
 0,14,15,28,0
+0,14,20,41,0
+"Block 6$Microsoft Sans Serif$8$CC"
 0,14,28,0,0
 0,15,4,0,0
+0,15,11,41,0
+"Lower Isle$Microsoft Sans Serif$8$CC"
 0,15,14,15,0
 0,15,15,0,0
 0,15,28,0,0
@@ -156,6 +178,8 @@
 0,19,27,41,0
 "x$Microsoft Sans Serif$8$LC"
 0,19,28,15,0
+0,19,30,41,0
+"to [Isle, Bot]$Microsoft Sans Serif$8$CC"
 0,20,4,0,0
 0,20,13,7,0
 0,20,14,0,0
@@ -181,12 +205,22 @@
 0,23,26,257,0
 0,23,27,11,0
 0,24,4,0,0
+0,24,20,41,0
+"Block 7$Microsoft Sans Serif$8$CC"
+0,24,21,41,0
+"Block 11$Microsoft Sans Serif$8$CC"
+0,24,22,41,0
+"Block 12$Microsoft Sans Serif$8$CC"
 0,24,24,6,0
 0,25,4,16384,0
 0,25,24,0,0
 0,26,3,41,0
 "x$Microsoft Sans Serif$8$LC"
 0,26,4,15,0
+0,26,9,41,0
+"Block 13$Microsoft Sans Serif$8$CC"
+0,26,11,41,0
+"Upper Isle$Microsoft Sans Serif$8$CC"
 0,26,12,0,0
 0,26,23,41,0
 "x$Microsoft Sans Serif$8$LC"
@@ -195,7 +229,7 @@
 0,27,5,4,0
 0,27,6,0,0
 0,27,7,41,0
-"Island, Top$Microsoft Sans Serif$8$CC"
+"to [Isle, Bot]$Microsoft Sans Serif$8$CC"
 0,27,12,0,0
 0,27,24,0,0
 0,27,25,4,0
@@ -269,7 +303,7 @@
 0,33,28,0,0
 0,33,29,20,0
 0,33,31,41,0
-"Yard$Microsoft Sans Serif$8$CC"
+"Hyde$Microsoft Sans Serif$8$CC"
 0,34,3,29,0
 0,34,4,0,0
 0,34,5,5,0
@@ -304,10 +338,14 @@
 0,38,5,0,0
 0,38,28,4,0
 0,39,1,41,0
+"$Microsoft Sans Serif$8$CC"
+0,39,2,41,0
 "Jimmy Town$Microsoft Sans Serif$8$CC"
 0,39,3,7,0
 0,39,4,0,0
 0,39,5,0,0
+0,39,20,41,0
+"Block 8$Microsoft Sans Serif$8$CC"
 0,39,26,28,0
 0,39,27,28,0
 0,39,28,0,0
@@ -315,6 +353,8 @@
 "x$Microsoft Sans Serif$8$LC"
 0,40,4,12,0
 0,40,5,0,0
+0,40,25,41,0
+"Staging$Microsoft Sans Serif$8$CC"
 0,40,26,7,0
 0,40,27,0,0
 0,40,28,0,0
