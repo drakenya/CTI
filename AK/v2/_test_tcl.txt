@@ -4,10 +4,10 @@ CONSTANTS:
     {--
      -  Turnouts
      -}
-    NUM_TURNOUTS = 10;
+    NUM_TURNOUTS = 4
 
-    TURNOUT_PRIMARY = OFF 'green on panel
-    TURNOUT_SECONDARY = ON 'red on panel
+    TURNOUT_DIRECTION_PRIMARY = OFF 'green on panel
+    TURNOUT_DIRECTION_SECONDARY = ON 'red on panel
 
     TURNOUT_TORTOISE = 1
     TURNOUT_ATLAS = 2
@@ -100,7 +100,7 @@ CONTROLS:
 
  -  Switchman 1 (16 control)
  -}
-CONTROL:
+CONTROLS:
     Turnout_19_Primary_Control 'Switchman 1, port 1
     Turnout_18_Secondary_Control 'Switchman 1, port 2
     Turnout_20_Primary_Control 'Switchman 1, port 3
@@ -160,7 +160,7 @@ CONTROLS:
 
  -  Switchman 1 (16 control)
  -}
-CONTROL:
+CONTROLS:
     Turnout_E1_Control 'Switchman 1, port 1
     Turnout_E2_Control 'Switchman 1, port 2
     Turnout_E3_Control 'Switchman 1, port 3
@@ -196,24 +196,24 @@ CONTROLS:
     Turnout_03_Control 'YardMaster 1, Port 09
     Turnout_18_Control 'YardMaster 1, Port 10
     Turnout_15_Control 'YardMaster 1, Port 11
-    Turnout_01_Control 'YardMaster 1, Port 12
+    Turnout_F0_Control 'YardMaster 1, Port 12
     Turnout_F1_Control 'YardMaster 1, Port 13
     Turnout_F2_Control 'YardMaster 1, Port 14
     Turnout_F3_Control 'YardMaster 1, Port 15
     Turnout_F4_Control 'YardMaster 1, Port 16
 SENSORS:
     Turnout_FX_Sensor 'Sentry 1, Port 01
-    Turnout_02_Sensor 'Sentry 1, Port 02
-    Turnout_01_Sensor 'Sentry 1, Port 03
-    Turnout_04_Sensor 'Sentry 1, Port 04
+    Turnout_02_Button_Sensor 'Sentry 1, Port 02
+    Turnout_01_Button_Sensor 'Sentry 1, Port 03
+    Turnout_04_Button_Sensor 'Sentry 1, Port 04
     Turnout_09_Sensor 'Sentry 1, Port 05
     Turnout_10_Sensor 'Sentry 1, Port 06
     Turnout_17_Sensor 'Sentry 1, Port 07
     Turnout_16_Sensor 'Sentry 1, Port 08
-    Turnout_03_Sensor 'Sentry 1, Port 09
+    Turnout_03_Button_Sensor 'Sentry 1, Port 09
     Turnout_18_Sensor 'Sentry 1, Port 10
     Turnout_15_Sensor 'Sentry 1, Port 11
-    Turnout_01_Sensor 'Sentry 1, Port 12
+    Turnout_F0_Sensor 'Sentry 1, Port 12
     Turnout_F1_Sensor 'Sentry 1, Port 13
     Turnout_F2_Sensor 'Sentry 1, Port 14
     Turnout_F3_Sensor 'Sentry 1, Port 15
@@ -276,23 +276,43 @@ VARIABLES:
 
 ACTIONS:
 
-SUB ResetInit_Set_Turnouts_On_Panels()
-    PANEL_1_TURNOUTS[0] = (4,20,1)
-ENDSUB
-
 SUB Redraw_Turnout(TurnoutIndex)
     $SWITCH(PANEL_1_TURNOUTS[TurnoutIndex]) = $SWITCH(PANEL_1_TURNOUTS[TurnoutIndex]) ~
 ENDSUB
 
+SUB ResetInit_Set_Turnouts_On_Panels()
+    PANEL_1_TURNOUTS[0] = (27,29,1)
+    PANEL_1_TURNOUTS[1] = (30,30,1)
+    PANEL_1_TURNOUTS[2] = (43,33,1)
+    PANEL_1_TURNOUTS[3] = (36,29,1)
+ENDSUB
+
+SUB ResetInit_Set_Turnouts_To_Primary({local} TurnoutIndex)
+    TurnoutIndex = 0
+    UNTIL TurnoutIndex > NUM_TURNOUTS QUICKLOOP
+        TURNOUT_STATUSES[TurnoutIndex] = TURNOUT_DIRECTION_PRIMARY
+        Redraw_Turnout(TurnoutIndex)
+
+        TurnoutIndex = 1 +
+    ENDLOOP
+ENDSUB
+
 SUB Throw_Turnout(TurnoutIndex)
     ' Invert status of turnout, from thrown to straight or vice versa
-    TURNOUT_STATUSES[TurnoutIndex] = Turnout_Status[TurnoutIndex] ~
+    TURNOUT_STATUSES[TurnoutIndex] = TURNOUT_STATUSES[TurnoutIndex] ~
 
     ' Redraw turnout on panel
     Redraw_Turnout(TurnoutIndex)
 ENDSUB
 
-WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[0] {or *Turnout_Button_Pointer[20]=on} DO Throw_Turnout(0{,Turnout_Grid[20]})
+WHEN $RESET = TRUE DO
+    ResetInit_Set_Turnouts_On_Panels()
+    ResetInit_Set_Turnouts_To_Primary()
+
+WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[0] OR Turnout_01_Button_Sensor = ON DO Throw_Turnout(0)
+WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[1] OR Turnout_02_Button_Sensor = ON DO Throw_Turnout(1)
+WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[2] OR Turnout_03_Button_Sensor = ON DO Throw_Turnout(2)
+WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[3] OR Turnout_04_Button_Sensor = ON DO Throw_Turnout(3)
 
 {
 SUB Throw_Turnout(TIndex,ctc_Grid)
@@ -309,7 +329,7 @@ SUB Throw_Turnout(TIndex,ctc_Grid)
 	ENDIF
 ENDSUB
 
-SUB Initialize_Set_All_Turnouts_To_Primary_Direction({Local} TIndex)
+SUB Initialize_Set_All_Turnouts_To_Primary_Direction(Local TIndex)
 	TIndex = INITIAL_TURNOUT_INDEX
 	UNTIL TIndex >= MAX_TURNOUT_INDEX LOOP
 		$Switch(TurnOut_Grid[TIndex])=TURNOUT_DIRECTION_PRIMARY	'Throw Panel Display
@@ -462,9 +482,7 @@ WHEN $Leftmouse=Turnout_Grid[18] or *Turnout_Button_Pointer[18]=on DO Throw_Turn
 WHEN $Leftmouse=Turnout_Grid[19] or *Turnout_Button_Pointer[19]=on DO Throw_Turnout(19,Turnout_Grid[19])
 WHEN $Leftmouse=Turnout_Grid[20] or *Turnout_Button_Pointer[20]=on DO Throw_Turnout(20,Turnout_Grid[20])
 
-
-
-
 WHEN $Leftmouse=Turnout_Grid[25] or *Turnout_Button_Pointer[19]=on DO Throw_Turnout(25,Turnout_Grid[25])
 WHEN $Leftmouse=Turnout_Grid[26] or *Turnout_Button_Pointer[20]=on DO Throw_Turnout(26,Turnout_Grid[26])
 }
+
