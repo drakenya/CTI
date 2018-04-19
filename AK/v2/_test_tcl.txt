@@ -347,17 +347,22 @@ ENDSUB
 
 
 
+{--
+ - When starting up (hitting train icon) or hitting reset button
+ -}
+    WHEN $RESET = TRUE DO
+        ResetInit_Set_Turnout_Types()
+        ResetInit_Set_Turnout_Controls()
+        ResetInit_Set_Turnouts_On_Panels()
+        ResetInit_Set_Turnouts_To_Primary()
 
-WHEN $RESET = TRUE DO
-    ResetInit_Set_Turnout_Types()
-    ResetInit_Set_Turnout_Controls()
-    ResetInit_Set_Turnouts_On_Panels()
-    ResetInit_Set_Turnouts_To_Primary()
-
-WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[0] OR Turnout_01_Button_Sensor = ON DO Throw_Turnout(0)
-WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[1] OR Turnout_02_Button_Sensor = ON DO Throw_Turnout(1)
-WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[2] OR Turnout_03_Button_Sensor = ON DO Throw_Turnout(2)
-WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[3] OR Turnout_04_Button_Sensor = ON DO Throw_Turnout(3)
+{--
+ - Triggers for throwing a turnout, either by panel or by physical button
+ -}
+    WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[0] OR Turnout_01_Button_Sensor = ON DO Throw_Turnout(0)
+    WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[1] OR Turnout_02_Button_Sensor = ON DO Throw_Turnout(1)
+    WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[2] OR Turnout_03_Button_Sensor = ON DO Throw_Turnout(2)
+    WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[3] OR Turnout_04_Button_Sensor = ON DO Throw_Turnout(3)
 
 {
 
