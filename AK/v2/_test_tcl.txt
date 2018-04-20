@@ -265,6 +265,20 @@ VARIABLES:
     TURNOUT_CONTROLS[NUM_TURNOUTS]
     ATLAS_PRIMARY_CONTROLS[NUM_TURNOUTS]
     ATLAS_SECONDARY_CONTROLS[NUM_TURNOUTS]
+    
+    {
+    ' Holds address for Turnout Machine controls
+	Turnout_Pointer[NUM_TURNOUTS]
+
+    ' Holds address of Sensors for Manual turnout buttons
+	Turnout_Button_Pointer[NUM_TURNOUTS]
+
+    ' Holds address of Controls for Atlas turnouts
+	Atlas_Turnout_Pointer_Primary[NUM_TURNOUTS]
+	Atlas_Turnout_Pointer_Secondary[NUM_TURNOUTS]
+	Atlas_Turnout_LED_Pointer_Primary[NUM_TURNOUTS]
+	Atlas_Turnout_LED_Pointer_Secondary[NUM_TURNOUTS]	
+    }
 
 ACTIONS:
 
@@ -277,6 +291,9 @@ SUB ResetInit_Set_Turnout_Types()
     TURNOUT_TYPES[1] = TURNOUT_TYPE_TORTOISE
     TURNOUT_TYPES[2] = TURNOUT_TYPE_TORTOISE
     TURNOUT_TYPES[3] = TURNOUT_TYPE_TORTOISE
+    {
+    ATLAS = 19,20,21,31,32
+    }
 ENDSUB
 
 SUB ResetInit_Set_Turnout_Controls()
@@ -291,16 +308,46 @@ SUB ResetInit_Set_Turnouts_On_Panels()
     PANEL_1_TURNOUTS[1] = (30,29,1)
     PANEL_1_TURNOUTS[2] = (43,32,1)
     PANEL_1_TURNOUTS[3] = (36,28,1)
+    {
+    PANEL_1_TURNOUTS[4] = (3,7,1)
+    PANEL_1_TURNOUTS[5] = (7,7,1)
+    PANEL_1_TURNOUTS[6] = (7,8,1)
+    PANEL_1_TURNOUTS[7] = (12,7,1)
+    PANEL_1_TURNOUTS[8] = (27,8,1)
+    PANEL_1_TURNOUTS[9] = (36,8,1)
+    PANEL_1_TURNOUTS[10] = (44,9,1)
+    PANEL_1_TURNOUTS[11] = (6,33,1)
+    PANEL_1_TURNOUTS[12] = (9,33,1)
+    PANEL_1_TURNOUTS[13] = (9,8,1)
+    PANEL_1_TURNOUTS[14] = (33,8,1)
+    PANEL_1_TURNOUTS[15] = (30,9,1)
+    PANEL_1_TURNOUTS[16] = (20,32,1)
+    PANEL_1_TURNOUTS[17] = (42,31,1)
+    PANEL_1_TURNOUTS[18] = (5,32,1)
+    PANEL_1_TURNOUTS[19] = (4,31,1)
+    PANEL_1_TURNOUTS[20] = (10,32,1)
+    PANEL_1_TURNOUTS[21] = (5,18,1)
+    PANEL_1_TURNOUTS[22] = (8,18,1)
+    PANEL_1_TURNOUTS[23] = (8,19,1)
+    PANEL_1_TURNOUTS[24] = (23,20,1)
+    PANEL_1_TURNOUTS[25] = (22,19,1)
+    PANEL_1_TURNOUTS[26] = (29,17,1)
+    PANEL_1_TURNOUTS[27] = (31,19,1)
+    PANEL_1_TURNOUTS[28] = (32,19,1)
+    PANEL_1_TURNOUTS[29] = (33,19,1)
+    PANEL_1_TURNOUTS[30] = (43,8,1)
+    PANEL_1_TURNOUTS[31] = (41,8,1)
+    PANEL_1_TURNOUTS[32] = (4,10,1)
+    PANEL_1_TURNOUTS[33] = (3,9,1)
+    }
 ENDSUB
 
 SUB Set_Turnout(TurnoutIndex, Direction)
     ' Invert status of turnout, from thrown to straight or vice versa
-    TURNOUT_STATUSES[TurnoutIndex] = TURNOUT_STATUSES[TurnoutIndex] ~
+    TURNOUT_STATUSES[TurnoutIndex] = Direction
 
-    ' Set the control to the new state (led + turnout for tortoise, led only for atlas)
     *TURNOUT_CONTROLS[TurnoutIndex] = TURNOUT_STATUSES[TurnoutIndex]
 
-    ' Handle that atlas can only take a quick pulse
     IF TURNOUT_TYPES[TurnoutIndex] = TURNOUT_TYPE_ATLAS THEN
         IF TURNOUT_STATUSES[TurnoutIndex] = TURNOUT_DIRECTION_PRIMARY THEN
             *ATLAS_SECONDARY_CONTROLS[TurnoutIndex] = PULSE 0.25
@@ -313,10 +360,6 @@ SUB Set_Turnout(TurnoutIndex, Direction)
     Redraw_Turnout(TurnoutIndex)
 ENDSUB
 
-SUB Throw_Turnout(TurnoutIndex)
-    Set_Turnout(TurnoutIndex, TURNOUT_STATUSES[TurnoutIndex] ~)
-ENDSUB
-
 SUB ResetInit_Set_Turnouts_To_Primary({local} TurnoutIndex)
     TurnoutIndex = 0
     UNTIL TurnoutIndex >= NUM_TURNOUTS QUICKLOOP
@@ -324,6 +367,10 @@ SUB ResetInit_Set_Turnouts_To_Primary({local} TurnoutIndex)
 
         TurnoutIndex = 1 +
     ENDLOOP
+ENDSUB
+
+SUB Throw_Turnout(TurnoutIndex)
+    Set_Turnout(TurnoutIndex, TURNOUT_STATUSES[TurnoutIndex] ~)
 ENDSUB
 
 
@@ -345,4 +392,122 @@ WHEN $RESET = TRUE DO
     WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[1] OR Turnout_02_Button_Sensor = ON DO Throw_Turnout(1)
     WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[2] OR Turnout_03_Button_Sensor = ON DO Throw_Turnout(2)
     WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[3] OR Turnout_04_Button_Sensor = ON DO Throw_Turnout(3)
+
+{
+
+SUB Initialize_Set_All_Turnouts_To_Primary_Direction(Local TIndex)
+	TIndex = INITIAL_TURNOUT_INDEX
+	UNTIL TIndex >= MAX_TURNOUT_INDEX LOOP
+		$Switch(TurnOut_Grid[TIndex])=TURNOUT_DIRECTION_PRIMARY	'Throw Panel Display
+		*Turnout_Pointer[TIndex]=TURNOUT_DIRECTION_PRIMARY	' Throw power to Tortoise/LED or Atlas LED only
+		IF Turnout_Type[TIndex]=ATLAS THEN
+			*Atlas_Turnout_Pointer_Primary[TIndex]=PULSE 0.25	'throw power to Atlas Turnout
+		ENDIF
+		Turnout_Status[TIndex]=TURNOUT_DIRECTION_PRIMARY
+
+		TIndex = 1+
+	ENDLOOP
+ENDSUB
+
+' set address pointers to Turnout_Controls
+
+	Turnout_Pointer[5]=&TurnoutBd1_1YardMstr01_t05,
+       Turnout_Pointer[8]=&TurnoutBd1_1YardMstr02_t08,
+	'Turnout_Pointer[14]=&TurnoutBd1_1YardMstr03_t14,
+	'TBD Turnout_Pointer[atlas_TBD]=&TurnoutBd1_1YardMstr04_TBD,
+	Turnout_Pointer[12]=&TurnoutBd1_1YardMstr05_t12,
+	Turnout_Pointer[19]=&TurnoutBd1_1YardMstr06_t19,
+	Turnout_Pointer[20]=&TurnoutBd1_1YardMstr07_t20,
+	Turnout_Pointer[6]=&TurnoutBd1_1YardMstr08_t06,
+	'Turnout_Pointer[7]=&TurnoutBd1_1YardMstr09_t07,
+	'TBD Turnout_Pointer[atlas_TBD]=&TurnoutBd1_1YardMstr10_TBD,
+	'TBD Turnout_Pointer[atlas_TBD]=&TurnoutBd1_1YardMstr11_TBD,
+	'SPARE Turnout_Pointer[Spare]=&TurnoutBd1_1YardMstr12_spare,
+	'Turnout_Pointer[13]=&TurnoutBd1_1YardMstr13_t13,
+	'TBD Turnout_Pointer[atlas TBD]=&TurnoutBd1_1YardMstr14_TBD,
+	'TBD Turnout_Pointer[atlas TBD]=&TurnoutBd1_1YardMstr15_TBD,
+	'SPARE Turnout_Pointer[Spare]=&TurnoutBd1_1YardMstr16_spare,
+
+	'DEFECTIVE? Turnout_Pointer[X]=&TurnoutBd2_1YardMstr01_x,
+	Turnout_Pointer[2]=&TurnoutBd2_1YardMstr02_t02,
+	Turnout_Pointer[1]=&TurnoutBd2_1YardMstr03_t01,
+	Turnout_Pointer[4]=&TurnoutBd2_1YardMstr04_t04,
+	Turnout_Pointer[9]=&TurnoutBd2_1YardMstr05_t09,
+	Turnout_Pointer[10]=&TurnoutBd2_1YardMstr06_t10,
+	Turnout_Pointer[17]=&TurnoutBd2_1YardMstr07_t17,
+	Turnout_Pointer[16]=&TurnoutBd2_1YardMstr08_t16,
+	Turnout_Pointer[3]=&TurnoutBd2_1YardMstr09_t03,
+	Turnout_Pointer[18]=&TurnoutBd2_1YardMstr10_t18,
+	'NIS Turnout_Pointer[15]=&TurnoutBd2_1YardMstr11_T15,
+       'TBD Turnout_Pointer[atlas TBD]=&TurnoutBd2_1YardMstr12_TBD
+       'NIS Turnout_Pointer[11]=&TurnoutBd2_1YardMstr13_t11
+       'TBD Turnout_Pointer[atlas TBD]=&TurnoutBd2_1YardMstr14_TBD
+       'TBD Turnout_Pointer[atlas TBD]=&TurnoutBd2_1YardMstr15_TBD
+       'SPARE TurnoutBd2_1YardMstr16,
+
+' set address pointers to Turnout Push Button Sensors
+
+	Turnout_Button_Pointer[5]=&TurnoutBd1_2Sentry01_t05,
+	Turnout_Button_Pointer[8]=&TurnoutBd1_2Sentry02_t08,
+	'Turnout_Button_Pointer[14]=&TurnoutBd1_2Sentry03_t14,
+	'TBD Turnout_Button_Pointer[atlas_TBD]=&TurnoutBd1_2Sentry04_TBD,
+	Turnout_Button_Pointer[12]=&TurnoutBd1_2Sentry05_t12,
+	Turnout_Button_Pointer[19]=&TurnoutBd1_2Sentry06_t19,
+	Turnout_Button_Pointer[20]=&TurnoutBd1_2Sentry07_t20,
+	Turnout_Button_Pointer[6]=&TurnoutBd1_2Sentry08_t06,
+	'Turnout_Button_Pointer[7]=&TurnoutBd1_2Sentry09_t07,
+	'TBD Turnout_Button_Pointer[atlas_TBD]=&TurnoutBd1_2Sentry10_TBD,
+	'TBD Turnout_Button_Pointer[atlas_TBD]=&TurnoutBd1_2Sentry11_TBD,
+	'SPARE Turnout_Button_Pointer[Spare]=&TurnoutBd1_2Sentry12_spare,
+	'Turnout_Button_Pointer[13]=&TurnoutBd1_2Sentry13_t13,
+	'TBD Turnout_Button_Pointer[atlas_TBD]=&TurnoutBd1_2Sentry14_TBD,
+	'TBD Turnout_Button_Pointer[atlas_TBD]=&TurnoutBd1_2Sentry15_TBD,
+	' SPARE Turnout_Button_Pointer[spare]=&TurnoutBd1_2Sentry16_Spare,
+
+	'DEFECTIVE? Turnout_Button_Pointer[X]=&TurnoutBd2_2Sentry01_x,
+	Turnout_Button_Pointer[2]=&TurnoutBd2_2Sentry02_t02,
+	Turnout_Button_Pointer[1]=&TurnoutBd2_2Sentry03_t01,
+	Turnout_Button_Pointer[4]=&TurnoutBd2_2Sentry04_t04,
+	Turnout_Button_Pointer[9]=&TurnoutBd2_2Sentry05_t09,
+	Turnout_Button_Pointer[10]=&TurnoutBd2_2Sentry06_t10,
+	Turnout_Button_Pointer[17]=&TurnoutBd2_2Sentry07_t17,
+	Turnout_Button_Pointer[16]=&TurnoutBd2_2Sentry08_t16,
+	Turnout_Button_Pointer[3]=&TurnoutBd2_2Sentry09_t03,
+	Turnout_Button_Pointer[18]=&TurnoutBd2_2Sentry10_t18,
+	' NIS Turnout_Button_Pointer[15]=&TurnoutBd2_2Sentry11_t15,
+	'TBD Turnout_Button_Pointer[Atlas TBD]=&TurnoutBd2_2Sentry12_TBD,
+	'NIS Turnout_Button_Pointer[11]=&TurnoutBd2_2Sentry13_t11,
+       'TBD Turnout_Button_Pointer[Atlas TBD]=&TurnoutBd2_2Sentry14_TBD,
+       'TBD Turnout_Button_Pointer[Atlas TBD]=&TurnoutBd2_2Sentry15_TBD,
+       'SPARE Turnout_Button_Pointer[Spare]=&TurnoutBd2_2Sentry16_Spare,
+       
+       
+Atlas_Turnout_Pointer_Primary[19]=&Atlas1_Switchman01_t19Prim,
+Atlas_Turnout_Pointer_Secondary[19]=&Atlas1_Switchman02_t19Sec, 
+Atlas_Turnout_Pointer_Primary[20]=&Atlas1_Switchman03_t20Prim, 
+Atlas_Turnout_Pointer_Secondary[20]=&Atlas1_Switchman04_t20Sec,
+       'TBD Atlas_Turnout_Pointer_Primary[TBD]=&Atlas1_Switchman05_TBDPrim, 
+       'TBD Atlas_Turnout_Pointer_Primary[TBD]=&Atlas1_Switchman06_TBDSec, 
+'TBD Atlas_Turnout_Pointer_Primary[TBD]=&Atlas1_Switchman07_TBDPrim, 
+'TBD Atlas_Turnout_Pointer_Primary[TBD]=&Atlas1_Switchman08_TBDSec, 
+'TBD Atlas_Turnout_Pointer_Primary[TBD]=&Atlas1_Switchman09_TBDPrim, 
+'TBD Atlas_Turnout_Pointer_Primary[TBD]=&Atlas1_Switchman10_TBDSec, 
+'TBD Atlas_Turnout_Pointer_Primary[TBD]=&Atlas1_Switchman11_TBDPrim, 
+'TBD Atlas_Turnout_Pointer_Primary[TBD]=&Atlas1_Switchman12_TBDSec,
+'TBD Atlas_Turnout_Pointer_Primary[TBD]=&Atlas1_Switchman13_TBDPrim, 
+'TBD Atlas_Turnout_Pointer_Primary[TBD]=&Atlas1_Switchman14_TBDSec, 
+'SPARES Atlas1_Switchman15_Spare, Atlas1_Switchman16_Spare
+       
+       'TBD Atlas_Turnout_Pointer_Primary[TBD]=&Atlas2_Switchman01_TBDPrim, 
+       'TBD Atlas_Turnout_Pointer_Secondary[TBD]=&Atlas2_Switchman02_TBDSec, 
+       'TBD Atlas_Turnout_Pointer_Primary[TBD]=&Atlas_Turnout_Pointer_Primary[TBD]=&Atlas2_Switchman03_TBDPrim,
+'TBD Atlas_Turnout_Pointer_Secondary[TBD]=&Atlas_Turnout_Pointer_Secondary[TBD]=&Atlas2_Switchman04_TBDSec, 
+'TBD Atlas_Turnout_Pointer_Primary[TBD]=&Atlas_Turnout_Pointer_Primary[TBD]=&Atlas2_Switchman05_TBDPrim, 
+'TBD Atlas_Turnout_Pointer_Secondary[TBD]=&Atlas_Turnout_Pointer_Primary[TBD]=&Atlas2_Switchman06_TBDSec,
+'SPARES Atlas2_Switchman07_Spare, Atlas2_Switchman08_Spare, 
+'SPARES Atlas2_Switchman09_Spare, Atlas2_Switchman10_Spare, 
+'SPARES Atlas2_Switchman11_Spare, Atlas2_Switchman12_Spare,
+'SPARES Atlas2_Switchman13_Spare, Atlas2_Switchman14_Spare, 
+'SPARES Atlas2_Switchman15_Spare, Atlas2_Switchman16_Spare
+}
 
