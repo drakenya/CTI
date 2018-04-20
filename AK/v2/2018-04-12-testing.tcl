@@ -309,7 +309,7 @@ ENDSUB
 
 SUB ResetInit_Set_Turnouts_To_Primary({local} TurnoutIndex)
     TurnoutIndex = 0
-    UNTIL TurnoutIndex > NUM_TURNOUTS QUICKLOOP
+    UNTIL TurnoutIndex >= NUM_TURNOUTS QUICKLOOP
         TURNOUT_STATUSES[TurnoutIndex] = TURNOUT_DIRECTION_PRIMARY
         Redraw_Turnout(TurnoutIndex)
 
