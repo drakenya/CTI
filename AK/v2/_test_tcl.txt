@@ -258,8 +258,9 @@ CONTROLS:
 
 VARIABLES:
     PANEL_1_TURNOUTS[NUM_TURNOUTS]
-    TURNOUT_STATUSES[NUM_TURNOUTS]
     TURNOUT_TYPES[NUM_TURNOUTS]
+    TURNOUT_STATUSES[NUM_TURNOUTS]
+
 
     TURNOUT_CONTROLS[NUM_TURNOUTS]
     ATLAS_PRIMARY_CONTROLS[NUM_TURNOUTS]
@@ -293,22 +294,22 @@ SUB ResetInit_Set_Turnout_Types()
 ENDSUB
 
 SUB ResetInit_Set_Turnout_Controls()
-    TURNOUT_CONTROLS[0] = Turnout_01_Control
-    TURNOUT_CONTROLS[1] = Turnout_02_Control
-    TURNOUT_CONTROLS[2] = Turnout_03_Control
-    TURNOUT_CONTROLS[3] = Turnout_04_Control
+    TURNOUT_CONTROLS[0] = &Turnout_01_Control
+    TURNOUT_CONTROLS[1] = &Turnout_02_Control
+    TURNOUT_CONTROLS[2] = &Turnout_03_Control
+    TURNOUT_CONTROLS[3] = &Turnout_04_Control
 ENDSUB
 
 SUB ResetInit_Set_Turnouts_On_Panels()
-    PANEL_1_TURNOUTS[0] = (27,29,1)
-    PANEL_1_TURNOUTS[1] = (30,30,1)
-    PANEL_1_TURNOUTS[2] = (43,33,1)
-    PANEL_1_TURNOUTS[3] = (36,29,1)
+    PANEL_1_TURNOUTS[0] = (27,28,1)
+    PANEL_1_TURNOUTS[1] = (30,29,1)
+    PANEL_1_TURNOUTS[2] = (43,32,1)
+    PANEL_1_TURNOUTS[3] = (36,28,1)
 ENDSUB
 
 SUB ResetInit_Set_Turnouts_To_Primary({local} TurnoutIndex)
     TurnoutIndex = 0
-    UNTIL TurnoutIndex > NUM_TURNOUTS QUICKLOOP
+    UNTIL TurnoutIndex >= NUM_TURNOUTS QUICKLOOP
         TURNOUT_STATUSES[TurnoutIndex] = TURNOUT_DIRECTION_PRIMARY
         Redraw_Turnout(TurnoutIndex)
 
@@ -326,7 +327,7 @@ SUB Throw_Turnout(TurnoutIndex)
     TURNOUT_STATUSES[TurnoutIndex] = TURNOUT_STATUSES[TurnoutIndex] ~
 
     { *Turnout_Pointer[TIndex]=*Turnout_Pointer[TIndex]~, 'Reverse power to Tortoise & LED or to Atlas LED only }
-    { *TURNOUT_CONTROLS[TurnoutIndex] = TURNOUT_STATUSES[TurnoutIndex] }
+    *TURNOUT_CONTROLS[TurnoutIndex] = TURNOUT_STATUSES[TurnoutIndex]
 
     {
     IF TURNOUT_TYPES[TurnoutIndex] = TURNOUT_TYPE_ATLAS THEN
@@ -350,11 +351,11 @@ ENDSUB
 {--
  - When starting up (hitting train icon) or hitting reset button
  -}
-    WHEN $RESET = TRUE DO
-        ResetInit_Set_Turnout_Types()
-        ResetInit_Set_Turnout_Controls()
-        ResetInit_Set_Turnouts_On_Panels()
-        ResetInit_Set_Turnouts_To_Primary()
+WHEN $RESET = TRUE DO
+    ResetInit_Set_Turnout_Types()
+    ResetInit_Set_Turnout_Controls()
+    ResetInit_Set_Turnouts_On_Panels()
+    ResetInit_Set_Turnouts_To_Primary()
 
 {--
  - Triggers for throwing a turnout, either by panel or by physical button
