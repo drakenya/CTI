@@ -311,7 +311,7 @@ SUB ResetInit_Set_Turnouts_On_Panels()
     {
     PANEL_1_TURNOUTS[4] = (3,7,1)
     PANEL_1_TURNOUTS[5] = (7,7,1)
-    PANEL_1_TURNOUTS[6] = (4,10,1)
+    PANEL_1_TURNOUTS[6] = (7,8,1)
     PANEL_1_TURNOUTS[7] = (12,7,1)
     PANEL_1_TURNOUTS[8] = (27,8,1)
     PANEL_1_TURNOUTS[9] = (36,8,1)
@@ -337,7 +337,8 @@ SUB ResetInit_Set_Turnouts_On_Panels()
     PANEL_1_TURNOUTS[29] = (33,19,1)
     PANEL_1_TURNOUTS[30] = (43,8,1)
     PANEL_1_TURNOUTS[31] = (41,8,1)
-    PANEL_1_TURNOUTS[32] = (3,9,1)
+    PANEL_1_TURNOUTS[32] = (4,10,1)
+    PANEL_1_TURNOUTS[33] = (3,9,1)
     }
 ENDSUB
 
