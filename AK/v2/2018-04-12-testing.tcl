@@ -6,11 +6,11 @@ CONSTANTS:
      -}
     NUM_TURNOUTS = 4
 
-    TURNOUT_DIRECTION_PRIMARY = OFF 'green on panel
-    TURNOUT_DIRECTION_SECONDARY = ON 'red on panel
+    TURNOUT_DIRECTION_PRIMARY = OFF
+    TURNOUT_DIRECTION_SECONDARY = ON
 
-    TURNOUT_TORTOISE = 1
-    TURNOUT_ATLAS = 2
+    TURNOUT_TYPE_TORTOISE = 1
+    TURNOUT_TYPE_ATLAS = 2
 
 SMARTCABS:
     SmartCab1
@@ -258,9 +258,15 @@ CONTROLS:
 
 VARIABLES:
     PANEL_1_TURNOUTS[NUM_TURNOUTS]
+    TURNOUT_TYPES[NUM_TURNOUTS]
     TURNOUT_STATUSES[NUM_TURNOUTS]
-    {
 
+
+    TURNOUT_CONTROLS[NUM_TURNOUTS]
+    ATLAS_PRIMARY_CONTROLS[NUM_TURNOUTS]
+    ATLAS_SECONDARY_CONTROLS[NUM_TURNOUTS]
+    
+    {
     ' Holds address for Turnout Machine controls
 	Turnout_Pointer[NUM_TURNOUTS]
 
@@ -280,16 +286,30 @@ SUB Redraw_Turnout(TurnoutIndex)
     $SWITCH(PANEL_1_TURNOUTS[TurnoutIndex]) = $SWITCH(PANEL_1_TURNOUTS[TurnoutIndex]) ~
 ENDSUB
 
+SUB ResetInit_Set_Turnout_Types()
+    TURNOUT_TYPES[0] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[1] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[2] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[3] = TURNOUT_TYPE_TORTOISE
+ENDSUB
+
+SUB ResetInit_Set_Turnout_Controls()
+    TURNOUT_CONTROLS[0] = &Turnout_01_Control
+    TURNOUT_CONTROLS[1] = &Turnout_02_Control
+    TURNOUT_CONTROLS[2] = &Turnout_03_Control
+    TURNOUT_CONTROLS[3] = &Turnout_04_Control
+ENDSUB
+
 SUB ResetInit_Set_Turnouts_On_Panels()
-    PANEL_1_TURNOUTS[0] = (27,29,1)
-    PANEL_1_TURNOUTS[1] = (30,30,1)
-    PANEL_1_TURNOUTS[2] = (43,33,1)
-    PANEL_1_TURNOUTS[3] = (36,29,1)
+    PANEL_1_TURNOUTS[0] = (27,28,1)
+    PANEL_1_TURNOUTS[1] = (30,29,1)
+    PANEL_1_TURNOUTS[2] = (43,32,1)
+    PANEL_1_TURNOUTS[3] = (36,28,1)
 ENDSUB
 
 SUB ResetInit_Set_Turnouts_To_Primary({local} TurnoutIndex)
     TurnoutIndex = 0
-    UNTIL TurnoutIndex > NUM_TURNOUTS QUICKLOOP
+    UNTIL TurnoutIndex >= NUM_TURNOUTS QUICKLOOP
         TURNOUT_STATUSES[TurnoutIndex] = TURNOUT_DIRECTION_PRIMARY
         Redraw_Turnout(TurnoutIndex)
 
@@ -297,37 +317,55 @@ SUB ResetInit_Set_Turnouts_To_Primary({local} TurnoutIndex)
     ENDLOOP
 ENDSUB
 
+{
+SUB Set_Turnout(TurnoutIndex, Direction)
+ENDSUB
+}
+
 SUB Throw_Turnout(TurnoutIndex)
     ' Invert status of turnout, from thrown to straight or vice versa
     TURNOUT_STATUSES[TurnoutIndex] = TURNOUT_STATUSES[TurnoutIndex] ~
+
+    { *Turnout_Pointer[TIndex]=*Turnout_Pointer[TIndex]~, 'Reverse power to Tortoise & LED or to Atlas LED only }
+    *TURNOUT_CONTROLS[TurnoutIndex] = TURNOUT_STATUSES[TurnoutIndex]
+
+    {
+    IF TURNOUT_TYPES[TurnoutIndex] = TURNOUT_TYPE_ATLAS THEN
+        IF TURNOUT_STATUSES[TurnoutIndex] = TURNOUT_DIRECTION_PRIMARY THEN
+            *ATLAS_SECONDARY_CONTROLS[TurnoutIndex] = PULSE 0.25
+            ' *Atlas_Turnout_LED_Pointer_Secondary[TIndex]=TURNOUT_DIRECTION_SECONDARY	'NOT USED?
+        ELSE
+            *ATLAS_PRIMARY_CONTROLS[TurnoutIndex] = PULSE 0.25
+            ' *Atlas_Turnout_led_Pointer_Primary[TIndex]=TURNOUT_DIRECTION_PRIMARY,	'NOT USED?
+        ENDIF
+    ENDIF
+    }
 
     ' Redraw turnout on panel
     Redraw_Turnout(TurnoutIndex)
 ENDSUB
 
+
+
+
+{--
+ - When starting up (hitting train icon) or hitting reset button
+ -}
 WHEN $RESET = TRUE DO
+    ResetInit_Set_Turnout_Types()
+    ResetInit_Set_Turnout_Controls()
     ResetInit_Set_Turnouts_On_Panels()
     ResetInit_Set_Turnouts_To_Primary()
 
-WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[0] OR Turnout_01_Button_Sensor = ON DO Throw_Turnout(0)
-WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[1] OR Turnout_02_Button_Sensor = ON DO Throw_Turnout(1)
-WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[2] OR Turnout_03_Button_Sensor = ON DO Throw_Turnout(2)
-WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[3] OR Turnout_04_Button_Sensor = ON DO Throw_Turnout(3)
+{--
+ - Triggers for throwing a turnout, either by panel or by physical button
+ -}
+    WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[0] OR Turnout_01_Button_Sensor = ON DO Throw_Turnout(0)
+    WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[1] OR Turnout_02_Button_Sensor = ON DO Throw_Turnout(1)
+    WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[2] OR Turnout_03_Button_Sensor = ON DO Throw_Turnout(2)
+    WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[3] OR Turnout_04_Button_Sensor = ON DO Throw_Turnout(3)
 
 {
-SUB Throw_Turnout(TIndex,ctc_Grid)
-	$Switch(ctc_Grid)=$Switch(ctc_Grid)~	'Throw turnout on panel display
-	*Turnout_Pointer[TIndex]=*Turnout_Pointer[TIndex]~, 'Reverse power to Tortoise & LED or to Atlas LED only
-	Turnout_Status[TIndex]=Turnout_Status[TIndex]~,	'Change direction status of turnout
-	IF Turnout_Type[TIndex]=ATLAS THEN
-		IF Turnout_Status[TIndex]=TURNOUT_DIRECTION_PRIMARY THEN	'Determine new status of Atlas turnout
-			*Atlas_Turnout_Pointer_Secondary[TIndex]=PULSE 0.25,	' Pulse power to proper Atlas leg
-			*Atlas_Turnout_LED_Pointer_Secondary[TIndex]=TURNOUT_DIRECTION_SECONDARY	'NOT USED?
-		ELSE 	*Atlas_Turnout_Pointer_Primary[TIndex]=PULSE 0.25,
-		 	*Atlas_Turnout_led_Pointer_Primary[TIndex]=TURNOUT_DIRECTION_PRIMARY,	'NOT USED?
-		ENDIF		
-	ENDIF
-ENDSUB
 
 SUB Initialize_Set_All_Turnouts_To_Primary_Direction(Local TIndex)
 	TIndex = INITIAL_TURNOUT_INDEX
@@ -443,46 +481,5 @@ Atlas_Turnout_Pointer_Secondary[20]=&Atlas1_Switchman04_t20Sec,
 'SPARES Atlas2_Switchman11_Spare, Atlas2_Switchman12_Spare,
 'SPARES Atlas2_Switchman13_Spare, Atlas2_Switchman14_Spare, 
 'SPARES Atlas2_Switchman15_Spare, Atlas2_Switchman16_Spare
-
-	PANEL_1_TURNOUTS[1]=(4,20,4), PANEL_1_TURNOUTS[2]=(9,14,4), PANEL_1_TURNOUTS[3]=(34,8,4), Turnout_PANEL_1_TURNOUTSGrid[4]=(35,8,4),
-	Turnout_Grid[5]=(46,13,4), Turnout_Grid[6]=(46,18,4), Turnout_Grid[7]=(45,22,4), Turnout_Grid[8]=(34,28,4),
-	Turnout_Grid[9]=(7,21,4),Turnout_Grid[10]=(20,4,4), Turnout_Grid[11]=(23,4,4), Turnout_Grid[12]=(50,18,4),
-	Turnout_Grid[13]=(50,22,4), Turnout_Grid[14]=(35,27,4), Turnout_Grid[15]=(7,18,4), Turnout_Grid[16]=(8,17,4),
-	Turnout_Grid[17]=(4,25,4),Turnout_Grid[18]=(31,6,4),Turnout_Grid[19]=(51,17,4),Turnout_Grid[20]=(52,16,4),
-	
-	Turnout_Grid[25]=(16,17,4),Turnout_Grid[26]=(17,18,4),
-
-    	Turnout_Type[1]=TORTOISE, Turnout_Type[2]=TORTOISE, Turnout_Type[3]=TORTOISE, Turnout_Type[4]=TORTOISE,
-	Turnout_Type[5]=TORTOISE, Turnout_Type[6]=TORTOISE, Turnout_Type[7]=TORTOISE, Turnout_Type[8]=TORTOISE,
-	Turnout_Type[9]=TORTOISE, Turnout_Type[10]=TORTOISE, Turnout_Type[11]=TORTOISE, Turnout_Type[12]=TORTOISE,
-	Turnout_Type[13]=TORTOISE, Turnout_Type[14]=TORTOISE, Turnout_Type[15]=TORTOISE, Turnout_Type[16]=TORTOISE,
-	Turnout_Type[17]=TORTOISE, Turnout_Type[18]=TORTOISE,Turnout_Type[19]=ATLAS, Turnout_Type[20]=ATLAS,
-	Turnout_Type[21]=ATLAS, Turnout_Type[22]=ATLAS,Turnout_Type[23]=ATLAS, Turnout_Type[24]=ATLAS,
-	Turnout_Type[25]=TORTOISE, Turnout_Type[26]=TORTOISE, Turnout_Type[27]=TORTOISE, Turnout_Type[28]=TORTOISE, 
-	Turnout_Type[29]=TORTOISE, Turnout_Type[30]=TORTOISE, Turnout_Type[31]=ATLAS, Turnout_Type[32]=ATLAS,
-
-    WHEN $Leftmouse=Turnout_Grid[1] or *Turnout_Button_Pointer[1]=on DO Throw_Turnout(1,Turnout_Grid[1])
-WHEN $Leftmouse=Turnout_Grid[2] or *Turnout_Button_Pointer[2]=on DO Throw_Turnout(2,Turnout_Grid[2])
-WHEN $Leftmouse=Turnout_Grid[3] or *Turnout_Button_Pointer[3]=on DO Throw_Turnout(3,Turnout_Grid[3]), Redraw_Extra_Blocks_On_Grid()
-WHEN $Leftmouse=Turnout_Grid[4] or *Turnout_Button_Pointer[4]=on DO Throw_Turnout(4,Turnout_Grid[4])
-WHEN $Leftmouse=Turnout_Grid[5] or *Turnout_Button_Pointer[5]=on DO Throw_Turnout(5,Turnout_Grid[5])
-WHEN $Leftmouse=Turnout_Grid[6] or *Turnout_Button_Pointer[6]=on DO Throw_Turnout(6,Turnout_Grid[6])
-WHEN $Leftmouse=Turnout_Grid[7] or *Turnout_Button_Pointer[7]=on DO Throw_Turnout(7,Turnout_Grid[7])
-WHEN $Leftmouse=Turnout_Grid[8] or *Turnout_Button_Pointer[8]=on DO Throw_Turnout(8,Turnout_Grid[8])
-WHEN $Leftmouse=Turnout_Grid[9] or *Turnout_Button_Pointer[9]=on DO Throw_Turnout(9,Turnout_Grid[9])
-WHEN $Leftmouse=Turnout_Grid[10] or *Turnout_Button_Pointer[10]=on DO Throw_Turnout(10,Turnout_Grid[10])
-WHEN $Leftmouse=Turnout_Grid[11] or *Turnout_Button_Pointer[11]=on DO Throw_Turnout(11,Turnout_Grid[11])
-WHEN $Leftmouse=Turnout_Grid[12] or *Turnout_Button_Pointer[12]=on DO Throw_Turnout(12,Turnout_Grid[12]), Redraw_Extra_Blocks_On_Grid()
-WHEN $Leftmouse=Turnout_Grid[13] or *Turnout_Button_Pointer[13]=on DO Throw_Turnout(13,Turnout_Grid[13])
-WHEN $Leftmouse=Turnout_Grid[14] or *Turnout_Button_Pointer[14]=on DO Throw_Turnout(14,Turnout_Grid[14])
-WHEN $Leftmouse=Turnout_Grid[15] or *Turnout_Button_Pointer[15]=on DO Throw_Turnout(15,Turnout_Grid[15])
-WHEN $Leftmouse=Turnout_Grid[16] or *Turnout_Button_Pointer[16]=on DO Throw_Turnout(16,Turnout_Grid[16])
-WHEN $Leftmouse=Turnout_Grid[17] or *Turnout_Button_Pointer[17]=on DO Throw_Turnout(17,Turnout_Grid[17])
-WHEN $Leftmouse=Turnout_Grid[18] or *Turnout_Button_Pointer[18]=on DO Throw_Turnout(18,Turnout_Grid[18]), Redraw_Extra_Blocks_On_Grid()
-WHEN $Leftmouse=Turnout_Grid[19] or *Turnout_Button_Pointer[19]=on DO Throw_Turnout(19,Turnout_Grid[19])
-WHEN $Leftmouse=Turnout_Grid[20] or *Turnout_Button_Pointer[20]=on DO Throw_Turnout(20,Turnout_Grid[20])
-
-WHEN $Leftmouse=Turnout_Grid[25] or *Turnout_Button_Pointer[19]=on DO Throw_Turnout(25,Turnout_Grid[25])
-WHEN $Leftmouse=Turnout_Grid[26] or *Turnout_Button_Pointer[20]=on DO Throw_Turnout(26,Turnout_Grid[26])
 }
 
