@@ -291,6 +291,9 @@ SUB ResetInit_Set_Turnout_Types()
     TURNOUT_TYPES[1] = TURNOUT_TYPE_TORTOISE
     TURNOUT_TYPES[2] = TURNOUT_TYPE_TORTOISE
     TURNOUT_TYPES[3] = TURNOUT_TYPE_TORTOISE
+    {
+    ATLAS = 19,20,21,31,32
+    }
 ENDSUB
 
 SUB ResetInit_Set_Turnout_Controls()
@@ -305,44 +308,69 @@ SUB ResetInit_Set_Turnouts_On_Panels()
     PANEL_1_TURNOUTS[1] = (30,29,1)
     PANEL_1_TURNOUTS[2] = (43,32,1)
     PANEL_1_TURNOUTS[3] = (36,28,1)
+    {
+    PANEL_1_TURNOUTS[4] = (3,7,1)
+    PANEL_1_TURNOUTS[5] = (7,7,1)
+    PANEL_1_TURNOUTS[6] = (7,8,1)
+    PANEL_1_TURNOUTS[7] = (12,7,1)
+    PANEL_1_TURNOUTS[8] = (27,8,1)
+    PANEL_1_TURNOUTS[9] = (36,8,1)
+    PANEL_1_TURNOUTS[10] = (44,9,1)
+    PANEL_1_TURNOUTS[11] = (6,33,1)
+    PANEL_1_TURNOUTS[12] = (9,33,1)
+    PANEL_1_TURNOUTS[13] = (9,8,1)
+    PANEL_1_TURNOUTS[14] = (33,8,1)
+    PANEL_1_TURNOUTS[15] = (30,9,1)
+    PANEL_1_TURNOUTS[16] = (20,32,1)
+    PANEL_1_TURNOUTS[17] = (42,31,1)
+    PANEL_1_TURNOUTS[18] = (5,32,1)
+    PANEL_1_TURNOUTS[19] = (4,31,1)
+    PANEL_1_TURNOUTS[20] = (10,32,1)
+    PANEL_1_TURNOUTS[21] = (5,18,1)
+    PANEL_1_TURNOUTS[22] = (8,18,1)
+    PANEL_1_TURNOUTS[23] = (8,19,1)
+    PANEL_1_TURNOUTS[24] = (23,20,1)
+    PANEL_1_TURNOUTS[25] = (22,19,1)
+    PANEL_1_TURNOUTS[26] = (29,17,1)
+    PANEL_1_TURNOUTS[27] = (31,19,1)
+    PANEL_1_TURNOUTS[28] = (32,19,1)
+    PANEL_1_TURNOUTS[29] = (33,19,1)
+    PANEL_1_TURNOUTS[30] = (43,8,1)
+    PANEL_1_TURNOUTS[31] = (41,8,1)
+    PANEL_1_TURNOUTS[32] = (4,10,1)
+    PANEL_1_TURNOUTS[33] = (3,9,1)
+    }
+ENDSUB
+
+SUB Set_Turnout(TurnoutIndex, Direction)
+    ' Invert status of turnout, from thrown to straight or vice versa
+    TURNOUT_STATUSES[TurnoutIndex] = Direction
+
+    *TURNOUT_CONTROLS[TurnoutIndex] = TURNOUT_STATUSES[TurnoutIndex]
+
+    IF TURNOUT_TYPES[TurnoutIndex] = TURNOUT_TYPE_ATLAS THEN
+        IF TURNOUT_STATUSES[TurnoutIndex] = TURNOUT_DIRECTION_PRIMARY THEN
+            *ATLAS_SECONDARY_CONTROLS[TurnoutIndex] = PULSE 0.25
+        ELSE
+            *ATLAS_PRIMARY_CONTROLS[TurnoutIndex] = PULSE 0.25
+        ENDIF
+    ENDIF
+
+    ' Redraw turnout on panel
+    Redraw_Turnout(TurnoutIndex)
 ENDSUB
 
 SUB ResetInit_Set_Turnouts_To_Primary({local} TurnoutIndex)
     TurnoutIndex = 0
     UNTIL TurnoutIndex >= NUM_TURNOUTS QUICKLOOP
-        TURNOUT_STATUSES[TurnoutIndex] = TURNOUT_DIRECTION_PRIMARY
-        Redraw_Turnout(TurnoutIndex)
+        Set_Turnout(TurnoutIndex, TURNOUT_DIRECTION_PRIMARY)
 
         TurnoutIndex = 1 +
     ENDLOOP
 ENDSUB
 
-{
-SUB Set_Turnout(TurnoutIndex, Direction)
-ENDSUB
-}
-
 SUB Throw_Turnout(TurnoutIndex)
-    ' Invert status of turnout, from thrown to straight or vice versa
-    TURNOUT_STATUSES[TurnoutIndex] = TURNOUT_STATUSES[TurnoutIndex] ~
-
-    { *Turnout_Pointer[TIndex]=*Turnout_Pointer[TIndex]~, 'Reverse power to Tortoise & LED or to Atlas LED only }
-    *TURNOUT_CONTROLS[TurnoutIndex] = TURNOUT_STATUSES[TurnoutIndex]
-
-    {
-    IF TURNOUT_TYPES[TurnoutIndex] = TURNOUT_TYPE_ATLAS THEN
-        IF TURNOUT_STATUSES[TurnoutIndex] = TURNOUT_DIRECTION_PRIMARY THEN
-            *ATLAS_SECONDARY_CONTROLS[TurnoutIndex] = PULSE 0.25
-            ' *Atlas_Turnout_LED_Pointer_Secondary[TIndex]=TURNOUT_DIRECTION_SECONDARY	'NOT USED?
-        ELSE
-            *ATLAS_PRIMARY_CONTROLS[TurnoutIndex] = PULSE 0.25
-            ' *Atlas_Turnout_led_Pointer_Primary[TIndex]=TURNOUT_DIRECTION_PRIMARY,	'NOT USED?
-        ENDIF
-    ENDIF
-    }
-
-    ' Redraw turnout on panel
-    Redraw_Turnout(TurnoutIndex)
+    Set_Turnout(TurnoutIndex, TURNOUT_STATUSES[TurnoutIndex] ~)
 ENDSUB
 
 
