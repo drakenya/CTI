@@ -4,7 +4,7 @@ CONSTANTS:
     {--
      -  Turnouts
      -}
-    NUM_TURNOUTS = 4
+    NUM_TURNOUTS = 20
 
     TURNOUT_DIRECTION_PRIMARY = OFF
     TURNOUT_DIRECTION_SECONDARY = ON
@@ -26,37 +26,37 @@ SMARTCABS:
 CONTROLS:
     Turnout_05_Control 'YardMaster 1, Port 01
     Turnout_08_Control 'YardMaster 1, Port 02
-    Turnout_14_Control 'YardMaster 1, Port 03
-    Turnout_A1_Control 'YardMaster 1, Port 04
+    Turnout_13_Control 'YardMaster 1, Port 03
+    Turnout_21_Control 'YardMaster 1, Port 04
     Turnout_12_Control 'YardMaster 1, Port 05
     Turnout_19_Control 'YardMaster 1, Port 06
     Turnout_20_Control 'YardMaster 1, Port 07
     Turnout_06_Control 'YardMaster 1, Port 08
     Turnout_07_Control 'YardMaster 1, Port 09
-    Turnout_A2_Control 'YardMaster 1, Port 10
-    Turnout_A3_Control 'YardMaster 1, Port 11
-    Turnout_A4_Control 'YardMaster 1, Port 12
-    Turnout_A5_Control 'YardMaster 1, Port 13
-    Turnout_A6_Control 'YardMaster 1, Port 14
-    Turnout_A7_Control 'YardMaster 1, Port 15
-    Turnout_A8_Control 'YardMaster 1, Port 16
+    Turnout_33_Control 'YardMaster 1, Port 10
+    Turnout_34_Control 'YardMaster 1, Port 11
+    Turnout_AA_Control 'YardMaster 1, Port 12
+    Turnout_14_Control 'YardMaster 1, Port 13
+    Turnout_22_Control 'YardMaster 1, Port 14
+    Turnout_23_Control 'YardMaster 1, Port 15
+    Turnout_24_Control 'YardMaster 1, Port 16
 SENSORS:
-    Turnout_05_Sensor 'Sentry 1, Port 01
-    Turnout_08_Sensor 'Sentry 1, Port 02
-    Turnout_14_Sensor 'Sentry 1, Port 03
-    Turnout_A1_Sensor 'Sentry 1, Port 04
-    Turnout_12_Sensor 'Sentry 1, Port 05
-    Turnout_19_Sensor 'Sentry 1, Port 06
-    Turnout_20_Sensor 'Sentry 1, Port 07
-    Turnout_06_Sensor 'Sentry 1, Port 08
-    Turnout_07_Sensor 'Sentry 1, Port 09
-    Turnout_A2_Sensor 'Sentry 1, Port 10
-    Turnout_A3_Sensor 'Sentry 1, Port 11
-    Turnout_A4_Sensor 'Sentry 1, Port 12
-    Turnout_A5_Sensor 'Sentry 1, Port 13
-    Turnout_A6_Sensor 'Sentry 1, Port 14
-    Turnout_A7_Sensor 'Sentry 1, Port 15
-    Turnout_A8_Sensor 'Sentry 1, Port 16
+    Turnout_05_Button_Sensor 'Sentry 1, Port 01
+    Turnout_08_Button_Sensor 'Sentry 1, Port 02
+    Turnout_13_Button_Sensor 'Sentry 1, Port 03
+    Turnout_21_Button_Sensor 'Sentry 1, Port 04
+    Turnout_12_Button_Sensor 'Sentry 1, Port 05
+    Turnout_19_Button_Sensor 'Sentry 1, Port 06
+    Turnout_20_Button_Sensor 'Sentry 1, Port 07
+    Turnout_06_Button_Sensor 'Sentry 1, Port 08
+    Turnout_07_Button_Sensor 'Sentry 1, Port 09
+    Turnout_33_Button_Sensor 'Sentry 1, Port 10
+    Turnout_34_Button_Sensor 'Sentry 1, Port 11
+    Turnout_AA_Button_Sensor 'Sentry 1, Port 12
+    Turnout_14_Button_Sensor 'Sentry 1, Port 13
+    Turnout_22_Button_Sensor 'Sentry 1, Port 14
+    Turnout_23_Button_Sensor 'Sentry 1, Port 15
+    Turnout_24_Button_Sensor 'Sentry 1, Port 16
 
 {--
  -  Block Control, Board 1
@@ -102,7 +102,7 @@ CONTROLS:
  -}
 CONTROLS:
     Turnout_19_Primary_Control 'Switchman 1, port 1
-    Turnout_18_Secondary_Control 'Switchman 1, port 2
+    Turnout_19_Secondary_Control 'Switchman 1, port 2
     Turnout_20_Primary_Control 'Switchman 1, port 3
     Turnout_20_Secondary_Control 'Switchman 1, port 4
     Turnout_C1_Control 'Switchman 1, port 5
@@ -185,39 +185,39 @@ CONTROLS:
  -  Sentry 1 (16 sensor)
  -}
 CONTROLS:
-    Turnout_FX_Control 'YardMaster 1, Port 01
+    Turnout_BB_Control 'YardMaster 1, Port 01
     Turnout_02_Control 'YardMaster 1, Port 02
     Turnout_01_Control 'YardMaster 1, Port 03
     Turnout_04_Control 'YardMaster 1, Port 04
     Turnout_09_Control 'YardMaster 1, Port 05
     Turnout_10_Control 'YardMaster 1, Port 06
-    Turnout_17_Control 'YardMaster 1, Port 07
-    Turnout_16_Control 'YardMaster 1, Port 08
+    Turnout_16_Control 'YardMaster 1, Port 07
+    Turnout_17_Control 'YardMaster 1, Port 08
     Turnout_03_Control 'YardMaster 1, Port 09
     Turnout_18_Control 'YardMaster 1, Port 10
     Turnout_15_Control 'YardMaster 1, Port 11
-    Turnout_F0_Control 'YardMaster 1, Port 12
-    Turnout_F1_Control 'YardMaster 1, Port 13
-    Turnout_F2_Control 'YardMaster 1, Port 14
-    Turnout_F3_Control 'YardMaster 1, Port 15
-    Turnout_F4_Control 'YardMaster 1, Port 16
+    Turnout_31_Control 'YardMaster 1, Port 12
+    Turnout_11_Control 'YardMaster 1, Port 13
+    Turnout_32_Control 'YardMaster 1, Port 14
+    Turnout_25_Control 'YardMaster 1, Port 15
+    Turnout_26_Control 'YardMaster 1, Port 16
 SENSORS:
-    Turnout_FX_Sensor 'Sentry 1, Port 01
+    Turnout_BB_Button_Sensor 'Sentry 1, Port 01
     Turnout_02_Button_Sensor 'Sentry 1, Port 02
     Turnout_01_Button_Sensor 'Sentry 1, Port 03
     Turnout_04_Button_Sensor 'Sentry 1, Port 04
-    Turnout_09_Sensor 'Sentry 1, Port 05
-    Turnout_10_Sensor 'Sentry 1, Port 06
-    Turnout_17_Sensor 'Sentry 1, Port 07
-    Turnout_16_Sensor 'Sentry 1, Port 08
+    Turnout_09_Button_Sensor 'Sentry 1, Port 05
+    Turnout_10_Button_Sensor 'Sentry 1, Port 06
+    Turnout_16_Button_Sensor 'Sentry 1, Port 07
+    Turnout_17_Button_Sensor 'Sentry 1, Port 08
     Turnout_03_Button_Sensor 'Sentry 1, Port 09
-    Turnout_18_Sensor 'Sentry 1, Port 10
-    Turnout_15_Sensor 'Sentry 1, Port 11
-    Turnout_F0_Sensor 'Sentry 1, Port 12
-    Turnout_F1_Sensor 'Sentry 1, Port 13
-    Turnout_F2_Sensor 'Sentry 1, Port 14
-    Turnout_F3_Sensor 'Sentry 1, Port 15
-    Turnout_F4_Sensor 'Sentry 1, Port 16
+    Turnout_18_Button_Sensor 'Sentry 1, Port 10
+    Turnout_15_Button_Sensor 'Sentry 1, Port 11
+    Turnout_31_Button_Sensor 'Sentry 1, Port 12
+    Turnout_11_Button_Sensor 'Sentry 1, Port 13
+    Turnout_32_Button_Sensor 'Sentry 1, Port 14
+    Turnout_25_Button_Sensor 'Sentry 1, Port 15
+    Turnout_26_Button_Sensor 'Sentry 1, Port 16
 
 {--
  -  Block Control, Board 3
@@ -257,28 +257,13 @@ CONTROLS:
     Block_G4_Control_3 'Dash-8 1, port 8
 
 VARIABLES:
-    PANEL_1_TURNOUTS[NUM_TURNOUTS]
-    TURNOUT_TYPES[NUM_TURNOUTS]
-    TURNOUT_STATUSES[NUM_TURNOUTS]
+    PANEL_1_TURNOUTS[NUM_TURNOUTS]  ' Coordinate location of turnouts on panel 1 (F5)
+    TURNOUT_TYPES[NUM_TURNOUTS]     ' Type of each turnout (TURNOUT_TYPE_TORTOISE / TURNOUT_TYPE_ATLAS)
+    TURNOUT_STATUSES[NUM_TURNOUTS]  ' Current status of each turnout (TURNOUT_DIRECTION_PRIMARY / TURNOUT_DIRECTION_SECONDARY)
 
-
-    TURNOUT_CONTROLS[NUM_TURNOUTS]
-    ATLAS_PRIMARY_CONTROLS[NUM_TURNOUTS]
-    ATLAS_SECONDARY_CONTROLS[NUM_TURNOUTS]
-    
-    {
-    ' Holds address for Turnout Machine controls
-	Turnout_Pointer[NUM_TURNOUTS]
-
-    ' Holds address of Sensors for Manual turnout buttons
-	Turnout_Button_Pointer[NUM_TURNOUTS]
-
-    ' Holds address of Controls for Atlas turnouts
-	Atlas_Turnout_Pointer_Primary[NUM_TURNOUTS]
-	Atlas_Turnout_Pointer_Secondary[NUM_TURNOUTS]
-	Atlas_Turnout_LED_Pointer_Primary[NUM_TURNOUTS]
-	Atlas_Turnout_LED_Pointer_Secondary[NUM_TURNOUTS]	
-    }
+    TURNOUT_CONTROLS[NUM_TURNOUTS]          ' Board controls for each turnout (led + direction for tortoise, led for atlas)
+    ATLAS_PRIMARY_CONTROLS[NUM_TURNOUTS]    ' Board controls for throwing an atlas turnout in the primary direction)
+    ATLAS_SECONDARY_CONTROLS[NUM_TURNOUTS]  ' Board control for throwing an atlas turnout in the secondary direction)
 
 ACTIONS:
 
@@ -291,8 +276,37 @@ SUB ResetInit_Set_Turnout_Types()
     TURNOUT_TYPES[1] = TURNOUT_TYPE_TORTOISE
     TURNOUT_TYPES[2] = TURNOUT_TYPE_TORTOISE
     TURNOUT_TYPES[3] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[4] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[5] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[6] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[7] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[8] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[9] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[10] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[11] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[12] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[13] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[14] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[15] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[16] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[17] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[18] = TURNOUT_TYPE_ATLAS
+    TURNOUT_TYPES[19] = TURNOUT_TYPE_ATLAS
     {
-    ATLAS = 19,20,21,31,32
+    TURNOUT_TYPES[20] = TURNOUT_TYPE_ATLAS
+    TURNOUT_TYPES[21] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[22] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[23] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[24] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[25] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[26] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[27] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[28] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[29] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[30] = TURNOUT_TYPE_ATLAS
+    TURNOUT_TYPES[31] = TURNOUT_TYPE_ATLAS
+    TURNOUT_TYPES[32] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[33] = TURNOUT_TYPE_TORTOISE
     }
 ENDSUB
 
@@ -301,6 +315,54 @@ SUB ResetInit_Set_Turnout_Controls()
     TURNOUT_CONTROLS[1] = &Turnout_02_Control
     TURNOUT_CONTROLS[2] = &Turnout_03_Control
     TURNOUT_CONTROLS[3] = &Turnout_04_Control
+    TURNOUT_CONTROLS[4] = &Turnout_05_Control
+    TURNOUT_CONTROLS[5] = &Turnout_06_Control
+    TURNOUT_CONTROLS[6] = &Turnout_07_Control
+    TURNOUT_CONTROLS[7] = &Turnout_08_Control
+    TURNOUT_CONTROLS[8] = &Turnout_09_Control
+    TURNOUT_CONTROLS[9] = &Turnout_10_Control
+    TURNOUT_CONTROLS[10] = &Turnout_11_Control
+    TURNOUT_CONTROLS[11] = &Turnout_12_Control
+    TURNOUT_CONTROLS[12] = &Turnout_13_Control
+    TURNOUT_CONTROLS[13] = &Turnout_14_Control
+    TURNOUT_CONTROLS[14] = &Turnout_15_Control
+    TURNOUT_CONTROLS[15] = &Turnout_16_Control
+    TURNOUT_CONTROLS[16] = &Turnout_17_Control
+    TURNOUT_CONTROLS[17] = &Turnout_18_Control
+    TURNOUT_CONTROLS[18] = &Turnout_19_Control
+    TURNOUT_CONTROLS[19] = &Turnout_20_Control
+    {
+    TURNOUT_CONTROLS[20] = &Turnout_21_Control
+    TURNOUT_CONTROLS[21] = &Turnout_22_Control
+    TURNOUT_CONTROLS[22] = &Turnout_23_Control
+    TURNOUT_CONTROLS[23] = &Turnout_24_Control
+    TURNOUT_CONTROLS[24] = &Turnout_25_Control
+    TURNOUT_CONTROLS[25] = &Turnout_26_Control
+    TURNOUT_CONTROLS[26] = &Turnout_27_Control
+    TURNOUT_CONTROLS[27] = &Turnout_28_Control
+    TURNOUT_CONTROLS[28] = &Turnout_29_Control
+    TURNOUT_CONTROLS[29] = &Turnout_30_Control
+    TURNOUT_CONTROLS[30] = &Turnout_31_Control
+    TURNOUT_CONTROLS[31] = &Turnout_32_Control
+    TURNOUT_CONTROLS[32] = &Turnout_33_Control
+    TURNOUT_CONTROLS[33] = &Turnout_34_Control
+    }
+
+    ATLAS_PRIMARY_CONTROLS[18] = &Turnout_19_Primary_Control
+    ATLAS_PRIMARY_CONTROLS[19] = &Turnout_20_Primary_Control
+    {
+    ATLAS_PRIMARY_CONTROLS[20] = &Turnout_21_Primary_Control
+    ATLAS_PRIMARY_CONTROLS[30] = &Turnout_31_Primary_Control
+    ATLAS_PRIMARY_CONTROLS[31] = &Turnout_32_Primary_Control
+    }
+
+    ATLAS_SECONDARY_CONTROLS[18] = &Turnout_19_Secondary_Control
+    ATLAS_SECONDARY_CONTROLS[19] = &Turnout_20_Secondary_Control
+    {
+    ATLAS_SECONDARY_CONTROLS[20] = &Turnout_21_Secondary_Control
+    ATLAS_SECONDARY_CONTROLS[30] = &Turnout_31_Secondary_Control
+    ATLAS_SECONDARY_CONTROLS[31] = &Turnout_32_Secondary_Control
+    }
 ENDSUB
 
 SUB ResetInit_Set_Turnouts_On_Panels()
@@ -308,7 +370,6 @@ SUB ResetInit_Set_Turnouts_On_Panels()
     PANEL_1_TURNOUTS[1] = (30,29,1)
     PANEL_1_TURNOUTS[2] = (43,32,1)
     PANEL_1_TURNOUTS[3] = (36,28,1)
-    {
     PANEL_1_TURNOUTS[4] = (3,7,1)
     PANEL_1_TURNOUTS[5] = (7,7,1)
     PANEL_1_TURNOUTS[6] = (7,8,1)
@@ -326,6 +387,7 @@ SUB ResetInit_Set_Turnouts_On_Panels()
     PANEL_1_TURNOUTS[18] = (5,32,1)
     PANEL_1_TURNOUTS[19] = (4,31,1)
     PANEL_1_TURNOUTS[20] = (10,32,1)
+    {
     PANEL_1_TURNOUTS[21] = (5,18,1)
     PANEL_1_TURNOUTS[22] = (8,18,1)
     PANEL_1_TURNOUTS[23] = (8,19,1)
@@ -392,122 +454,36 @@ WHEN $RESET = TRUE DO
     WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[1] OR Turnout_02_Button_Sensor = ON DO Throw_Turnout(1)
     WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[2] OR Turnout_03_Button_Sensor = ON DO Throw_Turnout(2)
     WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[3] OR Turnout_04_Button_Sensor = ON DO Throw_Turnout(3)
-
-{
-
-SUB Initialize_Set_All_Turnouts_To_Primary_Direction(Local TIndex)
-	TIndex = INITIAL_TURNOUT_INDEX
-	UNTIL TIndex >= MAX_TURNOUT_INDEX LOOP
-		$Switch(TurnOut_Grid[TIndex])=TURNOUT_DIRECTION_PRIMARY	'Throw Panel Display
-		*Turnout_Pointer[TIndex]=TURNOUT_DIRECTION_PRIMARY	' Throw power to Tortoise/LED or Atlas LED only
-		IF Turnout_Type[TIndex]=ATLAS THEN
-			*Atlas_Turnout_Pointer_Primary[TIndex]=PULSE 0.25	'throw power to Atlas Turnout
-		ENDIF
-		Turnout_Status[TIndex]=TURNOUT_DIRECTION_PRIMARY
-
-		TIndex = 1+
-	ENDLOOP
-ENDSUB
-
-' set address pointers to Turnout_Controls
-
-	Turnout_Pointer[5]=&TurnoutBd1_1YardMstr01_t05,
-       Turnout_Pointer[8]=&TurnoutBd1_1YardMstr02_t08,
-	'Turnout_Pointer[14]=&TurnoutBd1_1YardMstr03_t14,
-	'TBD Turnout_Pointer[atlas_TBD]=&TurnoutBd1_1YardMstr04_TBD,
-	Turnout_Pointer[12]=&TurnoutBd1_1YardMstr05_t12,
-	Turnout_Pointer[19]=&TurnoutBd1_1YardMstr06_t19,
-	Turnout_Pointer[20]=&TurnoutBd1_1YardMstr07_t20,
-	Turnout_Pointer[6]=&TurnoutBd1_1YardMstr08_t06,
-	'Turnout_Pointer[7]=&TurnoutBd1_1YardMstr09_t07,
-	'TBD Turnout_Pointer[atlas_TBD]=&TurnoutBd1_1YardMstr10_TBD,
-	'TBD Turnout_Pointer[atlas_TBD]=&TurnoutBd1_1YardMstr11_TBD,
-	'SPARE Turnout_Pointer[Spare]=&TurnoutBd1_1YardMstr12_spare,
-	'Turnout_Pointer[13]=&TurnoutBd1_1YardMstr13_t13,
-	'TBD Turnout_Pointer[atlas TBD]=&TurnoutBd1_1YardMstr14_TBD,
-	'TBD Turnout_Pointer[atlas TBD]=&TurnoutBd1_1YardMstr15_TBD,
-	'SPARE Turnout_Pointer[Spare]=&TurnoutBd1_1YardMstr16_spare,
-
-	'DEFECTIVE? Turnout_Pointer[X]=&TurnoutBd2_1YardMstr01_x,
-	Turnout_Pointer[2]=&TurnoutBd2_1YardMstr02_t02,
-	Turnout_Pointer[1]=&TurnoutBd2_1YardMstr03_t01,
-	Turnout_Pointer[4]=&TurnoutBd2_1YardMstr04_t04,
-	Turnout_Pointer[9]=&TurnoutBd2_1YardMstr05_t09,
-	Turnout_Pointer[10]=&TurnoutBd2_1YardMstr06_t10,
-	Turnout_Pointer[17]=&TurnoutBd2_1YardMstr07_t17,
-	Turnout_Pointer[16]=&TurnoutBd2_1YardMstr08_t16,
-	Turnout_Pointer[3]=&TurnoutBd2_1YardMstr09_t03,
-	Turnout_Pointer[18]=&TurnoutBd2_1YardMstr10_t18,
-	'NIS Turnout_Pointer[15]=&TurnoutBd2_1YardMstr11_T15,
-       'TBD Turnout_Pointer[atlas TBD]=&TurnoutBd2_1YardMstr12_TBD
-       'NIS Turnout_Pointer[11]=&TurnoutBd2_1YardMstr13_t11
-       'TBD Turnout_Pointer[atlas TBD]=&TurnoutBd2_1YardMstr14_TBD
-       'TBD Turnout_Pointer[atlas TBD]=&TurnoutBd2_1YardMstr15_TBD
-       'SPARE TurnoutBd2_1YardMstr16,
-
-' set address pointers to Turnout Push Button Sensors
-
-	Turnout_Button_Pointer[5]=&TurnoutBd1_2Sentry01_t05,
-	Turnout_Button_Pointer[8]=&TurnoutBd1_2Sentry02_t08,
-	'Turnout_Button_Pointer[14]=&TurnoutBd1_2Sentry03_t14,
-	'TBD Turnout_Button_Pointer[atlas_TBD]=&TurnoutBd1_2Sentry04_TBD,
-	Turnout_Button_Pointer[12]=&TurnoutBd1_2Sentry05_t12,
-	Turnout_Button_Pointer[19]=&TurnoutBd1_2Sentry06_t19,
-	Turnout_Button_Pointer[20]=&TurnoutBd1_2Sentry07_t20,
-	Turnout_Button_Pointer[6]=&TurnoutBd1_2Sentry08_t06,
-	'Turnout_Button_Pointer[7]=&TurnoutBd1_2Sentry09_t07,
-	'TBD Turnout_Button_Pointer[atlas_TBD]=&TurnoutBd1_2Sentry10_TBD,
-	'TBD Turnout_Button_Pointer[atlas_TBD]=&TurnoutBd1_2Sentry11_TBD,
-	'SPARE Turnout_Button_Pointer[Spare]=&TurnoutBd1_2Sentry12_spare,
-	'Turnout_Button_Pointer[13]=&TurnoutBd1_2Sentry13_t13,
-	'TBD Turnout_Button_Pointer[atlas_TBD]=&TurnoutBd1_2Sentry14_TBD,
-	'TBD Turnout_Button_Pointer[atlas_TBD]=&TurnoutBd1_2Sentry15_TBD,
-	' SPARE Turnout_Button_Pointer[spare]=&TurnoutBd1_2Sentry16_Spare,
-
-	'DEFECTIVE? Turnout_Button_Pointer[X]=&TurnoutBd2_2Sentry01_x,
-	Turnout_Button_Pointer[2]=&TurnoutBd2_2Sentry02_t02,
-	Turnout_Button_Pointer[1]=&TurnoutBd2_2Sentry03_t01,
-	Turnout_Button_Pointer[4]=&TurnoutBd2_2Sentry04_t04,
-	Turnout_Button_Pointer[9]=&TurnoutBd2_2Sentry05_t09,
-	Turnout_Button_Pointer[10]=&TurnoutBd2_2Sentry06_t10,
-	Turnout_Button_Pointer[17]=&TurnoutBd2_2Sentry07_t17,
-	Turnout_Button_Pointer[16]=&TurnoutBd2_2Sentry08_t16,
-	Turnout_Button_Pointer[3]=&TurnoutBd2_2Sentry09_t03,
-	Turnout_Button_Pointer[18]=&TurnoutBd2_2Sentry10_t18,
-	' NIS Turnout_Button_Pointer[15]=&TurnoutBd2_2Sentry11_t15,
-	'TBD Turnout_Button_Pointer[Atlas TBD]=&TurnoutBd2_2Sentry12_TBD,
-	'NIS Turnout_Button_Pointer[11]=&TurnoutBd2_2Sentry13_t11,
-       'TBD Turnout_Button_Pointer[Atlas TBD]=&TurnoutBd2_2Sentry14_TBD,
-       'TBD Turnout_Button_Pointer[Atlas TBD]=&TurnoutBd2_2Sentry15_TBD,
-       'SPARE Turnout_Button_Pointer[Spare]=&TurnoutBd2_2Sentry16_Spare,
-       
-       
-Atlas_Turnout_Pointer_Primary[19]=&Atlas1_Switchman01_t19Prim,
-Atlas_Turnout_Pointer_Secondary[19]=&Atlas1_Switchman02_t19Sec, 
-Atlas_Turnout_Pointer_Primary[20]=&Atlas1_Switchman03_t20Prim, 
-Atlas_Turnout_Pointer_Secondary[20]=&Atlas1_Switchman04_t20Sec,
-       'TBD Atlas_Turnout_Pointer_Primary[TBD]=&Atlas1_Switchman05_TBDPrim, 
-       'TBD Atlas_Turnout_Pointer_Primary[TBD]=&Atlas1_Switchman06_TBDSec, 
-'TBD Atlas_Turnout_Pointer_Primary[TBD]=&Atlas1_Switchman07_TBDPrim, 
-'TBD Atlas_Turnout_Pointer_Primary[TBD]=&Atlas1_Switchman08_TBDSec, 
-'TBD Atlas_Turnout_Pointer_Primary[TBD]=&Atlas1_Switchman09_TBDPrim, 
-'TBD Atlas_Turnout_Pointer_Primary[TBD]=&Atlas1_Switchman10_TBDSec, 
-'TBD Atlas_Turnout_Pointer_Primary[TBD]=&Atlas1_Switchman11_TBDPrim, 
-'TBD Atlas_Turnout_Pointer_Primary[TBD]=&Atlas1_Switchman12_TBDSec,
-'TBD Atlas_Turnout_Pointer_Primary[TBD]=&Atlas1_Switchman13_TBDPrim, 
-'TBD Atlas_Turnout_Pointer_Primary[TBD]=&Atlas1_Switchman14_TBDSec, 
-'SPARES Atlas1_Switchman15_Spare, Atlas1_Switchman16_Spare
-       
-       'TBD Atlas_Turnout_Pointer_Primary[TBD]=&Atlas2_Switchman01_TBDPrim, 
-       'TBD Atlas_Turnout_Pointer_Secondary[TBD]=&Atlas2_Switchman02_TBDSec, 
-       'TBD Atlas_Turnout_Pointer_Primary[TBD]=&Atlas_Turnout_Pointer_Primary[TBD]=&Atlas2_Switchman03_TBDPrim,
-'TBD Atlas_Turnout_Pointer_Secondary[TBD]=&Atlas_Turnout_Pointer_Secondary[TBD]=&Atlas2_Switchman04_TBDSec, 
-'TBD Atlas_Turnout_Pointer_Primary[TBD]=&Atlas_Turnout_Pointer_Primary[TBD]=&Atlas2_Switchman05_TBDPrim, 
-'TBD Atlas_Turnout_Pointer_Secondary[TBD]=&Atlas_Turnout_Pointer_Primary[TBD]=&Atlas2_Switchman06_TBDSec,
-'SPARES Atlas2_Switchman07_Spare, Atlas2_Switchman08_Spare, 
-'SPARES Atlas2_Switchman09_Spare, Atlas2_Switchman10_Spare, 
-'SPARES Atlas2_Switchman11_Spare, Atlas2_Switchman12_Spare,
-'SPARES Atlas2_Switchman13_Spare, Atlas2_Switchman14_Spare, 
-'SPARES Atlas2_Switchman15_Spare, Atlas2_Switchman16_Spare
-}
+    WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[4] OR Turnout_05_Button_Sensor = ON DO Throw_Turnout(4)
+    WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[5] OR Turnout_06_Button_Sensor = ON DO Throw_Turnout(5)
+    WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[6] OR Turnout_07_Button_Sensor = ON DO Throw_Turnout(6)
+    WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[7] OR Turnout_08_Button_Sensor = ON DO Throw_Turnout(7)
+    WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[8] OR Turnout_09_Button_Sensor = ON DO Throw_Turnout(8)
+    WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[9] OR Turnout_10_Button_Sensor = ON DO Throw_Turnout(9)
+    WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[10] OR Turnout_11_Button_Sensor = ON DO Throw_Turnout(10)
+    WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[11] OR Turnout_12_Button_Sensor = ON DO Throw_Turnout(11)
+    WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[12] OR Turnout_13_Button_Sensor = ON DO Throw_Turnout(12)
+    WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[13] OR Turnout_14_Button_Sensor = ON DO Throw_Turnout(13)
+    WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[14] OR Turnout_15_Button_Sensor = ON DO Throw_Turnout(14)
+    WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[15] OR Turnout_16_Button_Sensor = ON DO Throw_Turnout(15)
+    WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[16] OR Turnout_17_Button_Sensor = ON DO Throw_Turnout(16)
+    WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[17] OR Turnout_18_Button_Sensor = ON DO Throw_Turnout(17)
+    WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[18] OR Turnout_19_Button_Sensor = ON DO Throw_Turnout(18)
+    WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[19] OR Turnout_20_Button_Sensor = ON DO Throw_Turnout(19)
+    {
+    WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[20] OR Turnout_21_Button_Sensor = ON DO Throw_Turnout(20)
+    WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[21] OR Turnout_22_Button_Sensor = ON DO Throw_Turnout(21)
+    WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[22] OR Turnout_23_Button_Sensor = ON DO Throw_Turnout(22)
+    WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[23] OR Turnout_24_Button_Sensor = ON DO Throw_Turnout(23)
+    WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[24] OR Turnout_25_Button_Sensor = ON DO Throw_Turnout(24)
+    WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[25] OR Turnout_26_Button_Sensor = ON DO Throw_Turnout(25)
+    WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[26] OR Turnout_27_Button_Sensor = ON DO Throw_Turnout(26)
+    WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[27] OR Turnout_28_Button_Sensor = ON DO Throw_Turnout(27)
+    WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[28] OR Turnout_29_Button_Sensor = ON DO Throw_Turnout(28)
+    WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[29] OR Turnout_30_Button_Sensor = ON DO Throw_Turnout(29)
+    WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[30] OR Turnout_31_Button_Sensor = ON DO Throw_Turnout(30)
+    WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[31] OR Turnout_32_Button_Sensor = ON DO Throw_Turnout(31)
+    WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[32] OR Turnout_33_Button_Sensor = ON DO Throw_Turnout(32)
+    WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[33] OR Turnout_34_Button_Sensor = ON DO Throw_Turnout(33)
+    }
 
