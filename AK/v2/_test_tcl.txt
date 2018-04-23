@@ -20,6 +20,9 @@ CONSTANTS:
     POWER_OPTION_FIRST_CHOICE = OFF
     POWER_OPTION_SECOND_CHOICE = ON
 
+    BLOCK_DETECTOR_ACTIVITY_DETECTED = ON
+    BLOCK_DETECTOR_NO_ACTIVITY = OFF
+
     {--
      - Cabs
      -}
@@ -581,6 +584,14 @@ SUB ResetInit_Set_Block_Tracks_On_Panels()
     PANEL_1_BLOCK_TRACKS[11] = (31,30,1)
 ENDSUB
 
+SUB Block_Triggered_East(BlockIndex)
+ENDSUB
+
+SUB Block_Triggered_West(BlockIndex)
+ENDSUB
+
+SUB Block_Stopped_Triggering(BlockIndex)
+ENDSUB
 
 {-- Cabs --}
 SUB ResetInit_Set_Cab_Colors()
@@ -660,3 +671,44 @@ WHEN $RESET = TRUE DO
     WHEN $COMMAND = "All Blocks, Cab 3" DO Set_All_Block_Power_To_Cab(2)
     WHEN $COMMAND = "All Blocks, Cab 4" DO Set_All_Block_Power_To_Cab(3)
 
+{--
+ - Block detection
+ -}
+    WHEN Block_01_East_Sensor = BLOCK_DETECTOR_ACTIVITY_DETECTED THEN Block_Triggered_East(0)
+    WHEN Block_02_East_Sensor = BLOCK_DETECTOR_ACTIVITY_DETECTED THEN Block_Triggered_East(1)
+    WHEN Block_03_East_Sensor = BLOCK_DETECTOR_ACTIVITY_DETECTED THEN Block_Triggered_East(2)
+    WHEN Block_04_East_Sensor = BLOCK_DETECTOR_ACTIVITY_DETECTED THEN Block_Triggered_East(3)
+    WHEN Block_05_East_Sensor = BLOCK_DETECTOR_ACTIVITY_DETECTED THEN Block_Triggered_East(4)
+    WHEN Block_06_East_Sensor = BLOCK_DETECTOR_ACTIVITY_DETECTED THEN Block_Triggered_East(5)
+    WHEN Block_07_East_Sensor = BLOCK_DETECTOR_ACTIVITY_DETECTED THEN Block_Triggered_East(6)
+    WHEN Block_08_East_Sensor = BLOCK_DETECTOR_ACTIVITY_DETECTED THEN Block_Triggered_East(7)
+    WHEN Block_09_East_Sensor = BLOCK_DETECTOR_ACTIVITY_DETECTED THEN Block_Triggered_East(8)
+    WHEN Block_10_East_Sensor = BLOCK_DETECTOR_ACTIVITY_DETECTED THEN Block_Triggered_East(9)
+    WHEN Block_11_East_Sensor = BLOCK_DETECTOR_ACTIVITY_DETECTED THEN Block_Triggered_East(10)
+    WHEN Block_12_East_Sensor = BLOCK_DETECTOR_ACTIVITY_DETECTED THEN Block_Triggered_East(11)
+
+    WHEN Block_01_West_Sensor = BLOCK_DETECTOR_ACTIVITY_DETECTED THEN Block_Triggered_East(0)
+    WHEN Block_02_West_Sensor = BLOCK_DETECTOR_ACTIVITY_DETECTED THEN Block_Triggered_East(1)
+    WHEN Block_03_West_Sensor = BLOCK_DETECTOR_ACTIVITY_DETECTED THEN Block_Triggered_East(2)
+    WHEN Block_04_West_Sensor = BLOCK_DETECTOR_ACTIVITY_DETECTED THEN Block_Triggered_East(3)
+    WHEN Block_05_West_Sensor = BLOCK_DETECTOR_ACTIVITY_DETECTED THEN Block_Triggered_East(4)
+    WHEN Block_06_West_Sensor = BLOCK_DETECTOR_ACTIVITY_DETECTED THEN Block_Triggered_East(5)
+    WHEN Block_07_West_Sensor = BLOCK_DETECTOR_ACTIVITY_DETECTED THEN Block_Triggered_East(6)
+    WHEN Block_08_West_Sensor = BLOCK_DETECTOR_ACTIVITY_DETECTED THEN Block_Triggered_East(7)
+    WHEN Block_09_West_Sensor = BLOCK_DETECTOR_ACTIVITY_DETECTED THEN Block_Triggered_East(8)
+    WHEN Block_10_West_Sensor = BLOCK_DETECTOR_ACTIVITY_DETECTED THEN Block_Triggered_East(9)
+    WHEN Block_11_West_Sensor = BLOCK_DETECTOR_ACTIVITY_DETECTED THEN Block_Triggered_East(10)
+    WHEN Block_12_West_Sensor = BLOCK_DETECTOR_ACTIVITY_DETECTED THEN Block_Triggered_East(11)
+
+    WHEN Block_01_East_Sensor = BLOCK_DETECTOR_NO_ACTIVITY, Block_01_West_Sensor = BLOCK_DETECTOR_NO_ACTIVITY THEN Block_Stopped_Triggering(0)
+    WHEN Block_02_East_Sensor = BLOCK_DETECTOR_NO_ACTIVITY, Block_02_West_Sensor = BLOCK_DETECTOR_NO_ACTIVITY THEN Block_Stopped_Triggering(1)
+    WHEN Block_03_East_Sensor = BLOCK_DETECTOR_NO_ACTIVITY, Block_03_West_Sensor = BLOCK_DETECTOR_NO_ACTIVITY THEN Block_Stopped_Triggering(2)
+    WHEN Block_04_East_Sensor = BLOCK_DETECTOR_NO_ACTIVITY, Block_04_West_Sensor = BLOCK_DETECTOR_NO_ACTIVITY THEN Block_Stopped_Triggering(3)
+    WHEN Block_05_East_Sensor = BLOCK_DETECTOR_NO_ACTIVITY, Block_05_West_Sensor = BLOCK_DETECTOR_NO_ACTIVITY THEN Block_Stopped_Triggering(4)
+    WHEN Block_06_East_Sensor = BLOCK_DETECTOR_NO_ACTIVITY, Block_06_West_Sensor = BLOCK_DETECTOR_NO_ACTIVITY THEN Block_Stopped_Triggering(5)
+    WHEN Block_07_East_Sensor = BLOCK_DETECTOR_NO_ACTIVITY, Block_07_West_Sensor = BLOCK_DETECTOR_NO_ACTIVITY THEN Block_Stopped_Triggering(6)
+    WHEN Block_08_East_Sensor = BLOCK_DETECTOR_NO_ACTIVITY, Block_08_West_Sensor = BLOCK_DETECTOR_NO_ACTIVITY THEN Block_Stopped_Triggering(7)
+    WHEN Block_09_East_Sensor = BLOCK_DETECTOR_NO_ACTIVITY, Block_09_West_Sensor = BLOCK_DETECTOR_NO_ACTIVITY THEN Block_Stopped_Triggering(8)
+    WHEN Block_10_East_Sensor = BLOCK_DETECTOR_NO_ACTIVITY, Block_10_West_Sensor = BLOCK_DETECTOR_NO_ACTIVITY THEN Block_Stopped_Triggering(9)
+    WHEN Block_11_East_Sensor = BLOCK_DETECTOR_NO_ACTIVITY, Block_11_West_Sensor = BLOCK_DETECTOR_NO_ACTIVITY THEN Block_Stopped_Triggering(10)
+    WHEN Block_12_East_Sensor = BLOCK_DETECTOR_NO_ACTIVITY, Block_12_West_Sensor = BLOCK_DETECTOR_NO_ACTIVITY THEN Block_Stopped_Triggering(11)
