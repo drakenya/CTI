@@ -292,6 +292,7 @@ VARIABLES:
     BLOCK_CAB_ASSIGNMENTS[NUM_BLOCKS]
 
     PANEL_1_BLOCK_LABELS[NUM_BLOCKS]
+    PANEL_1_BLOCK_TRACKS[NUM_BLOCKS]
 
     {--
      - Cabs
@@ -565,6 +566,21 @@ SUB ResetInit_Set_Block_Lables_On_Panels()
     PANEL_1_BLOCK_LABELS[11] = (27,26,1)
 ENDSUB
 
+SUB ResetInit_Set_Block_Tracks_On_Panels()
+    PANEL_1_BLOCK_TRACKS[0] = (2,7,1)
+    PANEL_1_BLOCK_TRACKS[1] = (14,8,1)
+    PANEL_1_BLOCK_TRACKS[2] = (26,8,1)
+    PANEL_1_BLOCK_TRACKS[3] = (38,9,1)
+    PANEL_1_BLOCK_TRACKS[4] = (2,33,1)
+    PANEL_1_BLOCK_TRACKS[5] = (14,32,1)
+    PANEL_1_BLOCK_TRACKS[6] = (26,28,1)
+    PANEL_1_BLOCK_TRACKS[7] = (38,29,1)
+    PANEL_1_BLOCK_TRACKS[8] = (4,8,1)
+    PANEL_1_BLOCK_TRACKS[9] = (28,9,1)
+    PANEL_1_BLOCK_TRACKS[10] = (28,29,1)
+    PANEL_1_BLOCK_TRACKS[11] = (31,30,1)
+ENDSUB
+
 
 {-- Cabs --}
 SUB ResetInit_Set_Cab_Colors()
@@ -590,6 +606,7 @@ WHEN $RESET = TRUE DO
 
     ResetInit_Set_Block_Power_Controls()
     ResetInit_Set_Block_Lables_On_Panels()
+    ResetInit_Set_Block_Tracks_On_Panels()
     Set_All_Block_Power_To_Cab(0)
 
 
