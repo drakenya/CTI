@@ -12,6 +12,20 @@ CONSTANTS:
     TURNOUT_TYPE_TORTOISE = 1
     TURNOUT_TYPE_ATLAS = 2
 
+    {--
+     - Blocks
+     -}
+    NUM_BLOCKS = 12
+
+    POWER_OPTION_FIRST_CHOICE = OFF
+    POWER_OPTION_SECOND_CHOICE = ON
+
+    {--
+     - Cabs
+     -}
+    NUM_CABS = 4
+    
+
 SMARTCABS:
     SmartCab1
     SmartCab2
@@ -66,30 +80,30 @@ SENSORS:
  -  Dash-8 1 (8 control)
  -}
 CONTROLS:
-    Block_08_Control_1 'TrainBrain 1, Port 1
-    Block_01_Control_1 'TrainBrain 1, Port 2
-    Block_05_Control_1 'TrainBrain 1, Port 3
-    Block_09_Control_1 'TrainBrain 1, Port 4
+    Block_08_Power_1or2 'TrainBrain 1, Port 1
+    Block_01_Power_1or2 'TrainBrain 1, Port 2
+    Block_05_Power_1or2 'TrainBrain 1, Port 3
+    Block_09_Power_1or2 'TrainBrain 1, Port 4
 SENSORS:
     Block_08_East_Sensor 'TrainBrain 1, Port 1
     Block_08_West_Sensor 'TrainBrain 1, Port 2
     Block_01_East_Sensor 'TrainBrain 1, Port 3
     Block_01_West_Sensor 'TrainBrain 1, Port 4
 CONTROLS:
-    Block_08_Control_2 'TrainBrain 2, Port 1
-    Block_01_Control_2 'TrainBrain 2, Port 2
-    Block_05_Control_2 'TrainBrain 2, Port 3
-    Block_09_Control_2 'TrainBrain 2, Port 4
+    Block_08_Power_3or4 'TrainBrain 2, Port 1
+    Block_01_Power_3or4 'TrainBrain 2, Port 2
+    Block_05_Power_3or4 'TrainBrain 2, Port 3
+    Block_09_Power_3or4 'TrainBrain 2, Port 4
 SENSORS:
     Block_05_East_Sensor 'TrainBrain 2, Port 1
     Block_05_West_Sensor 'TrainBrain 2, Port 2
     Block_09_East_Sensor 'TrainBrain 2, Port 3
     Block_09_West_Sensor 'TrainBrain 2, Port 4
 CONTROLS:
-    Block_08_Control_3 'Dash-8 1, port 1
-    Block_01_Control_3 'Dash-8 1, port 2
-    Block_05_Control_3 'Dash-8 1, port 3
-    Block_09_Control_3 'Dash-8 1, port 4
+    Block_08_Power_12or34 'Dash-8 1, port 1
+    Block_01_Power_12or34 'Dash-8 1, port 2
+    Block_05_Power_12or34 'Dash-8 1, port 3
+    Block_09_Power_12or34 'Dash-8 1, port 4
     Block_B1_Control_3 'Dash-8 1, port 5
     Block_B2_Control_3 'Dash-8 1, port 6
     Block_B3_Control_3 'Dash-8 1, port 7
@@ -126,30 +140,30 @@ CONTROLS:
  -  Dash-8 1 (8 control)
  -}
 CONTROLS:
-    Block_07_Control_1 'TrainBrain 1, Port 1
-    Block_11_Control_1 'TrainBrain 1, Port 2
-    Block_04_Control_1 'TrainBrain 1, Port 3
-    Block_12_Control_1 'TrainBrain 1, Port 4
+    Block_07_Power_1or2 'TrainBrain 1, Port 1
+    Block_11_Power_1or2 'TrainBrain 1, Port 2
+    Block_04_Power_1or2 'TrainBrain 1, Port 3
+    Block_12_Power_1or2 'TrainBrain 1, Port 4
 SENSORS:
     Block_07_East_Sensor 'TrainBrain 1, Port 1
     Block_07_West_Sensor 'TrainBrain 1, Port 2
     Block_11_East_Sensor 'TrainBrain 1, Port 3
     Block_11_West_Sensor 'TrainBrain 1, Port 4
 CONTROLS:
-    Block_07_Control_2 'TrainBrain 2, Port 1
-    Block_11_Control_2 'TrainBrain 2, Port 2
-    Block_04_Control_2 'TrainBrain 2, Port 3
-    Block_12_Control_2 'TrainBrain 2, Port 4
+    Block_07_Power_3or4 'TrainBrain 2, Port 1
+    Block_11_Power_3or4 'TrainBrain 2, Port 2
+    Block_04_Power_3or4 'TrainBrain 2, Port 3
+    Block_12_Power_3or4 'TrainBrain 2, Port 4
 SENSORS:
     Block_04_East_Sensor 'TrainBrain 2, Port 1
     Block_04_West_Sensor 'TrainBrain 2, Port 2
     Block_12_East_Sensor 'TrainBrain 2, Port 3
     Block_12_West_Sensor 'TrainBrain 2, Port 4
 CONTROLS:
-    Block_07_Control_3 'Dash-8 1, port 1
-    Block_11_Control_3 'Dash-8 1, port 2
-    Block_04_Control_3 'Dash-8 1, port 3
-    Block_12_Control_3 'Dash-8 1, port 4
+    Block_07_Power_12or34 'Dash-8 1, port 1
+    Block_11_Power_12or34 'Dash-8 1, port 2
+    Block_04_Power_12or34 'Dash-8 1, port 3
+    Block_12_Power_12or34 'Dash-8 1, port 4
     Block_D1_Control_3 'Dash-8 1, port 5
     Block_D2_Control_3 'Dash-8 1, port 6
     Block_D3_Control_3 'Dash-8 1, port 7
@@ -227,45 +241,68 @@ SENSORS:
  -  Dash-8 1 (8 control)
  -}
 CONTROLS:
-    Block_02_Control_1 'TrainBrain 1, Port 1
-    Block_06_Control_1 'TrainBrain 1, Port 2
-    Block_10_Control_1 'TrainBrain 1, Port 3
-    Block_03_Control_1 'TrainBrain 1, Port 4
+    Block_02_Power_1or2 'TrainBrain 1, Port 1
+    Block_06_Power_1or2 'TrainBrain 1, Port 2
+    Block_10_Power_1or2 'TrainBrain 1, Port 3
+    Block_03_Power_1or2 'TrainBrain 1, Port 4
 SENSORS:
     Block_02_East_Sensor 'TrainBrain 1, Port 1
     Block_02_West_Sensor 'TrainBrain 1, Port 2
     Block_06_East_Sensor 'TrainBrain 1, Port 3
     Block_06_West_Sensor 'TrainBrain 1, Port 4
 CONTROLS:
-    Block_02_Control_2 'TrainBrain 2, Port 1
-    Block_06_Control_2 'TrainBrain 2, Port 2
-    Block_10_Control_2 'TrainBrain 2, Port 3
-    Block_03_Control_2 'TrainBrain 2, Port 4
+    Block_02_Power_3or4 'TrainBrain 2, Port 1
+    Block_06_Power_3or4 'TrainBrain 2, Port 2
+    Block_10_Power_3or4 'TrainBrain 2, Port 3
+    Block_03_Power_3or4 'TrainBrain 2, Port 4
 SENSORS:
     Block_10_East_Sensor 'TrainBrain 2, Port 1
     Block_10_West_Sensor 'TrainBrain 2, Port 2
     Block_03_East_Sensor 'TrainBrain 2, Port 3
     Block_03_West_Sensor 'TrainBrain 2, Port 4
 CONTROLS:
-    Block_02_Control_3 'Dash-8 1, port 1
-    Block_06_Control_3 'Dash-8 1, port 2
-    Block_10_Control_3 'Dash-8 1, port 3
-    Block_03_Control_3 'Dash-8 1, port 4
+    Block_02_Power_12or34 'Dash-8 1, port 1
+    Block_06_Power_12or34 'Dash-8 1, port 2
+    Block_10_Power_12or34 'Dash-8 1, port 3
+    Block_03_Power_12or34 'Dash-8 1, port 4
     Block_G1_Control_3 'Dash-8 1, port 5
     Block_G2_Control_3 'Dash-8 1, port 6
     Block_G3_Control_3 'Dash-8 1, port 7
     Block_G4_Control_3 'Dash-8 1, port 8
 
 VARIABLES:
+    {--
+     - Turnouts
+     -}
     PANEL_1_TURNOUTS[NUM_TURNOUTS]  ' Coordinate location of turnouts on panel 1 (F5)
     TURNOUT_TYPES[NUM_TURNOUTS]     ' Type of each turnout (TURNOUT_TYPE_TORTOISE / TURNOUT_TYPE_ATLAS)
     TURNOUT_STATUSES[NUM_TURNOUTS]  ' Current status of each turnout (TURNOUT_DIRECTION_PRIMARY / TURNOUT_DIRECTION_SECONDARY)
-
+    
     TURNOUT_CONTROLS[NUM_TURNOUTS]          ' Board controls for each turnout (led + direction for tortoise, led for atlas)
     ATLAS_PRIMARY_CONTROLS[NUM_TURNOUTS]    ' Board controls for throwing an atlas turnout in the primary direction)
     ATLAS_SECONDARY_CONTROLS[NUM_TURNOUTS]  ' Board control for throwing an atlas turnout in the secondary direction)
 
+    {--
+     - Blocks
+     -}
+    BLOCK_CONTROLS_1or2[NUM_BLOCKS]
+    BLOCK_CONTROLS_3or4[NUM_BLOCKS]
+    BLOCK_CONTROLS_12or34[NUM_BLOCKS]
+
+    BLOCK_CAB_ASSIGNMENTS[NUM_BLOCKS]
+
+    PANEL_1_BLOCK_LABELS[NUM_BLOCKS]
+    PANEL_1_BLOCK_TRACKS[NUM_BLOCKS]
+
+    {--
+     - Cabs
+     -}
+    CAB_COLORS[NUM_CABS]
+
+
 ACTIONS:
+
+{-- TURNOUTS --}
 
 SUB Redraw_Turnout(TurnoutIndex)
     $SWITCH(PANEL_1_TURNOUTS[TurnoutIndex]) = $SWITCH(PANEL_1_TURNOUTS[TurnoutIndex]) ~
@@ -437,6 +474,124 @@ ENDSUB
 
 
 
+{-- BLOCKS --}
+
+SUB Redraw_Block_Power(BlockIndex, {local} CabIndexForBlock)
+    CabIndexForBlock = BLOCK_CAB_ASSIGNMENTS[BlockIndex]
+    $COLOR TRACK (PANEL_1_BLOCK_LABELS[BlockIndex]) = CAB_COLORS[CabIndexForBlock]
+ENDSUB
+
+SUB ResetInit_Set_Block_Power_Controls()
+    BLOCK_CONTROLS_1or2[0] = &Block_01_Power_1or2
+    BLOCK_CONTROLS_1or2[1] = &Block_02_Power_1or2
+    BLOCK_CONTROLS_1or2[2] = &Block_03_Power_1or2
+    BLOCK_CONTROLS_1or2[3] = &Block_04_Power_1or2
+    BLOCK_CONTROLS_1or2[4] = &Block_05_Power_1or2
+    BLOCK_CONTROLS_1or2[5] = &Block_06_Power_1or2
+    BLOCK_CONTROLS_1or2[6] = &Block_07_Power_1or2
+    BLOCK_CONTROLS_1or2[7] = &Block_08_Power_1or2
+    BLOCK_CONTROLS_1or2[8] = &Block_09_Power_1or2
+    BLOCK_CONTROLS_1or2[9] = &Block_10_Power_1or2
+    BLOCK_CONTROLS_1or2[10] = &Block_11_Power_1or2
+    BLOCK_CONTROLS_1or2[11] = &Block_12_Power_1or2
+
+    BLOCK_CONTROLS_3or4[0] = &Block_01_Power_3or4
+    BLOCK_CONTROLS_3or4[1] = &Block_02_Power_3or4
+    BLOCK_CONTROLS_3or4[2] = &Block_03_Power_3or4
+    BLOCK_CONTROLS_3or4[3] = &Block_04_Power_3or4
+    BLOCK_CONTROLS_3or4[4] = &Block_05_Power_3or4
+    BLOCK_CONTROLS_3or4[5] = &Block_06_Power_3or4
+    BLOCK_CONTROLS_3or4[6] = &Block_07_Power_3or4
+    BLOCK_CONTROLS_3or4[7] = &Block_08_Power_3or4
+    BLOCK_CONTROLS_3or4[8] = &Block_09_Power_3or4
+    BLOCK_CONTROLS_3or4[9] = &Block_10_Power_3or4
+    BLOCK_CONTROLS_3or4[10] = &Block_11_Power_3or4
+    BLOCK_CONTROLS_3or4[11] = &Block_12_Power_3or4
+    
+    BLOCK_CONTROLS_12or34[0] = &Block_01_Power_12or34
+    BLOCK_CONTROLS_12or34[1] = &Block_02_Power_12or34
+    BLOCK_CONTROLS_12or34[2] = &Block_03_Power_12or34
+    BLOCK_CONTROLS_12or34[3] = &Block_04_Power_12or34
+    BLOCK_CONTROLS_12or34[4] = &Block_05_Power_12or34
+    BLOCK_CONTROLS_12or34[5] = &Block_06_Power_12or34
+    BLOCK_CONTROLS_12or34[6] = &Block_07_Power_12or34
+    BLOCK_CONTROLS_12or34[7] = &Block_08_Power_12or34
+    BLOCK_CONTROLS_12or34[8] = &Block_09_Power_12or34
+    BLOCK_CONTROLS_12or34[9] = &Block_10_Power_12or34
+    BLOCK_CONTROLS_12or34[10] = &Block_11_Power_12or34
+    BLOCK_CONTROLS_12or34[11] = &Block_12_Power_12or34
+ENDSUB
+
+SUB Set_Block_Power_To_Cab(BlockIndex, CabIndex)
+    IF CabIndex = 0 THEN
+        *BLOCK_CONTROLS_1or2[BlockIndex] = POWER_OPTION_FIRST_CHOICE
+        *BLOCK_CONTROLS_12or34[BlockIndex] = POWER_OPTION_FIRST_CHOICE
+    ELSEIF CabIndex = 1 THEN
+        *BLOCK_CONTROLS_1or2[BlockIndex] = POWER_OPTION_SECOND_CHOICE
+        *BLOCK_CONTROLS_12or34[BlockIndex] = POWER_OPTION_FIRST_CHOICE
+    ELSEIF CabIndex = 2 THEN
+        *BLOCK_CONTROLS_3or4[BlockIndex] = POWER_OPTION_FIRST_CHOICE
+        *BLOCK_CONTROLS_12or34[BlockIndex] = POWER_OPTION_SECOND_CHOICE
+    ELSEIF CabIndex = 3 THEN
+        *BLOCK_CONTROLS_3or4[BlockIndex] = POWER_OPTION_SECOND_CHOICE
+        *BLOCK_CONTROLS_12or34[BlockIndex] = POWER_OPTION_SECOND_CHOICE
+    ENDIF
+
+    BLOCK_CAB_ASSIGNMENTS[BlockIndex] = CabIndex
+
+    Redraw_Block_Power(BlockIndex)
+ENDSUB
+
+SUB Set_All_Block_Power_To_Cab(CabIndex, {local} BlockIndex)
+    BlockIndex = 0
+    UNTIL BlockIndex >= NUM_BLOCKS QUICKLOOP
+        Set_Block_Power_To_Cab(BlockIndex, CabIndex)
+
+        BlockIndex = 1 +
+    ENDLOOP
+ENDSUB
+
+SUB ResetInit_Set_Block_Lables_On_Panels()
+    PANEL_1_BLOCK_LABELS[0] = (3,2,1)
+    PANEL_1_BLOCK_LABELS[1] = (15,2,1)
+    PANEL_1_BLOCK_LABELS[2] = (27,2,1)
+    PANEL_1_BLOCK_LABELS[3] = (39,2,1)
+    PANEL_1_BLOCK_LABELS[4] = (3,24,1)
+    PANEL_1_BLOCK_LABELS[5] = (15,24,1)
+    PANEL_1_BLOCK_LABELS[6] = (27,24,1)
+    PANEL_1_BLOCK_LABELS[7] = (39,24,1)
+    PANEL_1_BLOCK_LABELS[8] = (3,3,1)
+    PANEL_1_BLOCK_LABELS[9] = (27,3,1)
+    PANEL_1_BLOCK_LABELS[10] = (27,25,1)
+    PANEL_1_BLOCK_LABELS[11] = (27,26,1)
+ENDSUB
+
+SUB ResetInit_Set_Block_Tracks_On_Panels()
+    PANEL_1_BLOCK_TRACKS[0] = (2,7,1)
+    PANEL_1_BLOCK_TRACKS[1] = (14,8,1)
+    PANEL_1_BLOCK_TRACKS[2] = (26,8,1)
+    PANEL_1_BLOCK_TRACKS[3] = (38,9,1)
+    PANEL_1_BLOCK_TRACKS[4] = (2,33,1)
+    PANEL_1_BLOCK_TRACKS[5] = (14,32,1)
+    PANEL_1_BLOCK_TRACKS[6] = (26,28,1)
+    PANEL_1_BLOCK_TRACKS[7] = (38,29,1)
+    PANEL_1_BLOCK_TRACKS[8] = (4,8,1)
+    PANEL_1_BLOCK_TRACKS[9] = (28,9,1)
+    PANEL_1_BLOCK_TRACKS[10] = (28,29,1)
+    PANEL_1_BLOCK_TRACKS[11] = (31,30,1)
+ENDSUB
+
+
+{-- Cabs --}
+SUB ResetInit_Set_Cab_Colors()
+    CAB_COLORS[0] = Blue
+    CAB_COLORS[1] = Red
+    CAB_COLORS[2] = Green
+    CAB_COLORS[3] = Brown
+ENDSUB
+
+
+{-- RESET --}
 
 {--
  - When starting up (hitting train icon) or hitting reset button
@@ -446,6 +601,16 @@ WHEN $RESET = TRUE DO
     ResetInit_Set_Turnout_Controls()
     ResetInit_Set_Turnouts_On_Panels()
     ResetInit_Set_Turnouts_To_Primary()
+
+    ResetInit_Set_Cab_Colors()
+
+    ResetInit_Set_Block_Power_Controls()
+    ResetInit_Set_Block_Lables_On_Panels()
+    ResetInit_Set_Block_Tracks_On_Panels()
+    Set_All_Block_Power_To_Cab(0)
+
+
+{-- TRIGGERS --}
 
 {--
  - Triggers for throwing a turnout, either by panel or by physical button
@@ -486,4 +651,12 @@ WHEN $RESET = TRUE DO
     WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[32] OR Turnout_33_Button_Sensor = ON DO Throw_Turnout(32)
     WHEN $LEFTMOUSE = PANEL_1_TURNOUTS[33] OR Turnout_34_Button_Sensor = ON DO Throw_Turnout(33)
     }
+
+{--
+ - Quick commands for setting all blocks to a cab
+ -}
+    WHEN $COMMAND = "All Blocks, Cab 1" DO Set_All_Block_Power_To_Cab(0)
+    WHEN $COMMAND = "All Blocks, Cab 2" DO Set_All_Block_Power_To_Cab(1)
+    WHEN $COMMAND = "All Blocks, Cab 3" DO Set_All_Block_Power_To_Cab(2)
+    WHEN $COMMAND = "All Blocks, Cab 4" DO Set_All_Block_Power_To_Cab(3)
 
