@@ -20,6 +20,12 @@ CONSTANTS:
     POWER_OPTION_FIRST_CHOICE = OFF
     POWER_OPTION_SECOND_CHOICE = ON
 
+    {--
+     - Cabs
+     -}
+    NUM_CABS = 4
+    
+
 SMARTCABS:
     SmartCab1
     SmartCab2
@@ -283,6 +289,15 @@ VARIABLES:
     BLOCK_CONTROLS_3or4[NUM_BLOCKS]
     BLOCK_CONTROLS_12or34[NUM_BLOCKS]
 
+    BLOCK_CAB_ASSIGNMENTS[NUM_BLOCKS]
+
+    PANEL_1_BLOCK_LABELS[NUM_BLOCKS]
+
+    {--
+     - Cabs
+     -}
+    CAB_COLORS[NUM_CABS]
+
 
 ACTIONS:
 
@@ -460,7 +475,9 @@ ENDSUB
 
 {-- BLOCKS --}
 
-SUB Redraw_Block_Power(BlockIndex)
+SUB Redraw_Block_Power(BlockIndex, {local} CabIndexForBlock)
+    CabIndexForBlock = BLOCK_CAB_ASSIGNMENTS[BlockIndex]
+    $COLOR TRACK (PANEL_1_BLOCK_LABELS[BlockIndex]) = CAB_COLORS[CabIndexForBlock]
 ENDSUB
 
 SUB ResetInit_Set_Block_Power_Controls()
@@ -505,19 +522,21 @@ SUB ResetInit_Set_Block_Power_Controls()
 ENDSUB
 
 SUB Set_Block_Power_To_Cab(BlockIndex, CabIndex)
-	IF CabIndex = 0 THEN
-		*BLOCK_CONTROLS_1or2[BlockIndex] = POWER_OPTION_FIRST_CHOICE
-		*BLOCK_CONTROLS_12or34[BlockIndex] = POWER_OPTION_FIRST_CHOICE
-	ELSEIF CabIndex = 1 THEN
-		*BLOCK_CONTROLS_1or2[BlockIndex] = POWER_OPTION_SECOND_CHOICE
-		*BLOCK_CONTROLS_12or34[BlockIndex] = POWER_OPTION_FIRST_CHOICE
-	ELSEIF CabIndex = 2 THEN
-		*BLOCK_CONTROLS_3or4[BlockIndex] = POWER_OPTION_FIRST_CHOICE
-		*BLOCK_CONTROLS_12or34[BlockIndex] = POWER_OPTION_SECOND_CHOICE
-	ELSEIF CabIndex = 3 THEN
-		*BLOCK_CONTROLS_3or4[BlockIndex] = POWER_OPTION_SECOND_CHOICE
-		*BLOCK_CONTROLS_12or34[BlockIndex] = POWER_OPTION_SECOND_CHOICE
-	ENDIF
+    IF CabIndex = 0 THEN
+        *BLOCK_CONTROLS_1or2[BlockIndex] = POWER_OPTION_FIRST_CHOICE
+        *BLOCK_CONTROLS_12or34[BlockIndex] = POWER_OPTION_FIRST_CHOICE
+    ELSEIF CabIndex = 1 THEN
+        *BLOCK_CONTROLS_1or2[BlockIndex] = POWER_OPTION_SECOND_CHOICE
+        *BLOCK_CONTROLS_12or34[BlockIndex] = POWER_OPTION_FIRST_CHOICE
+    ELSEIF CabIndex = 2 THEN
+        *BLOCK_CONTROLS_3or4[BlockIndex] = POWER_OPTION_FIRST_CHOICE
+        *BLOCK_CONTROLS_12or34[BlockIndex] = POWER_OPTION_SECOND_CHOICE
+    ELSEIF CabIndex = 3 THEN
+        *BLOCK_CONTROLS_3or4[BlockIndex] = POWER_OPTION_SECOND_CHOICE
+        *BLOCK_CONTROLS_12or34[BlockIndex] = POWER_OPTION_SECOND_CHOICE
+    ENDIF
+
+    BLOCK_CAB_ASSIGNMENTS[BlockIndex] = CabIndex
 
     Redraw_Block_Power(BlockIndex)
 ENDSUB
@@ -529,6 +548,30 @@ SUB Set_All_Block_Power_To_Cab(CabIndex, {local} BlockIndex)
 
         BlockIndex = 1 +
     ENDLOOP
+ENDSUB
+
+SUB ResetInit_Set_Block_Lables_On_Panels()
+    PANEL_1_BLOCK_LABELS[0] = (3,2,1)
+    PANEL_1_BLOCK_LABELS[1] = (15,2,1)
+    PANEL_1_BLOCK_LABELS[2] = (27,2,1)
+    PANEL_1_BLOCK_LABELS[3] = (39,2,1)
+    PANEL_1_BLOCK_LABELS[4] = (3,24,1)
+    PANEL_1_BLOCK_LABELS[5] = (15,24,1)
+    PANEL_1_BLOCK_LABELS[6] = (27,24,1)
+    PANEL_1_BLOCK_LABELS[7] = (39,24,1)
+    PANEL_1_BLOCK_LABELS[8] = (3,3,1)
+    PANEL_1_BLOCK_LABELS[9] = (27,3,1)
+    PANEL_1_BLOCK_LABELS[10] = (27,25,1)
+    PANEL_1_BLOCK_LABELS[11] = (27,26,1)
+ENDSUB
+
+
+{-- Cabs --}
+SUB ResetInit_Set_Cab_Colors()
+    CAB_COLORS[0] = Blue
+    CAB_COLORS[1] = Red
+    CAB_COLORS[2] = Green
+    CAB_COLORS[3] = Brown
 ENDSUB
 
 
@@ -543,7 +586,11 @@ WHEN $RESET = TRUE DO
     ResetInit_Set_Turnouts_On_Panels()
     ResetInit_Set_Turnouts_To_Primary()
 
+    ResetInit_Set_Cab_Colors()
+
     ResetInit_Set_Block_Power_Controls()
+    ResetInit_Set_Block_Lables_On_Panels()
+    Set_All_Block_Power_To_Cab(0)
 
 
 {-- TRIGGERS --}
