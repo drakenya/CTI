@@ -27,6 +27,9 @@ CONSTANTS:
     BLOCK_OCCUPIED = 1
     BLOCK_OCCUPIED_EAST = 2
     BLOCK_OCCUPIED_WEST = 4
+    BLOCK_UNDER_MANUAL_HOLD = 8
+    BLOCK_UNDER_SYSTEM_HOLD = 16
+
     {--
      - Cabs
      -}
@@ -302,6 +305,7 @@ VARIABLES:
     PANEL_1_BLOCK_LABELS[NUM_BLOCKS]
     PANEL_1_BLOCK_TRACKS[NUM_BLOCKS]
     PANEL_1_BLOCK_DIRECTIONS[NUM_BLOCKS]
+    PANEL_1_BLOCK_SIGNAL_INDICATORS[NUM_BLOCKS]
 
     {--
      - Cabs
@@ -531,6 +535,47 @@ SUB ResetInit_Set_Block_Power_Controls()
     BLOCK_CONTROLS_12or34[11] = &Block_12_Power_12or34
 ENDSUB
 
+SUB Redraw_Block_Occupancy(BlockIndex, {locak} BitMaskResult, {local} TrackColor)
+    BitMaskResult = BLOCK_STATUSES[BlockIndex]
+    BitMaskResult = BLOCK_OCCUPIED &
+
+    IF BitMaskResult THEN
+        TrackColor = BLOCK_CAB_ASSIGNMENTS[BlockIndex]
+        TrackColor = CAB_COLORS[TrackColor]
+    ELSE
+        TrackColor = LIGHTGRAY
+    ENDIF 
+
+    $COLOR BLOCK (PANEL_1_BLOCK_TRACKS[BlockIndex]) = TrackColor
+
+    '''
+    
+    $ERASE SPRITE (PANEL_1_BLOCK_DIRECTIONS[BlockIndex])
+
+    BitMaskResult = BLOCK_STATUSES[BlockIndex]
+    BitMaskResult = BLOCK_OCCUPIED_EAST &
+    IF BitMaskResult THEN
+        $DRAW SPRITE (PANEL_1_BLOCK_DIRECTIONS[BlockIndex]) = ARROW_EAST IN TrackColor
+    ENDIF
+
+    BitMaskResult = BLOCK_STATUSES[BlockIndex]
+    BitMaskResult = BLOCK_OCCUPIED_WEST &
+    IF BitMaskResult THEN
+        $DRAW SPRITE (PANEL_1_BLOCK_DIRECTIONS[BlockIndex]) = ARROW_WEST IN TrackColor
+    ENDIF
+
+    '''
+
+    BitMaskResult = BLOCK_STATUSES[BlockIndex]
+    BitMaskResult = BLOCK_UNDER_MANUAL_HOLD &
+    IF BitMaskResult THEN
+        TrackColor = "xxRR"
+    ELSE
+        TrackColor = "xx**"
+    ENDIF
+    $SIGNAL (PANEL_1_BLOCK_SIGNAL_INDICATORS[BlockIndex]) = TrackColor
+ENDSUB
+
 SUB Set_Block_Power_To_Cab(BlockIndex, CabIndex)
     ' Don't do any work if we already have the correct assignment
     IF BLOCK_CAB_ASSIGNMENTS[BlockIndex] = CabIndex THEN RETURN ENDIF
@@ -552,7 +597,7 @@ SUB Set_Block_Power_To_Cab(BlockIndex, CabIndex)
     BLOCK_CAB_ASSIGNMENTS[BlockIndex] = CabIndex
 
     Redraw_Block_Power(BlockIndex)
-    ''' Redraw_Block_Occupancy(BlockIndex)
+    Redraw_Block_Occupancy(BlockIndex)
 ENDSUB
 
 SUB Set_All_Block_Power_To_Cab(CabIndex, {local} BlockIndex)
@@ -564,6 +609,19 @@ SUB Set_All_Block_Power_To_Cab(CabIndex, {local} BlockIndex)
     ENDLOOP
 ENDSUB
 
+SUB Toggle_Manual_Hold(BlockIndex, {local} BitMaskResult, {local} Negater)
+    BitMaskResult = BLOCK_STATUSES[BlockIndex]
+    BitMaskResult = BLOCK_UNDER_MANUAL_HOLD &
+
+    IF BitMaskResult THEN
+        BLOCK_STATUSES[BlockIndex] = BLOCK_UNDER_MANUAL_HOLD -
+    ELSE
+        BLOCK_STATUSES[BlockIndex] = BLOCK_UNDER_MANUAL_HOLD +
+    ENDIF
+
+    Redraw_Block_Occupancy(BlockIndex)
+ENDSUB
+
 SUB User_Select_Block_Cab_Assignment(BlockIndex, {local} CabIndex)
     $QUERY "1$Choose block status:?$Assign to Cab 1$Assign to Cab 2$Assign to Cab 3$Assign to Cab 4$Toggle manual hold"
     WAIT UNTIL $QUERYBUSY = FALSE THEN
@@ -571,7 +629,9 @@ SUB User_Select_Block_Cab_Assignment(BlockIndex, {local} CabIndex)
 
     IF CabIndex < 0 THEN RETURN ENDIF
 
-    IF CabIndex >= 0, CabIndex <= NUM_CABS THEN Set_Block_Power_To_Cab(BlockIndex, CabIndex) ENDIF
+    IF CabIndex >= 0, CabIndex < NUM_CABS THEN Set_Block_Power_To_Cab(BlockIndex, CabIndex), RETURN ENDIF
+
+    IF CabIndex = 4 THEN Toggle_Manual_Hold(BlockIndex), RETURN ENDIF
 ENDSUB
 
 SUB ResetInit_Set_Block_Lables_On_Panels()
@@ -587,6 +647,21 @@ SUB ResetInit_Set_Block_Lables_On_Panels()
     PANEL_1_BLOCK_LABELS[9] = (27,3,1)
     PANEL_1_BLOCK_LABELS[10] = (27,25,1)
     PANEL_1_BLOCK_LABELS[11] = (27,26,1)
+ENDSUB
+
+SUB ResetInit_Set_Block_Signals_On_Panels()
+    PANEL_1_BLOCK_SIGNAL_INDICATORS[0] = (2,2,1)
+    PANEL_1_BLOCK_SIGNAL_INDICATORS[1] = (14,2,1)
+    PANEL_1_BLOCK_SIGNAL_INDICATORS[2] = (26,2,1)
+    PANEL_1_BLOCK_SIGNAL_INDICATORS[3] = (38,2,1)
+    PANEL_1_BLOCK_SIGNAL_INDICATORS[4] = (2,24,1)
+    PANEL_1_BLOCK_SIGNAL_INDICATORS[5] = (16,24,1)
+    PANEL_1_BLOCK_SIGNAL_INDICATORS[6] = (26,24,1)
+    PANEL_1_BLOCK_SIGNAL_INDICATORS[7] = (38,24,1)
+    PANEL_1_BLOCK_SIGNAL_INDICATORS[8] = (2,3,1)
+    PANEL_1_BLOCK_SIGNAL_INDICATORS[9] = (26,3,1)
+    PANEL_1_BLOCK_SIGNAL_INDICATORS[10] = (26,25,1)
+    PANEL_1_BLOCK_SIGNAL_INDICATORS[11] = (26,26,1)
 ENDSUB
 
 SUB ResetInit_Set_Block_Tracks_On_Panels()
@@ -617,36 +692,6 @@ SUB ResetInit_Set_Block_Directions_On_Panels()
     PANEL_1_BLOCK_DIRECTIONS[9] = (30,3,1)
     PANEL_1_BLOCK_DIRECTIONS[10] = (30,25,1)
     PANEL_1_BLOCK_DIRECTIONS[11] = (30,26,1)
-ENDSUB
-
-SUB Redraw_Block_Occupancy(BlockIndex, {locak} BitMaskResult, {local} TrackColor)
-    BitMaskResult = BLOCK_STATUSES[BlockIndex]
-    BitMaskResult = BLOCK_OCCUPIED &
-
-    IF BitMaskResult THEN
-        TrackColor = BLOCK_CAB_ASSIGNMENTS[BlockIndex]
-        TrackColor = CAB_COLORS[TrackColor]
-    ELSE
-        TrackColor = LIGHTGRAY
-    ENDIF 
-
-    $COLOR BLOCK (PANEL_1_BLOCK_TRACKS[BlockIndex]) = TrackColor
-
-    '''
-    
-    $ERASE SPRITE (PANEL_1_BLOCK_DIRECTIONS[BlockIndex])
-
-    BitMaskResult = BLOCK_STATUSES[BlockIndex]
-    BitMaskResult = BLOCK_OCCUPIED_EAST &
-    IF BitMaskResult THEN
-        $DRAW SPRITE (PANEL_1_BLOCK_DIRECTIONS[BlockIndex]) = ARROW_EAST IN TrackColor
-    ENDIF
-
-    BitMaskResult = BLOCK_STATUSES[BlockIndex]
-    BitMaskResult = BLOCK_OCCUPIED_WEST &
-    IF BitMaskResult THEN
-        $DRAW SPRITE (PANEL_1_BLOCK_DIRECTIONS[BlockIndex]) = ARROW_WEST IN TrackColor
-    ENDIF
 ENDSUB
 
 SUB Block_Triggered_East(BlockIndex)
@@ -698,7 +743,8 @@ WHEN $RESET = TRUE DO
     ResetInit_Set_Block_Lables_On_Panels()
     ResetInit_Set_Block_Tracks_On_Panels()
     ResetInit_Set_Block_Directions_On_Panels()
-    Set_All_Block_Power_To_Cab(0)
+    ResetInit_Set_Block_Signals_On_Panels()
+    Set_All_Block_Power_To_Cab(-1), Set_All_Block_Power_To_Cab(0)
 
 
 {-- TRIGGERS --}
