@@ -20,6 +20,13 @@ CONSTANTS:
     POWER_OPTION_FIRST_CHOICE = OFF
     POWER_OPTION_SECOND_CHOICE = ON
 
+    BLOCK_DETECTOR_ACTIVITY_DETECTED = ON
+    BLOCK_DETECTOR_NO_ACTIVITY = OFF
+
+    BLOCK_UNOCCUPIED = 0
+    BLOCK_OCCUPIED = 1
+    BLOCK_OCCUPIED_EAST = 2
+    BLOCK_OCCUPIED_WEST = 4
     {--
      - Cabs
      -}
@@ -290,9 +297,11 @@ VARIABLES:
     BLOCK_CONTROLS_12or34[NUM_BLOCKS]
 
     BLOCK_CAB_ASSIGNMENTS[NUM_BLOCKS]
+    BLOCK_STATUSES[NUM_BLOCKS]
 
     PANEL_1_BLOCK_LABELS[NUM_BLOCKS]
     PANEL_1_BLOCK_TRACKS[NUM_BLOCKS]
+    PANEL_1_BLOCK_DIRECTIONS[NUM_BLOCKS]
 
     {--
      - Cabs
@@ -540,6 +549,7 @@ SUB Set_Block_Power_To_Cab(BlockIndex, CabIndex)
     BLOCK_CAB_ASSIGNMENTS[BlockIndex] = CabIndex
 
     Redraw_Block_Power(BlockIndex)
+    ''' Redraw_Block_Occupancy(BlockIndex)
 ENDSUB
 
 SUB Set_All_Block_Power_To_Cab(CabIndex, {local} BlockIndex)
@@ -581,6 +591,73 @@ SUB ResetInit_Set_Block_Tracks_On_Panels()
     PANEL_1_BLOCK_TRACKS[11] = (31,30,1)
 ENDSUB
 
+SUB ResetInit_Set_Block_Directions_On_Panels()
+    PANEL_1_BLOCK_DIRECTIONS[0] = (6,2,1)
+    PANEL_1_BLOCK_DIRECTIONS[1] = (18,2,1)
+    PANEL_1_BLOCK_DIRECTIONS[2] = (30,2,1)
+    PANEL_1_BLOCK_DIRECTIONS[3] = (42,2,1)
+    PANEL_1_BLOCK_DIRECTIONS[4] = (6,24,1)
+    PANEL_1_BLOCK_DIRECTIONS[5] = (18,24,1)
+    PANEL_1_BLOCK_DIRECTIONS[6] = (30,24,1)
+    PANEL_1_BLOCK_DIRECTIONS[7] = (42,24,1)
+    PANEL_1_BLOCK_DIRECTIONS[8] = (7,3,1)
+    PANEL_1_BLOCK_DIRECTIONS[9] = (30,3,1)
+    PANEL_1_BLOCK_DIRECTIONS[10] = (30,25,1)
+    PANEL_1_BLOCK_DIRECTIONS[11] = (30,26,1)
+ENDSUB
+
+SUB Redraw_Block_Occupancy(BlockIndex, {locak} BitMaskResult, {local} TrackColor)
+    BitMaskResult = BLOCK_STATUSES[BlockIndex]
+    BitMaskResult = BLOCK_OCCUPIED &
+
+    IF BitMaskResult THEN
+        TrackColor = BLOCK_CAB_ASSIGNMENTS[BlockIndex]
+        TrackColor = CAB_COLORS[TrackColor]
+    ELSE
+        TrackColor = LIGHTGRAY
+    ENDIF 
+
+    $COLOR BLOCK (PANEL_1_BLOCK_TRACKS[BlockIndex]) = TrackColor
+
+    '''
+    
+    $ERASE SPRITE (PANEL_1_BLOCK_DIRECTIONS[BlockIndex])
+
+    BitMaskResult = BLOCK_STATUSES[BlockIndex]
+    BitMaskResult = BLOCK_OCCUPIED_EAST &
+    IF BitMaskResult THEN
+        $DRAW SPRITE (PANEL_1_BLOCK_DIRECTIONS[BlockIndex]) = ARROW_EAST IN TrackColor
+    ENDIF
+
+    BitMaskResult = BLOCK_STATUSES[BlockIndex]
+    BitMaskResult = BLOCK_OCCUPIED_WEST &
+    IF BitMaskResult THEN
+        $DRAW SPRITE (PANEL_1_BLOCK_DIRECTIONS[BlockIndex]) = ARROW_WEST IN TrackColor
+    ENDIF
+ENDSUB
+
+SUB Block_Triggered_East(BlockIndex)
+    BLOCK_STATUSES[BlockIndex] = BLOCK_OCCUPIED |
+    BLOCK_STATUSES[BlockIndex] = BLOCK_OCCUPIED_EAST |
+    Redraw_Block_Occupancy(BlockIndex)
+ENDSUB
+
+SUB Block_Triggered_West(BlockIndex)
+    BLOCK_STATUSES[BlockIndex] = BLOCK_OCCUPIED |
+    BLOCK_STATUSES[BlockIndex] = BLOCK_OCCUPIED_WEST |
+
+    Redraw_Block_Occupancy(BlockIndex)
+ENDSUB
+
+SUB Block_Stopped_Triggering(BlockIndex, {local} Negater)
+    Negater = BLOCK_OCCUPIED
+    Negater = BLOCK_OCCUPIED_EAST |
+    Negater = BLOCK_OCCUPIED_WEST |
+    Negater = Negater ~
+    BLOCK_STATUSES[BlockIndex] = Negater &
+
+    Redraw_Block_Occupancy(BlockIndex)
+ENDSUB
 
 {-- Cabs --}
 SUB ResetInit_Set_Cab_Colors()
@@ -607,6 +684,7 @@ WHEN $RESET = TRUE DO
     ResetInit_Set_Block_Power_Controls()
     ResetInit_Set_Block_Lables_On_Panels()
     ResetInit_Set_Block_Tracks_On_Panels()
+    ResetInit_Set_Block_Directions_On_Panels()
     Set_All_Block_Power_To_Cab(0)
 
 
@@ -659,4 +737,46 @@ WHEN $RESET = TRUE DO
     WHEN $COMMAND = "All Blocks, Cab 2" DO Set_All_Block_Power_To_Cab(1)
     WHEN $COMMAND = "All Blocks, Cab 3" DO Set_All_Block_Power_To_Cab(2)
     WHEN $COMMAND = "All Blocks, Cab 4" DO Set_All_Block_Power_To_Cab(3)
+
+{--
+ - Block detection
+ -}
+    WHEN Block_01_East_Sensor = BLOCK_DETECTOR_ACTIVITY_DETECTED DO Block_Triggered_East(0)
+    WHEN Block_02_East_Sensor = BLOCK_DETECTOR_ACTIVITY_DETECTED DO Block_Triggered_East(1)
+    WHEN Block_03_East_Sensor = BLOCK_DETECTOR_ACTIVITY_DETECTED DO Block_Triggered_East(2)
+    WHEN Block_04_East_Sensor = BLOCK_DETECTOR_ACTIVITY_DETECTED DO Block_Triggered_East(3)
+    WHEN Block_05_East_Sensor = BLOCK_DETECTOR_ACTIVITY_DETECTED DO Block_Triggered_East(4)
+    WHEN Block_06_East_Sensor = BLOCK_DETECTOR_ACTIVITY_DETECTED DO Block_Triggered_East(5)
+    WHEN Block_07_East_Sensor = BLOCK_DETECTOR_ACTIVITY_DETECTED DO Block_Triggered_East(6)
+    WHEN Block_08_East_Sensor = BLOCK_DETECTOR_ACTIVITY_DETECTED DO Block_Triggered_East(7)
+    WHEN Block_09_East_Sensor = BLOCK_DETECTOR_ACTIVITY_DETECTED DO Block_Triggered_East(8)
+    WHEN Block_10_East_Sensor = BLOCK_DETECTOR_ACTIVITY_DETECTED DO Block_Triggered_East(9)
+    WHEN Block_11_East_Sensor = BLOCK_DETECTOR_ACTIVITY_DETECTED DO Block_Triggered_East(10)
+    WHEN Block_12_East_Sensor = BLOCK_DETECTOR_ACTIVITY_DETECTED DO Block_Triggered_East(11)
+
+    WHEN Block_01_West_Sensor = BLOCK_DETECTOR_ACTIVITY_DETECTED DO Block_Triggered_West(0)
+    WHEN Block_02_West_Sensor = BLOCK_DETECTOR_ACTIVITY_DETECTED DO Block_Triggered_West(1)
+    WHEN Block_03_West_Sensor = BLOCK_DETECTOR_ACTIVITY_DETECTED DO Block_Triggered_West(2)
+    WHEN Block_04_West_Sensor = BLOCK_DETECTOR_ACTIVITY_DETECTED DO Block_Triggered_West(3)
+    WHEN Block_05_West_Sensor = BLOCK_DETECTOR_ACTIVITY_DETECTED DO Block_Triggered_West(4)
+    WHEN Block_06_West_Sensor = BLOCK_DETECTOR_ACTIVITY_DETECTED DO Block_Triggered_West(5)
+    WHEN Block_07_West_Sensor = BLOCK_DETECTOR_ACTIVITY_DETECTED DO Block_Triggered_West(6)
+    WHEN Block_08_West_Sensor = BLOCK_DETECTOR_ACTIVITY_DETECTED DO Block_Triggered_West(7)
+    WHEN Block_09_West_Sensor = BLOCK_DETECTOR_ACTIVITY_DETECTED DO Block_Triggered_West(8)
+    WHEN Block_10_West_Sensor = BLOCK_DETECTOR_ACTIVITY_DETECTED DO Block_Triggered_West(9)
+    WHEN Block_11_West_Sensor = BLOCK_DETECTOR_ACTIVITY_DETECTED DO Block_Triggered_West(10)
+    WHEN Block_12_West_Sensor = BLOCK_DETECTOR_ACTIVITY_DETECTED DO Block_Triggered_West(11)
+
+    WHEN Block_01_East_Sensor = BLOCK_DETECTOR_NO_ACTIVITY, Block_01_West_Sensor = BLOCK_DETECTOR_NO_ACTIVITY DO Block_Stopped_Triggering(0)
+    WHEN Block_02_East_Sensor = BLOCK_DETECTOR_NO_ACTIVITY, Block_02_West_Sensor = BLOCK_DETECTOR_NO_ACTIVITY DO Block_Stopped_Triggering(1)
+    WHEN Block_03_East_Sensor = BLOCK_DETECTOR_NO_ACTIVITY, Block_03_West_Sensor = BLOCK_DETECTOR_NO_ACTIVITY DO Block_Stopped_Triggering(2)
+    WHEN Block_04_East_Sensor = BLOCK_DETECTOR_NO_ACTIVITY, Block_04_West_Sensor = BLOCK_DETECTOR_NO_ACTIVITY DO Block_Stopped_Triggering(3)
+    WHEN Block_05_East_Sensor = BLOCK_DETECTOR_NO_ACTIVITY, Block_05_West_Sensor = BLOCK_DETECTOR_NO_ACTIVITY DO Block_Stopped_Triggering(4)
+    WHEN Block_06_East_Sensor = BLOCK_DETECTOR_NO_ACTIVITY, Block_06_West_Sensor = BLOCK_DETECTOR_NO_ACTIVITY DO Block_Stopped_Triggering(5)
+    WHEN Block_07_East_Sensor = BLOCK_DETECTOR_NO_ACTIVITY, Block_07_West_Sensor = BLOCK_DETECTOR_NO_ACTIVITY DO Block_Stopped_Triggering(6)
+    WHEN Block_08_East_Sensor = BLOCK_DETECTOR_NO_ACTIVITY, Block_08_West_Sensor = BLOCK_DETECTOR_NO_ACTIVITY DO Block_Stopped_Triggering(7)
+    WHEN Block_09_East_Sensor = BLOCK_DETECTOR_NO_ACTIVITY, Block_09_West_Sensor = BLOCK_DETECTOR_NO_ACTIVITY DO Block_Stopped_Triggering(8)
+    WHEN Block_10_East_Sensor = BLOCK_DETECTOR_NO_ACTIVITY, Block_10_West_Sensor = BLOCK_DETECTOR_NO_ACTIVITY DO Block_Stopped_Triggering(9)
+    WHEN Block_11_East_Sensor = BLOCK_DETECTOR_NO_ACTIVITY, Block_11_West_Sensor = BLOCK_DETECTOR_NO_ACTIVITY DO Block_Stopped_Triggering(10)
+    WHEN Block_12_East_Sensor = BLOCK_DETECTOR_NO_ACTIVITY, Block_12_West_Sensor = BLOCK_DETECTOR_NO_ACTIVITY DO Block_Stopped_Triggering(11)
 
