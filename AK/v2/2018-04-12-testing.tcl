@@ -532,6 +532,9 @@ SUB ResetInit_Set_Block_Power_Controls()
 ENDSUB
 
 SUB Set_Block_Power_To_Cab(BlockIndex, CabIndex)
+    ' Don't do any work if we already have the correct assignment
+    IF BLOCK_CAB_ASSIGNMENTS[BlockIndex] = CabIndex THEN RETURN ENDIF
+
     IF CabIndex = 0 THEN
         *BLOCK_CONTROLS_1or2[BlockIndex] = POWER_OPTION_FIRST_CHOICE
         *BLOCK_CONTROLS_12or34[BlockIndex] = POWER_OPTION_FIRST_CHOICE
@@ -559,6 +562,16 @@ SUB Set_All_Block_Power_To_Cab(CabIndex, {local} BlockIndex)
 
         BlockIndex = 1 +
     ENDLOOP
+ENDSUB
+
+SUB User_Select_Block_Cab_Assignment(BlockIndex, {local} CabIndex)
+    $QUERY "1$Choose block status:?$Assign to Cab 1$Assign to Cab 2$Assign to Cab 3$Assign to Cab 4$Toggle manual hold"
+    WAIT UNTIL $QUERYBUSY = FALSE THEN
+    CabIndex = $QUERYRESPONSE
+
+    IF CabIndex < 0 THEN RETURN ENDIF
+
+    IF CabIndex >= 0, CabIndex <= NUM_CABS THEN Set_Block_Power_To_Cab(BlockIndex, CabIndex) ENDIF
 ENDSUB
 
 SUB ResetInit_Set_Block_Lables_On_Panels()
@@ -737,6 +750,21 @@ WHEN $RESET = TRUE DO
     WHEN $COMMAND = "All Blocks, Cab 2" DO Set_All_Block_Power_To_Cab(1)
     WHEN $COMMAND = "All Blocks, Cab 3" DO Set_All_Block_Power_To_Cab(2)
     WHEN $COMMAND = "All Blocks, Cab 4" DO Set_All_Block_Power_To_Cab(3)
+{--
+ - Select assignment for one block
+ -}
+    WHEN $LEFTMOUSE = (PANEL_1_BLOCK_LABELS[0]) DO User_Select_Block_Cab_Assignment(0)
+    WHEN $LEFTMOUSE = (PANEL_1_BLOCK_LABELS[1]) DO User_Select_Block_Cab_Assignment(1)
+    WHEN $LEFTMOUSE = (PANEL_1_BLOCK_LABELS[2]) DO User_Select_Block_Cab_Assignment(2)
+    WHEN $LEFTMOUSE = (PANEL_1_BLOCK_LABELS[3]) DO User_Select_Block_Cab_Assignment(3)
+    WHEN $LEFTMOUSE = (PANEL_1_BLOCK_LABELS[4]) DO User_Select_Block_Cab_Assignment(4)
+    WHEN $LEFTMOUSE = (PANEL_1_BLOCK_LABELS[5]) DO User_Select_Block_Cab_Assignment(5)
+    WHEN $LEFTMOUSE = (PANEL_1_BLOCK_LABELS[6]) DO User_Select_Block_Cab_Assignment(6)
+    WHEN $LEFTMOUSE = (PANEL_1_BLOCK_LABELS[7]) DO User_Select_Block_Cab_Assignment(7)
+    WHEN $LEFTMOUSE = (PANEL_1_BLOCK_LABELS[8]) DO User_Select_Block_Cab_Assignment(8)
+    WHEN $LEFTMOUSE = (PANEL_1_BLOCK_LABELS[9]) DO User_Select_Block_Cab_Assignment(9)
+    WHEN $LEFTMOUSE = (PANEL_1_BLOCK_LABELS[10]) DO User_Select_Block_Cab_Assignment(10)
+    WHEN $LEFTMOUSE = (PANEL_1_BLOCK_LABELS[11]) DO User_Select_Block_Cab_Assignment(11)
 
 {--
  - Block detection
