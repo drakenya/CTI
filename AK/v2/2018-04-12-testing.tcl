@@ -95,20 +95,20 @@ CONTROLS:
     Block_05_Power_1or2 'TrainBrain 1, Port 3
     Block_09_Power_1or2 'TrainBrain 1, Port 4
 SENSORS:
-    Block_08_East_Sensor 'TrainBrain 1, Port 1
-    Block_08_West_Sensor 'TrainBrain 1, Port 2
-    Block_01_East_Sensor 'TrainBrain 1, Port 3
-    Block_01_West_Sensor 'TrainBrain 1, Port 4
+    Block_08_East_Sensor# 'TrainBrain 1, Port 1
+    Block_08_West_Sensor# 'TrainBrain 1, Port 2
+    Block_01_East_Sensor# 'TrainBrain 1, Port 3
+    Block_01_West_Sensor# 'TrainBrain 1, Port 4
 CONTROLS:
     Block_08_Power_3or4 'TrainBrain 2, Port 1
     Block_01_Power_3or4 'TrainBrain 2, Port 2
     Block_05_Power_3or4 'TrainBrain 2, Port 3
     Block_09_Power_3or4 'TrainBrain 2, Port 4
 SENSORS:
-    Block_05_East_Sensor 'TrainBrain 2, Port 1
-    Block_05_West_Sensor 'TrainBrain 2, Port 2
-    Block_09_East_Sensor 'TrainBrain 2, Port 3
-    Block_09_West_Sensor 'TrainBrain 2, Port 4
+    Block_05_East_Sensor# 'TrainBrain 2, Port 1
+    Block_05_West_Sensor# 'TrainBrain 2, Port 2
+    Block_09_East_Sensor# 'TrainBrain 2, Port 3
+    Block_09_West_Sensor# 'TrainBrain 2, Port 4
 CONTROLS:
     Block_08_Power_12or34 'Dash-8 1, port 1
     Block_01_Power_12or34 'Dash-8 1, port 2
@@ -155,20 +155,20 @@ CONTROLS:
     Block_04_Power_1or2 'TrainBrain 1, Port 3
     Block_12_Power_1or2 'TrainBrain 1, Port 4
 SENSORS:
-    Block_07_East_Sensor 'TrainBrain 1, Port 1
-    Block_07_West_Sensor 'TrainBrain 1, Port 2
-    Block_11_East_Sensor 'TrainBrain 1, Port 3
-    Block_11_West_Sensor 'TrainBrain 1, Port 4
+    Block_07_East_Sensor# 'TrainBrain 1, Port 1
+    Block_07_West_Sensor# 'TrainBrain 1, Port 2
+    Block_11_East_Sensor# 'TrainBrain 1, Port 3
+    Block_11_West_Sensor# 'TrainBrain 1, Port 4
 CONTROLS:
     Block_07_Power_3or4 'TrainBrain 2, Port 1
     Block_11_Power_3or4 'TrainBrain 2, Port 2
     Block_04_Power_3or4 'TrainBrain 2, Port 3
     Block_12_Power_3or4 'TrainBrain 2, Port 4
 SENSORS:
-    Block_04_East_Sensor 'TrainBrain 2, Port 1
-    Block_04_West_Sensor 'TrainBrain 2, Port 2
-    Block_12_East_Sensor 'TrainBrain 2, Port 3
-    Block_12_West_Sensor 'TrainBrain 2, Port 4
+    Block_04_East_Sensor# 'TrainBrain 2, Port 1
+    Block_04_West_Sensor# 'TrainBrain 2, Port 2
+    Block_12_East_Sensor# 'TrainBrain 2, Port 3
+    Block_12_West_Sensor# 'TrainBrain 2, Port 4
 CONTROLS:
     Block_07_Power_12or34 'Dash-8 1, port 1
     Block_11_Power_12or34 'Dash-8 1, port 2
@@ -256,20 +256,20 @@ CONTROLS:
     Block_10_Power_1or2 'TrainBrain 1, Port 3
     Block_03_Power_1or2 'TrainBrain 1, Port 4
 SENSORS:
-    Block_02_East_Sensor 'TrainBrain 1, Port 1
-    Block_02_West_Sensor 'TrainBrain 1, Port 2
-    Block_06_East_Sensor 'TrainBrain 1, Port 3
-    Block_06_West_Sensor 'TrainBrain 1, Port 4
+    Block_02_East_Sensor# 'TrainBrain 1, Port 1
+    Block_02_West_Sensor# 'TrainBrain 1, Port 2
+    Block_06_East_Sensor# 'TrainBrain 1, Port 3
+    Block_06_West_Sensor# 'TrainBrain 1, Port 4
 CONTROLS:
     Block_02_Power_3or4 'TrainBrain 2, Port 1
     Block_06_Power_3or4 'TrainBrain 2, Port 2
     Block_10_Power_3or4 'TrainBrain 2, Port 3
     Block_03_Power_3or4 'TrainBrain 2, Port 4
 SENSORS:
-    Block_10_East_Sensor 'TrainBrain 2, Port 1
-    Block_10_West_Sensor 'TrainBrain 2, Port 2
-    Block_03_East_Sensor 'TrainBrain 2, Port 3
-    Block_03_West_Sensor 'TrainBrain 2, Port 4
+    Block_10_East_Sensor# 'TrainBrain 2, Port 1
+    Block_10_West_Sensor# 'TrainBrain 2, Port 2
+    Block_03_East_Sensor# 'TrainBrain 2, Port 3
+    Block_03_West_Sensor# 'TrainBrain 2, Port 4
 CONTROLS:
     Block_02_Power_12or34 'Dash-8 1, port 1
     Block_06_Power_12or34 'Dash-8 1, port 2
@@ -418,7 +418,7 @@ ENDSUB
 SUB ResetInit_Set_Turnouts_On_Panels()
     PANEL_1_TURNOUTS[0] = (27,28,1)
     PANEL_1_TURNOUTS[1] = (30,29,1)
-    PANEL_1_TURNOUTS[2] = (43,32,1)
+    PANEL_1_TURNOUTS[2] = (44,32,1)
     PANEL_1_TURNOUTS[3] = (36,28,1)
     PANEL_1_TURNOUTS[4] = (3,7,1)
     PANEL_1_TURNOUTS[5] = (7,7,1)
@@ -433,7 +433,7 @@ SUB ResetInit_Set_Turnouts_On_Panels()
     PANEL_1_TURNOUTS[14] = (33,8,1)
     PANEL_1_TURNOUTS[15] = (30,9,1)
     PANEL_1_TURNOUTS[16] = (20,32,1)
-    PANEL_1_TURNOUTS[17] = (42,31,1)
+    PANEL_1_TURNOUTS[17] = (43,31,1)
     PANEL_1_TURNOUTS[18] = (5,32,1)
     PANEL_1_TURNOUTS[19] = (4,31,1)
     PANEL_1_TURNOUTS[20] = (10,32,1)
@@ -655,7 +655,7 @@ SUB ResetInit_Set_Block_Signals_On_Panels()
     PANEL_1_BLOCK_SIGNAL_INDICATORS[2] = (26,2,1)
     PANEL_1_BLOCK_SIGNAL_INDICATORS[3] = (38,2,1)
     PANEL_1_BLOCK_SIGNAL_INDICATORS[4] = (2,24,1)
-    PANEL_1_BLOCK_SIGNAL_INDICATORS[5] = (16,24,1)
+    PANEL_1_BLOCK_SIGNAL_INDICATORS[5] = (14,24,1)
     PANEL_1_BLOCK_SIGNAL_INDICATORS[6] = (26,24,1)
     PANEL_1_BLOCK_SIGNAL_INDICATORS[7] = (38,24,1)
     PANEL_1_BLOCK_SIGNAL_INDICATORS[8] = (2,3,1)
