@@ -1,0 +1,14 @@
+sentry common (green & black phone jack) to detector long, (insulated; solid color)
+detector short (white) to individual port (red & yellow phone jack)
+
+***
+***
+
+Power + to the resistor, (to white) to the LED detector long (insulated)
+LED detector short (solid) to LED detector 2 long (white; insulated)
+LED detector 2 short (solid) to power -
+
+***
+***
+
+Resistor is 470 ohm
