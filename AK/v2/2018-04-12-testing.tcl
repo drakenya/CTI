@@ -207,6 +207,7 @@ CONTROLS:
  -
  - Sentry 1 (16 sensor)
  -}
+{
 SENSORS:
     IR_Port_01~ 'Sentry 1, Port 01
     IR_Port_02~ 'Sentry 1, Port 02
@@ -224,7 +225,7 @@ SENSORS:
     IR_Port_14~ 'Sentry 1, Port 14
     IR_Port_15~ 'Sentry 1, Port 15
     IR_Port_16~ 'Sentry 1, Port 16
-
+}
 {--
  -  Tortoise, Board 2
 
@@ -243,8 +244,8 @@ CONTROLS:
     Turnout_03_Control 'YardMaster 1, Port 09
     Turnout_18_Control 'YardMaster 1, Port 10
     Turnout_15_Control 'YardMaster 1, Port 11
-    Turnout_31_Control 'YardMaster 1, Port 12
-    Turnout_11_Control 'YardMaster 1, Port 13
+    Turnout_11_Control 'YardMaster 1, Port 12
+    Turnout_31_Control 'YardMaster 1, Port 13
     Turnout_32_Control 'YardMaster 1, Port 14
     Turnout_25_Control 'YardMaster 1, Port 15
     Turnout_26_Control 'YardMaster 1, Port 16
@@ -260,8 +261,8 @@ SENSORS:
     Turnout_03_Button_Sensor 'Sentry 1, Port 09
     Turnout_18_Button_Sensor 'Sentry 1, Port 10
     Turnout_15_Button_Sensor 'Sentry 1, Port 11
-    Turnout_31_Button_Sensor 'Sentry 1, Port 12
-    Turnout_11_Button_Sensor 'Sentry 1, Port 13
+    Turnout_11_Button_Sensor 'Sentry 1, Port 12
+    Turnout_31_Button_Sensor 'Sentry 1, Port 13
     Turnout_32_Button_Sensor 'Sentry 1, Port 14
     Turnout_25_Button_Sensor 'Sentry 1, Port 15
     Turnout_26_Button_Sensor 'Sentry 1, Port 16
@@ -880,6 +881,7 @@ WHEN $RESET = TRUE DO
 {--
  - IR Detection (Of staging blocks)
  -}
+{
     WHEN IR_Port_01 = ON DO $DRAW SPRITE(40, 31, 1) = SIG_ABSOLUTE_EAST IN RED
     WHEN IR_Port_02 = ON DO $DRAW SPRITE(41, 31, 1) = SIG_ABSOLUTE_EAST IN YELLOW
     WHEN IR_Port_03 = ON DO $DRAW SPRITE(40, 30, 1) = SIG_ABSOLUTE_EAST IN RED
@@ -889,4 +891,5 @@ WHEN $RESET = TRUE DO
     WHEN IR_Port_02 = OFF DO $ERASE SPRITE (41, 31, 1)
     WHEN IR_Port_03 = OFF DO $ERASE SPRITE (40, 30, 1)
     WHEN IR_Port_04 = OFF DO $ERASE SPRITE (41, 30, 1)
+}
  
