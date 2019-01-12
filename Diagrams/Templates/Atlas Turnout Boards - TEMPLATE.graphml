@@ -45,6 +45,7 @@
           <y:Geometry height="101.80312500000002" width="23.0" x="-27.000458034833855" y="240.0"/>
           <y:Fill color="#663300" transparent="false"/>
           <y:BorderStyle color="#663300" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="4.0" x="9.5" y="48.90156250000001"/>
           <y:Shape type="rectangle"/>
         </y:ShapeNode>
       </data>
@@ -56,7 +57,7 @@
           <y:Fill color="#000000" transparent="false"/>
           <y:BorderStyle color="#663300" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" modelName="custom" rotationAngle="90.0" textColor="#FFFFFF" visible="true" width="487.5625" x="7.298828125" y="81.21875">1        2       3       4       5       6       7       8       9      10      11      12      13      14      15      16
-To Turnout Control Box LEDs<y:LabelModel>
+To Atlas switch machines, (Red and Green terminals)<y:LabelModel>
               <y:SmartNodeLabelModel distance="4.0"/>
             </y:LabelModel>
             <y:ModelParameter>
@@ -189,10 +190,13 @@ To Turnout Control Box LEDs<y:LabelModel>
               <y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
             </y:ModelParameter>
           </y:NodeLabel>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="62.8046875" modelName="custom" textColor="#000000" visible="true" width="260.1484375" x="-274.3429851474291" y="-42.3046875">Output to Atlas switch machines
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="106.908203125" modelName="custom" textColor="#000000" visible="true" width="260.1484375" x="-274.3429851474291" y="-72.01242939692438">Output to Atlas switch machines
 2 ports to each machine, wired to one connector
 Ideal #102  Male Connector
-Higher # port to Black terminal<y:LabelModel>
+Higher # port to Black terminal
+
+Atlas Center Terminal (Yellow) to Ground
+Red &amp; Green Terminals to adjacent ports<y:LabelModel>
               <y:SmartNodeLabelModel distance="4.0"/>
             </y:LabelModel>
             <y:ModelParameter>
@@ -341,7 +345,6 @@ Higher # port to Black terminal<y:LabelModel>
       </data>
     </node>
     <node id="n14">
-      <data key="d5"/>
       <data key="d6">
         <y:ShapeNode>
           <y:Geometry height="21.02722380968703" width="10.706249999999955" x="1.7435209825831635" y="265.4625000000001"/>
@@ -360,12 +363,21 @@ Higher # port to Black terminal<y:LabelModel>
       </data>
     </node>
     <node id="n15">
-      <data key="d5"/>
       <data key="d6">
         <y:ShapeNode>
           <y:Geometry height="34.28750000000002" width="30.0" x="18.193750000000136" y="264.3906250000001"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="62.8046875" modelName="custom" textColor="#000000" visible="true" width="175.416015625" x="66.44324999999981" y="-14.258593749999989">Resistor - 100 ohm, 10 watt
+   Radio Shack #271-0135
+Capacitor - 4700 microfarad 35v
+   Radio Shack #272-1022<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="-0.5" labelRatioY="0.0" nodeRatioX="0.5" nodeRatioY="0.0" offsetX="36.44324999999981" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="13.0" y="15.143750000000011">
             <y:LabelModel>
               <y:SmartNodeLabelModel distance="4.0"/>
@@ -805,7 +817,6 @@ Higher # port to Black terminal<y:LabelModel>
       </data>
     </edge>
     <edge id="e37" source="n15" target="n1">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="11.481120183626512" ty="35.7426516259016">
@@ -818,7 +829,6 @@ Higher # port to Black terminal<y:LabelModel>
       </data>
     </edge>
     <edge id="e38" source="n14" target="n1">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
@@ -832,7 +842,6 @@ Higher # port to Black terminal<y:LabelModel>
       </data>
     </edge>
     <edge id="e39" source="n14" target="n1">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="11.520385036066713" ty="15.910372054605546">
@@ -845,7 +854,6 @@ Higher # port to Black terminal<y:LabelModel>
       </data>
     </edge>
     <edge id="e40" source="n15" target="n1">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="11.502460237130189" ty="-36.861938601148125">
