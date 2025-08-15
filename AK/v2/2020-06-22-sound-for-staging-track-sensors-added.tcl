@@ -209,22 +209,23 @@ CONTROLS:
  -}
 SENSORS:
     
-    Staging_Front_Warning_Detector 'Sentry 1, Port 01
-    Staging_Front_Danger_Detector 'Sentry 1, Port 02
-    Staging_Rear_Warning_Detector 'Sentry 1, Port 03
-    Staging_Rear_Danger_Detector 'Sentry 1, Port 04
-    IR_Port_05 'Sentry 1, Port 05
-    IR_Port_06 'Sentry 1, Port 06
-    IR_Port_07 'Sentry 1, Port 07
-    IR_Port_08 'Sentry 1, Port 08
-    IR_Port_09 'Sentry 1, Port 09
-    IR_Port_10 'Sentry 1, Port 10
-    IR_Port_11 'Sentry 1, Port 11
-    IR_Port_12 'Sentry 1, Port 12
-    IR_Port_13 'Sentry 1, Port 13
-    IR_Port_14 'Sentry 1, Port 14
-    IR_Port_15 'Sentry 1, Port 15
-    IR_Port_16 'Sentry 1, Port 16
+    Staging_Front_Warning_Detector~ 'Sentry 1, Port 01
+    Staging_Front_Danger_Detector~ 'Sentry 1, Port 02
+    Staging_Rear_Danger_Detector~ 'Sentry 1, Port 03 
+    Staging_Rear_Warning_Detector~ 'Sentry 1, Port 04
+
+    IR_Port_05~ 'Sentry 1, Port 05
+    IR_Port_06~ 'Sentry 1, Port 06
+    IR_Port_07~ 'Sentry 1, Port 07
+    IR_Port_08~ 'Sentry 1, Port 08
+    IR_Port_09~ 'Sentry 1, Port 09
+    IR_Port_10~ 'Sentry 1, Port 10
+    IR_Port_11~ 'Sentry 1, Port 11
+    IR_Port_12~ 'Sentry 1, Port 12
+    IR_Port_13~ 'Sentry 1, Port 13
+    IR_Port_14~ 'Sentry 1, Port 14
+    IR_Port_15~ 'Sentry 1, Port 15
+    IR_Port_16~ 'Sentry 1, Port 16
 
 {--
  -  Tortoise, Board 2
@@ -995,19 +996,90 @@ WHEN $RESET = TRUE DO
  -}
     ' Enola Siding 
 
-    'WHEN Staging_Front_Warning_Detector = ON DO $DRAW SPRITE(41, 31, 1) = SIG_ABSOLUTE_EAST IN YELLOW
-    'WHEN Staging_Front_Warning_Detector = OFF DO $ERASE SPRITE (41, 31, 1)
+    WHEN Staging_Front_Warning_Detector = ON DO $DRAW SPRITE(41, 31, 1) = SIG_ABSOLUTE_EAST IN YELLOW
+    WHEN Staging_Front_Warning_Detector = OFF DO $ERASE SPRITE (41, 31, 1)
     
     WHEN Staging_Front_Danger_Detector = ON DO $DRAW SPRITE(40, 31, 1) = SIG_ABSOLUTE_EAST IN RED
     WHEN Staging_Front_Danger_Detector = OFF DO $ERASE SPRITE (40, 31, 1)
 
+    ''''' Sound Warnings
+    
+    WHEN Turnout_Statuses[2] = TURNOUT_DIRECTION_SECONDARY AND, 
+     Turnout_Statuses[17] = TURNOUT_DIRECTION_SECONDARY AND, 
+     Block_08_West_Sensor=BLOCK_DETECTOR_ACTIVITY_DETECTED AND,
+     Staging_Front_Warning_Detector = ON AND,
+     Staging_Front_Danger_Detector = OFF DO
+         $VOLUME1=100
+         $SOUND1="Warning - Slow.wav" ' relative file path
+ '        $SOUND1="C:\Program Files (x86)\CTI Electronics\Train Brain\Sounds\Warning - Slow.wav"
+ '       $SOUND1="C:\Users\Marty Kroll\Desktop\Warning - Slow.wav" '' for Martys desktop computer
+         $REPEAT
+
+    WHEN Turnout_Statuses[2] = TURNOUT_DIRECTION_PRIMARY OR, 
+     Turnout_Statuses[17] = TURNOUT_DIRECTION_PRIMARY OR, 
+     Block_08_West_Sensor=BLOCK_DETECTOR_NO_ACTIVITY OR, 
+     Staging_Front_Warning_Detector = OFF OR,
+     Staging_Front_Danger_Detector = ON DO
+         $SOUND1=OFF
+
+    WHEN Turnout_Statuses[2] = TURNOUT_DIRECTION_SECONDARY AND, 
+     Turnout_Statuses[17] = TURNOUT_DIRECTION_SECONDARY AND, 
+     Block_08_West_Sensor=BLOCK_DETECTOR_ACTIVITY_DETECTED AND,
+     Staging_Front_Danger_Detector = ON DO
+         $VOLUME1=100
+         $SOUND1="Danger - End of Track.wav" ' relative file path
+'         $SOUN12="C:\Program Files (x86)\CTI Electronics\Train Brain\Sounds\Danger - End of track.wav"
+'         $SOUND1="C:\Users\Marty Kroll\Desktop\Danger - End of track.wav" '' for Martys desktop computer
+         $REPEAT
+
+    WHEN Turnout_Statuses[2] = TURNOUT_DIRECTION_PRIMARY OR, 
+     Turnout_Statuses[17] = TURNOUT_DIRECTION_PRIMARY OR,
+     Block_08_West_Sensor=BLOCK_DETECTOR_NO_ACTIVITY OR,  
+     Staging_Front_Danger_Detector = OFF DO
+         $SOUND1=OFF
+
 
     ' Conway Siding
 
-    'WHEN Staging_Rear_Warning_Detector = ON DO $DRAW SPRITE(41, 30, 1) = SIG_ABSOLUTE_EAST IN YELLOW
+    WHEN Staging_Rear_Warning_Detector = ON DO $DRAW SPRITE(41, 30, 1) = SIG_ABSOLUTE_EAST IN YELLOW
     WHEN Staging_Rear_Danger_Detector = ON DO $DRAW SPRITE(40, 30, 1) = SIG_ABSOLUTE_EAST IN RED
    
-   ' WHEN Staging_Rear_Warning_Detector = OFF DO $ERASE SPRITE (41, 30, 1)
+    WHEN Staging_Rear_Warning_Detector = OFF DO $ERASE SPRITE (41, 30, 1)
     WHEN Staging_Rear_Danger_Detector = OFF DO $ERASE SPRITE (40, 30, 1)
-   
 
+ ''''' Sound Warnings
+    
+    WHEN Turnout_Statuses[2] = TURNOUT_DIRECTION_SECONDARY AND, 
+     Turnout_Statuses[17] = TURNOUT_DIRECTION_PRIMARY AND,
+     Block_08_West_Sensor=BLOCK_DETECTOR_ACTIVITY_DETECTED AND, 
+     Staging_Rear_Warning_Detector = ON AND,
+     Staging_Rear_Danger_Detector = OFF DO
+         $VOLUME1=100
+         $SOUND1="Warning - Slow.wav" ' relative file path
+ '        $SOUND1="C:\Program Files (x86)\CTI Electronics\Train Brain\Sounds\Warning - Slow.wav"
+ '        $SOUND1="C:\Users\Marty\Desktop\Warning - Slow.wav" '' for Martys desktop computer
+         $REPEAT
+
+    WHEN Turnout_Statuses[2] = TURNOUT_DIRECTION_PRIMARY OR, 
+     Turnout_Statuses[17] = TURNOUT_DIRECTION_SECONDARY OR,
+     Block_08_West_Sensor=BLOCK_DETECTOR_NO_ACTIVITY OR,  
+     Staging_Rear_Warning_Detector = OFF OR,
+     Staging_Rear_Danger_Detector = ON DO
+         $SOUND1=OFF
+
+    WHEN Turnout_Statuses[2] = TURNOUT_DIRECTION_SECONDARY AND, 
+     Turnout_Statuses[17] = TURNOUT_DIRECTION_PRIMARY AND,
+     Block_08_West_Sensor=BLOCK_DETECTOR_ACTIVITY_DETECTED AND,  
+     Staging_Rear_Danger_Detector = ON DO
+         $VOLUME1=100
+         $SOUND1="Danger - End of Track.wav" ' relative file path
+  '       $SOUND1="C:\Program Files (x86)\CTI Electronics\Train Brain\Sounds\Danger - End of track.wav"
+  '       $SOUND1="C:\Users\Marty\Desktop\Danger - End of track.wav" '' for Martys desktop computer
+         $REPEAT
+
+    WHEN Turnout_Statuses[2] = TURNOUT_DIRECTION_PRIMARY OR, 
+     Turnout_Statuses[17] = TURNOUT_DIRECTION_SECONDARY OR,
+     Block_08_West_Sensor=BLOCK_DETECTOR_NO_ACTIVITY OR,  
+     Staging_Rear_Danger_Detector = OFF DO
+         $SOUND1=OFF
+ 

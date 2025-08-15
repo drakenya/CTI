@@ -12,10 +12,46 @@ CONSTANTS:
     TURNOUT_TYPE_TORTOISE = 1
     TURNOUT_TYPE_ATLAS = 2
 
+    TURNOUT_01 = 0
+    TURNOUT_02 = 1
+    TURNOUT_03 = 2
+    TURNOUT_04 = 3
+    TURNOUT_05 = 4
+    TURNOUT_06 = 5
+    TURNOUT_07 = 6
+    TURNOUT_08 = 7
+    TURNOUT_09 = 8
+    TURNOUT_10 = 9
+    TURNOUT_11 = 10
+    TURNOUT_12 = 11
+    TURNOUT_13 = 12
+    TURNOUT_14 = 13
+    TURNOUT_15 = 14
+    TURNOUT_16 = 15
+    TURNOUT_17 = 16
+    TURNOUT_18 = 17
+    TURNOUT_19 = 18
+    TURNOUT_20 = 19
+    TURNOUT_21 = 20
+    TURNOUT_22 = 21
+    TURNOUT_23 = 22
+    TURNOUT_24 = 23
+    TURNOUT_25 = 24
+    TURNOUT_26 = 25
+    TURNOUT_27 = 26
+    TURNOUT_28 = 27
+    TURNOUT_29 = 28
+    TURNOUT_30 = 29
+    TURNOUT_31 = 30
+    TURNOUT_32 = 31
+    TURNOUT_33 = 32
+    TURNOUT_34 = 33
+
     {--
      - Blocks
      -}
     NUM_BLOCKS = 14
+    NUM_MAINLINE_BLOCKS = 8
 
     POWER_OPTION_FIRST_CHOICE = OFF
     POWER_OPTION_SECOND_CHOICE = ON
@@ -29,11 +65,39 @@ CONSTANTS:
     BLOCK_OCCUPIED_WEST = 4
     BLOCK_UNDER_MANUAL_HOLD = 8
     BLOCK_UNDER_SYSTEM_HOLD = 16
+    BLOCK_UNDER_MAINLINE_HOLD = 32
+
+    BLOCK_01 = 0
+    BLOCK_02 = 1
+    BLOCK_03 = 2
+    BLOCK_04 = 3
+    BLOCK_05 = 4
+    BLOCK_06 = 5
+    BLOCK_07 = 6
+    BLOCK_08 = 7
+    BLOCK_09 = 8
+    BLOCK_10 = 9
+    BLOCK_11 = 10
+    BLOCK_12 = 11
+    BLOCK_13 = 12
+    BLOCK_14 = 13
+    BLOCK_15 = 14
+    BLOCK_16 = 15
 
     {--
      - Cabs
      -}
     NUM_CABS = 4
+
+    CAB_UNASSIGNED = -1
+    CAB_MANUAL = 0
+    CAB_ORANGE = 1
+    CAB_GREEN = 2
+    CAB_BROWN = 3
+
+    {--
+     - Mainline Automation
+     -}
     
 
 SMARTCABS:
@@ -209,10 +273,10 @@ CONTROLS:
  -}
 SENSORS:
     
-    Staging_Front_Warning_Detector 'Sentry 1, Port 01
-    Staging_Front_Danger_Detector 'Sentry 1, Port 02
-    Staging_Rear_Warning_Detector 'Sentry 1, Port 03
-    Staging_Rear_Danger_Detector 'Sentry 1, Port 04
+    Staging_Rear_Warning_Detector 'Sentry 1, Port 01
+    Staging_Front_Warning_Detector 'Sentry 1, Port 02
+    Bottom_Island_Warning_Detector 'Sentry 1, Port 03
+    Yard_Lead_Warning_Detector 'Sentry 1, Port 04
     IR_Port_05 'Sentry 1, Port 05
     IR_Port_06 'Sentry 1, Port 06
     IR_Port_07 'Sentry 1, Port 07
@@ -223,7 +287,7 @@ SENSORS:
     IR_Port_12 'Sentry 1, Port 12
     IR_Port_13 'Sentry 1, Port 13
     IR_Port_14 'Sentry 1, Port 14
-    IR_Port_15 'Sentry 1, Port 15
+    IR_Port_15~ 'Sentry 1, Port 15
     IR_Port_16 'Sentry 1, Port 16
 
 {--
@@ -414,6 +478,25 @@ VARIABLES:
      -}
     CAB_COLORS[NUM_CABS]
 
+    {--
+     - Mainline Automation
+     -}
+    MAINLINE_AUTOMATION
+    AUTOMATION_BLOCK_CAB_RESERVATIONS[NUM_BLOCKS]
+
+    {--
+     - Debugging Panel
+     -}
+    BLOCK_DEBUGGING_CAB_STATUS[NUM_BLOCKS]
+    BLOCK_DEBUGGING_BLOCK_STATUS[NUM_BLOCKS]
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_UNOCCUPIED[NUM_BLOCKS]
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_OCCUPIED[NUM_BLOCKS]
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_EAST[NUM_BLOCKS]
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_WEST[NUM_BLOCKS]
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_MANUAL_HOLD[NUM_BLOCKS]
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_SYSTEM_HOLD[NUM_BLOCKS]
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_MAINLINE_HOLD[NUM_BLOCKS]
+
 
 ACTIONS:
 
@@ -424,142 +507,125 @@ SUB Redraw_Turnout(TurnoutIndex)
 ENDSUB
 
 SUB ResetInit_Set_Turnout_Types()
-    TURNOUT_TYPES[0] = TURNOUT_TYPE_TORTOISE
-    TURNOUT_TYPES[1] = TURNOUT_TYPE_TORTOISE
-    TURNOUT_TYPES[2] = TURNOUT_TYPE_TORTOISE
-    TURNOUT_TYPES[3] = TURNOUT_TYPE_TORTOISE
-    TURNOUT_TYPES[4] = TURNOUT_TYPE_TORTOISE
-    TURNOUT_TYPES[5] = TURNOUT_TYPE_TORTOISE
-    TURNOUT_TYPES[6] = TURNOUT_TYPE_TORTOISE
-    TURNOUT_TYPES[7] = TURNOUT_TYPE_TORTOISE
-    TURNOUT_TYPES[8] = TURNOUT_TYPE_TORTOISE
-    TURNOUT_TYPES[9] = TURNOUT_TYPE_TORTOISE
-    TURNOUT_TYPES[10] = TURNOUT_TYPE_TORTOISE
-    TURNOUT_TYPES[11] = TURNOUT_TYPE_TORTOISE
-    TURNOUT_TYPES[12] = TURNOUT_TYPE_TORTOISE
-    TURNOUT_TYPES[13] = TURNOUT_TYPE_TORTOISE
-    TURNOUT_TYPES[14] = TURNOUT_TYPE_TORTOISE
-    TURNOUT_TYPES[15] = TURNOUT_TYPE_TORTOISE
-    TURNOUT_TYPES[16] = TURNOUT_TYPE_TORTOISE
-    TURNOUT_TYPES[17] = TURNOUT_TYPE_TORTOISE
-    TURNOUT_TYPES[18] = TURNOUT_TYPE_ATLAS
-    TURNOUT_TYPES[19] = TURNOUT_TYPE_ATLAS
-    {
-    TURNOUT_TYPES[20] = TURNOUT_TYPE_ATLAS
-    TURNOUT_TYPES[21] = TURNOUT_TYPE_TORTOISE
-    TURNOUT_TYPES[22] = TURNOUT_TYPE_TORTOISE
-    TURNOUT_TYPES[23] = TURNOUT_TYPE_TORTOISE
-    }
-    TURNOUT_TYPES[24] = TURNOUT_TYPE_TORTOISE
-    TURNOUT_TYPES[25] = TURNOUT_TYPE_TORTOISE
-    TURNOUT_TYPES[26] = TURNOUT_TYPE_TORTOISE
-    TURNOUT_TYPES[27] = TURNOUT_TYPE_TORTOISE
-    TURNOUT_TYPES[28] = TURNOUT_TYPE_TORTOISE
-    TURNOUT_TYPES[29] = TURNOUT_TYPE_TORTOISE
-    {
-    TURNOUT_TYPES[30] = TURNOUT_TYPE_ATLAS
-    TURNOUT_TYPES[31] = TURNOUT_TYPE_ATLAS
-    TURNOUT_TYPES[32] = TURNOUT_TYPE_TORTOISE
-    TURNOUT_TYPES[33] = TURNOUT_TYPE_TORTOISE
-    }
+    TURNOUT_TYPES[TURNOUT_01] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[TURNOUT_02] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[TURNOUT_03] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[TURNOUT_04] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[TURNOUT_05] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[TURNOUT_06] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[TURNOUT_07] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[TURNOUT_08] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[TURNOUT_09] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[TURNOUT_10] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[TURNOUT_11] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[TURNOUT_12] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[TURNOUT_13] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[TURNOUT_14] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[TURNOUT_15] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[TURNOUT_16] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[TURNOUT_17] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[TURNOUT_18] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[TURNOUT_19] = TURNOUT_TYPE_ATLAS
+    TURNOUT_TYPES[TURNOUT_20] = TURNOUT_TYPE_ATLAS
+    ' TURNOUT_TYPES[TURNOUT_21] = TURNOUT_TYPE_ATLAS
+    ' TURNOUT_TYPES[TURNOUT_22] = TURNOUT_TYPE_TORTOISE
+    ' TURNOUT_TYPES[TURNOUT_23] = TURNOUT_TYPE_TORTOISE
+    ' TURNOUT_TYPES[TURNOUT_24] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[TURNOUT_25] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[TURNOUT_26] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[TURNOUT_27] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[TURNOUT_28] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[TURNOUT_29] = TURNOUT_TYPE_TORTOISE
+    TURNOUT_TYPES[TURNOUT_30] = TURNOUT_TYPE_TORTOISE
+    ' TURNOUT_TYPES[TURNOUT_31] = TURNOUT_TYPE_ATLAS
+    ' TURNOUT_TYPES[TURNOUT_32] = TURNOUT_TYPE_ATLAS
+    ' TURNOUT_TYPES[TURNOUT_33] = TURNOUT_TYPE_TORTOISE
+    ' TURNOUT_TYPES[TURNOUT_34] = TURNOUT_TYPE_TORTOISE
 ENDSUB
 
 SUB ResetInit_Set_Turnout_Controls()
-    TURNOUT_CONTROLS[0] = &Turnout_01_Control
-    TURNOUT_CONTROLS[1] = &Turnout_02_Control
-    TURNOUT_CONTROLS[2] = &Turnout_03_Control
-    TURNOUT_CONTROLS[3] = &Turnout_04_Control
-    TURNOUT_CONTROLS[4] = &Turnout_05_Control
-    TURNOUT_CONTROLS[5] = &Turnout_06_Control
-    TURNOUT_CONTROLS[6] = &Turnout_07_Control
-    TURNOUT_CONTROLS[7] = &Turnout_08_Control
-    TURNOUT_CONTROLS[8] = &Turnout_09_Control
-    TURNOUT_CONTROLS[9] = &Turnout_10_Control
-    TURNOUT_CONTROLS[10] = &Turnout_11_Control
-    TURNOUT_CONTROLS[11] = &Turnout_12_Control
-    TURNOUT_CONTROLS[12] = &Turnout_13_Control
-    TURNOUT_CONTROLS[13] = &Turnout_14_Control
-    TURNOUT_CONTROLS[14] = &Turnout_15_Control
-    TURNOUT_CONTROLS[15] = &Turnout_16_Control
-    TURNOUT_CONTROLS[16] = &Turnout_17_Control
-    TURNOUT_CONTROLS[17] = &Turnout_18_Control
-    TURNOUT_CONTROLS[18] = &Turnout_19_Control
-    TURNOUT_CONTROLS[19] = &Turnout_20_Control
-    {
-    TURNOUT_CONTROLS[20] = &Turnout_21_Control
-    TURNOUT_CONTROLS[21] = &Turnout_22_Control
-    TURNOUT_CONTROLS[22] = &Turnout_23_Control
-    TURNOUT_CONTROLS[23] = &Turnout_24_Control
-    }
-    TURNOUT_CONTROLS[24] = &Turnout_25_Control
-    TURNOUT_CONTROLS[25] = &Turnout_26_Control
-    TURNOUT_CONTROLS[26] = &Turnout_27_Control
-    TURNOUT_CONTROLS[27] = &Turnout_28_Control
-    TURNOUT_CONTROLS[28] = &Turnout_29_Control
-    TURNOUT_CONTROLS[29] = &Turnout_30_Control
-    {
-    TURNOUT_CONTROLS[30] = &Turnout_31_Control
-    TURNOUT_CONTROLS[31] = &Turnout_32_Control
-    TURNOUT_CONTROLS[32] = &Turnout_33_Control
-    TURNOUT_CONTROLS[33] = &Turnout_34_Control
-    }
+    TURNOUT_CONTROLS[TURNOUT_01] = &Turnout_01_Control
+    TURNOUT_CONTROLS[TURNOUT_02] = &Turnout_02_Control
+    TURNOUT_CONTROLS[TURNOUT_03] = &Turnout_03_Control
+    TURNOUT_CONTROLS[TURNOUT_04] = &Turnout_04_Control
+    TURNOUT_CONTROLS[TURNOUT_05] = &Turnout_05_Control
+    TURNOUT_CONTROLS[TURNOUT_06] = &Turnout_06_Control
+    TURNOUT_CONTROLS[TURNOUT_07] = &Turnout_07_Control
+    TURNOUT_CONTROLS[TURNOUT_08] = &Turnout_08_Control
+    TURNOUT_CONTROLS[TURNOUT_09] = &Turnout_09_Control
+    TURNOUT_CONTROLS[TURNOUT_10] = &Turnout_10_Control
+    TURNOUT_CONTROLS[TURNOUT_11] = &Turnout_11_Control
+    TURNOUT_CONTROLS[TURNOUT_12] = &Turnout_12_Control
+    TURNOUT_CONTROLS[TURNOUT_13] = &Turnout_13_Control
+    TURNOUT_CONTROLS[TURNOUT_14] = &Turnout_14_Control
+    TURNOUT_CONTROLS[TURNOUT_15] = &Turnout_15_Control
+    TURNOUT_CONTROLS[TURNOUT_16] = &Turnout_16_Control
+    TURNOUT_CONTROLS[TURNOUT_17] = &Turnout_17_Control
+    TURNOUT_CONTROLS[TURNOUT_18] = &Turnout_18_Control
+    TURNOUT_CONTROLS[TURNOUT_19] = &Turnout_19_Control
+    TURNOUT_CONTROLS[TURNOUT_20] = &Turnout_20_Control
+    ' TURNOUT_CONTROLS[TURNOUT_21] = &Turnout_21_Control
+    ' TURNOUT_CONTROLS[TURNOUT_22] = &Turnout_22_Control
+    ' TURNOUT_CONTROLS[TURNOUT_23] = &Turnout_23_Control
+    ' TURNOUT_CONTROLS[TURNOUT_24] = &Turnout_24_Control
+    TURNOUT_CONTROLS[TURNOUT_25] = &Turnout_25_Control
+    TURNOUT_CONTROLS[TURNOUT_26] = &Turnout_26_Control
+    TURNOUT_CONTROLS[TURNOUT_27] = &Turnout_27_Control
+    TURNOUT_CONTROLS[TURNOUT_28] = &Turnout_28_Control
+    TURNOUT_CONTROLS[TURNOUT_29] = &Turnout_29_Control
+    TURNOUT_CONTROLS[TURNOUT_30] = &Turnout_30_Control
+    ' TURNOUT_CONTROLS[TURNOUT_31] = &Turnout_31_Control
+    ' TURNOUT_CONTROLS[TURNOUT_32] = &Turnout_32_Control
+    ' TURNOUT_CONTROLS[TURNOUT_33] = &Turnout_33_Control
+    ' TURNOUT_CONTROLS[TURNOUT_34] = &Turnout_34_Control
 
-    ATLAS_PRIMARY_CONTROLS[18] = &Turnout_19_Primary_Control
-    ATLAS_PRIMARY_CONTROLS[19] = &Turnout_20_Primary_Control
-    {
-    ATLAS_PRIMARY_CONTROLS[20] = &Turnout_21_Primary_Control
-    ATLAS_PRIMARY_CONTROLS[30] = &Turnout_31_Primary_Control
-    ATLAS_PRIMARY_CONTROLS[31] = &Turnout_32_Primary_Control
-    }
-
-    ATLAS_SECONDARY_CONTROLS[18] = &Turnout_19_Secondary_Control
-    ATLAS_SECONDARY_CONTROLS[19] = &Turnout_20_Secondary_Control
-    {
-    ATLAS_SECONDARY_CONTROLS[20] = &Turnout_21_Secondary_Control
-    ATLAS_SECONDARY_CONTROLS[30] = &Turnout_31_Secondary_Control
-    ATLAS_SECONDARY_CONTROLS[31] = &Turnout_32_Secondary_Control
-    }
+    ATLAS_PRIMARY_CONTROLS[TURNOUT_19] = &Turnout_19_Primary_Control
+    ATLAS_PRIMARY_CONTROLS[TURNOUT_20] = &Turnout_20_Primary_Control
+    ' ATLAS_PRIMARY_CONTROLS[TURNOUT_21] = &Turnout_21_Primary_Control
+    ' ATLAS_PRIMARY_CONTROLS[TURNOUT_31] = &Turnout_31_Primary_Control
+    ' ATLAS_PRIMARY_CONTROLS[TURNOUT_32] = &Turnout_32_Primary_Control
+    ATLAS_SECONDARY_CONTROLS[TURNOUT_19] = &Turnout_19_Secondary_Control
+    ATLAS_SECONDARY_CONTROLS[TURNOUT_20] = &Turnout_20_Secondary_Control
+    ' ATLAS_SECONDARY_CONTROLS[TURNOUT_21] = &Turnout_21_Secondary_Control
+    ' ATLAS_SECONDARY_CONTROLS[TURNOUT_31] = &Turnout_31_Secondary_Control
+    ' ATLAS_SECONDARY_CONTROLS[TURNOUT_32] = &Turnout_32_Secondary_Control
 ENDSUB
 
 SUB ResetInit_Set_Turnouts_On_Panels()
-    PANEL_1_TURNOUTS[0] = (27,28,1)
-    PANEL_1_TURNOUTS[1] = (30,29,1)
-    PANEL_1_TURNOUTS[2] = (44,32,1)
-    PANEL_1_TURNOUTS[3] = (36,28,1)
-    PANEL_1_TURNOUTS[4] = (3,7,1)
-    PANEL_1_TURNOUTS[5] = (7,7,1)
-    PANEL_1_TURNOUTS[6] = (7,8,1)
-    PANEL_1_TURNOUTS[7] = (12,7,1)
-    PANEL_1_TURNOUTS[8] = (27,8,1)
-    PANEL_1_TURNOUTS[9] = (36,8,1)
-    PANEL_1_TURNOUTS[10] = (44,9,1)
-    PANEL_1_TURNOUTS[11] = (6,33,1)
-    PANEL_1_TURNOUTS[12] = (9,33,1)
-    PANEL_1_TURNOUTS[13] = (9,8,1)
-    PANEL_1_TURNOUTS[14] = (33,8,1)
-    PANEL_1_TURNOUTS[15] = (30,9,1)
-    PANEL_1_TURNOUTS[16] = (20,32,1)
-    PANEL_1_TURNOUTS[17] = (43,31,1)
-    PANEL_1_TURNOUTS[18] = (5,32,1)
-    PANEL_1_TURNOUTS[19] = (4,31,1)
-    PANEL_1_TURNOUTS[20] = (10,32,1)
-    {
-    PANEL_1_TURNOUTS[21] = (5,18,1)
-    PANEL_1_TURNOUTS[22] = (8,18,1)
-    PANEL_1_TURNOUTS[23] = (8,19,1)
-    }
-    PANEL_1_TURNOUTS[24] = (23,20,1)
-    PANEL_1_TURNOUTS[25] = (22,19,1)
-    PANEL_1_TURNOUTS[26] = (29,17,1)
-    PANEL_1_TURNOUTS[27] = (31,19,1)
-    PANEL_1_TURNOUTS[28] = (32,19,1)
-    PANEL_1_TURNOUTS[29] = (33,19,1)
-    {
-    PANEL_1_TURNOUTS[30] = (43,8,1)
-    PANEL_1_TURNOUTS[31] = (41,8,1)
-    PANEL_1_TURNOUTS[32] = (4,10,1)
-    PANEL_1_TURNOUTS[33] = (3,9,1)
-    }
+    PANEL_1_TURNOUTS[TURNOUT_01] = (5,18,1)
+    PANEL_1_TURNOUTS[TURNOUT_02] = (8,19,1)
+    PANEL_1_TURNOUTS[TURNOUT_03] = (29,18,1)
+    PANEL_1_TURNOUTS[TURNOUT_04] = (15,18,1)
+    PANEL_1_TURNOUTS[TURNOUT_05] = (35,18,1)
+    PANEL_1_TURNOUTS[TURNOUT_06] = (42,18,1)
+    PANEL_1_TURNOUTS[TURNOUT_07] = (7,8,1)
+    PANEL_1_TURNOUTS[TURNOUT_08] = (45,18,1)
+    PANEL_1_TURNOUTS[TURNOUT_09] = (5,5,1)
+    PANEL_1_TURNOUTS[TURNOUT_10] = (15,5,1)
+    PANEL_1_TURNOUTS[TURNOUT_11] = (29,5,1)
+    PANEL_1_TURNOUTS[TURNOUT_12] = (38,5,1)
+    PANEL_1_TURNOUTS[TURNOUT_13] = (42,5,1)
+    PANEL_1_TURNOUTS[TURNOUT_14] = (41,19,1)
+    PANEL_1_TURNOUTS[TURNOUT_15] = (12,5,1)
+    PANEL_1_TURNOUTS[TURNOUT_16] = (8,6,1)
+    PANEL_1_TURNOUTS[TURNOUT_17] = (60,5,1)
+    PANEL_1_TURNOUTS[TURNOUT_18] = (27,16,1)
+    PANEL_1_TURNOUTS[TURNOUT_19] = (37,4,1)
+    PANEL_1_TURNOUTS[TURNOUT_20] = (36,3,1)
+    PANEL_1_TURNOUTS[TURNOUT_21] = (43,4,1)
+    ' PANEL_1_TURNOUTS[TURNOUT_22] = (51,22,1)
+    ' PANEL_1_TURNOUTS[TURNOUT_23] = (55,22,1)
+    ' PANEL_1_TURNOUTS[TURNOUT_24] = (56,23,1)
+    PANEL_1_TURNOUTS[TURNOUT_25] = (59,12,1)
+    PANEL_1_TURNOUTS[TURNOUT_26] = (58,11,1)
+    PANEL_1_TURNOUTS[TURNOUT_27] = (7,10,1)
+    PANEL_1_TURNOUTS[TURNOUT_28] = (9,12,1)
+    PANEL_1_TURNOUTS[TURNOUT_29] = (10,12,1)
+    PANEL_1_TURNOUTS[TURNOUT_30] = (11,12,1)
+    ' PANEL_1_TURNOUTS[TURNOUT_31] = (28,4,1)
+    ' PANEL_1_TURNOUTS[TURNOUT_32] = (26,4,1)
+    ' PANEL_1_TURNOUTS[TURNOUT_33] = (37,21,1)
+    ' PANEL_1_TURNOUTS[TURNOUT_34] = (36,21,1)
 ENDSUB
 
 SUB Set_Turnout(TurnoutIndex, Direction)
@@ -597,62 +663,165 @@ ENDSUB
 
 {-- BLOCKS --}
 
+SUB Redraw_Debugging(BlockIndex, {local} SignalStatus)
+    IF BlockIndex > BLOCK_04 THEN RETURN ENDIF
+
+$LOG = "DEBUGGING Redraw_Debugging(@BlockIndex)"
+$LOG = "Status:"
+$LOG = (BLOCK_STATUSES[BlockIndex])
+
+    ' Signal
+    SignalStatus = BLOCK_STATUSES[BlockIndex]
+    SignalStatus = BLOCK_OCCUPIED &
+    IF SignalStatus THEN $Signal (BLOCK_DEBUGGING_BLOCK_STATUS[BlockIndex]) = "xYxxxx" ELSE BLOCK_DEBUGGING_BLOCK_STATUS[BlockIndex] = "x*xxxx" ENDIF
+
+    SignalStatus = BLOCK_STATUSES[BlockIndex]
+    SignalStatus = BLOCK_OCCUPIED_EAST &
+    IF SignalStatus THEN $Signal (BLOCK_DEBUGGING_BLOCK_STATUS[BlockIndex]) = "Gxxxxx" ELSE BLOCK_DEBUGGING_BLOCK_STATUS[BlockIndex] = "*xxxxx" ENDIF
+
+    SignalStatus = BLOCK_STATUSES[BlockIndex]
+    SignalStatus = BLOCK_OCCUPIED_WEST &
+    IF SignalStatus THEN $Signal (BLOCK_DEBUGGING_BLOCK_STATUS[BlockIndex]) = "xxGxxx" ELSE BLOCK_DEBUGGING_BLOCK_STATUS[BlockIndex] = "xx*xxx" ENDIF
+
+    SignalStatus = BLOCK_STATUSES[BlockIndex]
+    SignalStatus = BLOCK_UNDER_MANUAL_HOLD &
+    IF SignalStatus THEN $Signal (BLOCK_DEBUGGING_BLOCK_STATUS[BlockIndex]) = "xxxRxx" ELSE BLOCK_DEBUGGING_BLOCK_STATUS[BlockIndex] = "xxx*xx" ENDIF
+
+    SignalStatus = BLOCK_STATUSES[BlockIndex]
+    SignalStatus = BLOCK_UNDER_SYSTEM_HOLD &
+    IF SignalStatus THEN $Signal (BLOCK_DEBUGGING_BLOCK_STATUS[BlockIndex]) = "xxxxRx" ELSE BLOCK_DEBUGGING_BLOCK_STATUS[BlockIndex] = "xxxx*x" ENDIF
+
+    SignalStatus = BLOCK_STATUSES[BlockIndex]
+    SignalStatus = BLOCK_UNDER_MAINLINE_HOLD &
+    IF SignalStatus THEN $Signal (BLOCK_DEBUGGING_BLOCK_STATUS[BlockIndex]) = "xxxxxR" ELSE BLOCK_DEBUGGING_BLOCK_STATUS[BlockIndex] = "xxxxx*" ENDIF
+
+{-
+    BLOCK_UNOCCUPIED = 0
+    BLOCK_OCCUPIED = 1
+    BLOCK_OCCUPIED_EAST = 2
+    BLOCK_OCCUPIED_WEST = 4
+    BLOCK_UNDER_MANUAL_HOLD = 8
+    BLOCK_UNDER_SYSTEM_HOLD = 16
+    BLOCK_UNDER_MAINLINE_HOLD = 32
+-}
+
+{-
+
+    BLOCK_DEBUGGING_CAB_STATUS[BLOCK_01] = (10, 31, 1)
+    BLOCK_DEBUGGING_CAB_STATUS[BLOCK_02] = (10, 32, 1)
+    BLOCK_DEBUGGING_CAB_STATUS[BLOCK_03] = (10, 33, 1)
+    BLOCK_DEBUGGING_CAB_STATUS[BLOCK_04] = (10, 34, 1)
+
+    BLOCK_DEBUGGING_BLOCK_STATUS[BLOCK_01] = (11, 31, 1)
+    BLOCK_DEBUGGING_BLOCK_STATUS[BLOCK_02] = (11, 32, 1)
+    BLOCK_DEBUGGING_BLOCK_STATUS[BLOCK_03] = (11, 33, 1)
+    BLOCK_DEBUGGING_BLOCK_STATUS[BLOCK_04] = (11, 34, 1)
+
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_UNOCCUPIED[BLOCK_01] = (12, 31, 1)
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_UNOCCUPIED[BLOCK_02] = (12, 32, 1)
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_UNOCCUPIED[BLOCK_03] = (12, 33, 1)
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_UNOCCUPIED[BLOCK_04] = (12, 34, 1)
+
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_OCCUPIED[BLOCK_01] = (13, 31, 1)
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_OCCUPIED[BLOCK_02] = (13, 32, 1)
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_OCCUPIED[BLOCK_03] = (13, 33, 1)
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_OCCUPIED[BLOCK_04] = (13, 34, 1)
+
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_EAST[BLOCK_01] = (14, 31, 1)
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_EAST[BLOCK_02] = (14, 32, 1)
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_EAST[BLOCK_03] = (14, 33, 1)
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_EAST[BLOCK_04] = (14, 34, 1)
+
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_WEST[BLOCK_01] = (15, 31, 1)
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_WEST[BLOCK_02] = (15, 32, 1)
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_WEST[BLOCK_03] = (15, 33, 1)
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_WEST[BLOCK_04] = (15, 34, 1)
+
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_MANUAL_HOLD[BLOCK_01] = (16, 31, 1)
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_MANUAL_HOLD[BLOCK_02] = (16, 32, 1)
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_MANUAL_HOLD[BLOCK_03] = (16, 33, 1)
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_MANUAL_HOLD[BLOCK_04] = (16, 34, 1)
+
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_SYSTEM_HOLD[BLOCK_01] = (17, 31, 1)
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_SYSTEM_HOLD[BLOCK_02] = (17, 32, 1)
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_SYSTEM_HOLD[BLOCK_03] = (17, 33, 1)
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_SYSTEM_HOLD[BLOCK_04] = (17, 34, 1)
+
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_MAINLINE_HOLD[BLOCK_01] = (18, 31, 1)
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_MAINLINE_HOLD[BLOCK_02] = (18, 32, 1)
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_MAINLINE_HOLD[BLOCK_03] = (18, 33, 1)
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_MAINLINE_HOLD[BLOCK_04] = (18, 34, 1)
+-}
+ENDSUB
+
 SUB Redraw_Block_Power(BlockIndex, {local} CabIndexForBlock)
     CabIndexForBlock = BLOCK_CAB_ASSIGNMENTS[BlockIndex]
     $COLOR TRACK (PANEL_1_BLOCK_LABELS[BlockIndex]) = CAB_COLORS[CabIndexForBlock]
 ENDSUB
 
 SUB ResetInit_Set_Block_Power_Controls()
-    BLOCK_CONTROLS_1or2[0] = &Block_01_Power_1or2
-    BLOCK_CONTROLS_1or2[1] = &Block_02_Power_1or2
-    BLOCK_CONTROLS_1or2[2] = &Block_03_Power_1or2
-    BLOCK_CONTROLS_1or2[3] = &Block_04_Power_1or2
-    BLOCK_CONTROLS_1or2[4] = &Block_05_Power_1or2
-    BLOCK_CONTROLS_1or2[5] = &Block_06_Power_1or2
-    BLOCK_CONTROLS_1or2[6] = &Block_07_Power_1or2
-    BLOCK_CONTROLS_1or2[7] = &Block_08_Power_1or2
-    BLOCK_CONTROLS_1or2[8] = &Block_09_Power_1or2
-    BLOCK_CONTROLS_1or2[9] = &Block_10_Power_1or2
-    BLOCK_CONTROLS_1or2[10] = &Block_11_Power_1or2
-    BLOCK_CONTROLS_1or2[11] = &Block_12_Power_1or2
-    BLOCK_CONTROLS_1or2[12] = &Block_13_Power_1or2
-    BLOCK_CONTROLS_1or2[13] = &Block_14_Power_1or2
-    BLOCK_CONTROLS_1or2[14] = &Block_15_Power_1or2
+    BLOCK_CONTROLS_1or2[BLOCK_01] = &Block_01_Power_1or2
+    BLOCK_CONTROLS_1or2[BLOCK_02] = &Block_02_Power_1or2
+    BLOCK_CONTROLS_1or2[BLOCK_03] = &Block_03_Power_1or2
+    BLOCK_CONTROLS_1or2[BLOCK_04] = &Block_04_Power_1or2
+    BLOCK_CONTROLS_1or2[BLOCK_05] = &Block_05_Power_1or2
+    BLOCK_CONTROLS_1or2[BLOCK_06] = &Block_06_Power_1or2
+    BLOCK_CONTROLS_1or2[BLOCK_07] = &Block_07_Power_1or2
+    BLOCK_CONTROLS_1or2[BLOCK_08] = &Block_08_Power_1or2
+    BLOCK_CONTROLS_1or2[BLOCK_09] = &Block_09_Power_1or2
+    BLOCK_CONTROLS_1or2[BLOCK_10] = &Block_10_Power_1or2
+    BLOCK_CONTROLS_1or2[BLOCK_11] = &Block_11_Power_1or2
+    BLOCK_CONTROLS_1or2[BLOCK_12] = &Block_12_Power_1or2
+    BLOCK_CONTROLS_1or2[BLOCK_13] = &Block_13_Power_1or2
+    BLOCK_CONTROLS_1or2[BLOCK_14] = &Block_14_Power_1or2
+    BLOCK_CONTROLS_1or2[BLOCK_15] = &Block_15_Power_1or2
 
-    BLOCK_CONTROLS_3or4[0] = &Block_01_Power_3or4
-    BLOCK_CONTROLS_3or4[1] = &Block_02_Power_3or4
-    BLOCK_CONTROLS_3or4[2] = &Block_03_Power_3or4
-    BLOCK_CONTROLS_3or4[3] = &Block_04_Power_3or4
-    BLOCK_CONTROLS_3or4[4] = &Block_05_Power_3or4
-    BLOCK_CONTROLS_3or4[5] = &Block_06_Power_3or4
-    BLOCK_CONTROLS_3or4[6] = &Block_07_Power_3or4
-    BLOCK_CONTROLS_3or4[7] = &Block_08_Power_3or4
-    BLOCK_CONTROLS_3or4[8] = &Block_09_Power_3or4
-    BLOCK_CONTROLS_3or4[9] = &Block_10_Power_3or4
-    BLOCK_CONTROLS_3or4[10] = &Block_11_Power_3or4
-    BLOCK_CONTROLS_3or4[11] = &Block_12_Power_3or4
-    BLOCK_CONTROLS_3or4[12] = &Block_13_Power_3or4
-    BLOCK_CONTROLS_3or4[13] = &Block_14_Power_3or4
-    BLOCK_CONTROLS_3or4[14] = &Block_15_Power_3or4
+    BLOCK_CONTROLS_3or4[BLOCK_01] = &Block_01_Power_3or4
+    BLOCK_CONTROLS_3or4[BLOCK_02] = &Block_02_Power_3or4
+    BLOCK_CONTROLS_3or4[BLOCK_03] = &Block_03_Power_3or4
+    BLOCK_CONTROLS_3or4[BLOCK_04] = &Block_04_Power_3or4
+    BLOCK_CONTROLS_3or4[BLOCK_05] = &Block_05_Power_3or4
+    BLOCK_CONTROLS_3or4[BLOCK_06] = &Block_06_Power_3or4
+    BLOCK_CONTROLS_3or4[BLOCK_07] = &Block_07_Power_3or4
+    BLOCK_CONTROLS_3or4[BLOCK_08] = &Block_08_Power_3or4
+    BLOCK_CONTROLS_3or4[BLOCK_09] = &Block_09_Power_3or4
+    BLOCK_CONTROLS_3or4[BLOCK_10] = &Block_10_Power_3or4
+    BLOCK_CONTROLS_3or4[BLOCK_11] = &Block_11_Power_3or4
+    BLOCK_CONTROLS_3or4[BLOCK_12] = &Block_12_Power_3or4
+    BLOCK_CONTROLS_3or4[BLOCK_13] = &Block_13_Power_3or4
+    BLOCK_CONTROLS_3or4[BLOCK_14] = &Block_14_Power_3or4
+    BLOCK_CONTROLS_3or4[BLOCK_15] = &Block_15_Power_3or4
     
-    BLOCK_CONTROLS_12or34[0] = &Block_01_Power_12or34
-    BLOCK_CONTROLS_12or34[1] = &Block_02_Power_12or34
-    BLOCK_CONTROLS_12or34[2] = &Block_03_Power_12or34
-    BLOCK_CONTROLS_12or34[3] = &Block_04_Power_12or34
-    BLOCK_CONTROLS_12or34[4] = &Block_05_Power_12or34
-    BLOCK_CONTROLS_12or34[5] = &Block_06_Power_12or34
-    BLOCK_CONTROLS_12or34[6] = &Block_07_Power_12or34
-    BLOCK_CONTROLS_12or34[7] = &Block_08_Power_12or34
-    BLOCK_CONTROLS_12or34[8] = &Block_09_Power_12or34
-    BLOCK_CONTROLS_12or34[9] = &Block_10_Power_12or34
-    BLOCK_CONTROLS_12or34[10] = &Block_11_Power_12or34
-    BLOCK_CONTROLS_12or34[11] = &Block_12_Power_12or34
-    BLOCK_CONTROLS_12or34[12] = &Block_13_Power_12or34
-    BLOCK_CONTROLS_12or34[13] = &Block_14_Power_12or34
-    BLOCK_CONTROLS_12or34[14] = &Block_15_Power_12or34
+    BLOCK_CONTROLS_12or34[BLOCK_01] = &Block_01_Power_12or34
+    BLOCK_CONTROLS_12or34[BLOCK_02] = &Block_02_Power_12or34
+    BLOCK_CONTROLS_12or34[BLOCK_03] = &Block_03_Power_12or34
+    BLOCK_CONTROLS_12or34[BLOCK_04] = &Block_04_Power_12or34
+    BLOCK_CONTROLS_12or34[BLOCK_05] = &Block_05_Power_12or34
+    BLOCK_CONTROLS_12or34[BLOCK_06] = &Block_06_Power_12or34
+    BLOCK_CONTROLS_12or34[BLOCK_07] = &Block_07_Power_12or34
+    BLOCK_CONTROLS_12or34[BLOCK_08] = &Block_08_Power_12or34
+    BLOCK_CONTROLS_12or34[BLOCK_09] = &Block_09_Power_12or34
+    BLOCK_CONTROLS_12or34[BLOCK_10] = &Block_10_Power_12or34
+    BLOCK_CONTROLS_12or34[BLOCK_11] = &Block_11_Power_12or34
+    BLOCK_CONTROLS_12or34[BLOCK_12] = &Block_12_Power_12or34
+    BLOCK_CONTROLS_12or34[BLOCK_13] = &Block_13_Power_12or34
+    BLOCK_CONTROLS_12or34[BLOCK_14] = &Block_14_Power_12or34
+    BLOCK_CONTROLS_12or34[BLOCK_15] = &Block_15_Power_12or34
 ENDSUB
 
-SUB Redraw_Block_Occupancy(BlockIndex, {locak} BitMaskResult, {local} TrackColor)
+SUB Automation_Block_Status_Changed(BlockIndex, {local} NextBlockIndexEast, {local} NextBlockIndexWest)
+    NextBlockIndexEast = BlockIndex
+    NextBlockIndexEast = 1 -
+    NextBlockIndexEast = NUM_MAINLINE_BLOCKS +
+    NextBlockIndexEast = 1 +
+    NextBlockIndexEast = NUM_MAINLINE_BLOCKS %
+
+    NextBlockIndexWest = BlockIndex
+    NextBlockIndexWest = 1 +
+    NextBlockIndexEast = NUM_MAINLINE_BLOCKS %
+ENDSUB
+
+SUB Redraw_Block_Occupancy(BlockIndex, {local} BitMaskResult, {local} TrackColor, {local} SignalState, {local} UnderManualHold, {local} UnderMainlineHold)
     BitMaskResult = BLOCK_STATUSES[BlockIndex]
     BitMaskResult = BLOCK_OCCUPIED &
 
@@ -683,14 +852,20 @@ SUB Redraw_Block_Occupancy(BlockIndex, {locak} BitMaskResult, {local} TrackColor
 
     '''
 
-    BitMaskResult = BLOCK_STATUSES[BlockIndex]
-    BitMaskResult = BLOCK_UNDER_MANUAL_HOLD &
-    IF BitMaskResult THEN
-        TrackColor = "xxRR"
-    ELSE
-        TrackColor = "xx**"
-    ENDIF
-    $SIGNAL (PANEL_1_BLOCK_SIGNAL_INDICATORS[BlockIndex]) = TrackColor
+    UnderManualHold = BLOCK_STATUSES[BlockIndex]
+    UnderManualHold = BLOCK_UNDER_MANUAL_HOLD &
+    IF UnderManualHold THEN $SIGNAL (PANEL_1_BLOCK_SIGNAL_INDICATORS[BlockIndex]) = "xxRx" ELSE $SIGNAL (PANEL_1_BLOCK_SIGNAL_INDICATORS[BlockIndex]) = "xx*x" ENDIF
+
+    UnderMainlineHold = BLOCK_STATUSES[BlockIndex]
+    UnderMainlineHold = BLOCK_UNDER_MAINLINE_HOLD &
+    IF UnderMainlineHold THEN $SIGNAL (PANEL_1_BLOCK_SIGNAL_INDICATORS[BlockIndex]) = "xxxR" ELSE $SIGNAL (PANEL_1_BLOCK_SIGNAL_INDICATORS[BlockIndex]) = "xxx*" ENDIF
+
+    Redraw_Debugging(BlockIndex)
+ENDSUB
+
+SUB Block_Status_Changed(BlockIndex)
+    Automation_Block_Status_Changed(BlockIndex)
+    Redraw_Block_Occupancy(BlockIndex)
 ENDSUB
 
 SUB Set_Block_Power_To_Cab(BlockIndex, CabIndex)
@@ -736,7 +911,7 @@ SUB Toggle_Manual_Hold(BlockIndex, {local} BitMaskResult, {local} Negater)
         BLOCK_STATUSES[BlockIndex] = BLOCK_UNDER_MANUAL_HOLD +
     ENDIF
 
-    Redraw_Block_Occupancy(BlockIndex)
+    Automation_Block_Status_Changed(BlockIndex)
 ENDSUB
 
 SUB User_Select_Block_Cab_Assignment(BlockIndex, {local} CabIndex)
@@ -819,17 +994,64 @@ SUB ResetInit_Set_Block_Directions_On_Panels()
     PANEL_1_BLOCK_DIRECTIONS[13] = (18,15,1)
 ENDSUB
 
+SUB ResetInit_Set_Block_Debugging_Mappings()
+    BLOCK_DEBUGGING_CAB_STATUS[BLOCK_01] = (10, 31, 1)
+    BLOCK_DEBUGGING_CAB_STATUS[BLOCK_02] = (10, 32, 1)
+    BLOCK_DEBUGGING_CAB_STATUS[BLOCK_03] = (10, 33, 1)
+    BLOCK_DEBUGGING_CAB_STATUS[BLOCK_04] = (10, 34, 1)
+
+    BLOCK_DEBUGGING_BLOCK_STATUS[BLOCK_01] = (11, 31, 1)
+    BLOCK_DEBUGGING_BLOCK_STATUS[BLOCK_02] = (11, 32, 1)
+    BLOCK_DEBUGGING_BLOCK_STATUS[BLOCK_03] = (11, 33, 1)
+    BLOCK_DEBUGGING_BLOCK_STATUS[BLOCK_04] = (11, 34, 1)
+
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_UNOCCUPIED[BLOCK_01] = (12, 31, 1)
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_UNOCCUPIED[BLOCK_02] = (12, 32, 1)
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_UNOCCUPIED[BLOCK_03] = (12, 33, 1)
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_UNOCCUPIED[BLOCK_04] = (12, 34, 1)
+
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_OCCUPIED[BLOCK_01] = (13, 31, 1)
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_OCCUPIED[BLOCK_02] = (13, 32, 1)
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_OCCUPIED[BLOCK_03] = (13, 33, 1)
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_OCCUPIED[BLOCK_04] = (13, 34, 1)
+
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_EAST[BLOCK_01] = (14, 31, 1)
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_EAST[BLOCK_02] = (14, 32, 1)
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_EAST[BLOCK_03] = (14, 33, 1)
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_EAST[BLOCK_04] = (14, 34, 1)
+
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_WEST[BLOCK_01] = (15, 31, 1)
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_WEST[BLOCK_02] = (15, 32, 1)
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_WEST[BLOCK_03] = (15, 33, 1)
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_WEST[BLOCK_04] = (15, 34, 1)
+
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_MANUAL_HOLD[BLOCK_01] = (16, 31, 1)
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_MANUAL_HOLD[BLOCK_02] = (16, 32, 1)
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_MANUAL_HOLD[BLOCK_03] = (16, 33, 1)
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_MANUAL_HOLD[BLOCK_04] = (16, 34, 1)
+
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_SYSTEM_HOLD[BLOCK_01] = (17, 31, 1)
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_SYSTEM_HOLD[BLOCK_02] = (17, 32, 1)
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_SYSTEM_HOLD[BLOCK_03] = (17, 33, 1)
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_SYSTEM_HOLD[BLOCK_04] = (17, 34, 1)
+
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_MAINLINE_HOLD[BLOCK_01] = (18, 31, 1)
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_MAINLINE_HOLD[BLOCK_02] = (18, 32, 1)
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_MAINLINE_HOLD[BLOCK_03] = (18, 33, 1)
+    BLOCK_DEBUGGING_BLOCK_TOGGLE_MAINLINE_HOLD[BLOCK_04] = (18, 34, 1)
+ENDSUB
+
 SUB Block_Triggered_East(BlockIndex)
     BLOCK_STATUSES[BlockIndex] = BLOCK_OCCUPIED |
     BLOCK_STATUSES[BlockIndex] = BLOCK_OCCUPIED_EAST |
-    Redraw_Block_Occupancy(BlockIndex)
+    Block_Status_Changed(BlockIndex)
 ENDSUB
 
 SUB Block_Triggered_West(BlockIndex)
     BLOCK_STATUSES[BlockIndex] = BLOCK_OCCUPIED |
     BLOCK_STATUSES[BlockIndex] = BLOCK_OCCUPIED_WEST |
 
-    Redraw_Block_Occupancy(BlockIndex)
+    Block_Status_Changed(BlockIndex)
 ENDSUB
 
 SUB Block_Stopped_Triggering(BlockIndex, {local} Negater)
@@ -839,7 +1061,7 @@ SUB Block_Stopped_Triggering(BlockIndex, {local} Negater)
     Negater = Negater ~
     BLOCK_STATUSES[BlockIndex] = Negater &
 
-    Redraw_Block_Occupancy(BlockIndex)
+    Block_Status_Changed(BlockIndex)
 ENDSUB
 
 {-- Cabs --}
@@ -850,6 +1072,28 @@ SUB ResetInit_Set_Cab_Colors()
     CAB_COLORS[3] = Brown
 ENDSUB
 
+{-- Mainline Automation --}
+SUB ResetInit_Mainline_Automation()
+    MAINLINE_AUTOMATION = OFF
+ENDSUB
+
+SUB Mainline_Hold_Invoked(BlockIndex)
+    BLOCK_STATUSES[BlockIndex] = BLOCK_UNDER_MAINLINE_HOLD |
+    Block_Status_Changed(BlockIndex)
+ENDSUB
+
+SUB Mainline_Hold_Removed(BlockIndex)
+    BLOCK_STATUSES[BlockIndex] = BLOCK_UNDER_MAINLINE_HOLD ^
+    Block_Status_Changed(BlockIndex)
+ENDSUB
+
+SUB Automation_Reserve_Block(BlockIndex, CabIndex)
+    AUTOMATION_BLOCK_CAB_RESERVATIONS[BlockIndex] = CabIndex
+ENDSUB
+
+SUB Autmation_Remove_Block_Reservation(BlockIndex)
+    AUTOMATION_BLOCK_CAB_RESERVATIONS[BlockIndex] = CAB_UNASSIGNED
+ENDSUB
 
 {-- RESET --}
 
@@ -870,6 +1114,10 @@ WHEN $RESET = TRUE DO
     ResetInit_Set_Block_Directions_On_Panels()
     ResetInit_Set_Block_Signals_On_Panels()
     Set_All_Block_Power_To_Cab(-1), Set_All_Block_Power_To_Cab(0)
+
+    ResetInit_Mainline_Automation()
+
+    ResetInit_Set_Block_Debugging_Mappings()
 
 
 {-- TRIGGERS --}
@@ -991,23 +1239,202 @@ WHEN $RESET = TRUE DO
 '    WHEN Block_15_East_Sensor = BLOCK_DETECTOR_NO_ACTIVITY, Block_15_West_Sensor = BLOCK_DETECTOR_NO_ACTIVITY DO Block_Stopped_Triggering(14)
 
 {--
- - IR Detection (Of staging blocks)
+ - Precision Proximity Detectors
  -}
-    ' Enola Siding 
+    ' Staging Front (Enola Siding)
+    WHEN Staging_Front_Warning_Detector = ON DO $DRAW SPRITE(40, 31, 1) = SIG_ABSOLUTE_WEST IN RED
+    WHEN Staging_Front_Warning_Detector = OFF DO $ERASE SPRITE (40, 31, 1)
 
-    'WHEN Staging_Front_Warning_Detector = ON DO $DRAW SPRITE(41, 31, 1) = SIG_ABSOLUTE_EAST IN YELLOW
-    'WHEN Staging_Front_Warning_Detector = OFF DO $ERASE SPRITE (41, 31, 1)
+    ' Staging Rear (Conway Siding)
+    WHEN Staging_Rear_Warning_Detector = ON DO $DRAW SPRITE(40, 30, 1) = SIG_ABSOLUTE_WEST IN RED
+    WHEN Staging_Rear_Warning_Detector = OFF DO $ERASE SPRITE (40, 30, 1)
+
+    ' Bottom Island (Warwick)
+    WHEN Bottom_Island_Warning_Detector = ON DO 
+		$DRAW SPRITE(24, 20, 1) = SIG_ABSOLUTE_EAST IN RED
+		$DRAW SPRITE(20, 33, 1) = SIG_ABSOLUTE_NORTH IN RED
+    WHEN Bottom_Island_Warning_Detector = OFF DO 
+		$ERASE SPRITE (24, 20, 1)
+		$ERASE SPRITE (20, 33, 1)
+
+    ' Yard Lead (Mifflin)
+    WHEN Yard_Lead_Warning_Detector = ON DO $DRAW SPRITE(27, 29, 1) = SIG_ABSOLUTE_NORTH IN RED
+    WHEN Yard_Lead_Warning_Detector = OFF DO $ERASE SPRITE (27, 29, 1)
+
+
+    ''''' Sound Warnings
     
-    WHEN Staging_Front_Danger_Detector = ON DO $DRAW SPRITE(40, 31, 1) = SIG_ABSOLUTE_EAST IN RED
-    WHEN Staging_Front_Danger_Detector = OFF DO $ERASE SPRITE (40, 31, 1)
+    'WHEN Turnout_Statuses[2] = TURNOUT_DIRECTION_SECONDARY AND, 
+    ' Turnout_Statuses[17] = TURNOUT_DIRECTION_SECONDARY AND, 
+    ' Block_08_West_Sensor=BLOCK_DETECTOR_ACTIVITY_DETECTED AND,
+    ' Staging_Front_Warning_Detector = ON AND,
+    ' Staging_Front_Danger_Detector = OFF DO
+    '     $VOLUME1=100
+    '     $SOUND1="Warning - Slow.wav" ' relative file path
+ '        $SOUND1="C:\Program Files (x86)\CTI Electronics\Train Brain\Sounds\Warning - Slow.wav"
+ '       $SOUND1="C:\Users\Marty Kroll\Desktop\Warning - Slow.wav" '' for Martys desktop computer
+    '     $REPEAT
+
+    'WHEN Turnout_Statuses[2] = TURNOUT_DIRECTION_PRIMARY OR, 
+    ' Turnout_Statuses[17] = TURNOUT_DIRECTION_PRIMARY OR, 
+    ' Block_08_West_Sensor=BLOCK_DETECTOR_NO_ACTIVITY OR, 
+    ' Staging_Front_Warning_Detector = OFF OR,
+    ' Staging_Front_Danger_Detector = ON DO
+    '     $SOUND1=OFF
+
+'    WHEN Turnout_Statuses[2] = TURNOUT_DIRECTION_SECONDARY AND, 
+'     Turnout_Statuses[17] = TURNOUT_DIRECTION_SECONDARY AND, 
+'     Block_08_West_Sensor=BLOCK_DETECTOR_ACTIVITY_DETECTED AND,
+'     Staging_Front_Danger_Detector = ON DO
+'         $VOLUME1=100
+'         $SOUND1="Danger - End of Track.wav" ' relative file path
+'         $SOUN12="C:\Program Files (x86)\CTI Electronics\Train Brain\Sounds\Danger - End of track.wav"
+'         $SOUND1="C:\Users\Marty Kroll\Desktop\Danger - End of track.wav" '' for Martys desktop computer
+'         $REPEAT
+
+'    WHEN Turnout_Statuses[2] = TURNOUT_DIRECTION_PRIMARY OR, 
+'     Turnout_Statuses[17] = TURNOUT_DIRECTION_PRIMARY OR,
+'     Block_08_West_Sensor=BLOCK_DETECTOR_NO_ACTIVITY OR,  
+'     Staging_Front_Danger_Detector = OFF DO
+'         $SOUND1=OFF
 
 
-    ' Conway Siding
+    ' Conway Siding Duplicate coding from above 
 
-    'WHEN Staging_Rear_Warning_Detector = ON DO $DRAW SPRITE(41, 30, 1) = SIG_ABSOLUTE_EAST IN YELLOW
-    WHEN Staging_Rear_Danger_Detector = ON DO $DRAW SPRITE(40, 30, 1) = SIG_ABSOLUTE_EAST IN RED
-   
-   ' WHEN Staging_Rear_Warning_Detector = OFF DO $ERASE SPRITE (41, 30, 1)
-    WHEN Staging_Rear_Danger_Detector = OFF DO $ERASE SPRITE (40, 30, 1)
-   
+    'WHEN Staging_Rear_Warning_Detector = ON DO $DRAW SPRITE(40, 30, 1) = SIG_ABSOLUTE_EAST IN RED
+    'WHEN Staging_Rear_Warning_Detector = OFF DO $ERASE SPRITE (40, 30, 1)
+
+
+ ''''' Sound Warnings
+    
+'    WHEN Turnout_Statuses[2] = TURNOUT_DIRECTION_SECONDARY AND, 
+'     Turnout_Statuses[17] = TURNOUT_DIRECTION_PRIMARY AND,
+'     Block_08_West_Sensor=BLOCK_DETECTOR_ACTIVITY_DETECTED AND, 
+'     Staging_Rear_Warning_Detector = ON AND,
+'     Staging_Rear_Danger_Detector = OFF DO
+'         $VOLUME1=100
+'         $SOUND1="Warning - Slow.wav" ' relative file path
+ '        $SOUND1="C:\Program Files (x86)\CTI Electronics\Train Brain\Sounds\Warning - Slow.wav"
+ '        $SOUND1="C:\Users\Marty\Desktop\Warning - Slow.wav" '' for Martys desktop computer
+'         $REPEAT
+
+'    WHEN Turnout_Statuses[2] = TURNOUT_DIRECTION_PRIMARY OR, 
+'     Turnout_Statuses[17] = TURNOUT_DIRECTION_SECONDARY OR,
+'     Block_08_West_Sensor=BLOCK_DETECTOR_NO_ACTIVITY OR,  
+'     Staging_Rear_Warning_Detector = OFF OR,
+'     Staging_Rear_Danger_Detector = ON DO
+'         $SOUND1=OFF
+
+'    WHEN Turnout_Statuses[2] = TURNOUT_DIRECTION_SECONDARY AND, 
+'     Turnout_Statuses[17] = TURNOUT_DIRECTION_PRIMARY AND,
+'     Block_08_West_Sensor=BLOCK_DETECTOR_ACTIVITY_DETECTED AND,  
+'     Staging_Rear_Danger_Detector = ON DO
+'         $VOLUME1=100
+'         $SOUND1="Danger - End of Track.wav" ' relative file path
+  '       $SOUND1="C:\Program Files (x86)\CTI Electronics\Train Brain\Sounds\Danger - End of track.wav"
+  '       $SOUND1="C:\Users\Marty\Desktop\Danger - End of track.wav" '' for Martys desktop computer
+'         $REPEAT
+
+'    WHEN Turnout_Statuses[2] = TURNOUT_DIRECTION_PRIMARY OR, 
+'     Turnout_Statuses[17] = TURNOUT_DIRECTION_SECONDARY OR,
+'     Block_08_West_Sensor=BLOCK_DETECTOR_NO_ACTIVITY OR,  
+'     Staging_Rear_Danger_Detector = OFF DO
+'         $SOUND1=OFF
+ 
+{--
+ - Mainline Automation
+ -}
+    WHEN $COMMAND = "Toggle Mainline Automation" DO
+        MAINLINE_AUTOMATION = MAINLINE_AUTOMATION ~
+        $status = "Mainline Automation: @MAINLINE_AUTOMATION"
+
+    {-- Block 1 --}
+    WHEN MAINLINE_AUTOMATION = ON AND TURNOUT_STATUSES[TURNOUT_05] = TURNOUT_DIRECTION_SECONDARY DO Mainline_Hold_Invoked(BLOCK_01)
+    WHEN MAINLINE_AUTOMATION = ON AND TURNOUT_STATUSES[TURNOUT_06] = TURNOUT_DIRECTION_SECONDARY DO Mainline_Hold_Invoked(BLOCK_01)
+    WHEN MAINLINE_AUTOMATION = ON AND TURNOUT_STATUSES[TURNOUT_08] = TURNOUT_DIRECTION_SECONDARY DO Mainline_Hold_Invoked(BLOCK_01)
+
+    WHEN MAINLINE_AUTOMATION = ON,
+        AND TURNOUT_STATUSES[TURNOUT_05] = TURNOUT_DIRECTION_PRIMARY,
+        AND TURNOUT_STATUSES[TURNOUT_06] = TURNOUT_DIRECTION_PRIMARY,
+        AND TURNOUT_STATUSES[TURNOUT_08] = TURNOUT_DIRECTION_PRIMARY
+    DO Mainline_Hold_Removed(BLOCK_01)
+
+    {-- Block 3 --}
+    WHEN MAINLINE_AUTOMATION = ON AND TURNOUT_STATUSES[TURNOUT_09] = TURNOUT_DIRECTION_SECONDARY DO Mainline_Hold_Invoked(BLOCK_03)
+    WHEN MAINLINE_AUTOMATION = ON AND TURNOUT_STATUSES[TURNOUT_15] = TURNOUT_DIRECTION_SECONDARY DO Mainline_Hold_Invoked(BLOCK_03)
+    WHEN MAINLINE_AUTOMATION = ON AND TURNOUT_STATUSES[TURNOUT_10] = TURNOUT_DIRECTION_SECONDARY DO Mainline_Hold_Invoked(BLOCK_03)
+
+    WHEN MAINLINE_AUTOMATION = ON,
+        AND TURNOUT_STATUSES[TURNOUT_09] = TURNOUT_DIRECTION_PRIMARY,
+        AND TURNOUT_STATUSES[TURNOUT_15] = TURNOUT_DIRECTION_PRIMARY,
+        AND TURNOUT_STATUSES[TURNOUT_10] = TURNOUT_DIRECTION_PRIMARY
+    DO Mainline_Hold_Removed(BLOCK_03)
+
+    {-- Block 4 --}
+    WHEN MAINLINE_AUTOMATION = ON AND TURNOUT_STATUSES[TURNOUT_11] = TURNOUT_DIRECTION_SECONDARY DO Mainline_Hold_Invoked(BLOCK_04)
+
+    WHEN MAINLINE_AUTOMATION = ON,
+        AND TURNOUT_STATUSES[TURNOUT_11] = TURNOUT_DIRECTION_PRIMARY
+    DO Mainline_Hold_Removed(BLOCK_04)
+
+    {-- Block 5 --}
+    WHEN MAINLINE_AUTOMATION = ON AND TURNOUT_STATUSES[TURNOUT_12] = TURNOUT_DIRECTION_SECONDARY DO Mainline_Hold_Invoked(BLOCK_05)
+    WHEN MAINLINE_AUTOMATION = ON AND TURNOUT_STATUSES[TURNOUT_13] = TURNOUT_DIRECTION_SECONDARY DO Mainline_Hold_Invoked(BLOCK_05)
+
+    WHEN MAINLINE_AUTOMATION = ON,
+        AND TURNOUT_STATUSES[TURNOUT_12] = TURNOUT_DIRECTION_PRIMARY,
+        AND TURNOUT_STATUSES[TURNOUT_13] = TURNOUT_DIRECTION_PRIMARY
+    DO Mainline_Hold_Removed(BLOCK_05)
+
+    {-- Block 6 --}
+    WHEN MAINLINE_AUTOMATION = ON AND TURNOUT_STATUSES[TURNOUT_17] = TURNOUT_DIRECTION_SECONDARY DO Mainline_Hold_Invoked(BLOCK_06)
+
+    WHEN MAINLINE_AUTOMATION = ON,
+        AND TURNOUT_STATUSES[TURNOUT_17] = TURNOUT_DIRECTION_PRIMARY
+    DO Mainline_Hold_Removed(BLOCK_06)
+
+    {-- Block 7 --}
+    WHEN MAINLINE_AUTOMATION = ON AND TURNOUT_STATUSES[TURNOUT_01] = TURNOUT_DIRECTION_SECONDARY DO Mainline_Hold_Invoked(BLOCK_07)
+    WHEN MAINLINE_AUTOMATION = ON AND TURNOUT_STATUSES[TURNOUT_04] = TURNOUT_DIRECTION_SECONDARY DO Mainline_Hold_Invoked(BLOCK_07)
+
+    WHEN MAINLINE_AUTOMATION = ON,
+        AND TURNOUT_STATUSES[TURNOUT_01] = TURNOUT_DIRECTION_PRIMARY,
+        AND TURNOUT_STATUSES[TURNOUT_04] = TURNOUT_DIRECTION_PRIMARY
+    DO Mainline_Hold_Removed(BLOCK_07)
+
+    {-- Block 8 --}
+    WHEN MAINLINE_AUTOMATION = ON AND TURNOUT_STATUSES[TURNOUT_03] = TURNOUT_DIRECTION_SECONDARY DO Mainline_Hold_Invoked(BLOCK_08)
+
+    WHEN MAINLINE_AUTOMATION = ON,
+        AND TURNOUT_STATUSES[TURNOUT_03] = TURNOUT_DIRECTION_PRIMARY
+    DO Mainline_Hold_Removed(BLOCK_08)
+
+{--
+ - Debugging
+ -}
+    WHEN $LeftMouse = BLOCK_DEBUGGING_BLOCK_TOGGLE_UNOCCUPIED[BLOCK_01] DO Block_Stopped_Triggering(Block_01)
+    WHEN $LeftMouse = BLOCK_DEBUGGING_BLOCK_TOGGLE_UNOCCUPIED[BLOCK_02] DO Block_Stopped_Triggering(Block_02)
+    WHEN $LeftMouse = BLOCK_DEBUGGING_BLOCK_TOGGLE_UNOCCUPIED[BLOCK_03] DO Block_Stopped_Triggering(Block_03)
+    WHEN $LeftMouse = BLOCK_DEBUGGING_BLOCK_TOGGLE_UNOCCUPIED[BLOCK_04] DO Block_Stopped_Triggering(Block_04)
+
+    ' WHEN $LeftMouse = BLOCK_DEBUGGING_BLOCK_TOGGLE_OCCUPIED[BLOCK_01]
+    ' WHEN $LeftMouse = BLOCK_DEBUGGING_BLOCK_TOGGLE_OCCUPIED[BLOCK_02]
+    ' WHEN $LeftMouse = BLOCK_DEBUGGING_BLOCK_TOGGLE_OCCUPIED[BLOCK_03]
+    ' WHEN $LeftMouse = BLOCK_DEBUGGING_BLOCK_TOGGLE_OCCUPIED[BLOCK_04]
+
+    WHEN $LeftMouse = BLOCK_DEBUGGING_BLOCK_TOGGLE_EAST[BLOCK_01] DO Block_Triggered_East(Block_01)
+    WHEN $LeftMouse = BLOCK_DEBUGGING_BLOCK_TOGGLE_EAST[BLOCK_02] DO Block_Triggered_East(Block_02)
+    WHEN $LeftMouse = BLOCK_DEBUGGING_BLOCK_TOGGLE_EAST[BLOCK_03] DO Block_Triggered_East(Block_03)
+    WHEN $LeftMouse = BLOCK_DEBUGGING_BLOCK_TOGGLE_EAST[BLOCK_04] DO Block_Triggered_East(Block_04)
+
+    WHEN $LeftMouse = BLOCK_DEBUGGING_BLOCK_TOGGLE_WEST[BLOCK_01] DO Block_Triggered_West(Block_01)
+    WHEN $LeftMouse = BLOCK_DEBUGGING_BLOCK_TOGGLE_WEST[BLOCK_02] DO Block_Triggered_West(Block_02)
+    WHEN $LeftMouse = BLOCK_DEBUGGING_BLOCK_TOGGLE_WEST[BLOCK_03] DO Block_Triggered_West(Block_03)
+    WHEN $LeftMouse = BLOCK_DEBUGGING_BLOCK_TOGGLE_WEST[BLOCK_04] DO Block_Triggered_West(Block_04)
+
+    ' WHEN $LeftMouse = BLOCK_DEBUGGING_BLOCK_TOGGLE_MANUAL_HOLD[BLOCK_01]
+
+    ' WHEN $LeftMouse = BLOCK_DEBUGGING_BLOCK_TOGGLE_SYSTEM_HOLD[BLOCK_01]
+
+    ' WHEN $LeftMouse = BLOCK_DEBUGGING_BLOCK_TOGGLE_MAINLINE_HOLD[BLOCK_01]
 

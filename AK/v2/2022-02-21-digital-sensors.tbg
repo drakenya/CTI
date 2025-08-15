@@ -1,0 +1,504 @@
+"Version 1"
+"NumPanels 8"
+15790320,15790320,15790320,15790320,15790320,15790320,15790320,15790320
+"CTC Panel #1","CTC Panel #2","CTC Panel #3","CTC Panel #4","CTC Panel #5","CTC Panel #6","CTC Panel #7","CTC Panel #8"
+36,36,50,50,50,50,50,50
+75,80,80,80,80,80,80,80
+25,25,25,25,25,25,25,25
+0,0,0,0,0,0,0,0
+0,0,0,0
+0,0,0,0
+0,0,0,0
+0,0,0,0
+0,0,0,0
+0,0,0,0
+0,0,0,0
+0,0,0,0
+0,0,7,41,0
+"H/1$Microsoft Sans Serif$8$CC"
+0,0,8,41,0
+"H/2$Microsoft Sans Serif$8$CC"
+0,0,29,41,0
+"517$Microsoft Sans Serif$8$CC"
+0,0,30,41,0
+"516$Microsoft Sans Serif$8$CC"
+0,0,31,41,0
+"515$Microsoft Sans Serif$8$CC"
+0,1,1,55,0
+0,1,2,55,0
+0,1,6,0,0
+0,1,7,33,0
+0,1,8,28,0
+0,1,9,0,0
+0,1,14,55,0
+0,1,23,55,0
+0,1,29,28,0
+0,1,30,28,0
+0,1,31,28,0
+0,1,32,0,0
+0,2,1,41,0
+"Block 01$Microsoft Sans Serif$8$Bold$CL"
+0,2,2,41,0
+"Block 09$Microsoft Sans Serif$8$Bold$CL"
+0,2,5,41,16711680
+"5$Microsoft Sans Serif$8$LC"
+0,2,6,15,0
+0,2,7,41,0
+"34$Microsoft Sans Serif$8$LC"
+0,2,8,22,0
+0,2,9,0,0
+0,2,11,41,0
+"Millers Run$Microsoft Sans Serif$8$Italic$CC"
+0,2,14,41,0
+"Block 15$Microsoft Sans Serif$8$Bold$CL"
+0,2,17,0,0
+0,2,19,41,0
+"K/4$Microsoft Sans Serif$8$CC"
+0,2,23,41,0
+"Block 05$Microsoft Sans Serif$8$Bold$CL"
+0,2,28,41,0
+"Blackwater$Microsoft Sans Serif$8$Italic$CC"
+0,2,29,7,0
+0,2,30,0,0
+0,2,31,0,0
+0,2,32,0,0
+0,3,6,0,0
+0,3,7,32772,0
+0,3,9,12,0
+0,3,10,41,0
+"33$Microsoft Sans Serif$8$UC"
+0,3,14,41,0
+"$Microsoft Sans Serif$8$CR"
+0,3,17,0,0
+0,3,19,28,0
+0,3,23,41,0
+"$Microsoft Sans Serif$8$CR"
+0,3,29,41,0
+"20$Microsoft Sans Serif$8$LC"
+0,3,30,22,0
+0,3,31,0,0
+0,3,32,0,0
+0,4,6,0,0
+0,4,7,0,0
+0,4,9,5,0
+0,4,16,41,0
+"22$Microsoft Sans Serif$8$LC"
+0,4,17,15,0
+0,4,19,0,0
+0,4,20,41,0
+"$Microsoft Sans Serif$8$CC"
+0,4,30,41,0
+"19$Microsoft Sans Serif$8$LC"
+0,4,31,22,0
+0,4,32,0,0
+0,5,5,41,16711680
+"6$Microsoft Sans Serif$8$LR"
+0,5,6,0,0
+0,5,7,0,0
+0,5,8,2,0
+0,5,17,0,0
+0,5,18,4,0
+0,5,19,5,0
+0,5,20,41,0
+"Flagstone Creek$Microsoft Sans Serif$8$Italic$CC"
+0,5,32,12,0
+0,5,33,41,16711680
+"12$Microsoft Sans Serif$8$UC"
+0,6,6,13,0
+0,6,7,14,0
+0,6,8,41,255
+"7$Microsoft Sans Serif$8$UC"
+0,6,17,0,0
+0,6,18,66,0
+0,6,32,0,0
+0,7,4,41,0
+"Gin Gin$Microsoft Sans Serif$8$Italic$CC"
+0,7,5,6,0
+0,7,6,0,0
+0,7,7,0,0
+0,7,16,41,0
+"23$Microsoft Sans Serif$8$LC"
+0,7,17,14,0
+0,7,18,15,0
+0,7,19,41,0
+"24$Microsoft Sans Serif$8$UC"
+0,7,32,0,0
+0,8,5,29,0
+0,8,6,0,0
+0,8,7,15,0
+0,8,8,41,255
+"14$Microsoft Sans Serif$8$UC"
+0,8,17,0,0
+0,8,18,0,0
+0,8,19,4,0
+0,8,31,41,0
+"21$Microsoft Sans Serif$8$CR"
+0,8,32,13,0
+0,8,33,41,16711680
+"13$Microsoft Sans Serif$8$UC"
+0,9,5,41,0
+"G/1$Microsoft Sans Serif$8$CC"
+0,9,6,0,0
+0,9,7,0,0
+0,9,8,4,0
+0,9,10,41,0
+"$Microsoft Sans Serif$8$CC"
+0,9,17,0,0
+0,9,18,0,0
+0,9,19,0,0
+0,9,31,23,0
+0,9,32,0,0
+0,10,6,0,0
+0,10,7,517,0
+0,10,8,0,0
+0,10,9,41,0
+"to Flagstone Creek$Microsoft Sans Serif$8$Italic$CC"
+0,10,17,0,0
+0,10,18,29,0
+0,10,19,29,0
+0,10,29,41,0
+"Thargominda$Microsoft Sans Serif$8$Italic$CC"
+0,10,30,6,0
+0,10,31,0,0
+0,10,32,0,0
+0,11,5,41,16711680
+"8$Microsoft Sans Serif$8$LC"
+0,11,6,14,0
+0,11,8,0,0
+0,11,17,29,0
+0,11,18,41,0
+"K/2$Microsoft Sans Serif$8$CC"
+0,11,19,41,0
+"K/3$Microsoft Sans Serif$8$CC"
+0,11,30,29,0
+0,11,31,29,0
+0,11,32,0,0
+0,12,6,2055,0
+0,12,17,41,0
+"K/1$Microsoft Sans Serif$8$CC"
+0,12,30,41,0
+"C/1$Microsoft Sans Serif$8$CC"
+0,12,31,41,0
+"C/2$Microsoft Sans Serif$8$CC"
+0,12,32,5,0
+0,13,1,55,0
+0,13,7,4,0
+0,13,14,55,0
+0,13,18,41,0
+"J/2$Microsoft Sans Serif$8$CC"
+0,13,19,41,0
+"J/1$Microsoft Sans Serif$8$CC"
+0,13,23,55,0
+0,13,31,8198,0
+0,14,1,41,0
+"Block 02$Microsoft Sans Serif$8$Bold$CL"
+0,14,7,0,0
+0,14,14,41,0
+"Block 14$Microsoft Sans Serif$8$Bold$CL"
+0,14,18,28,0
+0,14,19,28,0
+0,14,23,41,0
+"Block 06$Microsoft Sans Serif$8$Bold$CL"
+0,14,31,0,0
+0,15,1,41,0
+"$Microsoft Sans Serif$8$CR"
+0,15,7,0,0
+0,15,17,41,0
+"J/3$Microsoft Sans Serif$8$CC"
+0,15,18,15,0
+0,15,19,0,0
+0,15,20,41,0
+"$Microsoft Sans Serif$8$CC"
+0,15,31,0,0
+0,16,7,0,0
+0,16,17,28,0
+0,16,18,0,0
+0,16,19,12,0
+0,16,31,0,0
+0,17,7,0,0
+0,17,17,0,0
+0,17,18,0,0
+0,17,19,0,0
+0,17,20,41,0
+"Warwick$Microsoft Sans Serif$8$Italic$CC"
+0,17,31,0,0
+0,18,7,0,0
+0,18,17,0,0
+0,18,18,0,0
+0,18,19,0,0
+0,18,31,0,0
+0,19,7,0,0
+0,19,17,0,0
+0,19,18,0,0
+0,19,19,0,0
+0,19,30,41,16711680
+"17$Microsoft Sans Serif$8$LC"
+0,19,31,15,0
+0,19,33,41,0
+"to Warwick$Microsoft Sans Serif$8$Italic$CC"
+0,20,7,0,0
+0,20,17,7,0
+0,20,18,0,0
+0,20,19,0,0
+0,20,31,0,0
+0,20,32,4,0
+0,21,7,0,0
+0,21,17,41,0
+"26$Microsoft Sans Serif$8$LC"
+0,21,18,22,0
+0,21,19,0,0
+0,21,31,0,0
+0,21,32,0,0
+0,22,7,0,0
+0,22,19,12,0
+0,22,20,41,16744448
+"25$Microsoft Sans Serif$8$UC"
+0,22,31,5,0
+0,22,32,0,0
+0,23,7,0,0
+0,23,19,0,0
+0,23,28,8,0
+0,23,29,1,0
+0,23,30,11,0
+0,24,7,0,0
+0,24,23,41,0
+"$Microsoft Sans Serif$8$CL"
+0,24,24,41,0
+"$Microsoft Sans Serif$8$CL"
+0,24,25,41,0
+"$Microsoft Sans Serif$8$CL"
+0,24,27,6,0
+0,25,1,55,0
+0,25,2,55,0
+0,25,7,16384,0
+0,25,14,55,0
+0,25,23,55,0
+0,25,24,55,0
+0,25,25,55,0
+0,25,27,16384,0
+0,26,1,41,0
+"Block 03$Microsoft Sans Serif$8$Bold$CL"
+0,26,2,41,0
+"Block 10$Microsoft Sans Serif$8$Bold$CL"
+0,26,6,41,16711680
+"9$Microsoft Sans Serif$8$LC"
+0,26,7,15,0
+0,26,14,41,0
+"Block 13$Microsoft Sans Serif$8$Bold$CL"
+0,26,16,0,0
+0,26,23,41,0
+"Block 07$Microsoft Sans Serif$8$Bold$CL"
+0,26,24,41,0
+"Block 11$Microsoft Sans Serif$8$Bold$CL"
+0,26,25,41,0
+"Block 12$Microsoft Sans Serif$8$Bold$CL"
+0,26,26,41,16711680
+"1$Microsoft Sans Serif$8$LC"
+0,26,27,15,0
+0,27,2,41,0
+"$Microsoft Sans Serif$8$CC"
+0,27,7,0,0
+0,27,8,32772,0
+0,27,9,0,0
+0,27,10,41,0
+"to Haston$Microsoft Sans Serif$8$Italic$CC"
+0,27,16,0,0
+0,27,20,41,0
+"I/4$Microsoft Sans Serif$8$CC"
+0,27,27,0,0
+0,27,28,32772,0
+0,28,1,41,0
+"$Microsoft Sans Serif$8$CR"
+0,28,2,41,0
+"$Microsoft Sans Serif$8$CR"
+0,28,7,0,0
+0,28,8,0,0
+0,28,9,5,0
+0,28,16,15,0
+0,28,17,41,16744448
+"27$Microsoft Sans Serif$8$UC"
+0,28,20,28,0
+0,28,27,0,0
+0,28,28,0,0
+0,29,7,0,0
+0,29,8,14,0
+0,29,9,41,255
+"16$Microsoft Sans Serif$8$UC"
+0,29,16,0,0
+0,29,17,3,0
+0,29,18,41,0
+"28$Microsoft Sans Serif$8$CR"
+0,29,20,0,0
+0,29,27,0,0
+0,29,28,15,0
+0,29,29,41,255
+"2$Microsoft Sans Serif$8$UC"
+0,30,7,0,0
+0,30,8,0,0
+0,30,16,0,0
+0,30,18,20,0
+0,30,20,5,0
+0,30,27,0,0
+0,30,28,0,0
+0,30,29,32788,0
+0,31,7,0,0
+0,31,8,0,0
+0,31,16,29,0
+0,31,17,41,0
+"29$Microsoft Sans Serif$8$LC"
+0,31,18,13,0
+0,31,19,64,0
+0,31,21,41,0
+"Haston$Microsoft Sans Serif$8$Italic$CC"
+0,31,27,0,0
+0,31,28,0,0
+0,31,29,0,0
+0,31,30,20,0
+0,32,5,41,0
+"Rockhaven, INT$Microsoft Sans Serif$8$Italic$CC"
+0,32,6,41,16711680
+"15$Microsoft Sans Serif$8$LC"
+0,32,7,13,0
+0,32,8,0,0
+0,32,17,2,0
+0,32,18,21,0
+0,32,20,4,0
+0,32,27,0,0
+0,32,28,0,0
+0,32,29,0,0
+0,32,30,0,0
+0,32,31,20,0
+0,33,6,6,0
+0,33,7,0,0
+0,33,8,0,0
+0,33,16,6,0
+0,33,17,6,0
+0,33,18,41,0
+"30$Microsoft Sans Serif$8$CL"
+0,33,20,0,0
+0,33,27,0,0
+0,33,28,0,0
+0,33,29,0,0
+0,33,30,0,0
+0,33,31,0,0
+0,33,32,20,0
+0,33,34,41,0
+"Mifflin$Microsoft Sans Serif$8$Italic$CC"
+0,34,6,29,0
+0,34,7,0,0
+0,34,8,517,0
+0,34,16,0,0
+0,34,17,0,0
+0,34,20,29,0
+0,34,27,0,0
+0,34,28,517,0
+0,34,29,29,0
+0,34,30,29,0
+0,34,31,29,0
+0,34,32,29,0
+0,34,33,4,0
+0,35,6,41,0
+"F/1$Microsoft Sans Serif$8$CC"
+0,35,7,14,0
+0,35,8,41,16711680
+"10$Microsoft Sans Serif$8$UC"
+0,35,16,29,0
+0,35,17,29,0
+0,35,20,41,0
+"I/3$Microsoft Sans Serif$8$CC"
+0,35,26,41,16711680
+"4$Microsoft Sans Serif$8$LC"
+0,35,27,14,0
+0,35,29,41,0
+"A/1$Microsoft Sans Serif$8$CC"
+0,35,30,41,0
+"A/2$Microsoft Sans Serif$8$CC"
+0,35,31,41,0
+"A/3$Microsoft Sans Serif$8$CC"
+0,35,32,41,0
+"A/4$Microsoft Sans Serif$8$CC"
+0,35,33,0,0
+0,36,7,7,0
+0,36,16,41,0
+"I/1$Microsoft Sans Serif$8$CC"
+0,36,17,41,0
+"I/2$Microsoft Sans Serif$8$CC"
+0,36,27,7,0
+0,36,33,0,0
+0,37,1,55,0
+0,37,6,41,0
+"E/2$Microsoft Sans Serif$8$CC"
+0,37,7,41,0
+"E/3$Microsoft Sans Serif$8$CC"
+0,37,8,32772,0
+0,37,23,55,0
+0,37,28,32777,0
+0,37,29,1,0
+0,37,30,10,0
+0,38,1,41,0
+"Block 04$Microsoft Sans Serif$8$Bold$CL"
+0,38,6,28,0
+0,38,7,28,0
+0,38,8,0,0
+0,38,23,41,0
+"Block 08$Microsoft Sans Serif$8$Bold$CL"
+0,38,29,41,0
+"CON$Microsoft Sans Serif$8$CC"
+0,38,30,41,0
+"ENO$Microsoft Sans Serif$8$CC"
+0,38,31,4,0
+0,39,4,41,0
+"$Microsoft Sans Serif$8$CC"
+0,39,5,41,0
+"Rockhaven$Microsoft Sans Serif$8$Italic$CC"
+0,39,6,7,0
+0,39,7,0,0
+0,39,8,0,0
+0,39,23,41,0
+"$Microsoft Sans Serif$8$CL"
+0,39,29,28,0
+0,39,30,28,0
+0,39,31,0,0
+0,40,6,41,0
+"32$Microsoft Sans Serif$8$LC"
+0,40,7,12,0
+0,40,8,0,0
+0,40,28,41,0
+"Conway / Enola$Microsoft Sans Serif$8$Italic$CC"
+0,40,29,0,0
+0,40,30,0,0
+0,40,31,0,0
+0,41,6,33,0
+0,41,7,0,0
+0,41,8,0,0
+0,41,29,7,0
+0,41,30,0,0
+0,41,31,0,0
+0,42,6,41,0
+"E/1$Microsoft Sans Serif$8$CC"
+0,42,7,22,0
+0,42,8,0,0
+0,42,29,41,0
+"18$Microsoft Sans Serif$8$LC"
+0,42,30,22,0
+0,42,31,0,0
+0,42,32,41,0
+"$Microsoft Sans Serif$8$UC"
+0,43,7,41,0
+"31$Microsoft Sans Serif$8$CL"
+0,43,8,12,0
+0,43,9,41,16711680
+"11$Microsoft Sans Serif$8$UC"
+0,43,31,12,0
+0,43,32,41,16711680
+"3$Microsoft Sans Serif$8$UC"
+0,44,8,0,0
+0,44,31,0,0
+0,45,8,0,0
+0,45,31,0,0
+0,46,8,0,0
+0,46,31,0,0
+0,47,8,0,0
+0,47,31,0,0
+0,48,8,0,0
+0,48,31,0,0
